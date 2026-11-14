@@ -15,9 +15,10 @@ filters, Google Forms as link panels (no iframes), parents page as a
 two-column reading layout. Storage keys and data shapes are unchanged, so
 existing progress survives. Lint, type check and static build pass.
 
-Open decision: the Discord invite is still in `config/program.ts` and shown
-to students. The brief advises against a public invite on a static site.
-Clearing it to a PASTE_ value switches the panels to "shared separately".
+Decision (2026-11-14): the Discord invite stays public in `config/program.ts`
+and is shown to students as a button. The founder chose this knowing the
+brief advised against it. Clearing it to a PASTE_ value at any time switches
+the panels to "shared separately".
 
 ## What is built
 
