@@ -15,24 +15,30 @@ dashboard and the week pages. Nothing on the site is decoration.
 | Full-page grid wash plus glows | Six faint column rules in the hero only, flat surfaces elsewhere |
 | Same rounded panel everywhere | Alternating layouts: editorial split, hairline list, timeline, figure grid, filled panel, reading column |
 | Showcase of bars and lines | Four believable interfaces with readable text, each labeled as a figure and as an example |
-| Three stacked chevrons | A tiered pine on a launch pad, with a wordmark whose i-dot is a pine |
+| Three stacked chevrons | One triangle over one bar; a one-color wordmark |
 | Fade-and-rise on every section | One hero entrance (cards settle in order 01, 02, 03), state changes inside panels, progress fills, page fade |
 
-## Brand
+## Brand (revised 2026-11-14 after review: "simpler, more commercial")
 
-Concept A, "Pine on the pad": two triangle tiers, a trunk, a pad bar with
-a 1.5-unit gap. Wordmark in Space Grotesk Medium, -3% tracking, "Launch"
-in pine, pine triangle for the i-dot. Files in `design/brand/`, lockups in
-Figma (01 — Brand Identity) and in `design/mockups/brand.html`. Concepts B
-(rocket pine) and C (P monogram) are shown for comparison and not
-recommended.
+One triangle over one bar. The triangle is the pine, the arrow and the
+launch; the bar is the pad it has just left. Two shapes, nothing to lose at
+16 px. Wordmark "PineLaunch" in Space Grotesk Medium, -3% tracking, one
+color. Files in `design/brand/`; sheet in `design/mockups/brand.html`. The
+earlier tiered pine, rocket pine and P monogram are kept on the sheet for
+the record and are not recommended.
 
-## System
+## System (revised: black and grey, pine as a hint)
 
-Tokens exactly as the brief lists them. Space Grotesk above 22 px, Manrope
-for reading, IBM Plex Mono for labels, dates, codes and URLs. Radii 6 / 10 /
-14 / 20 / 28 by role. Max content width 1200 (1248 with gutters), gutters
-20 on phones, 96 at 1440.
+The founder reviewed the first pass and asked for less green. Surfaces are
+now neutral: page #0B0B0B, hero and header #050505, panels #121212 /
+#181818 / #202020, lines #1E1E1E / #2A2A2A / #3A3A3A, text #F4F4F4 /
+#B9B9B9 / #8A8A8A. Pine (#7EA889, highlight #A2C5AA, deep #315F43) appears
+only on the mark, the primary button, checked boxes, the current timeline
+node, live indicators and one key number. Nothing else is tinted. The
+brief's green-tinted tokens are superseded by this decision. Type and radii
+unchanged: Space Grotesk above 22 px, Manrope for reading, IBM Plex Mono for
+labels; radii 6 / 10 / 14 / 20 / 28; max content width 1200; gutters 20 on
+phones, 96 at 1440.
 
 ## Homepage (desktop 1440, mobile 390)
 

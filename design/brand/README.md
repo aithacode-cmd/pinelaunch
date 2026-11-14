@@ -1,19 +1,17 @@
 # PineLaunch brand assets
 
-Construction: a 24-unit grid. Two stacked triangles make a tiered pine; the
-upper tier's base is wider than the lower tier at the same height, which
-gives the step a pine silhouette has. A 3x3 trunk sits under the canopy.
-The pad is a 14x2 bar with a 1.5-unit gap below the trunk: the tree is
-just off the ground, which is the "launch". At 16px the gap still reads.
+Mark: one triangle (pine canopy, arrow, launch) over one bar (the pad), on a
+24-unit grid. Triangle apex (12,2.5), base y=16 from x=2.5 to 21.5. Bar
+15 x 2.5 at y=19, fully rounded ends. The 3-unit gap between them is the
+lift-off. Two shapes, no detail to lose at 16 px.
 
-Wordmark: "PineLaunch" in Space Grotesk Medium, letter-spacing -0.03em,
-with the dot of the "i" replaced by a small pine triangle (same shape as the
-upper tier, scaled). In code this is a dotless i (U+0131) with an SVG
-triangle positioned above it. "Pine" is text-primary, "Launch" is pine.
+Wordmark: "PineLaunch" in Space Grotesk Medium, letter-spacing -0.03em, one
+color (white on dark, near-black on light). No split color, no decoration.
 
-Files: mark.svg (pine on dark), mark-mono-light.svg (white, for dark
-backgrounds), mark-mono-dark.svg (near-black, for light print),
-favicon.svg (rounded tile). Lockups are built in Figma on the
-"01 — Brand Identity" section and in `components/Brand.tsx`.
+Color: the mark is pine #7EA889 on dark, pine highlight #A2C5AA inside the
+near-black icon tile, white for one-color use on dark, #0B0B0B on light.
+Never a gradient.
 
-Clear space: one trunk width (3 units) on all sides. Minimum size: 16px.
+Files: mark.svg, mark-mono-light.svg, mark-mono-dark.svg, favicon.svg.
+Lockups: `design/mockups/brand.html`. Clear space: one bar height (2.5
+units) on all sides. Minimum size: 16 px.

@@ -6,9 +6,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#101713;--bgd:#0B100D;--s1:#151E18;--s2:#1C281F;--s3:#253329;--l1:#28362C;--l2:#354438;--l3:#48594C;--t1:#F1F5F1;--t2:#C1CCC3;--t3:#9BA89F;--pine:#7EA889;--pineh:#A2C5AA;--pined:#315F43;--btn:#315F43;--rule:rgba(126,168,137,.075)}
+:root{--bg:#0B0B0B;--bgd:#050505;--s1:#121212;--s2:#181818;--s3:#202020;--l1:#1E1E1E;--l2:#2A2A2A;--l3:#3A3A3A;--t1:#F4F4F4;--t2:#B9B9B9;--t3:#8A8A8A;--pine:#7EA889;--pineh:#A2C5AA;--pined:#315F43;--btn:#315F43;--rule:rgba(255,255,255,.045)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#060907;color:var(--t1);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px;display:flex;gap:80px;align-items:flex-start}
+body{background:#000;color:var(--t1);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px;display:flex;gap:80px;align-items:flex-start}
 .artboard{background:var(--bg);flex:none;overflow:hidden;position:relative}
 .d{width:1440px}.m{width:390px}
 .sg{font-family:"Space Grotesk",sans-serif;letter-spacing:-.03em;font-weight:500}
@@ -21,10 +21,10 @@ body{background:#060907;color:var(--t1);font-family:Manrope,system-ui,sans-serif
 .mark{display:inline-block;vertical-align:middle}
 header{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--l1);background:var(--bgd)}
 .logo{display:flex;align-items:center;gap:11px}
-.wm{font-family:"Space Grotesk";font-weight:500;font-size:22px;letter-spacing:-.03em;position:relative}
-.wm b{font-weight:500;color:var(--pine)}
+.wm{font-family:"Space Grotesk";font-weight:500;font-size:22px;letter-spacing:-.03em;position:relative;color:var(--t1)}
+.wm b{font-weight:500;color:inherit}
 .wm i{font-style:normal;position:relative}
-.wm i::after{content:"";position:absolute;left:50%;top:-1px;transform:translateX(-50%);border-left:3px solid transparent;border-right:3px solid transparent;border-bottom:5px solid var(--pine)}
+.wm i::after{display:none}
 nav{display:flex;gap:4px}nav a{color:var(--t2);font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px}
 .hero{background:var(--bgd);position:relative;padding:96px 0 80px;border-bottom:1px solid var(--l1)}
 .rules{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);pointer-events:none}
@@ -48,14 +48,14 @@ h1{font-size:76px;line-height:1.0;margin:22px 0 28px}
 .sketch .ttl s{color:var(--t3)}
 .sketch .box{border:1.5px dashed var(--l3);border-radius:8px;height:34px;margin-top:12px}
 .sketch .box.sm{width:60%}
-.sketch .note{position:absolute;left:18px;bottom:18px;background:#2a3a2d;color:var(--t1);font-family:"IBM Plex Mono";font-size:11px;padding:8px 10px;border-radius:6px;transform:rotate(-2deg);line-height:1.5}
+.sketch .note{position:absolute;left:18px;bottom:18px;background:#262626;color:var(--t1);font-family:"IBM Plex Mono";font-size:11px;padding:8px 10px;border-radius:6px;transform:rotate(-2deg);line-height:1.5}
 .phone{width:290px;height:330px;background:var(--s2);border-radius:28px;padding:18px 18px 0;position:relative}
 .phone .bar{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:11px;color:var(--t3)}
 .phone h4{font-family:"Space Grotesk";font-weight:500;font-size:24px;letter-spacing:-.02em;margin:22px 0 14px}
 .row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--l2);font-size:14px}
 .row .cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--l3);flex:none}
 .row .cb.on{background:var(--pine);border-color:var(--pine)}
-.row .cb.on::after{content:"";display:block;width:5px;height:9px;border:solid #0B100D;border-width:0 2px 2px 0;transform:rotate(45deg);margin:1px 0 0 5px}
+.row .cb.on::after{content:"";display:block;width:5px;height:9px;border:solid #0B0B0B;border-width:0 2px 2px 0;transform:rotate(45deg);margin:1px 0 0 5px}
 .row .due{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color:var(--t3)}
 .row.done span{color:var(--t3);text-decoration:line-through}
 .fab{position:absolute;right:18px;bottom:22px;width:44px;height:44px;border-radius:14px;background:var(--btn);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
@@ -73,7 +73,7 @@ h1{font-size:76px;line-height:1.0;margin:22px 0 28px}
 .conn{position:absolute;left:150px;top:290px;width:180px;height:140px;pointer-events:none}
 .strip{border-bottom:1px solid var(--l1);padding:22px 0;display:flex;align-items:center;gap:40px;overflow:hidden}
 .strip .items{display:flex;gap:40px;align-items:center;white-space:nowrap;font-family:"Space Grotesk";font-weight:500;font-size:20px;letter-spacing:-.02em;color:var(--t2)}
-.strip .items span::before{content:"";display:inline-block;width:5px;height:5px;background:var(--pine);border-radius:1px;margin:0 40px 3px 0;transform:rotate(45deg)}
+.strip .items span::before{content:"";display:inline-block;width:5px;height:5px;background:var(--l3);border-radius:1px;margin:0 40px 3px 0;transform:rotate(45deg)}
 .strip .items span:first-child::before{display:none}
 .pause{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color:var(--t3);border:1px solid var(--l2);border-radius:6px;padding:6px 10px}
 section{padding:112px 0}
@@ -89,7 +89,7 @@ h2{font-size:48px;line-height:1.06}
 .tl .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
 .tl .node{position:absolute;top:-6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--l3)}
 .tl .node.a{left:0;border-color:var(--pine);background:var(--pine)}.tl .node.b{left:33.33%}.tl .node.c{left:66.66%}
-.stage .code{font-family:"IBM Plex Mono";font-size:12px;color:var(--pine);letter-spacing:.08em}
+.stage .code{font-family:"IBM Plex Mono";font-size:12px;color:var(--t3);letter-spacing:.08em}
 .stage h3{font-size:32px;margin:10px 0 4px}
 .stage .dt{font-family:"IBM Plex Mono";font-size:12px;color:var(--t3);margin-bottom:14px}
 .stage p{color:var(--t2);font-size:16px;line-height:1.6}
@@ -114,18 +114,18 @@ h2{font-size:48px;line-height:1.06}
 .site .hero2 h5{font-family:"Space Grotesk";font-size:22px;font-weight:500;letter-spacing:-.02em;line-height:1.1}
 .site .ev{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px 16px}
 .site .ev div{background:var(--s2);border-radius:8px;padding:10px;font-size:11px;color:var(--t2);line-height:1.4}
-.site .ev b{display:block;font-family:"IBM Plex Mono";font-size:10px;color:var(--pine);margin-bottom:4px}
+.site .ev b{display:block;font-family:"IBM Plex Mono";font-size:10px;color:var(--t3);margin-bottom:4px}
 .tool{padding:22px}
 .tool label{display:block;font-family:"IBM Plex Mono";font-size:10px;color:var(--t3);margin:12px 0 6px;letter-spacing:.06em;text-transform:uppercase}
 .tool .in{background:var(--bg);border:1px solid var(--l2);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--t1);display:flex;justify-content:space-between}
 .tool .in span{color:var(--t3);font-family:"IBM Plex Mono";font-size:11px}
-.tool .tot{margin-top:16px;background:var(--pined);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:baseline;color:#fff}
-.tool .tot b{font-family:"Space Grotesk";font-size:26px;font-weight:500}
+.tool .tot{margin-top:16px;background:var(--s3);border:1px solid var(--l2);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:baseline;color:var(--t1)}
+.tool .tot b{font-family:"Space Grotesk";font-size:26px;font-weight:500;color:var(--pineh)}
 .game{padding:18px;display:flex;flex-direction:column;gap:14px}
 .game .hud{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:11px;color:var(--t2)}
 .game .board{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
 .game .board i{aspect-ratio:1;background:var(--s2);border-radius:4px}
-.game .board i.w{background:var(--l3)}.game .board i.p{background:var(--pine)}.game .board i.g{background:var(--pineh);border-radius:50%}
+.game .board i.w{background:#2E2E2E}.game .board i.p{background:var(--pine)}.game .board i.g{background:var(--pineh);border-radius:50%}
 .leave .panel{margin-top:56px;background:var(--s1);border-radius:20px;padding:12px 48px;display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
 .leave .it{padding:30px 0;border-top:1px solid var(--l2)}
 .leave .it:nth-child(-n+2){border-top:0}
@@ -181,7 +181,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
 <!-- ===================== DESKTOP 1440 ===================== -->
 <div class="artboard d" id="desktop">
 <header><div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
-  <div class="logo"><svg class="mark" width="26" height="26" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 6 L21 17 H3 Z"/><path d="M12 1 L18 10 H6 Z"/><rect x="10.5" y="17" width="3" height="3"/><rect x="5" y="21.5" width="14" height="2" rx="1"/></svg><span class="wm">P<i>ı</i>ne<b>Launch</b></span></div>
+  <div class="logo"><svg class="mark" width="26" height="26" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 2.5 L21.5 16 H2.5 Z"/><rect x="4.5" y="19" width="15" height="2.5" rx="1.25"/></svg><span class="wm">PineLaunch</span></div>
   <nav><a>Dashboard</a><a>Week 1</a><a>Week 2</a><a>Week 3</a><a>Launch Day</a><a>Prompts</a><a>Parents</a></nav>
   <a class="btn p" style="height:42px">Start</a>
 </div></header>
@@ -203,7 +203,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
   <div class="fig">
     <div class="fcard" style="left:0;top:0"><div class="tag"><span class="n on">01</span><span class="mono">Idea · Dec 1–6</span></div>
       <div class="card sketch"><div class="ttl"><s>study app?</s> → homework tracker</div><div class="box"></div><div class="box sm"></div><div class="box" style="width:80%"></div><div class="note">for my brother<br>grade 6</div></div></div>
-    <div class="fcard" style="left:256px;top:90px"><div class="tag"><span class="n">02</span><span class="mono">Build · Dec 7–13</span></div>
+    <div class="fcard" style="left:256px;top:112px"><div class="tag"><span class="n">02</span><span class="mono">Build · Dec 7–13</span></div>
       <div class="card phone"><div class="bar"><span>9:41</span><span>v0.1</span></div><h4>Homework</h4>
       <div class="row done"><span class="cb on"></span><span>Math set 4</span><span class="due">Tue</span></div>
       <div class="row"><span class="cb"></span><span>Read chapter 9</span><span class="due">Wed</span></div>
@@ -235,7 +235,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
   <div class="two" style="align-items:end"><h2 class="sg">Three weeks, three jobs</h2><p class="sublead" style="margin:0">Each week has one goal. Finish it and the next one is waiting.</p></div>
   <div class="tl"><div class="track"><span class="node a"></span><span class="node b"></span><span class="node c"></span></div>
     <div class="cols">
-      <div class="stage"><div class="code">01 · WEEK 1</div><h3 class="sg">Idea</h3><div class="dt">Dec 1 to 6</div><p>Choose something small enough to finish. Seven questions give you a Project Card.</p><div class="ic"><div class="pc"><span class="mono">Project card</span><b>Homework tracker</b><span>App · for my brother · three features</span></div></div></div>
+      <div class="stage"><div class="code" style="color:var(--pine)">01 · WEEK 1</div><h3 class="sg">Idea</h3><div class="dt">Dec 1 to 6</div><p>Choose something small enough to finish. Seven questions give you a Project Card.</p><div class="ic"><div class="pc"><span class="mono">Project card</span><b>Homework tracker</b><span>App · for my brother · three features</span></div></div></div>
       <div class="stage"><div class="code">02 · WEEK 2</div><h3 class="sg">Build</h3><div class="dt">Dec 7 to 13</div><p>Make a working first version. Three features, the ugly version first.</p><div class="ic"><div class="scr"><div class="row done"><span class="cb on"></span><span>Add a task</span></div><div class="row done"><span class="cb on"></span><span>Tick it off</span></div><div class="row"><span class="cb"></span><span>Sort by due date</span></div></div></div></div>
       <div class="stage"><div class="code">03 · WEEK 3</div><h3 class="sg">Launch</h3><div class="dt">Dec 14 to 20</div><p>Get three people to try it, fix one thing, and publish a link.</p><div class="ic"><div class="urlbar"><span>homework-tracker.replit.app</span><span class="live">Live</span></div></div></div>
     </div>
@@ -284,7 +284,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
 <div class="close"><div class="wrap"><h2 class="sg">Start with one small idea.</h2><p>The idea picker takes about ten minutes and gives you a Project Card. That is the whole first step.</p><div class="cta" style="margin:0"><a class="btn p">Start the idea picker</a><a class="btn">For parents</a></div></div></div>
 
 <footer><div class="wrap cols">
-  <div><div class="logo"><svg class="mark" width="22" height="22" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 6 L21 17 H3 Z"/><path d="M12 1 L18 10 H6 Z"/><rect x="10.5" y="17" width="3" height="3"/><rect x="5" y="21.5" width="14" height="2" rx="1"/></svg><span class="wm" style="font-size:19px">P<i>ı</i>ne<b>Launch</b></span></div><p style="margin-top:14px;max-width:360px">A free three-week program where high school students build and launch one real project. Pilot cohort, December 2026.</p></div>
+  <div><div class="logo"><svg class="mark" width="22" height="22" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 2.5 L21.5 16 H2.5 Z"/><rect x="4.5" y="19" width="15" height="2.5" rx="1.25"/></svg><span class="wm" style="font-size:19px">PineLaunch</span></div><p style="margin-top:14px;max-width:360px">A free three-week program where high school students build and launch one real project. Pilot cohort, December 2026.</p></div>
   <div><a>Dashboard</a><a>Week 1 · Idea</a><a>Week 2 · Build</a><a>Week 3 · Launch</a><a>Launch Day</a><a>Prompts</a></div>
   <div><a>For parents</a><a>aithacode@gmail.com</a><p>No accounts. No tracking. Progress stays in your browser.</p></div>
 </div></footer>
@@ -292,7 +292,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
 
 <!-- ===================== MOBILE 390 ===================== -->
 <div class="artboard m" id="mobile">
-<header><div class="logo"><svg class="mark" width="24" height="24" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 6 L21 17 H3 Z"/><path d="M12 1 L18 10 H6 Z"/><rect x="10.5" y="17" width="3" height="3"/><rect x="5" y="21.5" width="14" height="2" rx="1"/></svg><span class="wm" style="font-size:20px">P<i>ı</i>ne<b>Launch</b></span></div><div class="menu"><i></i><i></i></div></header>
+<header><div class="logo"><svg class="mark" width="24" height="24" viewBox="0 0 24 24" fill="#7EA889"><path d="M12 2.5 L21.5 16 H2.5 Z"/><rect x="4.5" y="19" width="15" height="2.5" rx="1.25"/></svg><span class="wm" style="font-size:20px">PineLaunch</span></div><div class="menu"><i></i><i></i></div></header>
 <div class="hero"><div class="wrap">
   <div class="mono">Free pilot · Dec 1 – 20, 2026</div>
   <h1 class="sg">Build and launch one real project in three weeks.</h1>
@@ -311,7 +311,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
   <div class="list"><div class="it"><h3 class="sg">Students 13 to 17</h3><p>Most have never written code. The guides assume you are starting from zero.</p></div><div class="it"><h3 class="sg">Beginners are welcome</h3><p>You learn by building one thing, not by finishing a course first.</p></div><div class="it"><h3 class="sg">People with a small idea</h3><p>An app, a website, a tool, or a one-screen game.</p></div></div></div></section>
 <section class="hair"><div class="wrap"><h2 class="sg">Three weeks,<br>three jobs</h2><p class="sublead">Each week has one goal.</p>
   <div class="tl"><div class="cols">
-    <div class="stage"><div class="code">01 · WEEK 1</div><h3 class="sg">Idea</h3><div class="dt">Dec 1 to 6</div><p>Choose something small enough to finish.</p></div>
+    <div class="stage"><div class="code" style="color:var(--pine)">01 · WEEK 1</div><h3 class="sg">Idea</h3><div class="dt">Dec 1 to 6</div><p>Choose something small enough to finish.</p></div>
     <div class="stage"><div class="code">02 · WEEK 2</div><h3 class="sg">Build</h3><div class="dt">Dec 7 to 13</div><p>Make a working first version.</p></div>
     <div class="stage"><div class="code">03 · WEEK 3</div><h3 class="sg">Launch</h3><div class="dt">Dec 14 to 20</div><p>Get feedback and publish the project.</p></div>
   </div></div></div></section>
@@ -325,7 +325,7 @@ footer .cols a,footer .cols p{display:block;color:var(--t3);font-size:14px;line-
 <section class="leave"><div class="wrap"><h2 class="sg">What you leave with</h2><div class="panel"><div class="it"><h3 class="sg">One working project</h3><p>Built by you, used by real people.</p></div><div class="it"><h3 class="sg">A public link</h3><p>Anyone can open it. It is yours to keep.</p></div><div class="it"><h3 class="sg">Feedback from real people</h3><p>Three testers watched, and you fixed what mattered.</p></div><div class="it"><h3 class="sg">A way of working</h3><p>Scope small, build the ugly version, test, fix one thing, ship.</p></div></div></div></section>
 <section class="runs hair"><div class="wrap"><h2 class="sg" style="margin-bottom:18px">Who runs this</h2><p>PineLaunch is built and run by a high school student, with his parents' support. A parent is in the group chat. The program is free during the pilot.</p><div class="priv"><span>This site keeps no accounts and collects no personal information. Your progress is saved in your own browser.</span></div></div></section>
 <div class="close"><div class="wrap"><h2 class="sg">Start with one small idea.</h2><p>The idea picker takes about ten minutes and gives you a Project Card.</p><div class="cta"><a class="btn p">Start the idea picker</a><a class="btn">For parents</a></div></div></div>
-<footer><div class="wrap cols"><div><div class="logo"><span class="wm" style="font-size:19px">P<i>ı</i>ne<b>Launch</b></span></div><p style="margin-top:10px">A free three-week program. Pilot cohort, December 2026.</p></div><div><a>Dashboard</a><a>Week 1 · Idea</a><a>Week 2 · Build</a><a>Week 3 · Launch</a><a>Prompts</a></div><div><a>For parents</a><a>aithacode@gmail.com</a><p>No accounts. No tracking.</p></div></div></footer>
+<footer><div class="wrap cols"><div><div class="logo"><span class="wm" style="font-size:19px">PineLaunch</span></div><p style="margin-top:10px">A free three-week program. Pilot cohort, December 2026.</p></div><div><a>Dashboard</a><a>Week 1 · Idea</a><a>Week 2 · Build</a><a>Week 3 · Launch</a><a>Prompts</a></div><div><a>For parents</a><a>aithacode@gmail.com</a><p>No accounts. No tracking.</p></div></div></footer>
 </div>
 </body>
 </html>

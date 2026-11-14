@@ -29,7 +29,7 @@ two follows a design-first brief: `design/BASELINE_AUDIT.md`,
 logo concept sheet in `design/mockups/`, with screenshots in
 `design/mockups/shots/`. A Figma file exists with the brand page built;
 further Figma work is blocked by the Starter plan's 20 calls per month.
-No application code has changed in this round yet. Next: founder approves
+Founder review 1: palette changed to neutral black and grey with pine as a hint, and the mark simplified to one triangle over one bar. No application code has changed in this round yet. Next: founder approves
 the direction and homepage, then implementation page by page with
 Playwright screenshot checks.
 
