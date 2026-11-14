@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/*
+  PineLaunch theme.
+  One accent color (deep pine green), light background, system fonts.
+  Contrast: pine-700 on white is about 8.9:1, which passes WCAG AA for all text.
+*/
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --color-pine-50: #f1f7f3;
+  --color-pine-100: #dcebe1;
+  --color-pine-200: #b9d6c3;
+  --color-pine-600: #28634a;
+  --color-pine-700: #1f4d3a;
+  --color-pine-800: #173b2c;
+  --color-pine-900: #0f2a1f;
+
+  --color-ink: #1a1f1c;
+  --color-ink-soft: #4a544e;
+  --color-line: #e3e8e4;
+  --color-paper: #ffffff;
+  --color-paper-soft: #f7f9f8;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus for keyboard users, on every interactive element. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-pine-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Shared button and card styles. Kept as a few plain classes so markup stays readable. */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors bg-pine-700 text-white hover:bg-pine-800;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors border border-pine-700 text-pine-700 hover:bg-pine-50;
+  }
+  .btn-quiet {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors text-pine-700 hover:bg-pine-50;
+  }
+  .btn:disabled,
+  .btn-primary:disabled,
+  .btn-secondary:disabled,
+  .btn-quiet:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-paper p-5;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+  .input {
+    @apply w-full rounded-md border border-line bg-paper px-3 py-2 text-base text-ink placeholder:text-ink-soft/60;
+  }
+  .prose-pl p + p {
+    @apply mt-3;
+  }
+}
