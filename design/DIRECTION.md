@@ -1,0 +1,69 @@
+# Visual direction (for approval, 2026-11-14)
+
+## The idea in one line
+
+"One project, three states." Every student makes one thing. The site shows
+that one thing moving from a sketch (Idea) to a working screen (Build) to a
+live page with a link (Launch). That story is the hero, the timeline, the
+dashboard and the week pages. Nothing on the site is decoration.
+
+## What changed from the rejected version
+
+| Rejected | Proposed |
+|---|---|
+| Rotating rings, node graph, floating fragments | Three real mockups of one student project, numbered 01/02/03 |
+| Full-page grid wash plus glows | Six faint column rules in the hero only, flat surfaces elsewhere |
+| Same rounded panel everywhere | Alternating layouts: editorial split, hairline list, timeline, figure grid, filled panel, reading column |
+| Showcase of bars and lines | Four believable interfaces with readable text, each labeled as a figure and as an example |
+| Three stacked chevrons | A tiered pine on a launch pad, with a wordmark whose i-dot is a pine |
+| Fade-and-rise on every section | One hero entrance (cards settle in order 01, 02, 03), state changes inside panels, progress fills, page fade |
+
+## Brand
+
+Concept A, "Pine on the pad": two triangle tiers, a trunk, a pad bar with
+a 1.5-unit gap. Wordmark in Space Grotesk Medium, -3% tracking, "Launch"
+in pine, pine triangle for the i-dot. Files in `design/brand/`, lockups in
+Figma (01 — Brand Identity) and in `design/mockups/brand.html`. Concepts B
+(rocket pine) and C (P monogram) are shown for comparison and not
+recommended.
+
+## System
+
+Tokens exactly as the brief lists them. Space Grotesk above 22 px, Manrope
+for reading, IBM Plex Mono for labels, dates, codes and URLs. Radii 6 / 10 /
+14 / 20 / 28 by role. Max content width 1200 (1248 with gutters), gutters
+20 on phones, 96 at 1440.
+
+## Homepage (desktop 1440, mobile 390)
+
+Header, hero with the three-state figure, tools strip, who it is for,
+three-week timeline (each stage shows a small real object: a Project Card, a
+feature checklist, a live URL bar), showcase (App, Website, Tool, Game),
+what you leave with, who runs this, closing call to action, footer. The
+mobile layout stacks the three states vertically and turns the timeline into
+a left-rail list. Artboards: `design/mockups/homepage.html`; screenshots in
+`design/mockups/shots/`.
+
+## Motion plan (to build after approval)
+
+1. Hero entrance: headline and copy fade up once, then the three cards
+   settle in order with 120 ms steps. Runs once per visit.
+2. Tools strip: continuous scroll, pause button, stops under reduced motion.
+3. Timeline: the track fills from 01 toward the current week when it scrolls
+   into view. On the dashboard the fill is the student's own progress.
+4. Showcase figures: hover lifts the figure 2 px and brightens the border.
+5. Page transitions: 180 ms fade.
+6. No infinite rotation anywhere.
+
+## Figma status
+
+File: https://www.figma.com/design/O3yUp00qIEQQT7vXvMCrdo (team "Rithwik
+Aitha's team", Starter plan). The brand page is built there (marks at six
+sizes, light version, wordmark component, lockups, icon tiles, construction
+note) and the three-page structure exists. The Starter plan with a View seat
+allows 20 MCP tool calls per month; they were used up on 2026-11-14 while
+building the brand page, so the design-system board and the homepage
+artboards could not be pushed to Figma yet. They are complete as HTML
+artboards and can be imported with `html_to_figma` when calls are available
+again (next month, or after an upgrade to a Professional plan with a Full
+seat, which allows 200 calls a day).

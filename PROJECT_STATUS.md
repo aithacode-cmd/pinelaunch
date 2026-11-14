@@ -20,6 +20,19 @@ and is shown to students as a button. The founder chose this knowing the
 brief advised against it. Clearing it to a PASTE_ value at any time switches
 the panels to "shared separately".
 
+## Redesign round 2 (2026-11-14, design phase, awaiting approval)
+
+The first redesign was rejected for relying on geometric decoration. Round
+two follows a design-first brief: `design/BASELINE_AUDIT.md`,
+`design/REFERENCE_ANALYSIS.md`, `design/DIRECTION.md`, brand SVGs in
+`design/brand/`, and HTML artboards for the homepage (1440 and 390) plus a
+logo concept sheet in `design/mockups/`, with screenshots in
+`design/mockups/shots/`. A Figma file exists with the brand page built;
+further Figma work is blocked by the Starter plan's 20 calls per month.
+No application code has changed in this round yet. Next: founder approves
+the direction and homepage, then implementation page by page with
+Playwright screenshot checks.
+
 ## What is built
 
 - Next.js 16 static site (App Router, TypeScript, Tailwind 4). `npm run
