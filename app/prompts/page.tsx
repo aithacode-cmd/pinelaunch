@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function PromptsPage() {
   return (
     <PageShell
+      kicker="Prompt library"
       title="AI helper prompts"
       lead={`Every prompt from all three weeks. Copy one, paste it into ${program.aiHelper.name}, and replace anything in [brackets]. The prompts ask for hints and small steps, not finished work.`}
     >

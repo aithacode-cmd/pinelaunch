@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 export default function StartPage() {
   return (
     <PageShell
+      kicker="01 Idea"
       title="Idea picker"
       lead="Seven short questions. At the end you get a Project Card: a name, a pitch, three features, and a tool."
     >

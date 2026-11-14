@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Check, Copy } from "lucide-react";
 import { copyText } from "@/lib/clipboard";
 
 interface Props {
@@ -19,16 +20,17 @@ export function CopyButton({ text, label = "Copy", className = "btn-secondary" }
   }, [status]);
 
   return (
-    <span className="inline-flex items-center gap-2">
+    <span className="inline-flex flex-wrap items-center gap-2">
       <button
         type="button"
         className={className}
         onClick={async () => setStatus((await copyText(text)) ? "copied" : "failed")}
       >
-        {label}
+        {status === "copied" ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+        {status === "copied" ? "Copied" : label}
       </button>
-      <span role="status" aria-live="polite" className="text-sm text-ink-soft">
-        {status === "copied" && "Copied"}
+      <span role="status" aria-live="polite" className="text-sm text-text-3">
+        {status === "copied" && <span className="sr-only">Copied</span>}
         {status === "failed" && "Could not copy. Select the text and copy it by hand."}
       </span>
     </span>

@@ -21,9 +21,14 @@ him, use plain language, explain what you are doing, and avoid jargon.
 - Static export: `output: "export"` in `next.config.ts`. `npm run build`
   writes plain HTML/CSS/JS to `/out`. No server runs anywhere.
 - No state library, no component kit, no CMS, no analytics, no third-party
-  scripts. The only outside embeds are the four Google Forms (iframes) and
-  the Discord invite link.
-- System font stack, one accent color (deep pine green), light theme only.
+  scripts. Google Forms and Discord are plain external links (no iframes,
+  no widgets).
+- Motion (`motion/react`) for animation and Lucide for icons. Nothing else.
+- Design system "forest-dark": green-tinted charcoal backgrounds, one accent
+  (pine), three self-hosted typefaces via next/font: Space Grotesk (display),
+  Manrope (body), IBM Plex Mono (labels). Tokens live in `app/globals.css`
+  under `@theme`. Every animation stops under `prefers-reduced-motion`.
+- Brand mark and wordmark: `components/Brand.tsx`; favicon: `app/icon.svg`.
 
 ## The no-data rule, and why
 
@@ -47,7 +52,7 @@ founder's lawyer has not yet reviewed the rules for storing minors' data.
 | What | Where |
 |------|-------|
 | Every value the founder changes (dates, links, form URLs, email) | `config/program.ts` |
-| Guide text, one file per week, plus badges and Launch Day copy | `content/week1.ts`, `week2.ts`, `week3.ts`, `badges.ts`, `launch.ts` |
+| Guide text, one file per week, plus badges, Launch Day and home copy | `content/week1.ts`, `week2.ts`, `week3.ts`, `badges.ts`, `launch.ts`, `home.ts` |
 | Content shapes | `content/types.ts` |
 | Browser storage, export/import codes | `lib/storage.ts` |
 | Points, badges, next step, the `useProgress` hook | `lib/progress.ts` |
@@ -85,6 +90,14 @@ The guides and prompts must not hand students finished code up front.
 - Never present college applications as the purpose. College is mentioned
   once, as a side benefit, on the parents page, and nowhere else.
 - No fake testimonials, counts, logos, or claims about results.
+
+## Look
+
+Premium minimal, futuristic, dark. Grey and charcoal dominate; pine green is
+used only for primary buttons, active states and key indicators. Mix layouts
+(editorial, split, timeline, panels) rather than identical cards. The home
+page may be expressive; dashboard and week pages stay calm. Tool logos are
+set as text wordmarks, never downloaded or redrawn logos.
 
 ## Tone
 

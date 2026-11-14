@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { Lock, Unlock } from "lucide-react";
 import type { LockedExample } from "@/content/types";
 import type { ProjectCard } from "@/lib/storage";
 import { fillPlaceholders } from "@/lib/fill";
@@ -33,14 +34,17 @@ export function ExampleLock({ example, card, unlockedText, onUnlock }: Props) {
 
   if (unlockedText !== undefined) {
     return (
-      <div className="mt-4 rounded-md border border-pine-200 bg-pine-50 p-4">
-        <h4 className="text-sm font-semibold text-pine-800">Example</h4>
-        <p className="mt-1 text-sm text-ink">{fillPlaceholders(example.intro, card)}</p>
-        <pre className="mt-3 overflow-x-auto rounded-md bg-paper p-3 font-mono text-xs leading-relaxed text-ink">
+      <div className="mt-5 rounded-[16px] border border-pine-deep bg-pine-deep/15 p-5">
+        <p className="t-mono flex items-center gap-2 text-pine">
+          <Unlock size={14} aria-hidden="true" />
+          Example unlocked
+        </p>
+        <p className="mt-2 text-[15px] text-text-2">{fillPlaceholders(example.intro, card)}</p>
+        <pre className="mt-3 overflow-x-auto rounded-[12px] border border-line bg-bg-deep p-4 font-mono text-[13px] leading-relaxed text-text">
           {fillPlaceholders(example.code, card)}
         </pre>
-        {example.note && <p className="mt-2 text-sm text-ink-soft">{fillPlaceholders(example.note, card)}</p>}
-        <p className="mt-3 text-xs text-ink-soft">
+        {example.note && <p className="mt-3 text-sm text-text-3">{fillPlaceholders(example.note, card)}</p>}
+        <p className="mt-3 text-xs text-text-3">
           You wrote: <span className="italic">{unlockedText}</span>
         </p>
       </div>
@@ -48,42 +52,35 @@ export function ExampleLock({ example, card, unlockedText, onUnlock }: Props) {
   }
 
   return (
-    <details className="mt-4 rounded-md border border-line bg-paper-soft">
-      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-pine-800">Show an example (locked)</summary>
-      <div className="border-t border-line px-4 py-4">
-        <p className="text-sm text-ink-soft">
-          The example unlocks after you try it yourself first. Write at least two sentences about what you tried
-          and what happened.
+    <details className="group mt-5 rounded-[16px] border border-line bg-bg-deep/50">
+      <summary className="flex cursor-pointer items-center gap-2 px-5 py-3.5 text-sm font-semibold text-text-2 group-open:text-text">
+        <Lock size={14} aria-hidden="true" className="text-pine" />
+        Show an example (locked)
+      </summary>
+      <div className="border-t border-line px-5 py-5">
+        <p className="text-sm text-text-2">
+          The example unlocks after you try it yourself first. Write at least two sentences about what you tried and
+          what happened.
         </p>
-        <label className="mt-3 flex items-start gap-2 text-sm">
-          <input
-            type="checkbox"
-            className="mt-0.5 h-4 w-4 accent-pine-700"
-            checked={tried}
-            onChange={(e) => setTried(e.target.checked)}
-          />
-          <span>I tried this myself</span>
+        <label className="mt-4 flex items-start gap-3 text-sm">
+          <input type="checkbox" className="check" checked={tried} onChange={(e) => setTried(e.target.checked)} />
+          <span className="pt-0.5">I tried this myself</span>
         </label>
-        <label htmlFor={`${id}-notes`} className="label mt-3">
+        <label htmlFor={`${id}-notes`} className="label mt-4">
           What did you try, and what happened?
         </label>
         <textarea
           id={`${id}-notes`}
-          className="input min-h-24"
+          className="input min-h-28"
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           aria-describedby={`${id}-count`}
         />
-        <div className="mt-2 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            className="btn-primary"
-            disabled={!canUnlock}
-            onClick={() => onUnlock(notes.trim())}
-          >
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <button type="button" className="btn-primary" disabled={!canUnlock} onClick={() => onUnlock(notes.trim())}>
             Show an example
           </button>
-          <span id={`${id}-count`} className="text-xs text-ink-soft">
+          <span id={`${id}-count`} className="t-mono-lg">
             {sentences} of 2 sentences
           </span>
         </div>

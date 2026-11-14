@@ -1,6 +1,23 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-14 (live on Vercel).
+Last updated: 2026-11-14 (redesign on branch `redesign`, not merged).
+
+## Redesign (branch `redesign`, 2026-11-14)
+
+Built from the founder's brief: forest-dark theme, three typefaces, brand
+mark and favicon, animated background, hero composition, moving tools strip
+(text wordmarks, pausable), IDEA/BUILD/LAUNCH timeline, project showcase
+(illustrative mockups, labeled), full-screen mobile menu, dashboard as a
+mission-control layout with a progress ring, Project Card as an identity
+card, idea picker with screen transitions, week steps as a vertical timeline
+with collapsing completed steps, prompts library with search and week
+filters, Google Forms as link panels (no iframes), parents page as a
+two-column reading layout. Storage keys and data shapes are unchanged, so
+existing progress survives. Lint, type check and static build pass.
+
+Open decision: the Discord invite is still in `config/program.ts` and shown
+to students. The brief advises against a public invite on a static site.
+Clearing it to a PASTE_ value switches the panels to "shared separately".
 
 ## What is built
 
@@ -41,7 +58,7 @@ Last updated: 2026-11-14 (live on Vercel).
 - Accounts, database, payments, built-in AI, parent emails, leaderboards,
   streaks, showcase page. See `ROADMAP.md`.
 - Analytics of any kind.
-- Nothing from the v1 scope. Live at https://pinelaunch.vercel.app (Vercel Hobby, team PineLaunch, auto-deploys from GitHub aithacode-cmd/pinelaunch main).
+- Nothing from the v1 scope. Live at https://pinelaunch.vercel.app (Vercel Hobby, team PineLaunch, auto-deploys from GitHub aithacode-cmd/pinelaunch main). The redesign is on branch `redesign` and is not live until merged and pushed.
 
 ## Placeholders that still need real values
 

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <PageShell title="Dashboard" lead="Your project, your next step, and how far you have come.">
+    <PageShell kicker="Your workspace" title="Dashboard" lead="Your project, your next step, and how far you have come.">
       <DashboardView />
     </PageShell>
   );
