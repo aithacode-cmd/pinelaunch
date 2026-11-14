@@ -41,7 +41,7 @@ Last updated: 2026-11-14 (forms connected).
 - Accounts, database, payments, built-in AI, parent emails, leaderboards,
   streaks, showcase page. See `ROADMAP.md`.
 - Analytics of any kind.
-- A GitHub remote and a deployment. First local commit made 2026-11-14.
+- A deployment. Code is on GitHub at aithacode-cmd/pinelaunch (pushed 2026-11-14). Vercel not set up yet.
 
 ## Placeholders that still need real values
 
@@ -107,8 +107,8 @@ Also check before launch:
 
 ## Next three tasks
 
-1. Push to GitHub and deploy to Vercel (steps in `README.md`). Open the live
-   site on a phone and walk through the idea picker and Week 1 once.
+1. Deploy to Vercel from the GitHub repo (steps in `README.md`). Open the
+   live site on a phone and walk through the idea picker and Week 1 once.
 2. Turn on email notifications on each of the four forms (Responses tab,
    three dots) if not done yet.
 3. Have one parent and one teen read the home and parents pages and note
