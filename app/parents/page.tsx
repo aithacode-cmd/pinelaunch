@@ -1,124 +1,167 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/PageShell";
+import { Lock } from "lucide-react";
+import { Mono } from "@/components/Mono";
+import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
-import { formatLong } from "@/lib/dates";
 
 export const metadata: Metadata = {
   title: "For parents",
   description: "What students do in PineLaunch, the time it takes, the tools used, and how the site handles data.",
 };
 
-function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
-  return (
-    <section aria-labelledby={id} className="grid gap-4 border-t border-line py-10 sm:grid-cols-[14rem_1fr] sm:gap-10">
-      <h2 id={id} className="t-heading text-2xl sm:sticky sm:top-24 sm:self-start">
-        {title}
-      </h2>
-      <div className="prose-pl max-w-[62ch] text-[15.5px] leading-relaxed text-text-2">{children}</div>
-    </section>
-  );
-}
+const sections: { id: string; title: string; body: string[] }[] = [
+  {
+    id: "what-students-do",
+    title: "What students do",
+    body: [
+      "Each student picks one small idea: an app, a website, a tool, or a one-screen game. Over three weeks they build a first version, show it to three people, fix one thing, and publish a public link.",
+      "The work is deliberately small. A finished, plain project is the goal, not an ambitious unfinished one.",
+      "Some students keep the finished project as an early portfolio piece for college applications. That is a side benefit, not the aim of the program.",
+    ],
+  },
+  {
+    id: "dates",
+    title: "Dates",
+    body: [
+      "The pilot cohort runs from Tuesday December 1 to Sunday December 20, 2026, with 5 to 8 students.",
+      "Week 1 is December 1 to 6. Week 2 is December 7 to 13. Week 3 is December 14 to 20. Launch Day is Sunday December 20.",
+    ],
+  },
+  {
+    id: "time",
+    title: "Time commitment",
+    body: [
+      "Plan for two to three hours a week. Most students work in two sittings of about an hour, plus a short form at the end of the week.",
+      "There are no scheduled video calls, so the work can fit around school and activities.",
+    ],
+  },
+  {
+    id: "age",
+    title: "Age range and experience",
+    body: [
+      "The program is for high school students aged 13 to 17.",
+      "No coding experience is required. Every guide assumes the student is starting from zero, and the prompts are written for someone who has never built anything before.",
+    ],
+  },
+  {
+    id: "tools",
+    title: "Replit and Base44",
+    body: [
+      "Students build in one of two tools: Replit, where they write and adjust code in the browser, or Base44, where they describe what they want and then adjust the result. They choose one in the idea picker and can change it later.",
+      "Both are separate services with their own accounts, terms and privacy policies. This program is not affiliated with either of them.",
+    ],
+  },
+  {
+    id: "permission",
+    title: "Parent permission",
+    body: [
+      "A parent or guardian should agree before a student creates an account on Replit or Base44. Both allow users 13 and up with a parent's permission.",
+      "If you would like to see the program before your student starts, open the week pages together. Nothing is hidden and there is no cost at any point.",
+    ],
+  },
+  {
+    id: "chatgpt",
+    title: "ChatGPT",
+    body: [
+      "Students use ChatGPT with short copy-paste prompts. The prompts are written to ask for hints and small steps, and each one says: do not write the code for me. The site itself has no AI built in.",
+      "ChatGPT is a separate service with its own account, terms and privacy policy. A student can finish the program without it, using the guides and the group chat alone.",
+    ],
+  },
+  {
+    id: "discord",
+    title: "Discord",
+    body: [
+      "The cohort talks in a small private Discord server run by the founder. A parent is in the server for the whole pilot and can see everything posted. Students keep all conversation in the shared channels and do not send private messages to each other.",
+      "Discord is a separate service with its own rules and safety settings, and it requires users to be 13 or older. We recommend the parent reviews those settings with the student before joining.",
+    ],
+  },
+  {
+    id: "support",
+    title: "How you can help",
+    body: [
+      "The most useful thing you can do is be one of the testers in week three. Five minutes, no instructions from you, and a note about where you got stuck.",
+      "You can also help with the one rule that matters: keep the project small. Students tend to plan something larger than three weeks allows.",
+    ],
+  },
+  {
+    id: "privacy",
+    title: "Privacy",
+    body: [
+      "This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing.",
+      "Everything a student types, including the Project Card, ticked steps and notes, is saved in their own browser under one local key. It never leaves the device. Clearing browser data or using a private window removes it.",
+      "The only information the founder receives comes from four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a first name and last initial, nothing else identifying. Google Forms, Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site.",
+    ],
+  },
+];
 
 export default function ParentsPage() {
-  const tools = Object.values(program.tools);
+  const email = program.contactEmail;
+  const hasEmail = !isPlaceholder(email);
   return (
-    <PageShell
-      kicker="For parents"
-      title="What your teen will do, and what we do with their information."
-      lead="A plain description of the program, the time it takes, the tools involved, and how this website handles data."
-    >
-      <div className="mt-2">
-        <Section id="what" title="What students do">
-          <p>
-            {program.name} is a free three-week online program. Each student picks one small project idea, builds a
-            first working version, has three people try it, fixes the biggest problem, and publishes it so anyone can
-            open it. The projects are small on purpose: a simple app, a website, a tool, or a one-screen game.
-          </p>
-          <p>
-            The pilot runs from {formatLong(program.cohort.startDate)} to {formatLong(program.cohort.launchDate)} with{" "}
-            {program.cohort.sizeNote}. Week 1 is choosing and scoping. Week 2 is building. Week 3 is testing, fixing and
-            launching. It is for students aged 13 to 17. No previous coding experience is required.
-          </p>
-        </Section>
+    <div className="pl-shell py-12 lg:py-20">
+      <div className="max-w-[760px]">
+        <Mono className="text-pine-hi">For parents</Mono>
+        <h1 className="mt-3 font-heading text-[34px] font-medium leading-[1.02] tracking-[-0.04em] text-txt lg:text-[52px]">
+          A small, free program with a <Accent>real finished project</Accent>.
+        </h1>
+        <p className="mt-5 font-body text-[15.5px] leading-[1.7] text-txt2">
+          PineLaunch is a three-week pilot for high school students, run by a high school student with his parents&apos; support.
+          This page covers what your student does, what it takes, and what stays private.
+        </p>
+      </div>
 
-        <Section id="time" title="Time commitment">
-          <p>
-            About {program.hoursPerWeek} a week, at whatever time suits your teen. There are no live sessions to attend.
-            Each week ends with a short check-in form.
-          </p>
-        </Section>
-
-        <Section id="tools" title="Tools used">
-          <p>Students use these outside tools. Each one requires a parent&apos;s permission for users under 18.</p>
-          <ul className="mt-3 list-disc space-y-2 pl-5">
-            {tools.map((t) => (
-              <li key={t.name}>
-                <a href={t.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-pine-hi underline underline-offset-4">
-                  {t.name}
+      <div className="mt-12 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
+        <nav aria-label="On this page" className="lg:sticky lg:top-[124px] lg:self-start">
+          <Mono className="text-muted">On this page</Mono>
+          <ul className="mt-4 space-y-2 border-l border-line pl-4">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a href={`#${s.id}`} className="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">
+                  {s.title}
                 </a>
-                : {t.oneLiner} Students use one of the two to build their project.
               </li>
             ))}
-            <li>
-              <a href={program.aiHelper.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-pine-hi underline underline-offset-4">
-                {program.aiHelper.name}
-              </a>
-              : used as a study helper. The site gives students copy-and-paste prompts written to ask for hints and
-              small steps rather than finished answers. The site itself has no AI built in.
-            </li>
           </ul>
-          <p>
-            Your teen will need you to sit with them for a few minutes when they create these accounts. We recommend
-            reviewing each tool&apos;s terms yourself before agreeing.
-          </p>
-        </Section>
-
-        <Section id="chat" title="The group chat">
-          <p>
-            The group talks in a private Discord server run by the founder. It is invite-only. A parent of the founder
-            is a member and can see everything posted. Students are asked to keep all conversation in the shared
-            channels and not to send private direct messages to each other. Discord is a separate service with its own
-            rules; it requires users to be 13 or older.
-          </p>
-        </Section>
-
-        <Section id="data" title="Information and privacy">
-          <p>
-            This website collects no personal information. There are no accounts, no logins, no cookies for tracking,
-            and no analytics. Your teen&apos;s progress, including their project card and checked steps, is stored only
-            in their own browser on their own device. It is never sent to us.
-          </p>
-          <p>
-            The only information we receive comes from four short Google Forms: one check-in at the end of each week
-            and one feedback form on Launch Day. Each form asks for a first name and last initial so the founder knows
-            who finished what. The forms do not ask for an email address, a last name, a school, or an age. The forms
-            and the Discord server are outside services. Their privacy practices are their own, not this website&apos;s.
-          </p>
-        </Section>
-
-        <Section id="why" title="Why three weeks">
-          <p>
-            Finishing something small and putting it in front of real people is a skill most people never practice.
-            Your teen leaves with a public link to something they made, and with a repeatable way to do it again. Some
-            families find it also gives their teen something concrete to talk about in a college application, but that
-            is a side benefit, not the point.
-          </p>
-        </Section>
-
-        <Section id="contact" title="Contact">
-          <p>
-            Questions go to the founder at{" "}
-            {isPlaceholder(program.contactEmail) ? (
-              <span className="text-text-3">(contact email not set yet)</span>
-            ) : (
-              <a href={`mailto:${program.contactEmail}`} className="font-semibold text-pine-hi underline underline-offset-4">
-                {program.contactEmail}
+          <div className="mt-8 border-t border-line pt-4">
+            <Mono className="text-muted">Contact</Mono>
+            {hasEmail ? (
+              <a
+                href={`mailto:${email}`}
+                className="mt-2 inline-block break-all font-mono text-[11px] uppercase tracking-[0.08em] text-txt underline decoration-line3 underline-offset-4 hover:decoration-txt2"
+              >
+                {email}
               </a>
+            ) : (
+              <Mono className="mt-2 block text-muted">Email added before the pilot starts</Mono>
             )}
-            . A parent reads that inbox as well.
-          </p>
-        </Section>
+            <p className="mt-2 font-body text-[12.5px] leading-[1.6] text-muted">A parent reads that inbox as well.</p>
+          </div>
+        </nav>
+
+        <div className="max-w-[68ch]">
+          {sections.map((s) => (
+            <section
+              key={s.id}
+              id={s.id}
+              className="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&+section]:mt-8"
+            >
+              <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">{s.title}</h2>
+              {s.body.map((p) => (
+                <p key={p} className="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">
+                  {p}
+                </p>
+              ))}
+            </section>
+          ))}
+          <div className="mt-10 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
+            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />
+            <p className="font-body text-[13.5px] leading-[1.7] text-txt2">
+              This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT, Discord and Google Forms
+              are separate services, each with their own rules and privacy policies.
+            </p>
+          </div>
+        </div>
       </div>
-    </PageShell>
+    </div>
   );
 }

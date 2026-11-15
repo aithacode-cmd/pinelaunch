@@ -1,9 +1,11 @@
-/** Homepage copy. Edit words here, not in app/page.tsx. */
+/** Homepage copy. Edit words here, not in the components. */
 
 export const home = {
   hero: {
-    kicker: "Free pilot cohort",
-    headline: "Build and launch one real project in three weeks.",
+    kicker: "Free pilot · Dec 1 – 20, 2026",
+    headlineStart: "Build and launch",
+    headlineAccent: "one real project",
+    headlineEnd: "in three weeks.",
     lead:
       "PineLaunch is a free online program for high school students, ages 13 to 17. You pick a small idea, build a first version, get three people to try it, and put it online. No coding experience needed.",
     facts: [
@@ -14,7 +16,10 @@ export const home = {
     ],
   },
   who: {
-    title: "Who it is for",
+    eyebrow: "Fit check",
+    title: "A program for beginners with",
+    accent: "one small idea",
+    copy: "You do not need to know how to code. You need one small idea and two or three hours a week for three weeks.",
     items: [
       {
         title: "Students 13 to 17",
@@ -29,44 +34,100 @@ export const home = {
         body: "An app, a website, a tool, or a one-screen game. Something one real person you know would use.",
       },
     ],
+    notFor: ["Not a coding bootcamp", "Not a certificate", "Not a competition"],
+    notForNote:
+      "If you want a finished polished product in a weekend, this is the wrong shape. Three weeks is what makes the first version possible.",
   },
   process: {
-    title: "Three weeks, three jobs",
-    lead: "Each week has one goal. Finish it and the next one is waiting.",
+    eyebrow: "Three weeks, three jobs",
+    title: "Each week has",
+    accent: "one job",
+    copy: "Finish it and the next one is waiting. Nothing is graded, and nothing is timed inside a week.",
     stages: [
-      { code: "01", name: "Idea", dates: "Dec 1 to 6", body: "Choose something small enough to finish." },
-      { code: "02", name: "Build", dates: "Dec 7 to 13", body: "Make a working first version." },
-      { code: "03", name: "Launch", dates: "Dec 14 to 20", body: "Get feedback and publish the project." },
+      {
+        code: "01",
+        name: "Idea",
+        dates: "Dec 1 to 6",
+        body: "Choose something small enough to finish. Seven questions give you a Project Card.",
+      },
+      {
+        code: "02",
+        name: "Build",
+        dates: "Dec 7 to 13",
+        body: "Make a working first version. Three features, the ugly version first.",
+      },
+      {
+        code: "03",
+        name: "Launch",
+        dates: "Dec 14 to 20",
+        body: "Get three people to try it, fix one thing, and publish a link.",
+      },
     ],
-  },
-  leave: {
-    title: "What you leave with",
-    items: [
-      { title: "One working project", body: "Built by you, used by real people." },
-      { title: "A public link", body: "Anyone can open it. It is yours to keep." },
-      { title: "Feedback from real people", body: "Three testers watched, and you fixed what mattered." },
-      { title: "A way of working", body: "Scope small, build the ugly version, test, fix one thing, ship." },
+    rhythm: [
+      { label: "Read the week", time: "10 min", note: "One page, no video." },
+      { label: "Do the steps", time: "2–3 hrs", note: "Spread across the week." },
+      { label: "Post in Discord", time: "5 min", note: "What you made, what is stuck." },
     ],
   },
   showcase: {
-    title: "What you could build",
-    lead: "Four kinds of project fit in three weeks. These are illustrative examples, not student projects.",
-    disclaimer: "Illustrative examples. Not made by PineLaunch students.",
+    eyebrow: "What you could build",
+    title: "Four kinds of project fit in",
+    accent: "three weeks",
+    copy: "These are illustrative examples, not student projects. Each one is deliberately small enough to finish.",
     items: [
       { kind: "App", example: "A homework tracker for one younger sibling." },
       { kind: "Website", example: "A page for a school club with the next three events." },
       { kind: "Tool", example: "A converter that turns practice times into a weekly total." },
       { kind: "Game", example: "One level, one rule, one way to win." },
     ],
+    note: "Pick the kind of thing you already open every day. A smaller version of a familiar object is easier to finish than a brand new idea.",
+  },
+  leave: {
+    eyebrow: "What you leave with",
+    title: "Four things that exist",
+    accent: "after Dec 20",
+    copy: "Not a certificate and not a grade. A working project, a public link, notes from real testers, and a way of working you can reuse.",
+    items: [
+      { title: "One working project", body: "Built by you, used by real people." },
+      { title: "A public link", body: "Anyone can open it. It is yours to keep." },
+      { title: "Feedback from real people", body: "Three testers watched, and you fixed what mattered." },
+      { title: "A way of working", body: "Scope small, build the ugly version, test, fix one thing, ship." },
+    ],
+    afterTitle: "The work does not disappear when the cohort ends.",
+    after: [
+      { label: "The project", value: "Stays online" },
+      { label: "The link", value: "Yours" },
+      { label: "The notes", value: "Later list" },
+    ],
   },
   runs: {
-    title: "Who runs this",
-    body: "PineLaunch is built and run by a high school student, with his parents' support. A parent is in the group chat. The program is free during the pilot.",
+    eyebrow: "Who runs this",
+    title: "Small enough that",
+    accent: "one person runs it",
+    body: "PineLaunch is built and run by a high school student, with his parents' support. The program is free during the pilot.",
+    quote: "Every guide is written to be read once and used immediately.",
     privacy:
-      "This site keeps no accounts and collects no personal information. Your progress is saved in your own browser.",
+      "This site keeps no accounts and collects no personal information. Progress is saved in your own browser, and nothing is uploaded",
+    how: [
+      {
+        label: "Discord",
+        body: "One channel per week. Ask a question when you are stuck for more than twenty minutes.",
+      },
+      {
+        label: "Weekly form",
+        body: "Three questions at the end of each week. It takes two minutes and replaces a long survey.",
+      },
+      {
+        label: "A parent in the chat",
+        body: "A parent is in the group chat for the whole cohort. Nobody messages students privately.",
+      },
+    ],
   },
   closing: {
-    title: "Start with one small idea.",
-    body: "The idea picker takes about ten minutes and gives you a Project Card. That is the whole first step.",
+    eyebrow: "Dec 1 – 20, 2026 · Pilot cohort",
+    titleStart: "Start with",
+    titleAccent: "one small idea",
+    body: "The idea picker takes about ten minutes and gives you a Project Card. That is the whole first step, and it is enough to start.",
+    facts: ["Free during the pilot", "Ages 13 to 17", "No accounts, no tracking"],
   },
 } as const;

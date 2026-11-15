@@ -24,11 +24,20 @@ him, use plain language, explain what you are doing, and avoid jargon.
   scripts. Google Forms and Discord are plain external links (no iframes,
   no widgets).
 - Motion (`motion/react`) for animation and Lucide for icons. Nothing else.
-- Design system "forest-dark": green-tinted charcoal backgrounds, one accent
-  (pine), three self-hosted typefaces via next/font: Space Grotesk (display),
-  Manrope (body), IBM Plex Mono (labels). Tokens live in `app/globals.css`
-  under `@theme`. Every animation stops under `prefers-reduced-motion`.
-- Brand mark and wordmark: `components/Brand.tsx`; favicon: `app/icon.svg`.
+- Design system (final, 2026-11-15, rebuilt from the founder's chosen
+  Base44 output, frozen copy in `design/base44/`): neutral black and grey,
+  pine green only as a hint. Four self-hosted typefaces via next/font:
+  Space Grotesk (headings, `font-heading`), Manrope (body, `font-body`),
+  IBM Plex Mono (labels, `font-mono`, via `components/Mono.tsx`),
+  Instrument Serif italic (`font-serif`, one accent phrase per heading).
+  Color tokens (`deep`, `bg`, `ink`, `panel`, `panel2`, `panel3`, `line`,
+  `line2`, `line3`, `txt`, `txt2`, `muted`, `pine`, `pine-hi`,
+  `pine-deep`) and the `pl-*` helper classes live in `app/globals.css`.
+  Every animation stops under `prefers-reduced-motion`.
+- Shared pieces: `Button`, `Mono`, `Background`, `Ticker`, `Reveal`,
+  `PromptPanel`, `CopyButton`; home sections in `components/home/`.
+- Brand mark (one triangle over one bar) and wordmark:
+  `components/Brand.tsx`; favicon: `app/icon.svg`.
 
 ## The no-data rule, and why
 
@@ -93,11 +102,15 @@ The guides and prompts must not hand students finished code up front.
 
 ## Look
 
-Premium minimal, futuristic, dark. Grey and charcoal dominate; pine green is
-used only for primary buttons, active states and key indicators. Mix layouts
-(editorial, split, timeline, panels) rather than identical cards. The home
-page may be expressive; dashboard and week pages stay calm. Tool logos are
-set as text wordmarks, never downloaded or redrawn logos.
+Premium minimal, dark, like a serious technology company. Black and grey
+dominate; pine green is used only for the mark, primary buttons, ticked
+boxes, current markers and one key number. Headings may carry one italic
+serif phrase. Figures are real interface mockups labeled as illustrative
+examples; no orbs, node graphs or floating shapes. The home page may be
+expressive; dashboard and week pages stay calm. Tool names are set as text
+with a plain initial tile, never downloaded or redrawn logos. When
+changing a page, compare it against the matching screenshot in
+`design/base44/shots/`.
 
 ## Tone
 

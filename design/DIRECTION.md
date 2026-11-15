@@ -1,5 +1,11 @@
 # Visual direction (for approval, 2026-11-14)
 
+> Outcome (2026-11-15): the founder ran this direction through Base44 and
+> chose its output as the final design. The site is now rebuilt from that
+> build; see `design/base44/README.md`. This document is kept as the
+> record of how the direction was reached. Where the two differ, the
+> Base44 screenshots in `design/base44/shots/` win.
+
 ## The idea in one line
 
 "One project, three states." Every student makes one thing. The site shows

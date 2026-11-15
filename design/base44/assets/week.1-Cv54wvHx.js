@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BiX_BIZ9.js";import{t}from"./WeekView-WOcUEBxr.js";var n=e(),r=()=>(0,n.jsx)(t,{weekId:1});export{r as component};

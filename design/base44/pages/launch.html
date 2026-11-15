@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="en"><head><script>(function(){var o=Storage.prototype.removeItem;Storage.prototype.removeItem=function(k){if(k==='base44_access_token'){try{var t=this.getItem(k);t&&(document.cookie='base44_sign_out_token='+encodeURIComponent(t)+';path=/api/apps/auth/logout;max-age=60'+(location.protocol!=='https:'?';SameSite=Strict':window.top!==window.self?';SameSite=None;Secure;Partitioned':';SameSite=Strict;Secure'))}catch(e){}}return o.call(this,k)}})();</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link data-precedence="default" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/><link data-precedence="default" href="/assets/index-CKKMO9lD.css" rel="stylesheet"/><title>Launch Day · Dec 20, 2026 — PineLaunch</title><meta content="#050505" name="theme-color"/><meta content="index, follow" name="robots"/><meta content="What counts as launched, a pre-launch checklist, how to post your project in Discord, and the final feedback form." name="description"/><link href="/assets/index-66eT-ixJ.js" rel="modulepreload"/><link href="/assets/jsx-runtime-BiX_BIZ9.js" rel="modulepreload"/><link href="/assets/_site-BLs3ZbvF.js" rel="modulepreload"/><link href="/assets/Mono-D2bHQCVh.js" rel="modulepreload"/><link href="/assets/createLucideIcon-CY-36I-e.js" rel="modulepreload"/><link href="/assets/arrow-up-right--mE7Jdxj.js" rel="modulepreload"/><link href="/assets/x-loJw4NXJ.js" rel="modulepreload"/><link href="/assets/Button-BnhuF-jM.js" rel="modulepreload"/><link href="/assets/site-config-5wsA0Sj8.js" rel="modulepreload"/><link href="/assets/launch-TH8Yb_y5.js" rel="modulepreload"/><link href="/assets/useProgress-GcxAfit2.js" rel="modulepreload"/><link href="/assets/CopyButton-DY-bMNVA.js" rel="modulepreload"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/><link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M32 15l13 23H19z' fill='%237EA889'/%3E%3Crect x='24' y='42' width='16' height='5' rx='2.5' fill='%237EA889'/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/><script async="true" data-app-id="6af9ec090dc89af2335cd254" data-platform-url="https://app.base44.com" src="/static/js/badge.js"></script><meta content="on" name="base44-analytics"/><script id="b44-consent-listener">(function () {
+  if (window.__b44Consent) return;
+  var state = {};
+  var listeners = [];
+  function notify(listener) {
+    try {
+      (state[listener.category] === "granted" ? listener.grant : listener.revoke)();
+    } catch (e) {}
+  }
+  function read(entry) {
+    if (!entry || entry[0] !== "consent" || entry[1] !== "update" || !entry[2]) return;
+    for (var category in entry[2]) {
+      state[category] = entry[2][category];
+      for (var i = 0; i < listeners.length; i++) {
+        if (listeners[i].category === category) notify(listeners[i]);
+      }
+    }
+  }
+  var dataLayer = (window.dataLayer = window.dataLayer || []);
+  // The banner may have restored the visitor's saved choice before this script ran.
+  for (var i = 0; i < dataLayer.length; i++) read(dataLayer[i]);
+  var push = dataLayer.push;
+  dataLayer.push = function () {
+    var result = push.apply(dataLayer, arguments);
+    for (var j = 0; j < arguments.length; j++) read(arguments[j]);
+    return result;
+  };
+  window.__b44Consent = {
+    on: function (category, grant, revoke) {
+      var listener = { category: category, grant: grant, revoke: revoke };
+      listeners.push(listener);
+      if (category in state) notify(listener);
+    },
+  };
+})();
+</script><meta content="on" data-source="default" name="base44-visitor-tracking"/><script id="b44-visitor-tracking">(function () {
+  try {
+    if (window.top !== window) return;
+    var CONSENT_CATEGORY = "analytics_storage";
+    var attributes = "; Path=/; Secure; SameSite=Lax";
+    var keep = "; Max-Age=2592000" + attributes;
+    // Read now: the app's router may drop ?ref= before the visitor consents.
+    var referrerId = new URLSearchParams(window.location.search).get("ref");
+    var referrerOrigin = document.referrer && new URL(document.referrer).origin;
+    function write() {
+      if (referrerId && /^[0-9a-f]{24}$/i.test(referrerId)) {
+        document.cookie = "base44_referrer_id=" + referrerId + keep;
+      }
+      // First touch: a return from a sign-in or checkout page must not replace who sent the visitor.
+      var hasOrigin = /(?:^|;\s*)base44_referrer_origin=/.test(document.cookie);
+      if (!hasOrigin && /^https?:\/\//.test(referrerOrigin) && referrerOrigin !== window.location.origin) {
+        document.cookie = "base44_referrer_origin=" + referrerOrigin + keep;
+      }
+    }
+    function clear() {
+      document.cookie = "base44_referrer_id=; Max-Age=0" + attributes;
+      document.cookie = "base44_referrer_origin=; Max-Age=0" + attributes;
+    }
+    var meta = document.querySelector('meta[name="base44-visitor-tracking"]');
+    var signal = navigator.globalPrivacyControl;
+    // Global Privacy Control opts the visitor out of tracking Base44 turned on by default.
+    var optOut = meta && meta.getAttribute("data-source") === "default" && signal;
+    if (meta && meta.getAttribute("data-privacy-signals") === "honor") {
+      optOut = signal || navigator.doNotTrack === "1";
+    }
+    if (optOut) {
+      clear();
+    } else if (meta && meta.content === "consent") {
+      window.__b44Consent.on(CONSENT_CATEGORY, write, clear);
+    } else {
+      write();
+    }
+  } catch (e) {}
+})();
+</script></head><body data-react-root="true"><!--$--><div class="relative flex min-h-screen flex-col"><div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-deep"><div class="pl-grid-bg pl-fade-edges absolute inset-0 opacity-80"></div><div class="pl-drift absolute -left-48 -top-64 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(49,95,67,0.34),transparent_66%)] blur-2xl"></div><div class="pl-drift absolute -right-52 top-[36%] h-[680px] w-[680px] rounded-full bg-[radial-gradient(circle,rgba(126,168,137,0.16),transparent_68%)] blur-3xl" style="animation-delay:-9s"></div><div class="absolute inset-x-0 top-0 h-px pl-hairline"></div><div class="pl-grain absolute inset-0 opacity-[0.055] mix-blend-overlay"></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-15%,rgba(255,255,255,0.055),transparent_62%)]"></div><div class="absolute inset-x-0 bottom-0 h-[38vh] bg-gradient-to-t from-deep to-transparent"></div></div><div class="relative z-30 border-b border-white/[0.06] bg-deep/85 backdrop-blur"><div class="pl-shell flex h-[34px] items-center justify-between gap-6"><div class="flex shrink-0 items-center gap-2.5"><span class="pl-pulse-dot h-1.5 w-1.5 rounded-full bg-pine-hi" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Pilot cohort 01</span></div><div class="hidden min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)] md:block"><div class="pl-ticker flex w-max items-center gap-5"><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Free pilot cohort</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Dec 1 to 20, 2026</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Ages 13 to 17</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Two to three hours a week</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">No accounts</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Progress saved in your browser</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">One public link at the end</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Free pilot cohort</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Dec 1 to 20, 2026</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Ages 13 to 17</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Two to three hours a week</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">No accounts</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Progress saved in your browser</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">One public link at the end</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span></div></div><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] shrink-0 text-txt2 pl-num">Dec 20<!-- --> <span class="text-muted">· launch</span></span></div></div><header class="sticky top-0 z-40 border-b border-white/[0.07] bg-deep/70 backdrop-blur-xl"><div class="pl-shell flex h-[74px] items-center justify-between gap-6"><a aria-label="PineLaunch home" class="flex shrink-0 items-center gap-3" href="/"><span class="inline-flex items-center gap-2.5 "><svg viewBox="0 0 24 24" class="h-[22px] w-[22px]" aria-hidden="true" focusable="false"><path d="M12 2.4 20.2 17H3.8z" fill="#7EA889"></path><rect x="7.6" y="19" width="8.8" height="2.6" rx="1.3" fill="#7EA889"></rect></svg><span class="font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt">PineLaunch</span></span><span class="hidden h-5 w-px bg-white/10 sm:block" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] hidden text-muted sm:block">Pilot 2026</span></a><nav aria-label="Main" class="hidden lg:block"><ul class="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.03] p-1"><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/dashboard">Dashboard</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/1">Week 1</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/2">Week 2</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/3">Week 3</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt bg-white/[0.09] text-txt" href="/launch" data-status="active" aria-current="page">Launch Day</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/prompts">Prompts</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/parents">Parents</a></li></ul></nav><div class="flex items-center gap-2.5"><span class="hidden items-center gap-2 xl:flex"><span class="pl-pulse-dot h-1 w-1 rounded-full bg-pine-hi" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Local only</span></span><a class="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] px-5 font-body text-[14px] font-semibold leading-none tracking-[-0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-45 bg-pine-deep text-white hover:bg-[#3B7153] group hidden h-9 gap-1.5 px-4 text-[13px] sm:inline-flex" href="/start">Start<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a><button type="button" aria-label="Open menu" aria-expanded="false" class="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.1] text-txt2 transition-colors hover:border-white/20 hover:text-txt lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu h-5 w-5" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></header><main id="main" class="relative flex-1"><div class="pl-shell py-12 lg:py-20"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-pine-hi">Launch Day · Dec 20, 2026</span><h1 class="mt-3 max-w-[18ch] font-heading text-[36px] font-medium leading-[1.02] tracking-[-0.04em] text-txt lg:text-[58px]">One link, three testers, one fix.</h1><p class="mt-4 max-w-[54ch] font-body text-[15px] leading-[1.65] text-txt2">Launch Day is the last day of the program. Nothing new gets built. You publish, post, and fill the final form.</p><section class="mt-12 grid gap-6 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-12"><div><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">What counts as launched</span><h2 class="mt-3 font-heading text-[24px] font-medium leading-snug tracking-[-0.02em] text-txt">Three things, not a finished product.</h2></div><ul class="space-y-3 border-t border-line pt-4 lg:border-t-0 lg:border-l lg:border-line lg:pl-10 lg:pt-0"><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span aria-hidden="true" class="mt-2 h-1 w-1 shrink-0 rounded-full bg-pine"></span><span>A public link that opens in a private window, without signing in.</span></li><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span aria-hidden="true" class="mt-2 h-1 w-1 shrink-0 rounded-full bg-pine"></span><span>Three people who are not you have tried the main job.</span></li><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span aria-hidden="true" class="mt-2 h-1 w-1 shrink-0 rounded-full bg-pine"></span><span>You fixed one thing they found, and tested it again.</span></li></ul></section><section class="mt-14" aria-labelledby="checklist-heading"><div class="flex flex-wrap items-baseline justify-between gap-3"><h2 id="checklist-heading" class="font-heading text-[24px] font-medium tracking-[-0.02em] text-txt">Pre-launch checklist</h2><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">0<!-- --> of <!-- -->6<!-- --> checked</span></div><ul class="mt-5 max-w-[760px] border-t border-line"><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-0" type="checkbox" class="peer sr-only"/><label for="launch-check-0" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>The main job works from start to finish.</label></div></li><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-1" type="checkbox" class="peer sr-only"/><label for="launch-check-1" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>The page does not scroll sideways on a phone.</label></div></li><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-2" type="checkbox" class="peer sr-only"/><label for="launch-check-2" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>The link opens without signing in.</label></div></li><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-3" type="checkbox" class="peer sr-only"/><label for="launch-check-3" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>There is a name and one sentence at the top.</label></div></li><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-4" type="checkbox" class="peer sr-only"/><label for="launch-check-4" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>You have written notes from three testers.</label></div></li><li class="border-b border-line"><div class="flex items-start gap-3 py-4"><input id="launch-check-5" type="checkbox" class="peer sr-only"/><label for="launch-check-5" class="flex cursor-pointer items-start gap-3 rounded-[6px] font-body text-[14.5px] leading-snug text-txt2 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-pine-hi"><span aria-hidden="true" class="mt-0.5 flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-[4px] border border-line3"></span>You fixed one thing and checked it again.</label></div></li></ul><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] mt-3 block text-muted">This checklist is for this visit only</span></section><section class="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-12" aria-labelledby="post-heading"><div><h2 id="post-heading" class="font-heading text-[24px] font-medium tracking-[-0.02em] text-txt">How to post it in Discord</h2><ol class="mt-5 space-y-3"><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span class="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">01</span><span>Open the launch channel in Discord.</span></li><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span class="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">02</span><span>Post four lines: name, who it is for, what you fixed, and the link.</span></li><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span class="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">03</span><span>Keep the link clickable. Do not attach screenshots instead.</span></li><li class="flex gap-3 font-body text-[14px] leading-[1.65] text-txt2"><span class="shrink-0 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">04</span><span>Read two other posts and try their projects.</span></li></ol></div><div class="rounded-[14px] border border-line2 bg-panel p-5"><div class="flex items-center justify-between gap-3"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Post template</span><button type="button" class="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] px-5 font-body text-[14px] font-semibold leading-none tracking-[-0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-45 border border-line2 bg-panel text-txt2 hover:border-line3 hover:text-txt h-8 px-3 text-[12px]" aria-live="polite">Copy</button></div><pre class="mt-4 whitespace-pre-wrap break-words font-mono text-[11.5px] leading-[1.8] text-txt2">my project — a app for one person I know.
+It one small job.
+After testing I fixed the part where testers got stuck.
+[paste your link]</pre></div></section><section class="mt-14 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8"><div class="flex flex-wrap items-end justify-between gap-4"><div><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Final feedback</span><p class="mt-3 max-w-[42ch] font-body text-[14px] leading-[1.65] text-txt2">One short form at the end of the program. It opens in a new tab and is hosted by Google Forms, outside this site.</p></div><a href="[FINAL FEEDBACK FORM LINK]" class="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] px-5 font-body text-[14px] font-semibold leading-none tracking-[-0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-45 bg-pine-deep text-white hover:bg-[#3B7153] shrink-0" target="_blank" rel="noreferrer noopener">Open the final form</a></div><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] mt-4 block text-muted">Form link added before the pilot starts</span></section></div></main><footer class="relative border-t border-white/[0.08] bg-deep/60"><div class="pl-shell py-14 lg:py-16"><div class="grid gap-10 lg:grid-cols-12 lg:gap-10"><div class="lg:col-span-4"><span class="inline-flex items-center gap-2.5 "><svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true" focusable="false"><path d="M12 2.4 20.2 17H3.8z" fill="#7EA889"></path><rect x="7.6" y="19" width="8.8" height="2.6" rx="1.3" fill="#7EA889"></rect></svg><span class="font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt">PineLaunch</span></span><p class="mt-5 max-w-[36ch] font-body text-[14px] leading-[1.7] text-txt2">A free three-week program where high school students build and launch one real project. Pilot cohort, December 2026.</p><ul class="mt-6 flex flex-wrap gap-1.5"><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">Static site</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">No accounts</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">No tracking</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">Browser storage only</li></ul></div><nav aria-label="Footer pages" class="lg:col-span-3"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Pages</span><ul class="mt-4 space-y-2.5"><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/">Home</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/start">Start the idea picker</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/dashboard">Dashboard</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/1">Week 1</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/2">Week 2</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/3">Week 3</a></li></ul></nav><nav aria-label="Footer program" class="lg:col-span-2"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Program</span><ul class="mt-4 space-y-2.5"><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt active" href="/launch" data-status="active" aria-current="page">Launch Day</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/prompts">Prompts</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/parents">For parents</a></li></ul></nav><div class="lg:col-span-3"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Contact</span><p class="mt-4 font-body text-[14px] leading-[1.7] text-txt2">Questions about the program, permission, or privacy:</p><a href="mailto:[CONTACT EMAIL]" class="mt-2 inline-block break-all font-mono text-[11.5px] uppercase tracking-[0.1em] text-txt underline decoration-line3 underline-offset-4 transition-colors hover:decoration-pine-hi">[CONTACT EMAIL]</a><p class="mt-5 font-body text-[12.5px] leading-[1.65] text-muted">Progress is saved in your own browser. Nothing is uploaded, and there is no account to create.</p></div></div></div><div class="border-t border-white/[0.07]"><div class="pl-shell flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">PineLaunch · Pilot cohort 2026</span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Progress key · pinelaunch.progress.v1</span><button type="button" class="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-txt">Top<span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.1] transition-colors group-hover:border-white/25"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up h-3 w-3" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span></button></div></div></footer></div><!--/$--><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section><script type="module">
+if (window.self === window.top) {
+  let lastPath = "";
+  // The visitor's analytics_storage choice from window.__b44Consent; null until one is known.
+  let consentGranted = null;
+  function getPageNameFromPath(path) {
+    const segments = path.split("/").filter(Boolean);
+    return segments[0] || null;
+  }
+  // Same rules as @base44/sdk analytics. Read on every send: the server sets the meta.
+  function analyticsMode() {
+    const meta = document.querySelector('meta[name="base44-analytics"]');
+    return meta ? meta.getAttribute("content") : null;
+  }
+  function deniedBefore() {
+    try {
+      return window.localStorage.getItem("base44_analytics_denied") === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+  function mayTrack() {
+    const mode = analyticsMode();
+    if (mode === "off") return false;
+    if (mode === "consent") return consentGranted === true;
+    if (mode === "on") return consentGranted === null ? !deniedBefore() : consentGranted;
+    return true;
+  }
+  function trackPageView() {
+    if (!mayTrack()) return;
+    const path = window.location.pathname;
+    if (path === lastPath) return;
+    lastPath = path;
+    const pageName = getPageNameFromPath(path) || "home";
+    const appId = "6af9ec090dc89af2335cd254";
+    if (!appId) return;
+    fetch(`/api/app-logs/${appId}/log-user-in-app/${pageName}`, {
+      method: "POST",
+    }).catch(() => {});
+  }
+  const originalPushState = history.pushState.bind(history);
+  history.pushState = function (...args) {
+    originalPushState(...args);
+    trackPageView();
+  };
+  const originalReplaceState = history.replaceState.bind(history);
+  history.replaceState = function (...args) {
+    originalReplaceState(...args);
+    trackPageView();
+  };
+  window.addEventListener("popstate", trackPageView);
+  // A module script runs after the head's classic scripts, so the listener exists by now.
+  // Without it, "consent" never sends and "on" relies on the saved Decline only.
+  try {
+    if (window.__b44Consent) {
+      window.__b44Consent.on(
+        "analytics_storage",
+        function () {
+          consentGranted = true;
+          trackPageView();
+        },
+        function () {
+          consentGranted = false;
+          // A later grant sends the page the visitor is on, even one they saw before.
+          lastPath = "";
+        }
+      );
+    }
+  } catch (e) {}
+  trackPageView();
+}
+</script><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-66eT-ixJ.js","/assets/jsx-runtime-BiX_BIZ9.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"/assets/index-66eT-ixJ.js"}}]},"/_site":$R[8]={preloads:$R[9]=["/assets/_site-BLs3ZbvF.js","/assets/Mono-D2bHQCVh.js","/assets/createLucideIcon-CY-36I-e.js","/assets/arrow-up-right--mE7Jdxj.js","/assets/x-loJw4NXJ.js","/assets/Button-BnhuF-jM.js","/assets/site-config-5wsA0Sj8.js"]},"/_site/launch":$R[10]={preloads:$R[11]=["/assets/launch-TH8Yb_y5.js","/assets/useProgress-GcxAfit2.js","/assets/CopyButton-DY-bMNVA.js"]}}},matches:$R[12]=[$R[13]={i:"__root__ ",u:1794771102990,s:"success",ssr:!0},$R[14]={i:" _site ",u:1794771102990,s:"success",ssr:!0},$R[15]={i:" _site launch launch",u:1794771102990,s:"success",ssr:!0}],dehydratedData:$R[16]={query:$R[17]={stream:$R[18]=($R[19]=(stream) => new ReadableStream({ start(controller) {
+	stream.on({
+		next(value) {
+			try {
+				controller.enqueue(value);
+			} catch (_error) {}
+		},
+		throw(value) {
+			controller.error(value);
+		},
+		return() {
+			try {
+				controller.close();
+			} catch (_error) {}
+		}
+	});
+} }))($R[20]=($R[21]=() => {
+	const buffer = [];
+	const listeners = [];
+	let alive = true;
+	let success = false;
+	let count = 0;
+	const internal = {
+		flush(value, mode, x) {
+			for (x = 0; x < count; x++) {
+				const listener = listeners[x];
+				if (listener) listener[mode](value);
+			}
+		},
+		up(listener, x, z, current) {
+			for (x = 0, z = buffer.length; x < z; x++) {
+				current = buffer[x];
+				if (!alive && x === z - 1) listener[success ? "return" : "throw"](current);
+				else listener.next(current);
+			}
+		},
+		on(listener, temp = 0) {
+			let subscribed = alive;
+			if (alive) {
+				for (temp = 0; temp < count; temp++) if (!listeners[temp]) break;
+				if (temp === count) count++;
+				listeners[temp] = listener;
+			}
+			internal.up(listener);
+			return () => {
+				if (alive && subscribed) {
+					subscribed = false;
+					listeners[temp] = void 0;
+					while (count > 0 && !listeners[count - 1]) count--;
+					listeners.length = count;
+				}
+			};
+		}
+	};
+	return {
+		__SEROVAL_STREAM__: true,
+		on(listener) {
+			return internal.on(listener);
+		},
+		next(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "next");
+			}
+		},
+		throw(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "throw");
+				alive = false;
+				success = false;
+				listeners.length = 0;
+			}
+		},
+		return(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "return");
+				alive = false;
+				success = true;
+				listeners.length = 0;
+			}
+		}
+	};
+})())}}})($R["tsr"]);{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="/assets/index-66eT-ixJ.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script><script>($R=>$R[20].return(void 0))($R["tsr"]);$_TSR.e();document.currentScript.remove()</script></body></html>

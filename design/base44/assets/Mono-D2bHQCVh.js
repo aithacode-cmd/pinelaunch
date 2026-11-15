@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BiX_BIZ9.js";var t=e();function n({as:e=`span`,className:n=``,children:r,...i}){return(0,t.jsx)(e,{className:`font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] ${n}`,...i,children:r})}export{n as t};

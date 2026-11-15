@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Downloaded Base44 reference build, kept for design comparison only.
+    "design/**",
   ]),
 ]);
 

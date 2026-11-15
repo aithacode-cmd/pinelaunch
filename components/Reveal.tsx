@@ -1,29 +1,45 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
   className?: string;
-  delay?: number;
-  /** Render as a different element. */
   as?: "div" | "section" | "li";
+  id?: string;
 }
 
-/** Fades and lifts content slightly when it scrolls into view. Static under reduced motion. */
-export function Reveal({ children, className = "", delay = 0, as = "div" }: Props) {
-  const reduce = useReducedMotion();
-  const M = as === "section" ? motion.section : as === "li" ? motion.li : motion.div;
+/**
+ * Fades and lifts content once when it scrolls into view. Pure CSS classes
+ * (see .pl-reveal in globals.css), so under reduced motion nothing moves and
+ * without JavaScript the content is simply visible after the first paint.
+ */
+export function Reveal({ children, className = "", as: Tag = "div", id }: Props) {
+  const ref = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("pl-reveal-in");
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("pl-reveal-in");
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
-    <M
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -60px 0px" }}
-      transition={{ duration: 0.5, ease: "easeOut", delay }}
-    >
+    <Tag id={id} ref={ref as never} className={`pl-reveal ${className}`}>
       {children}
-    </M>
+    </Tag>
   );
 }

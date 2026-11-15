@@ -1,6 +1,35 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-14 (redesign on branch `redesign`, not merged).
+Last updated: 2026-11-15 (final design built on branch `redesign`, not merged, not pushed).
+
+## Final design built (2026-11-15)
+
+The founder ran the redesign prompt through Base44 and chose its output
+(https://pine-launch-lab.base44.app) as the final design. That design is
+now rebuilt in this codebase, page by page, from Base44's own source and
+screenshots (frozen copy in `design/base44/`, see its README). Every page
+was screenshot at 1440 and 390 and compared; lint, `tsc` and the static
+build pass; the idea picker, step ticking, locked examples, placeholder
+filling, prompts search and filters, export code, reset, import and the
+phone menu were exercised with Playwright.
+
+What is different from the Base44 output, on purpose: the tools strip
+names only the five allowed tools with plain initial tiles (Base44 drew
+eight brand logos including Figma, Vercel and Notion); progress moves by
+copy-paste code, not a JSON file; all guide text, prompts, examples,
+badges and the Launch Day checklist come from `/content`; the Project
+Card keeps its existing shape so earlier progress still loads.
+
+Design system now: neutral black and grey (`deep` #050505, `bg` #0B0B0B,
+panels #121212 / #181818 / #202020, lines #1E1E1E / #2A2A2A / #3A3A3A),
+pine only on the mark, primary button, ticked boxes, current markers and
+one key number; Space Grotesk headings, Manrope body, IBM Plex Mono labels,
+Instrument Serif italic for one accent phrase per heading. Shared pieces:
+`Mono`, `Button`, `Background`, `Ticker`, `Reveal`, `PromptPanel`,
+`components/home/*`. Tokens in `app/globals.css`.
+
+Not done: nothing is merged into `main` or pushed, so the live site is
+unchanged. The Figma file is still at the brand page only.
 
 ## Redesign (branch `redesign`, 2026-11-14)
 
@@ -40,10 +69,11 @@ Playwright screenshot checks.
 - Pages: Home `/`, For parents `/parents`, Dashboard `/dashboard`, Idea
   picker `/start`, Week pages `/week/1` `/week/2` `/week/3`, Prompts
   `/prompts`, Launch Day `/launch`, a 404 page.
-- Idea picker: 7 screens (type, audience, one job, up to 6 features, cut to
-  3, name, tool). Saves a Project Card to the browser, auto-checks the Week 1
-  "Complete the idea picker" step, and sends the student to the dashboard.
-  Re-opening it edits the existing card.
+- Idea picker: 7 questions (type, audience, one job, exactly three
+  features, name, tool, confirm). Saves a Project Card to the browser,
+  auto-checks the Week 1 "Complete the idea picker" step, and shows the
+  card with Copy card, Open dashboard and Start week 1. Re-opening it
+  edits the existing card.
 - Dashboard: Project Card with "Copy card", current week, countdown to
   Launch Day, progress bar, points, badges, next uncompleted step, Discord
   link, and the export / import / reset tools. Redirects to the idea picker
@@ -110,8 +140,9 @@ Also check before launch:
   students, teens) are rejected with a hint. Anything else is accepted.
 - Points per step were chosen by me: 10 to 30 each, 255 total. Change them in
   `/content` if you want different weights.
-- The pre-launch checklist on `/launch` is a static list, not checkable, to
-  keep storage simple. The "Launch Day" step on Week 3 is the checkable one.
+- The pre-launch checklist on `/launch` is checkable for the current visit
+  only (not stored), to keep storage simple. The "Launch Day" step on Week
+  3 is the one that counts.
 - Week pages for future weeks are fully readable and checkable. "Starts
   [date]" is a label, not a lock, because reading ahead was asked for and a
   lock would need a clock students could bypass anyway.

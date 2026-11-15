@@ -1,72 +1,56 @@
-"use client";
-
-import Link from "next/link";
 import { program } from "@/config/program";
 import type { ProjectCard } from "@/lib/storage";
-import { cardAsText, cardPitch, typeLabels } from "@/lib/fill";
-import { PineMark } from "./Brand";
-import { CopyButton } from "./CopyButton";
+import { cardPitch, typeLabels } from "@/lib/fill";
+import { Mono } from "./Mono";
 
-/**
- * The Project Card as a designed artifact: a dark identity card with the
- * student's real answers, PineLaunch branding, and a Copy button.
- */
-export function ProjectCardView({ card, compact = false }: { card: ProjectCard; compact?: boolean }) {
-  const created = new Date(card.createdAt);
-  const createdLabel = isNaN(created.getTime())
-    ? ""
-    : created.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+function createdLabel(iso: string): string {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? "Not dated"
+    : d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+}
 
+/** The Project Card: the student's answers as one calm, printable panel. */
+export function ProjectCardView({ card, className = "" }: { card: ProjectCard; className?: string }) {
   return (
-    <section
-      className="panel-glow relative overflow-hidden rounded-[24px] border border-line-2 p-6 sm:p-8"
-      aria-labelledby="project-card-title"
-    >
-      <div className="absolute right-6 top-6 text-pine/50">
-        <PineMark size={40} />
+    <article className={`rounded-[28px] border border-line2 bg-panel p-6 sm:p-8 ${className}`} aria-label="Project Card">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Mono className="text-muted">Project Card</Mono>
+        <Mono className="rounded-full border border-line3 px-2.5 py-1 text-txt2">{typeLabels[card.type]}</Mono>
       </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="t-mono text-pine">Project Card</span>
-        <span className="t-mono">{typeLabels[card.type]}</span>
-        {createdLabel && <span className="t-mono">{createdLabel}</span>}
-      </div>
-      <h2 id="project-card-title" className="t-display mt-4 text-[2.25rem] sm:text-[2.75rem]">
+      <h3 className="mt-5 font-heading text-[28px] font-medium leading-[1.1] tracking-[-0.03em] text-txt sm:text-[34px]">
         {card.name}
-      </h2>
-      <p className="mt-3 max-w-[56ch] text-lg text-text-2">{cardPitch(card)}</p>
-
-      <dl className="mt-8 grid gap-6 border-t border-line pt-6 sm:grid-cols-[1fr_1fr]">
+      </h3>
+      <p className="mt-3 max-w-[52ch] font-body text-[14.5px] leading-[1.65] text-txt2">{cardPitch(card)}</p>
+      <dl className="mt-7 grid gap-5 border-t border-line pt-6 sm:grid-cols-2">
         <div>
-          <dt className="t-mono">For</dt>
-          <dd className="mt-1 text-text">{card.audience}</dd>
+          <Mono as="dt" className="text-muted">
+            Who it is for
+          </Mono>
+          <dd className="mt-2 font-body text-[14px] leading-[1.6] text-txt">{card.audience}</dd>
         </div>
         <div>
-          <dt className="t-mono">Build tool</dt>
-          <dd className="mt-1 text-text">{program.tools[card.tool].name}</dd>
-        </div>
-        <div className="sm:col-span-2">
-          <dt className="t-mono">Three features</dt>
-          <dd className="mt-2">
-            <ol className="grid gap-2 sm:grid-cols-3">
-              {card.features.map((f, i) => (
-                <li key={i} className="rounded-[12px] border border-line bg-bg-deep/60 px-3 py-2.5 text-[15px]">
-                  <span className="t-mono mr-2 text-pine">0{i + 1}</span>
-                  {f}
-                </li>
-              ))}
-            </ol>
-          </dd>
+          <Mono as="dt" className="text-muted">
+            Tool
+          </Mono>
+          <dd className="mt-2 font-body text-[14px] leading-[1.6] text-txt">{program.tools[card.tool].name}</dd>
         </div>
       </dl>
-
-      {!compact && (
-        <div className="mt-6 flex flex-wrap items-center gap-3">
-          <CopyButton text={cardAsText(card)} label="Copy card" className="btn-primary" />
-          <Link href="/start" className="btn-quiet">
-            Edit card
-          </Link>
-        </div>
-      )}
-    </section>
+      <div className="mt-6 border-t border-line pt-6">
+        <Mono className="text-muted">Three features</Mono>
+        <ol className="mt-4 space-y-3">
+          {card.features.map((f, i) => (
+            <li key={i} className="flex gap-4">
+              <span className="mt-0.5 font-mono text-[11px] tracking-[0.08em] text-muted">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-body text-[14px] leading-[1.6] text-txt2">{f}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className="mt-6 flex items-center justify-between border-t border-line pt-4">
+        <Mono className="text-muted">Created</Mono>
+        <Mono className="text-txt2">{createdLabel(card.createdAt)}</Mono>
+      </div>
+    </article>
   );
 }

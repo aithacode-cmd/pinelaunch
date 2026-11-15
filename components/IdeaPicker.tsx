@@ -1,441 +1,393 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useId, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import { program, type ToolKey } from "@/config/program";
 import { useProgress, type UseProgress } from "@/lib/progress";
 import type { ProjectCard, ProjectType } from "@/lib/storage";
-import { cardPitch } from "@/lib/fill";
+import { cardAsText, typeLabels } from "@/lib/fill";
+import { Button } from "./Button";
+import { CopyButton } from "./CopyButton";
 import { ImportProgress } from "./ImportProgress";
-
-const TOTAL_SCREENS = 7;
-
-const screenTitles = ["Type", "Who", "One job", "Features", "Cut to 3", "Name", "Tool"];
+import { Mono } from "./Mono";
+import { ProjectCardView } from "./ProjectCardView";
 
 const typeOptions: { value: ProjectType; label: string; hint: string }[] = [
-  { value: "app", label: "App", hint: "Something you use: a tracker, a planner, a helper." },
-  { value: "website", label: "Website", hint: "Pages people read or browse." },
-  { value: "tool", label: "Tool", hint: "Does one job: converts, calculates, generates." },
-  { value: "game", label: "Game", hint: "One screen, one rule, one way to win." },
+  { value: "app", label: "App", hint: "Handy on a phone" },
+  { value: "website", label: "Website", hint: "A page people open" },
+  { value: "tool", label: "Tool", hint: "Does one calculation" },
+  { value: "game", label: "Game", hint: "One screen, one rule" },
 ];
 
-const tooBroad = /^(everyone|everybody|anyone|anybody|all people|people|students|teens|the world)\.?$/i;
+const toolOptions: { value: ToolKey; label: string; hint: string }[] = [
+  { value: "replit", label: program.tools.replit.name, hint: "Write code in the browser" },
+  { value: "base44", label: program.tools.base44.name, hint: "Describe it, then adjust" },
+];
+
+type QuestionKey = "type" | "audience" | "job" | "features" | "name" | "tool" | "confirm";
+
+const questions: { key: QuestionKey; label: string; hint: string }[] = [
+  { key: "type", label: "What kind of project is it?", hint: "Pick one. All four fit in three weeks." },
+  { key: "audience", label: "Who is it for?", hint: "One real person. A brother, a teammate, a club." },
+  { key: "job", label: "What is the one job it does?", hint: "Start with a verb. Keep it to one line." },
+  { key: "features", label: "What are three things it must do?", hint: "Three is the limit. Not four." },
+  { key: "name", label: "What is it called?", hint: "Two plain words, easy to type." },
+  { key: "tool", label: "Which tool will you build it with?", hint: "Choose one. You can change it later." },
+  { key: "confirm", label: "Check your Project Card", hint: "Everything can be changed later." },
+];
 
 interface Draft {
-  type: ProjectType | null;
+  type: ProjectType | "";
   audience: string;
-  coreJob: string;
-  features: string[]; // up to 6
-  keep: number[]; // indexes of the 3 kept features
+  job: string;
+  features: [string, string, string];
   name: string;
-  tool: ToolKey | null;
+  tool: ToolKey | "";
 }
 
+const emptyDraft: Draft = { type: "", audience: "", job: "", features: ["", "", ""], name: "", tool: "" };
+
 function draftFromCard(card: ProjectCard | null): Draft {
-  if (!card) return { type: null, audience: "", coreJob: "", features: ["", "", "", "", "", ""], keep: [], name: "", tool: null };
+  if (!card) return emptyDraft;
   return {
     type: card.type,
     audience: card.audience,
-    coreJob: card.coreJob,
-    features: [...card.features, "", "", ""],
-    keep: [0, 1, 2],
+    job: card.coreJob,
+    features: [card.features[0] ?? "", card.features[1] ?? "", card.features[2] ?? ""],
     name: card.name,
     tool: card.tool,
   };
 }
 
-/**
- * A guided flow of 7 short screens that turns "I want to build something" into a Project Card.
- * The card is saved in the browser and shown on the dashboard.
- */
-export function IdeaPicker() {
-  const progress = useProgress();
-  const router = useRouter();
-  // Wait for the browser copy so an existing card can be edited instead of overwritten.
-  if (!progress.ready) return <p className="text-text-3">Loading.</p>;
+function problemFor(key: QuestionKey, d: Draft): string {
+  if (key === "type" && !d.type) return "Choose one type.";
+  if (key === "audience" && d.audience.trim().length < 2) return "Say who it is for.";
+  if (key === "job" && d.job.trim().length < 5) return "Write the one job in a few words.";
+  if (key === "features" && d.features.some((f) => f.trim().length < 2)) return "Fill in all three features.";
+  if (key === "name" && d.name.trim().length < 2) return "Give it a name.";
+  if (key === "tool" && !d.tool) return "Choose Replit or Base44.";
+  return "";
+}
+
+function OptionTile({
+  name,
+  value,
+  label,
+  hint,
+  checked,
+  onChange,
+}: {
+  name: string;
+  value: string;
+  label: string;
+  hint: string;
+  checked: boolean;
+  onChange: () => void;
+}) {
   return (
-    <div className="mx-auto max-w-[640px]">
-      <IdeaPickerForm progress={progress} initialCard={progress.state.card} />
-      {!progress.state.card && <ImportProgress progress={progress} onImported={() => router.push("/dashboard")} />}
+    <label
+      className={
+        "pl-lift flex cursor-pointer flex-col justify-between gap-2 rounded-[14px] border p-4 text-left transition-colors " +
+        (checked ? "border-pine bg-panel2" : "border-line2 bg-panel hover:border-line3")
+      }
+    >
+      <input type="radio" name={name} value={value} checked={checked} onChange={onChange} className="sr-only" />
+      <span className="font-heading text-[17px] font-medium tracking-[-0.02em] text-txt">{label}</span>
+      <span className="font-body text-[12.5px] leading-snug text-txt2">{hint}</span>
+    </label>
+  );
+}
+
+function TextField({
+  id,
+  label,
+  value,
+  placeholder,
+  maxLength,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  placeholder: string;
+  maxLength: number;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="block">
+        <Mono className="text-muted">{label}</Mono>
+      </label>
+      <input
+        id={id}
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        autoComplete="off"
+        className="pl-input mt-2"
+      />
     </div>
   );
 }
 
-function OptionRow({
-  checked,
-  children,
-}: {
-  checked: boolean;
-  children: React.ReactNode;
-}) {
+/**
+ * Seven short questions that turn "I want to build something" into a Project
+ * Card. The card is saved in the browser and shown on the dashboard.
+ */
+export function IdeaPicker() {
+  const progress = useProgress();
+  // Wait for the browser copy so an existing card can be edited instead of overwritten.
+  if (!progress.ready) {
+    return (
+      <div className="pl-shell py-24">
+        <Mono className="text-muted">Opening the idea picker…</Mono>
+      </div>
+    );
+  }
   return (
-    <span
-      className={
-        "flex cursor-pointer items-start gap-3 rounded-[14px] border p-4 transition-colors " +
-        (checked ? "border-pine bg-pine-deep/20" : "border-line hover:border-line-3")
-      }
-    >
-      {children}
-    </span>
+    <div className="pl-shell py-12 lg:py-20">
+      <IdeaPickerForm progress={progress} initialCard={progress.state.card} />
+    </div>
+  );
+}
+
+function DoneScreen({ card }: { card: ProjectCard }) {
+  return (
+    <div className="max-w-[720px]">
+      <Mono className="text-muted">Your Project Card</Mono>
+      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+        That is your first step done.
+      </h1>
+      <p className="mt-3 max-w-[48ch] font-body text-[14.5px] leading-[1.6] text-txt2">
+        Saved in this browser only. Copy it into the Discord channel for week one, then open your dashboard.
+      </p>
+      <ProjectCardView card={card} className="mt-8" />
+      <div className="mt-6 flex flex-wrap gap-3">
+        <CopyButton text={cardAsText(card)} label="Copy card" variant="primary" className="px-5" />
+        <Button to="/dashboard" variant="quiet">
+          Open dashboard
+        </Button>
+        <Button to="/week/1" variant="ghost">
+          Start week 1
+        </Button>
+      </div>
+      <p className="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.08em] text-muted">
+        Project Card · pinelaunch.progress.v1
+      </p>
+    </div>
   );
 }
 
 function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; initialCard: ProjectCard | null }) {
-  const router = useRouter();
-  const id = useId();
-  const reduce = useReducedMotion();
-  const [screen, setScreen] = useState(1);
-  const [dir, setDir] = useState(1);
+  const [index, setIndex] = useState(0);
   const [draft, setDraft] = useState<Draft>(() => draftFromCard(initialCard));
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [saved, setSaved] = useState<ProjectCard | null>(null);
 
-  const filledFeatures = draft.features.map((f, i) => ({ text: f.trim(), i })).filter((f) => f.text);
+  const q = questions[index];
+  const last = index === questions.length - 1;
 
   function set<K extends keyof Draft>(key: K, value: Draft[K]) {
     setDraft((d) => ({ ...d, [key]: value }));
-    setError(null);
+    setError("");
   }
-
-  function validate(): string | null {
-    switch (screen) {
-      case 1:
-        return draft.type ? null : "Pick one type.";
-      case 2:
-        if (!draft.audience.trim()) return "Name one specific person or group.";
-        if (tooBroad.test(draft.audience.trim())) return "That is too broad. Pick one specific person or group you know.";
-        return null;
-      case 3:
-        return draft.coreJob.trim() ? null : "Write the one thing it must do.";
-      case 4:
-        return filledFeatures.length >= 3 ? null : "List at least 3 features. Up to 6.";
-      case 5:
-        return draft.keep.length === 3 ? null : "Choose exactly 3 to keep.";
-      case 6:
-        return draft.name.trim() ? null : "Give it a name. You can change it later.";
-      case 7:
-        return draft.tool ? null : "Pick a build tool.";
-      default:
-        return null;
-    }
-  }
-
-  function go(to: number) {
-    setDir(to > screen ? 1 : -1);
-    setScreen(to);
+  function setFeature(i: number, value: string) {
+    setDraft((d) => {
+      const features: [string, string, string] = [...d.features] as [string, string, string];
+      features[i] = value;
+      return { ...d, features };
+    });
+    setError("");
   }
 
   function next() {
-    const problem = validate();
+    const problem = problemFor(q.key, draft);
     if (problem) {
       setError(problem);
       return;
     }
-    if (screen === 4 && filledFeatures.length === 3) {
-      // Exactly 3 features: skip the cut screen but keep them all.
-      set("keep", filledFeatures.map((f) => f.i));
-      go(6);
+    if (!last) {
+      setIndex((i) => i + 1);
       return;
     }
-    go(Math.min(TOTAL_SCREENS, screen + 1));
-  }
-
-  function back() {
-    setError(null);
-    if (screen === 6 && filledFeatures.length === 3) {
-      go(4);
-      return;
-    }
-    go(Math.max(1, screen - 1));
-  }
-
-  function finish() {
-    const problem = validate();
-    if (problem) {
-      setError(problem);
-      return;
-    }
-    const kept = draft.keep
-      .slice()
-      .sort((a, b) => a - b)
-      .map((i) => draft.features[i].trim());
     const card: ProjectCard = {
       name: draft.name.trim(),
-      type: draft.type!,
+      type: draft.type as ProjectType,
       audience: draft.audience.trim(),
-      coreJob: draft.coreJob.trim(),
-      features: [kept[0] ?? "", kept[1] ?? "", kept[2] ?? ""],
-      tool: draft.tool!,
+      coreJob: draft.job.trim().replace(/[.\s]+$/, ""),
+      features: [draft.features[0].trim(), draft.features[1].trim(), draft.features[2].trim()],
+      tool: draft.tool as ToolKey,
       createdAt: initialCard?.createdAt ?? new Date().toISOString(),
     };
     progress.setCard(card);
-    router.push("/dashboard");
+    setSaved(card);
   }
 
-  const previewCard: ProjectCard | null =
-    draft.type && draft.tool
-      ? {
-          name: draft.name || "Your project",
-          type: draft.type,
-          audience: draft.audience,
-          coreJob: draft.coreJob,
-          features: ["", "", ""],
-          tool: draft.tool,
-          createdAt: "",
-        }
-      : null;
+  if (saved) return <DoneScreen card={saved} />;
 
-  const slide = reduce ? {} : { x: dir * 24 };
+  const summary: [string, string][] = [
+    ["Type", draft.type ? typeLabels[draft.type] : ""],
+    ["For", draft.audience],
+    ["One job", draft.job],
+    ["Features", draft.features.join(" · ")],
+    ["Name", draft.name],
+    ["Tool", draft.tool ? program.tools[draft.tool].name : ""],
+  ];
 
   return (
-    <div>
-      {/* progress */}
-      <div className="flex items-center justify-between">
-        <p className="t-mono">
-          Step {screen} of {TOTAL_SCREENS}
+    <div className="max-w-[720px]">
+      <Mono className="text-muted">Idea picker</Mono>
+      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+        Seven questions, one Project Card.
+      </h1>
+      <p className="mt-3 font-body text-[14.5px] leading-[1.6] text-txt2">Answers stay in this browser. Nothing is sent anywhere.</p>
+      {initialCard && (
+        <p className="mt-4 font-mono text-[10.5px] uppercase leading-relaxed tracking-[0.08em] text-muted">
+          You already have a card. Finishing this replaces it.
         </p>
-        <p className="t-mono text-pine">{screenTitles[screen - 1]}</p>
-      </div>
-      <ol
-        className="mt-3 grid grid-cols-7 gap-1.5"
-        role="progressbar"
-        aria-label="Idea picker progress"
-        aria-valuemin={1}
-        aria-valuemax={TOTAL_SCREENS}
-        aria-valuenow={screen}
-      >
-        {Array.from({ length: TOTAL_SCREENS }).map((_, i) => (
-          <li
-            key={i}
-            className={"h-1 rounded-full transition-colors " + (i < screen ? "bg-pine" : "bg-line-2")}
-            aria-hidden="true"
-          />
-        ))}
-      </ol>
+      )}
 
       <form
-        className="panel-glow mt-6 overflow-hidden rounded-[24px] border border-line-2 p-6 sm:p-8"
+        className="mt-8"
+        role="group"
+        aria-label={`Question ${index + 1} of ${questions.length}`}
         onSubmit={(e) => {
           e.preventDefault();
-          if (screen === TOTAL_SCREENS) finish();
-          else next();
+          next();
         }}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={screen}
-            initial={{ opacity: 0, ...slide }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, ...(reduce ? {} : { x: -dir * 24 }) }}
-            transition={{ duration: 0.2 }}
-          >
-            {screen === 1 && (
-              <fieldset>
-                <legend className="t-heading text-[1.75rem]">What are you building?</legend>
-                <p className="mt-2 text-[15px] text-text-2">Pick the closest fit. It only changes how we talk about it.</p>
-                <div className="mt-6 grid gap-2 sm:grid-cols-2">
-                  {typeOptions.map((o) => (
-                    <label key={o.value}>
-                      <OptionRow checked={draft.type === o.value}>
-                        <input
-                          type="radio"
-                          name="type"
-                          value={o.value}
-                          checked={draft.type === o.value}
-                          onChange={() => set("type", o.value)}
-                          className="radio mt-0.5"
-                        />
-                        <span>
-                          <span className="block font-semibold">{o.label}</span>
-                          <span className="block text-sm text-text-3">{o.hint}</span>
-                        </span>
-                      </OptionRow>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            )}
+        <div className="flex gap-1.5" aria-hidden="true">
+          {questions.map((qq, i) => (
+            <span key={qq.key} className={"h-1 flex-1 rounded-full " + (i <= index ? "bg-pine" : "bg-line2")} />
+          ))}
+        </div>
+        <Mono className="mt-3 block text-muted">
+          Question {index + 1} of {questions.length}
+        </Mono>
 
-            {screen === 2 && (
-              <div>
-                <label htmlFor={`${id}-audience`} className="t-heading block text-[1.75rem]">
-                  Who is it for?
-                </label>
-                <p className="mt-2 text-[15px] text-text-2">
-                  One specific person or group. Not &quot;everyone.&quot; Examples: my little brother who forgets his
-                  homework, the players on my soccer team, my grandmother who wants recipes in large print.
-                </p>
-                <input
-                  id={`${id}-audience`}
-                  className="input mt-6"
-                  value={draft.audience}
-                  onChange={(e) => set("audience", e.target.value)}
-                  autoComplete="off"
-                />
+        <div className="mt-6 rounded-[20px] border border-line2 bg-panel p-5 sm:p-7">
+          <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">{q.label}</h2>
+          <p className="mt-2 font-body text-[13.5px] leading-relaxed text-txt2">{q.hint}</p>
+          <div className="mt-6">
+            {q.key === "type" && (
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {typeOptions.map((o) => (
+                  <OptionTile
+                    key={o.value}
+                    name="type"
+                    value={o.value}
+                    label={o.label}
+                    hint={o.hint}
+                    checked={draft.type === o.value}
+                    onChange={() => set("type", o.value)}
+                  />
+                ))}
               </div>
             )}
-
-            {screen === 3 && (
-              <div>
-                <label htmlFor={`${id}-job`} className="t-heading block text-[1.75rem]">
-                  What is the one thing it must do?
-                </label>
-                <p className="mt-2 text-[15px] text-text-2">
-                  Finish this sentence: &quot;It helps {draft.audience || "them"} ...&quot; One thing. If you wrote
-                  &quot;and,&quot; cut the second half.
-                </p>
-                <input
-                  id={`${id}-job`}
-                  className="input mt-6"
-                  value={draft.coreJob}
-                  onChange={(e) => set("coreJob", e.target.value)}
-                  autoComplete="off"
-                />
+            {q.key === "audience" && (
+              <TextField
+                id="audience"
+                label="Who it is for"
+                value={draft.audience}
+                placeholder="My brother in grade 6"
+                maxLength={80}
+                onChange={(v) => set("audience", v)}
+              />
+            )}
+            {q.key === "job" && (
+              <TextField
+                id="job"
+                label="The one job"
+                value={draft.job}
+                placeholder="keep track of homework due this week"
+                maxLength={90}
+                onChange={(v) => set("job", v)}
+              />
+            )}
+            {q.key === "features" && (
+              <div className="space-y-4">
+                {draft.features.map((f, i) => (
+                  <TextField
+                    key={i}
+                    id={`feature-${i}`}
+                    label={`Feature ${i + 1}`}
+                    value={f}
+                    placeholder={i === 0 ? "Show three tasks" : i === 1 ? "Tick a task off" : "See what is due"}
+                    maxLength={80}
+                    onChange={(v) => setFeature(i, v)}
+                  />
+                ))}
               </div>
             )}
-
-            {screen === 4 && (
-              <fieldset>
-                <legend className="t-heading text-[1.75rem]">List the features you can think of</legend>
-                <p className="mt-2 text-[15px] text-text-2">At least 3, up to 6. Short phrases. You will cut this list next.</p>
-                <div className="mt-6 space-y-2">
-                  {draft.features.map((f, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span className="t-mono w-6 text-right">{i + 1}</span>
-                      <label htmlFor={`${id}-f${i}`} className="sr-only">
-                        Feature {i + 1}
-                      </label>
-                      <input
-                        id={`${id}-f${i}`}
-                        className="input"
-                        placeholder={i < 3 ? "Required" : "Optional"}
-                        value={f}
-                        onChange={(e) => {
-                          const features = [...draft.features];
-                          features[i] = e.target.value;
-                          set("features", features);
-                          set("keep", []);
-                        }}
-                        autoComplete="off"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </fieldset>
+            {q.key === "name" && (
+              <TextField
+                id="name"
+                label="Project name"
+                value={draft.name}
+                placeholder="Homework Tracker"
+                maxLength={32}
+                onChange={(v) => set("name", v)}
+              />
             )}
-
-            {screen === 5 && (
-              <fieldset>
-                <legend className="t-heading text-[1.75rem]">Keep the 3 that matter</legend>
-                <p className="mt-2 text-[15px] text-text-2">
-                  The test for each one: if this were missing, would {draft.audience || "the person it is for"} still
-                  use it? If yes, cut it. The rest can wait until after launch.
-                </p>
-                <div className="mt-6 space-y-2">
-                  {filledFeatures.map((f) => {
-                    const checked = draft.keep.includes(f.i);
-                    const full = draft.keep.length >= 3 && !checked;
-                    return (
-                      <label key={f.i} className={full ? "opacity-50" : ""}>
-                        <OptionRow checked={checked}>
-                          <input
-                            type="checkbox"
-                            className="check"
-                            checked={checked}
-                            disabled={full}
-                            onChange={(e) =>
-                              set("keep", e.target.checked ? [...draft.keep, f.i] : draft.keep.filter((k) => k !== f.i))
-                            }
-                          />
-                          <span className="pt-0.5">{f.text}</span>
-                        </OptionRow>
-                      </label>
-                    );
-                  })}
-                </div>
-                <p className="t-mono mt-3">{draft.keep.length} of 3 chosen</p>
-              </fieldset>
-            )}
-
-            {screen === 6 && (
-              <div>
-                <label htmlFor={`${id}-name`} className="t-heading block text-[1.75rem]">
-                  Name it
-                </label>
-                <p className="mt-2 text-[15px] text-text-2">One or two words. Easy to say out loud. You can change it any time.</p>
-                <input
-                  id={`${id}-name`}
-                  className="input mt-6 text-2xl font-semibold"
-                  value={draft.name}
-                  onChange={(e) => set("name", e.target.value)}
-                  autoComplete="off"
-                  maxLength={40}
-                />
+            {q.key === "tool" && (
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {toolOptions.map((o) => (
+                  <OptionTile
+                    key={o.value}
+                    name="tool"
+                    value={o.value}
+                    label={o.label}
+                    hint={o.hint}
+                    checked={draft.tool === o.value}
+                    onChange={() => set("tool", o.value)}
+                  />
+                ))}
               </div>
             )}
-
-            {screen === 7 && (
-              <fieldset>
-                <legend className="t-heading text-[1.75rem]">Pick a build tool</legend>
-                <p className="mt-2 text-[15px] text-text-2">
-                  Base44 if you want zero code. Replit if you want to see and change the code. Both need a parent&apos;s
-                  permission to sign up.
-                </p>
-                <div className="mt-6 grid gap-2">
-                  {(Object.keys(program.tools) as ToolKey[]).map((key) => {
-                    const t = program.tools[key];
-                    return (
-                      <label key={key}>
-                        <OptionRow checked={draft.tool === key}>
-                          <input
-                            type="radio"
-                            name="tool"
-                            value={key}
-                            checked={draft.tool === key}
-                            onChange={() => set("tool", key)}
-                            className="radio mt-0.5"
-                          />
-                          <span>
-                            <span className="block font-semibold">{t.name}</span>
-                            <span className="block text-sm text-text-3">{t.oneLiner}</span>
-                          </span>
-                        </OptionRow>
-                      </label>
-                    );
-                  })}
-                </div>
-                {previewCard && (
-                  <div className="mt-6 rounded-[14px] border border-line bg-bg-deep/60 p-4">
-                    <p className="t-mono text-pine">Your pitch</p>
-                    <p className="mt-1 text-[15px]">{cardPitch(previewCard)}</p>
+            {q.key === "confirm" && (
+              <dl className="divide-y divide-line border-y border-line">
+                {summary.map(([label, value]) => (
+                  <div key={label} className="flex flex-col gap-1 py-3 sm:flex-row sm:justify-between sm:gap-6">
+                    <Mono as="dt" className="shrink-0 text-muted">
+                      {label}
+                    </Mono>
+                    <dd className="font-body text-[13.5px] leading-snug text-txt sm:text-right">{value}</dd>
                   </div>
-                )}
-              </fieldset>
+                ))}
+              </dl>
             )}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+          {error && (
+            <p role="alert" className="mt-4 font-body text-[13px] text-txt">
+              {error}
+            </p>
+          )}
+        </div>
 
-        {error && (
-          <p role="alert" className="mt-4 text-sm font-medium text-danger">
-            {error}
-          </p>
-        )}
-
-        <div className="mt-8 flex items-center justify-between gap-3 border-t border-line pt-5">
-          <button type="button" className="btn-quiet" onClick={back} disabled={screen === 1}>
+        <div className="mt-5 flex items-center justify-between gap-3">
+          <Button
+            variant="quiet"
+            onClick={() => {
+              setError("");
+              setIndex((i) => Math.max(0, i - 1));
+            }}
+            disabled={index === 0}
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back
-          </button>
-          <button type="submit" className="btn-primary">
-            {screen < TOTAL_SCREENS ? "Next" : initialCard ? "Save changes" : "Create my Project Card"}
-          </button>
+          </Button>
+          <Button type="submit">{last ? (initialCard ? "Save my Project Card" : "Create my Project Card") : "Continue"}</Button>
         </div>
       </form>
 
       {!progress.storageOk && (
-        <p role="alert" className="mt-4 text-sm text-danger">
+        <p role="alert" className="mt-4 font-body text-[13px] text-danger">
           This browser is blocking storage, so your card will not be saved. Try a normal (not private) window.
         </p>
       )}
+      {!initialCard && <ImportProgress progress={progress} />}
     </div>
   );
 }

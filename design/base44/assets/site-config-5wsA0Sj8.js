@@ -1,0 +1,1 @@
+var e=`[CONTACT EMAIL]`,t=`[DISCORD INVITE LINK]`,n={1:`[WEEK 1 FORM LINK]`,2:`[WEEK 2 FORM LINK]`,3:`[WEEK 3 FORM LINK]`},r=`[FINAL FEEDBACK FORM LINK]`;export{n as i,t as n,r,e as t};

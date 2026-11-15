@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en"><head><script>(function(){var o=Storage.prototype.removeItem;Storage.prototype.removeItem=function(k){if(k==='base44_access_token'){try{var t=this.getItem(k);t&&(document.cookie='base44_sign_out_token='+encodeURIComponent(t)+';path=/api/apps/auth/logout;max-age=60'+(location.protocol!=='https:'?';SameSite=Strict':window.top!==window.self?';SameSite=None;Secure;Partitioned':';SameSite=Strict;Secure'))}catch(e){}}return o.call(this,k)}})();</script><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><link data-precedence="default" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/><link data-precedence="default" href="/assets/index-CKKMO9lD.css" rel="stylesheet"/><title>For parents — PineLaunch</title><meta content="#050505" name="theme-color"/><meta content="index, follow" name="robots"/><meta content="What students do, dates, time commitment, parent permission, the tools used, and how privacy works in the PineLaunch pilot." name="description"/><link href="/assets/index-66eT-ixJ.js" rel="modulepreload"/><link href="/assets/jsx-runtime-BiX_BIZ9.js" rel="modulepreload"/><link href="/assets/_site-BLs3ZbvF.js" rel="modulepreload"/><link href="/assets/Mono-D2bHQCVh.js" rel="modulepreload"/><link href="/assets/createLucideIcon-CY-36I-e.js" rel="modulepreload"/><link href="/assets/arrow-up-right--mE7Jdxj.js" rel="modulepreload"/><link href="/assets/x-loJw4NXJ.js" rel="modulepreload"/><link href="/assets/Button-BnhuF-jM.js" rel="modulepreload"/><link href="/assets/site-config-5wsA0Sj8.js" rel="modulepreload"/><link href="/assets/parents-BwkT0EdV.js" rel="modulepreload"/><link href="/assets/lock-DXhmqaYG.js" rel="modulepreload"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/><link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M32 15l13 23H19z' fill='%237EA889'/%3E%3Crect x='24' y='42' width='16' height='5' rx='2.5' fill='%237EA889'/%3E%3C/svg%3E" rel="icon" type="image/svg+xml"/><script async="true" data-app-id="6af9ec090dc89af2335cd254" data-platform-url="https://app.base44.com" src="/static/js/badge.js"></script><meta content="on" name="base44-analytics"/><script id="b44-consent-listener">(function () {
+  if (window.__b44Consent) return;
+  var state = {};
+  var listeners = [];
+  function notify(listener) {
+    try {
+      (state[listener.category] === "granted" ? listener.grant : listener.revoke)();
+    } catch (e) {}
+  }
+  function read(entry) {
+    if (!entry || entry[0] !== "consent" || entry[1] !== "update" || !entry[2]) return;
+    for (var category in entry[2]) {
+      state[category] = entry[2][category];
+      for (var i = 0; i < listeners.length; i++) {
+        if (listeners[i].category === category) notify(listeners[i]);
+      }
+    }
+  }
+  var dataLayer = (window.dataLayer = window.dataLayer || []);
+  // The banner may have restored the visitor's saved choice before this script ran.
+  for (var i = 0; i < dataLayer.length; i++) read(dataLayer[i]);
+  var push = dataLayer.push;
+  dataLayer.push = function () {
+    var result = push.apply(dataLayer, arguments);
+    for (var j = 0; j < arguments.length; j++) read(arguments[j]);
+    return result;
+  };
+  window.__b44Consent = {
+    on: function (category, grant, revoke) {
+      var listener = { category: category, grant: grant, revoke: revoke };
+      listeners.push(listener);
+      if (category in state) notify(listener);
+    },
+  };
+})();
+</script><meta content="on" data-source="default" name="base44-visitor-tracking"/><script id="b44-visitor-tracking">(function () {
+  try {
+    if (window.top !== window) return;
+    var CONSENT_CATEGORY = "analytics_storage";
+    var attributes = "; Path=/; Secure; SameSite=Lax";
+    var keep = "; Max-Age=2592000" + attributes;
+    // Read now: the app's router may drop ?ref= before the visitor consents.
+    var referrerId = new URLSearchParams(window.location.search).get("ref");
+    var referrerOrigin = document.referrer && new URL(document.referrer).origin;
+    function write() {
+      if (referrerId && /^[0-9a-f]{24}$/i.test(referrerId)) {
+        document.cookie = "base44_referrer_id=" + referrerId + keep;
+      }
+      // First touch: a return from a sign-in or checkout page must not replace who sent the visitor.
+      var hasOrigin = /(?:^|;\s*)base44_referrer_origin=/.test(document.cookie);
+      if (!hasOrigin && /^https?:\/\//.test(referrerOrigin) && referrerOrigin !== window.location.origin) {
+        document.cookie = "base44_referrer_origin=" + referrerOrigin + keep;
+      }
+    }
+    function clear() {
+      document.cookie = "base44_referrer_id=; Max-Age=0" + attributes;
+      document.cookie = "base44_referrer_origin=; Max-Age=0" + attributes;
+    }
+    var meta = document.querySelector('meta[name="base44-visitor-tracking"]');
+    var signal = navigator.globalPrivacyControl;
+    // Global Privacy Control opts the visitor out of tracking Base44 turned on by default.
+    var optOut = meta && meta.getAttribute("data-source") === "default" && signal;
+    if (meta && meta.getAttribute("data-privacy-signals") === "honor") {
+      optOut = signal || navigator.doNotTrack === "1";
+    }
+    if (optOut) {
+      clear();
+    } else if (meta && meta.content === "consent") {
+      window.__b44Consent.on(CONSENT_CATEGORY, write, clear);
+    } else {
+      write();
+    }
+  } catch (e) {}
+})();
+</script></head><body data-react-root="true"><!--$--><div class="relative flex min-h-screen flex-col"><div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-deep"><div class="pl-grid-bg pl-fade-edges absolute inset-0 opacity-80"></div><div class="pl-drift absolute -left-48 -top-64 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(49,95,67,0.34),transparent_66%)] blur-2xl"></div><div class="pl-drift absolute -right-52 top-[36%] h-[680px] w-[680px] rounded-full bg-[radial-gradient(circle,rgba(126,168,137,0.16),transparent_68%)] blur-3xl" style="animation-delay:-9s"></div><div class="absolute inset-x-0 top-0 h-px pl-hairline"></div><div class="pl-grain absolute inset-0 opacity-[0.055] mix-blend-overlay"></div><div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-15%,rgba(255,255,255,0.055),transparent_62%)]"></div><div class="absolute inset-x-0 bottom-0 h-[38vh] bg-gradient-to-t from-deep to-transparent"></div></div><div class="relative z-30 border-b border-white/[0.06] bg-deep/85 backdrop-blur"><div class="pl-shell flex h-[34px] items-center justify-between gap-6"><div class="flex shrink-0 items-center gap-2.5"><span class="pl-pulse-dot h-1.5 w-1.5 rounded-full bg-pine-hi" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Pilot cohort 01</span></div><div class="hidden min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)] md:block"><div class="pl-ticker flex w-max items-center gap-5"><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Free pilot cohort</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Dec 1 to 20, 2026</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Ages 13 to 17</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Two to three hours a week</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">No accounts</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Progress saved in your browser</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">One public link at the end</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Free pilot cohort</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Dec 1 to 20, 2026</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Ages 13 to 17</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Two to three hours a week</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">No accounts</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Progress saved in your browser</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span><span class="flex items-center gap-5 whitespace-nowrap"><span class="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">One public link at the end</span><span class="text-[10px] text-pine/50" aria-hidden="true">/</span></span></div></div><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] shrink-0 text-txt2 pl-num">Dec 20<!-- --> <span class="text-muted">· launch</span></span></div></div><header class="sticky top-0 z-40 border-b border-white/[0.07] bg-deep/70 backdrop-blur-xl"><div class="pl-shell flex h-[74px] items-center justify-between gap-6"><a aria-label="PineLaunch home" class="flex shrink-0 items-center gap-3" href="/"><span class="inline-flex items-center gap-2.5 "><svg viewBox="0 0 24 24" class="h-[22px] w-[22px]" aria-hidden="true" focusable="false"><path d="M12 2.4 20.2 17H3.8z" fill="#7EA889"></path><rect x="7.6" y="19" width="8.8" height="2.6" rx="1.3" fill="#7EA889"></rect></svg><span class="font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt">PineLaunch</span></span><span class="hidden h-5 w-px bg-white/10 sm:block" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] hidden text-muted sm:block">Pilot 2026</span></a><nav aria-label="Main" class="hidden lg:block"><ul class="flex items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.03] p-1"><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/dashboard">Dashboard</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/1">Week 1</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/2">Week 2</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/week/3">Week 3</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/launch">Launch Day</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt" href="/prompts">Prompts</a></li><li><a class="block rounded-full px-3.5 py-1.5 font-body text-[12.5px] leading-none tracking-[-0.01em] text-txt2 transition-colors hover:text-txt bg-white/[0.09] text-txt" href="/parents" data-status="active" aria-current="page">Parents</a></li></ul></nav><div class="flex items-center gap-2.5"><span class="hidden items-center gap-2 xl:flex"><span class="pl-pulse-dot h-1 w-1 rounded-full bg-pine-hi" aria-hidden="true"></span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Local only</span></span><a class="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] px-5 font-body text-[14px] font-semibold leading-none tracking-[-0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-45 bg-pine-deep text-white hover:bg-[#3B7153] group hidden h-9 gap-1.5 px-4 text-[13px] sm:inline-flex" href="/start">Start<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a><button type="button" aria-label="Open menu" aria-expanded="false" class="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-white/[0.1] text-txt2 transition-colors hover:border-white/20 hover:text-txt lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu h-5 w-5" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button></div></div></header><main id="main" class="relative flex-1"><div class="pl-shell py-12 lg:py-20"><div class="max-w-[760px]"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-pine-hi">For parents</span><h1 class="mt-3 font-heading text-[34px] font-medium leading-[1.02] tracking-[-0.04em] text-txt lg:text-[52px]">A small, free program with a<!-- --> <span class="font-serif text-[1.06em] font-normal italic tracking-[-0.01em] text-pine-hi">real finished project</span>.</h1><p class="mt-5 font-body text-[15.5px] leading-[1.7] text-txt2">PineLaunch is a three-week pilot for high school students, run by a high school student with his parents&#x27; support. This page covers what your student does, what it takes, and what stays private.</p></div><div class="mt-12 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16"><nav aria-label="On this page" class="lg:sticky lg:top-[124px] lg:self-start"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">On this page</span><ul class="mt-4 space-y-2 border-l border-line pl-4"><li><a href="#what-students-do" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">What students do</a></li><li><a href="#dates" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Dates</a></li><li><a href="#time" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Time commitment</a></li><li><a href="#age" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Age range and experience</a></li><li><a href="#tools" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Replit and Base44</a></li><li><a href="#permission" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Parent permission</a></li><li><a href="#chatgpt" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">ChatGPT</a></li><li><a href="#discord" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Discord</a></li><li><a href="#support" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">How you can help</a></li><li><a href="#privacy" class="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">Privacy</a></li></ul><div class="mt-8 border-t border-line pt-4"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Contact</span><a href="mailto:[CONTACT EMAIL]" class="mt-2 inline-block break-all font-mono text-[11px] uppercase tracking-[0.08em] text-txt underline decoration-line3 underline-offset-4 hover:decoration-txt2">[CONTACT EMAIL]</a></div></nav><div class="max-w-[68ch]"><section id="what-students-do" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">What students do</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Each student picks one small idea: an app, a website, a tool, or a one-screen game. Over three weeks they build a first version, show it to three people, fix one thing, and publish a public link.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">The work is deliberately small. A finished, plain project is the goal, not an ambitious unfinished one.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Some students keep the finished project as an early portfolio piece for college applications. That is a side benefit, not the aim of the program.</p></section><section id="dates" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Dates</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">The pilot cohort runs from Tuesday December 1 to Sunday December 20, 2026.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Week 1 is December 1 to 6. Week 2 is December 7 to 13. Week 3 is December 14 to 20. Launch Day is Sunday December 20.</p></section><section id="time" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Time commitment</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Plan for two to three hours a week. Most students work in two sittings of about an hour, plus a short form at the end of the week.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">There are no scheduled video calls, so the work can fit around school and activities.</p></section><section id="age" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Age range and experience</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">The program is for high school students aged 13 to 17.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">No coding experience is required. Every guide assumes the student is starting from zero, and the prompts are written for someone who has never built anything before.</p></section><section id="tools" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Replit and Base44</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Students build in one of two tools: Replit, where they write and adjust code in the browser, or Base44, where they describe what they want and then adjust the result. They choose one in the idea picker and can change it later.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Both are separate services with their own accounts, terms and privacy policies. This program is not affiliated with either of them.</p></section><section id="permission" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Parent permission</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">A parent or guardian should agree before a student creates an account on Replit or Base44.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">If you would like to see the program before your student starts, open the week pages together. Nothing is hidden and there is no cost at any point.</p></section><section id="chatgpt" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">ChatGPT</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Students use ChatGPT with short copy-paste prompts. The prompts are written to ask for hints and small steps, and each one ends with the instruction: do not write the code for me.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">ChatGPT is a separate service with its own account, terms and privacy policy. A student can finish the program without it, using the guides and the group chat alone.</p></section><section id="discord" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Discord</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">The cohort talks in a small private Discord server. A parent is in the server for the whole pilot.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Discord is a separate service with its own rules and safety settings. We recommend the parent reviews those settings with the student before joining.</p></section><section id="support" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">How you can help</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">The most useful thing you can do is be one of the testers in week three. Five minutes, no instructions from you, and a note about where you got stuck.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">You can also help with the one rule that matters: keep the project small. Students tend to plan something larger than three weeks allows.</p></section><section id="privacy" class="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&amp;+section]:mt-8"><h2 class="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">Privacy</h2><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Everything a student types, including the Project Card, ticked steps and notes, is saved in their own browser under one local key. It never leaves the device. Clearing browser data or using a private window removes it.</p><p class="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">Google Forms collects the weekly responses, and Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site.</p></section><div class="mt-10 flex items-start gap-4 rounded-[14px] border border-line2 p-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><p class="font-body text-[13.5px] leading-[1.7] text-txt2">This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT, Discord and Google Forms are separate services, each with their own rules and privacy policies.</p></div></div></div></div></main><footer class="relative border-t border-white/[0.08] bg-deep/60"><div class="pl-shell py-14 lg:py-16"><div class="grid gap-10 lg:grid-cols-12 lg:gap-10"><div class="lg:col-span-4"><span class="inline-flex items-center gap-2.5 "><svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true" focusable="false"><path d="M12 2.4 20.2 17H3.8z" fill="#7EA889"></path><rect x="7.6" y="19" width="8.8" height="2.6" rx="1.3" fill="#7EA889"></rect></svg><span class="font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt">PineLaunch</span></span><p class="mt-5 max-w-[36ch] font-body text-[14px] leading-[1.7] text-txt2">A free three-week program where high school students build and launch one real project. Pilot cohort, December 2026.</p><ul class="mt-6 flex flex-wrap gap-1.5"><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">Static site</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">No accounts</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">No tracking</li><li class="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted">Browser storage only</li></ul></div><nav aria-label="Footer pages" class="lg:col-span-3"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Pages</span><ul class="mt-4 space-y-2.5"><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/">Home</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/start">Start the idea picker</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/dashboard">Dashboard</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/1">Week 1</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/2">Week 2</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/week/3">Week 3</a></li></ul></nav><nav aria-label="Footer program" class="lg:col-span-2"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Program</span><ul class="mt-4 space-y-2.5"><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/launch">Launch Day</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt" href="/prompts">Prompts</a></li><li><a class="font-body text-[14px] text-txt2 transition-colors hover:text-txt active" href="/parents" data-status="active" aria-current="page">For parents</a></li></ul></nav><div class="lg:col-span-3"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-txt2">Contact</span><p class="mt-4 font-body text-[14px] leading-[1.7] text-txt2">Questions about the program, permission, or privacy:</p><a href="mailto:[CONTACT EMAIL]" class="mt-2 inline-block break-all font-mono text-[11.5px] uppercase tracking-[0.1em] text-txt underline decoration-line3 underline-offset-4 transition-colors hover:decoration-pine-hi">[CONTACT EMAIL]</a><p class="mt-5 font-body text-[12.5px] leading-[1.65] text-muted">Progress is saved in your own browser. Nothing is uploaded, and there is no account to create.</p></div></div></div><div class="border-t border-white/[0.07]"><div class="pl-shell flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between"><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">PineLaunch · Pilot cohort 2026</span><span class="font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] text-muted">Progress key · pinelaunch.progress.v1</span><button type="button" class="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-txt">Top<span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/[0.1] transition-colors group-hover:border-white/25"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up h-3 w-3" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span></button></div></div></footer></div><!--/$--><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section><script type="module">
+if (window.self === window.top) {
+  let lastPath = "";
+  // The visitor's analytics_storage choice from window.__b44Consent; null until one is known.
+  let consentGranted = null;
+  function getPageNameFromPath(path) {
+    const segments = path.split("/").filter(Boolean);
+    return segments[0] || null;
+  }
+  // Same rules as @base44/sdk analytics. Read on every send: the server sets the meta.
+  function analyticsMode() {
+    const meta = document.querySelector('meta[name="base44-analytics"]');
+    return meta ? meta.getAttribute("content") : null;
+  }
+  function deniedBefore() {
+    try {
+      return window.localStorage.getItem("base44_analytics_denied") === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+  function mayTrack() {
+    const mode = analyticsMode();
+    if (mode === "off") return false;
+    if (mode === "consent") return consentGranted === true;
+    if (mode === "on") return consentGranted === null ? !deniedBefore() : consentGranted;
+    return true;
+  }
+  function trackPageView() {
+    if (!mayTrack()) return;
+    const path = window.location.pathname;
+    if (path === lastPath) return;
+    lastPath = path;
+    const pageName = getPageNameFromPath(path) || "home";
+    const appId = "6af9ec090dc89af2335cd254";
+    if (!appId) return;
+    fetch(`/api/app-logs/${appId}/log-user-in-app/${pageName}`, {
+      method: "POST",
+    }).catch(() => {});
+  }
+  const originalPushState = history.pushState.bind(history);
+  history.pushState = function (...args) {
+    originalPushState(...args);
+    trackPageView();
+  };
+  const originalReplaceState = history.replaceState.bind(history);
+  history.replaceState = function (...args) {
+    originalReplaceState(...args);
+    trackPageView();
+  };
+  window.addEventListener("popstate", trackPageView);
+  // A module script runs after the head's classic scripts, so the listener exists by now.
+  // Without it, "consent" never sends and "on" relies on the saved Decline only.
+  try {
+    if (window.__b44Consent) {
+      window.__b44Consent.on(
+        "analytics_storage",
+        function () {
+          consentGranted = true;
+          trackPageView();
+        },
+        function () {
+          consentGranted = false;
+          // A later grant sends the page the visitor is on, even one they saw before.
+          lastPath = "";
+        }
+      );
+    }
+  } catch (e) {}
+  trackPageView();
+}
+</script><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-66eT-ixJ.js","/assets/jsx-runtime-BiX_BIZ9.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"/assets/index-66eT-ixJ.js"}}]},"/_site":$R[8]={preloads:$R[9]=["/assets/_site-BLs3ZbvF.js","/assets/Mono-D2bHQCVh.js","/assets/createLucideIcon-CY-36I-e.js","/assets/arrow-up-right--mE7Jdxj.js","/assets/x-loJw4NXJ.js","/assets/Button-BnhuF-jM.js","/assets/site-config-5wsA0Sj8.js"]},"/_site/parents":$R[10]={preloads:$R[11]=["/assets/parents-BwkT0EdV.js","/assets/lock-DXhmqaYG.js"]}}},matches:$R[12]=[$R[13]={i:"__root__ ",u:1794771103261,s:"success",ssr:!0},$R[14]={i:" _site ",u:1794771103261,s:"success",ssr:!0},$R[15]={i:" _site parents parents",u:1794771103261,s:"success",ssr:!0}],dehydratedData:$R[16]={query:$R[17]={stream:$R[18]=($R[19]=(stream) => new ReadableStream({ start(controller) {
+	stream.on({
+		next(value) {
+			try {
+				controller.enqueue(value);
+			} catch (_error) {}
+		},
+		throw(value) {
+			controller.error(value);
+		},
+		return() {
+			try {
+				controller.close();
+			} catch (_error) {}
+		}
+	});
+} }))($R[20]=($R[21]=() => {
+	const buffer = [];
+	const listeners = [];
+	let alive = true;
+	let success = false;
+	let count = 0;
+	const internal = {
+		flush(value, mode, x) {
+			for (x = 0; x < count; x++) {
+				const listener = listeners[x];
+				if (listener) listener[mode](value);
+			}
+		},
+		up(listener, x, z, current) {
+			for (x = 0, z = buffer.length; x < z; x++) {
+				current = buffer[x];
+				if (!alive && x === z - 1) listener[success ? "return" : "throw"](current);
+				else listener.next(current);
+			}
+		},
+		on(listener, temp = 0) {
+			let subscribed = alive;
+			if (alive) {
+				for (temp = 0; temp < count; temp++) if (!listeners[temp]) break;
+				if (temp === count) count++;
+				listeners[temp] = listener;
+			}
+			internal.up(listener);
+			return () => {
+				if (alive && subscribed) {
+					subscribed = false;
+					listeners[temp] = void 0;
+					while (count > 0 && !listeners[count - 1]) count--;
+					listeners.length = count;
+				}
+			};
+		}
+	};
+	return {
+		__SEROVAL_STREAM__: true,
+		on(listener) {
+			return internal.on(listener);
+		},
+		next(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "next");
+			}
+		},
+		throw(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "throw");
+				alive = false;
+				success = false;
+				listeners.length = 0;
+			}
+		},
+		return(value) {
+			if (alive) {
+				buffer.push(value);
+				internal.flush(value, "return");
+				alive = false;
+				success = true;
+				listeners.length = 0;
+			}
+		}
+	};
+})())}}})($R["tsr"]);{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="/assets/index-66eT-ixJ.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script><script>($R=>$R[20].return(void 0))($R["tsr"]);$_TSR.e();document.currentScript.remove()</script></body></html>

@@ -1,45 +1,44 @@
 @import "tailwindcss";
 
 /*
-  PineLaunch design system: forest-dark.
-  Green-undertoned charcoal, one accent (pine), three type roles.
-  Every color pair used for text was checked against WCAG AA:
-    text-3 (#9BA89F) on bg (#101713)        6.9:1
-    text-3 on surface-3 (#253329)           5.2:1
-    pine (#7EA889) on bg                    6.4:1
-    white on button (#315F43)               7.3:1
+  PineLaunch design system (final, 2026-11-15).
+  Neutral black and grey with pine green as a hint. Four type roles:
+  Space Grotesk (headings), Manrope (body), IBM Plex Mono (labels),
+  Instrument Serif italic (one accent phrase per heading).
+
+  Text pairs checked against WCAG AA:
+    txt2 (#B9B9B9) on bg (#0B0B0B)       10.3:1
+    muted (#8A8A8A) on bg               5.9:1
+    muted on panel2 (#181818)           5.2:1
+    pine-hi (#A2C5AA) on bg             11.0:1
+    white on pine-deep (#315F43)        7.3:1
 */
 @theme {
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 
-  --color-bg: #101713;
-  --color-bg-deep: #0b100d;
-  --color-surface: #151e18;
-  --color-surface-2: #1c281f;
-  --color-surface-3: #253329;
-  --color-line: #28362c;
-  --color-line-2: #354438;
-  --color-line-3: #48594c;
-  --color-text: #f1f5f1;
-  --color-text-2: #c1ccc3;
-  --color-text-3: #9ba89f;
+  --color-deep: #050505;
+  --color-bg: #0b0b0b;
+  --color-ink: #0a0c0b;
+  --color-panel: #121212;
+  --color-panel2: #181818;
+  --color-panel3: #202020;
+  --color-line: #1e1e1e;
+  --color-line2: #2a2a2a;
+  --color-line3: #3a3a3a;
+  --color-txt: #f4f4f4;
+  --color-txt2: #b9b9b9;
+  --color-muted: #8a8a8a;
   --color-pine: #7ea889;
   --color-pine-hi: #a2c5aa;
   --color-pine-deep: #315f43;
-  --color-btn: #315f43;
-  --color-btn-hover: #3b6b49;
   --color-danger: #e5a3a3;
-
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 24px;
 }
 
 :root {
-  --grid-line: rgba(126, 168, 137, 0.075);
   --focus-ring: #a2c5aa;
 }
 
@@ -48,31 +47,19 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
 body {
   background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 17px;
+  color: var(--color-txt);
+  font-family: var(--font-body);
+  font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-@media (max-width: 640px) {
-  body {
-    font-size: 16px;
-  }
-}
-
 ::selection {
   background: var(--color-pine-deep);
-  color: var(--color-text);
+  color: var(--color-txt);
 }
 
 /* Visible focus for keyboard users, on every interactive element. */
@@ -82,200 +69,252 @@ body {
   border-radius: 6px;
 }
 
-/* ---------- type roles ---------- */
-@layer components {
-  .t-display {
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.02;
-    text-wrap: balance;
+/* ---------- layout shell ---------- */
+.pl-shell {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 640px) {
+  .pl-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
-  .t-heading {
-    font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    text-wrap: balance;
-  }
-  .t-mono {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-text-3);
-  }
-  .t-mono-lg {
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    letter-spacing: 0.02em;
-    color: var(--color-text-2);
-  }
-
-  /* ---------- buttons ---------- */
-  .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] px-5 py-2.5 text-[15px] font-semibold transition-colors duration-200;
-  }
-  .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] px-5 py-2.5 text-[15px] font-semibold transition-colors duration-200 bg-btn text-white hover:bg-btn-hover;
-  }
-  .btn-secondary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] px-5 py-2.5 text-[15px] font-semibold transition-colors duration-200 border border-line-3 bg-transparent text-text hover:border-pine hover:bg-surface-2;
-  }
-  .btn-quiet {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[12px] px-4 py-2.5 text-[15px] font-semibold transition-colors duration-200 text-pine-hi hover:bg-surface-2;
-  }
-  .btn:disabled,
-  .btn-primary:disabled,
-  .btn-secondary:disabled,
-  .btn-quiet:disabled {
-    @apply cursor-not-allowed opacity-50;
-  }
-
-  /* ---------- surfaces ---------- */
-  .panel {
-    @apply rounded-[20px] border border-line bg-surface;
-  }
-  .panel-2 {
-    @apply rounded-[20px] border border-line-2 bg-surface-2;
-  }
-  .panel-glow {
-    position: relative;
-    background:
-      radial-gradient(120% 90% at 100% 0%, rgba(126, 168, 137, 0.1), transparent 60%),
-      var(--color-surface);
-  }
-  .hairline {
-    border-top: 1px solid var(--color-line);
-  }
-
-  /* ---------- inputs ---------- */
-  .label {
-    @apply mb-1.5 block text-sm font-medium text-text-2;
-  }
-  .input {
-    @apply w-full rounded-[12px] border border-line-2 bg-bg-deep px-4 py-3 text-base text-text placeholder:text-text-3/70;
-  }
-  .input:focus {
-    border-color: var(--color-pine);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(126, 168, 137, 0.2);
-  }
-  .check {
-    @apply h-6 w-6 shrink-0 cursor-pointer appearance-none rounded-[7px] border border-line-3 bg-bg-deep transition-colors;
-  }
-  .check:checked {
-    background-color: var(--color-pine);
-    border-color: var(--color-pine);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B100D' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
-    background-size: 70%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .radio {
-    @apply h-5 w-5 shrink-0 cursor-pointer appearance-none rounded-full border border-line-3 bg-bg-deep transition-colors;
-  }
-  .radio:checked {
-    border-color: var(--color-pine);
-    border-width: 6px;
-  }
-
-  .prose-pl p + p {
-    @apply mt-3;
-  }
-  .container-pl {
-    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+@media (min-width: 1024px) {
+  .pl-shell {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
   }
 }
 
-/* ---------- ambient background ---------- */
-.ambient {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
+/* ---------- surfaces and textures ---------- */
+.pl-grid-bg {
   background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 30%, transparent 100%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
-.ambient::before,
-.ambient::after {
+.pl-grid-fine {
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.pl-fade-edges {
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 0, #000 35%, transparent 82%);
+  mask-image: radial-gradient(80% 70% at 50% 0, #000 35%, transparent 82%);
+}
+.pl-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+.pl-panel {
+  background-image: linear-gradient(rgba(26, 29, 27, 0.9), rgba(10, 11, 10, 0.94));
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.05),
+    0 40px 80px -60px rgba(0, 0, 0, 0.9);
+}
+.pl-hairline {
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+.pl-spot::before {
   content: "";
   position: absolute;
-  width: 60vmax;
-  height: 60vmax;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.55;
+  inset: 0;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%), rgba(126, 168, 137, 0.14), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s;
 }
-.ambient::before {
-  background: radial-gradient(circle, rgba(126, 168, 137, 0.16), transparent 60%);
-  top: -30vmax;
-  left: -10vmax;
-  animation: drift-a 26s ease-in-out infinite alternate;
+.pl-spot:hover::before {
+  opacity: 1;
 }
-.ambient::after {
-  background: radial-gradient(circle, rgba(49, 95, 67, 0.22), transparent 60%);
-  bottom: -35vmax;
-  right: -15vmax;
-  animation: drift-b 32s ease-in-out infinite alternate;
+.pl-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
-@keyframes drift-a {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(12vw, 8vh, 0); }
+.pl-lift {
+  transition:
+    transform 0.25s,
+    border-color 0.25s,
+    background-color 0.25s;
 }
-@keyframes drift-b {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-10vw, -10vh, 0); }
+.pl-lift:hover {
+  transform: translateY(-2px);
 }
 
-/* ---------- marquee ---------- */
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
+/* ---------- motion ---------- */
+.pl-fade-up {
+  animation: pl-fade-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.marquee[data-paused="true"] {
+.pl-rise {
+  animation: pl-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.pl-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pl-reveal-in {
+  opacity: 1;
+  transform: none;
+}
+.pl-orbit {
+  animation: pl-spin 34s linear infinite;
+}
+.pl-orbit-slow {
+  animation: pl-spin 90s linear infinite;
+}
+.pl-pulse-dot {
+  animation: pl-pulse 2.6s ease-in-out infinite;
+}
+.pl-drift {
+  animation: pl-drift 22s ease-in-out infinite alternate;
+}
+.pl-ticker {
+  animation: pl-ticker 42s linear infinite;
+}
+.pl-ticker[data-paused="true"] {
   animation-play-state: paused;
 }
-@keyframes marquee {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+.pl-sweep {
+  background-image: linear-gradient(90deg, transparent 18%, rgba(162, 197, 170, 0.6) 50%, transparent 82%);
+  background-size: 220% 100%;
+  animation: pl-sweep 7s linear infinite;
 }
 
-/* ---------- timeline dash ---------- */
-.dash-flow {
-  stroke-dasharray: 6 10;
-  animation: dash 1.6s linear infinite;
+@keyframes pl-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-@keyframes dash {
-  to { stroke-dashoffset: -32; }
+@keyframes pl-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-.float-slow {
-  animation: float 7s ease-in-out infinite;
+@keyframes pl-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
-.float-slower {
-  animation: float 10s ease-in-out infinite reverse;
+@keyframes pl-pulse {
+  0%,
+  to {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-@keyframes float {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -10px, 0); }
+@keyframes pl-drift {
+  0% {
+    transform: translate(-3%) scale(1);
+  }
+  to {
+    transform: translate(3%, -4%) scale(1.12);
+  }
+}
+@keyframes pl-ticker {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+@keyframes pl-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -60% 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ambient::before,
-  .ambient::after,
-  .marquee,
-  .dash-flow,
-  .float-slow,
-  .float-slower {
+  html {
+    scroll-behavior: auto;
+  }
+  .pl-fade-up,
+  .pl-rise,
+  .pl-orbit,
+  .pl-orbit-slow,
+  .pl-pulse-dot,
+  .pl-drift,
+  .pl-ticker,
+  .pl-sweep {
     animation: none !important;
   }
-  .marquee {
-    flex-wrap: wrap;
-    width: auto;
+  .pl-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
+  .pl-lift,
+  .pl-spot::before {
+    transition: none !important;
+  }
+  .pl-lift:hover {
+    transform: none;
+  }
+}
+
+/* ---------- small helpers ---------- */
+.pl-input {
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--color-line2);
+  background: var(--color-panel2);
+  padding: 0 0.75rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-txt);
+}
+.pl-input::placeholder {
+  color: var(--color-muted);
+}
+.pl-input:focus {
+  border-color: var(--color-line3);
+  outline: none;
+}
+.pl-textarea {
+  width: 100%;
+  resize: vertical;
+  border-radius: 6px;
+  border: 1px solid var(--color-line2);
+  background: var(--color-panel);
+  padding: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-txt);
+}
+.pl-textarea::placeholder {
+  color: var(--color-muted);
+}
+.pl-textarea:focus {
+  border-color: var(--color-line3);
+  outline: none;
+}
+.pl-prose p + p {
+  margin-top: 0.75rem;
 }

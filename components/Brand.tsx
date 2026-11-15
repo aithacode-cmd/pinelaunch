@@ -1,51 +1,45 @@
 /**
  * PineLaunch identity.
- * The mark: a pine silhouette built from three stacked chevrons that read as
- * both a tree and an upward launch, standing on a short base line.
- * Works in one color at 16px (favicon) and at any size.
+ * One solid triangle (the pine, the arrow, the launch) above one short
+ * rounded bar (the pad it has just left). Two shapes, nothing to lose at 16px.
  */
 
 interface MarkProps {
-  size?: number;
   className?: string;
-  /** Color of the chevrons. Defaults to currentColor. */
+  /** Fill color. Defaults to pine. */
   color?: string;
 }
 
-export function PineMark({ size = 28, className = "", color = "currentColor" }: MarkProps) {
+export function PineMark({ className = "h-6 w-6", color = "#7EA889" }: MarkProps) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path d="M16 3 L25 13 H7 Z" fill={color} />
-      <path d="M16 10.5 L27 21 H5 Z" fill={color} fillOpacity="0.78" />
-      <path d="M16 18 L29 29 H3 Z" fill={color} fillOpacity="0.56" />
-      <rect x="14.5" y="23" width="3" height="6" rx="1" fill={color} />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+      <path d="M12 2.4 20.2 17H3.8z" fill={color} />
+      <rect x="7.6" y="19" width="8.8" height="2.6" rx="1.3" fill={color} />
     </svg>
   );
 }
 
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span className={"t-heading inline-flex items-baseline text-[1.2rem] tracking-[-0.03em] " + className}>
-      <span className="text-text">Pine</span>
-      <span className="text-pine">Launch</span>
+    <span className={"font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt " + className}>
+      PineLaunch
     </span>
   );
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({
+  showWordmark = true,
+  className = "",
+  markClassName = "h-6 w-6",
+}: {
+  showWordmark?: boolean;
+  className?: string;
+  markClassName?: string;
+}) {
   return (
     <span className={"inline-flex items-center gap-2.5 " + className}>
-      <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-surface-2 text-pine ring-1 ring-line-2">
-        <PineMark size={22} />
-      </span>
-      <Wordmark />
+      <PineMark className={markClassName} />
+      {showWordmark && <Wordmark />}
     </span>
   );
 }
