@@ -1,6 +1,6 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-15 (final design built on branch `redesign`, not merged, not pushed).
+Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
 ## Final design built (2026-11-15)
 
@@ -29,8 +29,9 @@ Instrument Serif italic for one accent phrase per heading. Shared pieces:
 `Mono`, `Button`, `Background`, `Ticker`, `Reveal`, `PromptPanel`,
 `components/home/*`. Tokens in `app/globals.css`.
 
-Not done: nothing is merged into `main` or pushed, so the live site is
-unchanged. The Figma file is still at the brand page only.
+Merged into `main` and pushed 2026-11-15 (266be20); Vercel published it
+at https://pinelaunch.vercel.app. The Figma file is still at the brand page
+only.
 
 ## Redesign (branch `redesign`, 2026-11-14)
 
@@ -103,7 +104,7 @@ Playwright screenshot checks.
 - Accounts, database, payments, built-in AI, parent emails, leaderboards,
   streaks, showcase page. See `ROADMAP.md`.
 - Analytics of any kind.
-- Nothing from the v1 scope. Live at https://pinelaunch.vercel.app (Vercel Hobby, team PineLaunch, auto-deploys from GitHub aithacode-cmd/pinelaunch main). The redesign is on branch `redesign` and is not live until merged and pushed.
+- Nothing from the v1 scope. Live at https://pinelaunch.vercel.app (Vercel Hobby, team PineLaunch, auto-deploys from GitHub aithacode-cmd/pinelaunch main). The final design went live on 2026-11-15.
 
 ## Placeholders that still need real values
 
