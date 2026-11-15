@@ -13,12 +13,13 @@ build pass; the idea picker, step ticking, locked examples, placeholder
 filling, prompts search and filters, export code, reset, import and the
 phone menu were exercised with Playwright.
 
-What is different from the Base44 output, on purpose: the tools strip
-names only the five allowed tools with plain initial tiles (Base44 drew
-eight brand logos including Figma, Vercel and Notion); progress moves by
+What is different from the Base44 output, on purpose: progress moves by
 copy-paste code, not a JSON file; all guide text, prompts, examples,
 badges and the Launch Day checklist come from `/content`; the Project
-Card keeps its existing shape so earlier progress still loads.
+Card keeps its existing shape so earlier progress still loads. The tools
+strip keeps Base44's eight drawn marks (including Figma, Vercel and
+Notion) by the founder's decision on 2026-11-15, overriding the earlier
+"five tools, text only" rule for that strip.
 
 Design system now: neutral black and grey (`deep` #050505, `bg` #0B0B0B,
 panels #121212 / #181818 / #202020, lines #1E1E1E / #2A2A2A / #3A3A3A),

@@ -107,8 +107,11 @@ dominate; pine green is used only for the mark, primary buttons, ticked
 boxes, current markers and one key number. Headings may carry one italic
 serif phrase. Figures are real interface mockups labeled as illustrative
 examples; no orbs, node graphs or floating shapes. The home page may be
-expressive; dashboard and week pages stay calm. Tool names are set as text
-with a plain initial tile, never downloaded or redrawn logos. When
+expressive; dashboard and week pages stay calm. The home page tools strip
+shows eight tools with small drawn marks (Replit, Base44, ChatGPT, Discord,
+Google Forms, Figma, Vercel, Notion): founder decision on 2026-11-15, which
+overrides the earlier "five tools, text only" rule for that strip alone.
+Everywhere else, only Replit, Base44 and ChatGPT are named as tools. When
 changing a page, compare it against the matching screenshot in
 `design/base44/shots/`.
 

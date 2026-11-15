@@ -18,9 +18,9 @@ ESLint ignores this folder (see `eslint.config.mjs`).
 
 ## What was changed on purpose in the rebuild
 
-- Tools strip shows the five allowed tools (Replit, Base44, ChatGPT, Discord,
-  Google Forms) with plain initial tiles. Base44 drew eight brand logos and
-  added Figma, Vercel and Notion, which the program rules do not allow.
+- Tools strip: kept as Base44 drew it, eight tools with marks (founder
+  decision 2026-11-15; this overrides the earlier "five tools, text only"
+  rule for that strip).
 - Progress export and import use the existing copy-paste code
   (`PL1.` prefix) instead of a downloaded JSON file, so earlier progress
   and the Second Brain instructions still hold.
