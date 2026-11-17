@@ -44,7 +44,7 @@ export const program = {
     week3: "https://docs.google.com/forms/d/e/1FAIpQLSdINeLkzIQUgoacPPp-DV0dEvdztIiqPBVG-NRyB9GDVD2aIg/viewform",
     finalFeedback: "https://docs.google.com/forms/d/e/1FAIpQLSf32jCRt9DrGZExbM7GY4o3PAYgiq_gqOk2o47uJQDh_IxgUg/viewform",
     /** Parent permission form. Filled in by a parent or guardian, not the student. */
-    parentPermission: "PASTE_PARENT_PERMISSION_FORM_URL_HERE",
+    parentPermission: "https://docs.google.com/forms/d/e/1FAIpQLSe2EEMTaWyKI6blTZjhCquVItbAQIRQ37JUy6Xhuag8nlMowQ/viewform",
   },
 
   /** Privacy note values. The note itself is app/privacy/page.tsx. */

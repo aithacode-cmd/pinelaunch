@@ -116,13 +116,10 @@ All in `config/program.ts`:
 - [x] `forms.week2`: filled 2026-11-14
 - [x] `forms.week3`: filled 2026-11-14
 - [x] `forms.finalFeedback`: filled 2026-11-14
-- [ ] `forms.parentPermission`: create it by running `createParentPermissionFormOnly`
-      in `scripts/create-forms.gs` (see `scripts/README.md`), then paste the
-      Published URL here. Until then the parents page says "Form link added
-      before the pilot starts".
+- [x] `forms.parentPermission`: filled 2026-11-17 (created with
+      `createParentPermissionFormOnly` in `scripts/create-forms.gs`)
 
-The six student-facing values are filled. The parent permission form is new
-(2026-11-16, after the second legal check) and still needs its link.
+All seven are filled.
 
 Also new on 2026-11-16: a privacy note at `/privacy` (linked from the footer
 and the parents page) with the retention rule from `program.privacy`
