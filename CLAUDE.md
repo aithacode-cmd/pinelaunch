@@ -42,7 +42,9 @@ him, use plain language, explain what you are doing, and avoid jargon.
 ## The no-data rule, and why
 
 v1 must not collect or store any student information on a server. The
-founder's lawyer has not yet reviewed the rules for storing minors' data.
+founder's lawyer (his uncle) reviewed the v1 site and program on 2026-11-16
+and found it fine as built. Keep the rule anyway: v2 features that store
+data still need a fresh review (see `ROADMAP.md`).
 
 - No accounts, logins, databases, tracking cookies, analytics, or AI calls.
 - All progress (Project Card, checked steps, unlocked examples) lives in the
