@@ -37,7 +37,7 @@ export const week3: WeekContent = {
     {
       id: "w3-make-public",
       title: "Make it public",
-      what: "On Replit: open your project and use the Deploy or Publish option to get a public link. Replit offers a free way to publish simple projects; if it asks you to pick a type, choose the simplest one it recommends for a website or small app. On Base44: open your app's settings and look for Publish or Share. Turn on public access and copy the link. Test the link in a private browser window where you are not signed in, or on a phone.",
+      what: "On Replit: open your project and use the Deploy or Publish option to get a public link. Replit offers a free way to publish simple projects; if it asks you to pick a type, choose the simplest one it recommends for a website or small app. On Base44: open your app's settings and look for Publish or Share. Turn on public access and copy the link. Test the link in a private browser window where you are not signed in, or on a phone. Before you publish, check that no password, API key, photo of you, or other student's name is anywhere in the project. On a free plan the code may be visible to anyone, and the link may go offline after a while; that is normal, keep a copy.",
       done: "You open the link on a device where you are not signed in and your project loads.",
       stuck: "If publishing asks for money, stop and ask in Discord. There is a free path for every project in this program. If the public link shows an error, the first prompt below helps you read it.",
       points: 20,

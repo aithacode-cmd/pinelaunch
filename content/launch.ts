@@ -20,7 +20,12 @@ export const launch = {
     "Your real last name, school, or email is not shown anywhere you did not mean to show it.",
     "Your 3-sentence description is written and saved somewhere.",
     "The one biggest problem from your testers is fixed, or you have decided to launch anyway and can say why.",
+    "No photos of you, no age, no other students' names, and no passwords or API keys anywhere in the project or its code.",
+    "Your project does not ask visitors for their name, email, or anything else personal.",
   ],
+  /** Shown under the checklist. */
+  checklistNote:
+    "Free hosting plans can take a link offline after a while and may show the host's badge. That is normal. Keep a copy of your code or your Base44 app, and post again if the link stops working.",
   howToPost: {
     title: "How to post it in Discord",
     steps: [

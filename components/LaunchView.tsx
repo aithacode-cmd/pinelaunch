@@ -83,6 +83,7 @@ export function LaunchView() {
           })}
         </ul>
         <Mono className="mt-3 block text-muted">This checklist is for this visit only</Mono>
+        <p className="mt-4 max-w-[62ch] font-body text-[13px] leading-[1.65] text-muted">{launch.checklistNote}</p>
       </section>
 
       <section className="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-12" aria-labelledby="post-heading">

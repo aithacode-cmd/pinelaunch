@@ -1,11 +1,15 @@
 /**
- * PineLaunch: create the four check-in forms.
+ * PineLaunch: create the five forms.
  *
  * Run this once in Google Apps Script (script.google.com). It creates:
  *   "PineLaunch - Week 1 Check-in"
  *   "PineLaunch - Week 2 Check-in"
  *   "PineLaunch - Week 3 Check-in"
  *   "PineLaunch - Final Feedback"
+ *   "PineLaunch - Parent Permission"   (filled in by a parent, not the student)
+ *
+ * If the four check-in forms already exist, run createParentPermissionFormOnly
+ * instead, so nothing is duplicated.
  *
  * Every form collects the minimum: the only identifying question is
  * "First name and last initial". No email, no last name, no school, no age.
@@ -29,8 +33,14 @@ function createPineLaunchForms() {
   results.push(createWeek2Form());
   results.push(createWeek3Form());
   results.push(createFinalFeedbackForm());
+  results.push(createParentPermissionForm());
 
   logSummary(results);
+}
+
+/** Run this one if the four check-in forms already exist. */
+function createParentPermissionFormOnly() {
+  logSummary([createParentPermissionForm()]);
 }
 
 /* ------------------------------------------------------------------ */
@@ -57,7 +67,8 @@ function createBaseForm(title, description, confirmation) {
   try { form.setRequireLogin(false); } catch (e) { /* only exists on Workspace accounts; personal accounts are already public */ }
 
   // Let students fix a mistake after submitting.
-  try { form.setAllowResponseEdits(true); } catch (e) { log("setAllowResponseEdits skipped: " + e); }
+  // Editing after submit is off: it adds nothing here and can prompt for a sign-in.
+  try { form.setAllowResponseEdits(false); } catch (e) { log("setAllowResponseEdits skipped: " + e); }
 
   // No progress bar needed for a short form, no link to submit another response, no public summary.
   try { form.setShowLinkToRespondAgain(false); } catch (e) { /* optional */ }
@@ -174,6 +185,25 @@ function createFinalFeedbackForm() {
   return { form: form, configKey: "forms.finalFeedback" };
 }
 
+function createParentPermissionForm() {
+  var form = createBaseForm(
+    "PineLaunch - Parent Permission",
+    "For a parent or guardian. Three minutes. One form per student. Your answers are kept by the founder's parent and deleted after the pilot.",
+    "Thank you. Your student can start the idea picker on the PineLaunch site."
+  );
+  // The base form's first question is "First name and last initial"; here that is the parent's.
+  addShort(form, "Your student's first name and last initial", true, "The student taking part. For example: Sam K.");
+  addChoice(form, "Is your student 13 to 17 years old?", ["Yes", "No"]);
+  addChoice(form, "My student may take part in PineLaunch, a free three-week online program.", ["I agree"]);
+  addChoice(form, "My student may create accounts, with my permission, on the tools used in the program (Replit or Base44, ChatGPT, Discord).", ["I agree"]);
+  addChoice(form, "My student may join the private Discord group chat. A parent of the founder is in the chat for the whole pilot.", ["I agree"]);
+  addChoice(form, "I understand my student will publish a public link to their project at the end, and will leave personal details out of it.", ["I understand"]);
+  addChoice(form, "I understand that the weekly form answers are kept by Google Forms and deleted within 30 days after Launch Day.", ["I understand"]);
+  addShort(form, "Best way to reach you if something comes up (optional)", false, "An email address or phone number. Only used during the pilot.");
+
+  return { form: form, configKey: "forms.parentPermission" };
+}
+
 /* ------------------------------------------------------------------ */
 /* Summary                                                             */
 /* ------------------------------------------------------------------ */
@@ -201,7 +231,7 @@ function logSummary(results) {
 
   lines.push("");
   lines.push("Next: open each Edit URL, go to Responses, click the three dots, and turn on");
-  lines.push("\"Get email notifications for new responses\". Then paste the four Published URLs");
+  lines.push("\"Get email notifications for new responses\". Then paste the Published URLs");
   lines.push("into the matching keys in /config/program.ts and rebuild the site.");
   lines.push("==================================================================");
 

@@ -43,6 +43,16 @@ export const program = {
     week2: "https://docs.google.com/forms/d/e/1FAIpQLSci4F1oQl_g6QHy8Ta-T9rHVxq5cCvR_bzJgNhFRZH8ulZ1cw/viewform",
     week3: "https://docs.google.com/forms/d/e/1FAIpQLSdINeLkzIQUgoacPPp-DV0dEvdztIiqPBVG-NRyB9GDVD2aIg/viewform",
     finalFeedback: "https://docs.google.com/forms/d/e/1FAIpQLSf32jCRt9DrGZExbM7GY4o3PAYgiq_gqOk2o47uJQDh_IxgUg/viewform",
+    /** Parent permission form. Filled in by a parent or guardian, not the student. */
+    parentPermission: "PASTE_PARENT_PERMISSION_FORM_URL_HERE",
+  },
+
+  /** Privacy note values. The note itself is app/privacy/page.tsx. */
+  privacy: {
+    /** Date shown at the top of the privacy note. Update it when the note changes. */
+    effectiveDate: "2026-11-16",
+    /** Form responses and the cohort's Discord channels are deleted within this many days after Launch Day. */
+    deleteWithinDays: 30,
   },
 
   /** Build tools students may use. Both allow ages 13+ with a parent's permission. */

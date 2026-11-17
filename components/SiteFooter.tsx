@@ -16,6 +16,7 @@ const programLinks = [
   { label: "Launch Day", href: "/launch" },
   { label: "Prompts", href: "/prompts" },
   { label: "For parents", href: "/parents" },
+  { label: "Privacy note", href: "/privacy" },
 ];
 const facts = ["Static site", "No accounts", "No tracking", "Browser storage only"];
 
@@ -81,7 +82,14 @@ export function SiteFooter() {
               </a>
             )}
             <p className="mt-5 font-body text-[12.5px] leading-[1.65] text-muted">
-              Progress is saved in your own browser. Nothing is uploaded, and there is no account to create.
+              Progress is saved in your own browser. Nothing is uploaded, and there is no account to create.{" "}
+              <Link href="/privacy" className="text-txt2 underline decoration-line3 underline-offset-4 hover:text-txt">
+                Privacy note
+              </Link>
+              .
+            </p>
+            <p className="mt-3 font-body text-[11.5px] leading-[1.6] text-muted">
+              Tool names and logos are trademarks of their owners. No affiliation or endorsement.
             </p>
           </div>
         </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Lock } from "lucide-react";
+import { Button } from "@/components/Button";
 import { Mono } from "@/components/Mono";
 import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
@@ -56,6 +58,8 @@ const sections: { id: string; title: string; body: string[] }[] = [
     title: "Parent permission",
     body: [
       "A parent or guardian should agree before a student creates an account on Replit or Base44. Both allow users 13 and up with a parent's permission.",
+      "Please fill in the short parent permission form below, one per student, before the pilot starts. It takes three minutes and is kept by the founder's parent, then deleted after the pilot.",
+      "Keep payment cards off the student's accounts. Replit, Base44 and Discord all sell paid upgrades, and the program never needs one.",
       "If you would like to see the program before your student starts, open the week pages together. Nothing is hidden and there is no cost at any point.",
     ],
   },
@@ -71,7 +75,7 @@ const sections: { id: string; title: string; body: string[] }[] = [
     id: "discord",
     title: "Discord",
     body: [
-      "The cohort talks in a small private Discord server run by the founder. A parent is in the server for the whole pilot and can see everything posted. Students keep all conversation in the shared channels and do not send private messages to each other.",
+      "The cohort talks in a small private Discord server run by the founder. Because the founder is a minor, a parent of the founder is the responsible adult: that parent is in the server for the whole pilot, can see everything posted, and reads the contact inbox. Students keep all conversation in the shared channels and do not send private messages to each other. If a student ever shares something worrying, the parent follows a written plan and contacts the student's own parent.",
       "Discord is a separate service with its own rules and safety settings, and it requires users to be 13 or older. We recommend the parent reviews those settings with the student before joining.",
     ],
   },
@@ -89,7 +93,8 @@ const sections: { id: string; title: string; body: string[] }[] = [
     body: [
       "This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing.",
       "Everything a student types, including the Project Card, ticked steps and notes, is saved in their own browser under one local key. It never leaves the device. Clearing browser data or using a private window removes it.",
-      "The only information the founder receives comes from four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a first name and last initial, nothing else identifying. Google Forms, Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site.",
+      "The only information the founder receives comes from four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a first name and last initial, nothing else identifying. Google Forms, Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site. The web host, Vercel, keeps ordinary access logs, as every host does.",
+      "Form answers and the Discord channels are deleted within 30 days after Launch Day. To have anything deleted sooner, email the contact on this page. The full privacy note is linked below.",
     ],
   },
 ];
@@ -153,11 +158,33 @@ export default function ParentsPage() {
               ))}
             </section>
           ))}
-          <div className="mt-10 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
+          <section id="permission-form" className="mt-10 scroll-mt-32 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <Mono className="text-muted">Parent permission form</Mono>
+                <p className="mt-3 max-w-[46ch] font-body text-[14px] leading-[1.65] text-txt2">
+                  One per student, filled in by a parent or guardian. Three minutes. It opens in a new tab and is hosted by
+                  Google Forms, outside this site. No Google sign-in is needed.
+                </p>
+              </div>
+              {isPlaceholder(program.forms.parentPermission) ? (
+                <Mono className="text-muted">Form link added before the pilot starts</Mono>
+              ) : (
+                <Button href={program.forms.parentPermission} className="shrink-0">
+                  Open the permission form
+                </Button>
+              )}
+            </div>
+          </section>
+          <div className="mt-6 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />
             <p className="font-body text-[13.5px] leading-[1.7] text-txt2">
               This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT, Discord and Google Forms
-              are separate services, each with their own rules and privacy policies.
+              are separate services, each with their own rules and privacy policies. Full details:{" "}
+              <Link href="/privacy" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+                the privacy note
+              </Link>
+              .
             </p>
           </div>
         </div>

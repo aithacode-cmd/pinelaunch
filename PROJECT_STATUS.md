@@ -116,8 +116,20 @@ All in `config/program.ts`:
 - [x] `forms.week2`: filled 2026-11-14
 - [x] `forms.week3`: filled 2026-11-14
 - [x] `forms.finalFeedback`: filled 2026-11-14
+- [ ] `forms.parentPermission`: create it by running `createParentPermissionFormOnly`
+      in `scripts/create-forms.gs` (see `scripts/README.md`), then paste the
+      Published URL here. Until then the parents page says "Form link added
+      before the pilot starts".
 
-All six are filled. If one is ever cleared back to a PASTE_ value, the site
+The six student-facing values are filled. The parent permission form is new
+(2026-11-16, after the second legal check) and still needs its link.
+
+Also new on 2026-11-16: a privacy note at `/privacy` (linked from the footer
+and the parents page) with the retention rule from `program.privacy`
+(form answers and Discord channels deleted within 30 days after Launch Day);
+a trademark line in the footer; parents page lines on payment cards and the
+responsible adult; Launch Day checklist lines on photos, keys and expiring
+free links. If one is ever cleared back to a PASTE_ value, the site
 shows a quiet "not connected yet" note instead of breaking.
 
 Also check before launch:

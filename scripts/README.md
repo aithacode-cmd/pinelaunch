@@ -1,19 +1,24 @@
-# Creating the four Google Forms
+# Creating the Google Forms
 
 The site cannot create Google Forms by itself. The file `create-forms.gs` in
 this folder is a small script that creates all four forms for you when you run
 it once inside Google's own script editor. It takes about five minutes.
 
+Already have the four check-in forms? Run `createParentPermissionFormOnly`
+instead of `createPineLaunchForms` in step 4, so only the new parent form is
+created. Paste its Published URL into `forms.parentPermission`.
+
 You do not need to know how to code. Follow the steps in order.
 
 ## What the script makes
 
-Four forms with these exact titles:
+Five forms with these exact titles:
 
 - PineLaunch - Week 1 Check-in
 - PineLaunch - Week 2 Check-in
 - PineLaunch - Week 3 Check-in
 - PineLaunch - Final Feedback
+- PineLaunch - Parent Permission (filled in by a parent, one per student)
 
 Each form asks only for a first name and last initial plus a few questions
 about the week. No email, no last name, no school, no age. Nobody has to sign
