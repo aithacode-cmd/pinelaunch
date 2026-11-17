@@ -119,7 +119,8 @@ All in `config/program.ts`:
 - [x] `forms.parentPermission`: filled 2026-11-17 (created with
       `createParentPermissionFormOnly` in `scripts/create-forms.gs`)
 
-All seven are filled.
+All seven are filled. Email notifications are on for all five forms and
+response editing is off on the four check-ins (2026-11-17).
 
 Also new on 2026-11-16: a privacy note at `/privacy` (linked from the footer
 and the parents page) with the retention rule from `program.privacy`
