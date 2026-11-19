@@ -2,6 +2,18 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
+## Home page v2 (2026-11-18, live)
+
+Ported from the approved Framer direction, commit 45b660b, pushed to main (Vercel deploys from it).
+
+- Hero: "One idea. Three weeks. Live." in Bricolage Grotesque (`font-display`), plus a working Homework demo visitors can tick (`components/home/HomeworkDemo.tsx`, state never saved).
+- Three weeks: `components/home/WeeksStage.tsx`, a sticky left panel that crossfades sketch, rough app and live browser as each week scrolls past (IntersectionObserver, center band). Inline mockups on phones. Replaces `ScheduleSection`.
+- Examples: four columns, flat, no hover zoom.
+- After the pilot: `components/home/LadderSection.tsx`, four rising steps, level list, plan tiles, payer note, `WaitlistPanel`.
+- Dashboard: `FinishPanel` under the next-step panel once every step is ticked, with the "Send this to your parent" copy button (`content/next.ts` finish copy; link falls back to the parents page until `forms.parentWaitlist` is set).
+- Rule added to CLAUDE.md: no AI-generated renders or illustrations anywhere. The 13 renders in `design/3d/` are unused.
+- Checked: lint, types, static build, browser at desktop and 375 px (no sideways scroll, demo toggles, panel switches).
+
 ## Final design built (2026-11-15)
 
 The founder ran the redesign prompt through Base44 and chose its output
@@ -201,9 +213,6 @@ Also check before launch:
 
 ## Next three tasks
 
-1. Open https://pinelaunch.vercel.app on a phone and walk through the idea
-   picker, Week 1, the example lock, a form, and the Discord button once.
-2. Turn on email notifications on each of the four forms (Responses tab,
-   three dots) if not done yet.
-3. Have one parent and one teen read the home and parents pages and note
-   anything confusing. Edit words in `/content` and `app/parents/page.tsx`.
+1. Create the parent waitlist form (`createParentWaitlistFormOnly` in `scripts/create-forms.gs`) and paste its URL into `forms.parentWaitlist`.
+2. Review the live home page at desktop and phone; tune the three-week panel timing if it feels slow.
+3. Decide whether the inner pages get the display headline too (dashboard, weeks, prompts); keep them calm.
