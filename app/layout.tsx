@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
 import { program } from "@/config/program";
 import { Background } from "@/components/Background";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -8,6 +8,12 @@ import { Ticker } from "@/components/Ticker";
 import "./globals.css";
 
 // Self-hosted at build time by Next.js, so visits never call Google Fonts.
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
 const heading = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -46,7 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`h-full ${heading.variable} ${body.variable} ${mono.variable} ${serif.variable}`}
+      className={`h-full ${display.variable} ${heading.variable} ${body.variable} ${mono.variable} ${serif.variable}`}
     >
       <body className="relative flex min-h-full flex-col">
         <Background />

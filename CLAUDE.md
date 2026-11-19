@@ -98,8 +98,17 @@ The guides and prompts must not hand students finished code up front.
   anywhere a student can see.
 - Milestone points only. No streaks, daily rewards, time-spent rewards,
   notifications, or leaderboards in v1.
-- Never present college applications as the purpose. College is mentioned
-  once, as a side benefit, on the parents page, and nowhere else.
+- Student-facing pages stay focused on building and never pitch college.
+  College is mentioned only on parent-facing pages (the parents page), and
+  always together with the college note in `app/parents/page.tsx`: a
+  launched project can be good to talk about, admissions depend on many
+  factors, PineLaunch has no connection to any college and promises nothing.
+- The pilot takes no payments and has no accounts. Post-pilot plans (the
+  Level Ladder, Build Pass, Season Pass, Parent Report, Challenge Drops) are
+  described on the site as "coming after the pilot", from `content/next.ts`,
+  and collect nothing but a parent's email on the waitlist form. Nothing
+  about them is built until the pilot has run and the lawyer has reviewed
+  it (see `ROADMAP.md`).
 - No fake testimonials, counts, logos, or claims about results.
 
 ## Look
@@ -150,3 +159,5 @@ redeploy. There is no runtime config.
 
 Update `PROJECT_STATUS.md`: what changed, remaining placeholders, known
 issues, next three tasks.
+
+Decision 2026-11-18: no AI-generated 3D renders or illustrations anywhere on the site. Rithwik found them tacky and off-brand. Visuals are built interface mockups only.

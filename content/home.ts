@@ -3,11 +3,20 @@
 export const home = {
   hero: {
     kicker: "Free pilot · Dec 1 – 20, 2026",
-    headlineStart: "Build and launch",
-    headlineAccent: "one real project",
-    headlineEnd: "in three weeks.",
+    headline: ["One idea.", "Three weeks.", "Live."],
     lead:
-      "PineLaunch is a free online program for high school students, ages 13 to 17. You pick a small idea, build a first version, get three people to try it, and put it online. No coding experience needed.",
+      "A free three-week program where high school students, ages 13 to 17, build and launch one small real project. No coding experience needed.",
+    demo: {
+      title: "Homework",
+      hint: "Tap a task",
+      note: "Tick one. That is what a first project feels like.",
+      caption: "A working example of a week-two project. Nothing is saved.",
+      tasks: [
+        { title: "Math set 4", due: "Due Wed", done: true },
+        { title: "History reading", due: "Due Thu", done: false },
+        { title: "Science lab write-up", due: "Due Fri", done: false },
+      ],
+    },
     facts: [
       { label: "Starts", value: "Dec 1, 2026" },
       { label: "Launch Day", value: "Dec 20, 2026" },
@@ -49,18 +58,21 @@ export const home = {
         name: "Idea",
         dates: "Dec 1 to 6",
         body: "Choose something small enough to finish. Seven questions give you a Project Card.",
+        line: "Seven questions. One Project Card.",
       },
       {
         code: "02",
         name: "Build",
         dates: "Dec 7 to 13",
         body: "Make a working first version. Three features, the ugly version first.",
+        line: "The ugly version first. Three features.",
       },
       {
         code: "03",
         name: "Launch",
         dates: "Dec 14 to 20",
         body: "Get three people to try it, fix one thing, and publish a link.",
+        line: "Three real testers, one fix, a public link.",
       },
     ],
     rhythm: [

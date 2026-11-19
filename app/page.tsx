@@ -1,13 +1,8 @@
 import { Hero } from "@/components/home/Hero";
+import { LadderSection } from "@/components/home/LadderSection";
 import { ToolsStrip } from "@/components/home/ToolsStrip";
-import {
-  ClosingSection,
-  OutcomeSection,
-  RunsSection,
-  ScheduleSection,
-  ShowcaseSection,
-  WhoSection,
-} from "@/components/home/Sections";
+import { WeeksStage } from "@/components/home/WeeksStage";
+import { ClosingSection, OutcomeSection, RunsSection, ShowcaseSection, WhoSection } from "@/components/home/Sections";
 
 export default function HomePage() {
   return (
@@ -15,9 +10,10 @@ export default function HomePage() {
       <Hero />
       <ToolsStrip />
       <WhoSection />
-      <ScheduleSection />
+      <WeeksStage />
       <ShowcaseSection />
       <OutcomeSection />
+      <LadderSection />
       <RunsSection />
       <ClosingSection />
     </>

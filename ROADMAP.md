@@ -15,6 +15,49 @@ Success looks like: most students post a public link on Launch Day, the
 final feedback says the structure helped, and at least some families say
 they would pay.
 
+## Post-pilot: Subscriptions
+
+Decided 2026-11-18. The pilot stays free. After it, PineLaunch earns money
+through subscriptions, paid by parents. During the pilot the site only
+describes this ("coming after the pilot", `content/next.ts`) and collects a
+parent email on the waitlist form. Nothing below is built until the pilot
+success targets in PROJECT_STATUS.md are met and the lawyer review has
+happened.
+
+**The Level Ladder.** Every month is a new level with missions, points and
+badges.
+
+- **Level 1, Launch.** The current three-week program. Free during the pilot.
+- **Level 2, Grow: the first 10 real users.** Missions: name the one place
+  your users already are; write a one-line ask and send it to ten people;
+  watch three strangers use the project; fix the thing that stopped them;
+  keep a simple count of real users (not visits); hit ten and write what
+  changed.
+- **Level 3, Earn: the first dollar.** Missions: pick one thing someone would
+  pay for (a small upgrade, a tip jar, a paid version); set a price and say
+  why; add the payment method a parent sets up; ask five users; earn the
+  first dollar and write what it took; decide whether to keep charging.
+- **Level 4 and up, Level Up.** Missions: choose between one big feature and
+  a second project; scope it with the same seven questions; ship it in a
+  month; show it to the group; repeat.
+
+**Challenge Drops.** One themed build challenge a month with a leaderboard,
+nicknames only, reset each season.
+
+**Parent Report.** One email a month to the parent account: what the teen
+shipped, milestones hit, a link to the live project. Opt-out in every email.
+No student free text.
+
+**Two ways to pay, both after the pilot.** Build Pass: monthly, cancel any
+time. Season Pass: one payment for a season of about three months (Launch,
+Grow, Earn). Seasons are Fall, Winter, Spring and Summer; leaderboards reset
+each season. Parents are the payers; payment accounts are in a parent's name.
+
+**Needed before any of it ships.** Parent accounts (the parent holds the
+account, the student uses it); Stripe under the parent's name; secure
+storage of student progress; a privacy review for minors; and legal review
+by the founder's uncle before launch.
+
 ## Gate before anything in v2 ships: lawyer review
 
 Every item below either stores information about minors or charges money

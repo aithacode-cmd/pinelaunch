@@ -80,6 +80,11 @@ export default function PrivacyPage() {
           initial, a yes to the program, the tools and the group chat, and an optional way to reach the parent during the
           pilot. It is kept by the responsible parent.
         </>,
+        <>
+          Parents may also join a waitlist for plans that come after the pilot. That form asks for a parent&apos;s email, which
+          option interests them, and an optional comment. It asks nothing about the student, and the email is used only to
+          tell that parent about PineLaunch plans.
+        </>,
       ],
     },
     {

@@ -9,6 +9,7 @@ import { allSteps, badges } from "@/content";
 import type { BadgeId } from "@/content/types";
 import { earnedBadgeIds, isStepDone, nextStep, pointsEarned, totalPoints, useProgress, type UseProgress } from "@/lib/progress";
 import { cardAsText, fillPlaceholders } from "@/lib/fill";
+import { next as afterPilot } from "@/content/next";
 import type { ProgressState } from "@/lib/storage";
 import { Button } from "./Button";
 import { CopyButton } from "./CopyButton";
@@ -248,6 +249,7 @@ function NextStepPanel({ state }: { state: ProgressState }) {
           <Button to="/launch" className="mt-6">
             Open Launch Day
           </Button>
+          <FinishPanel />
         </>
       )}
     </div>
@@ -516,6 +518,21 @@ export function DashboardView() {
       <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
         Progress key · pinelaunch.progress.v1 · Nothing leaves this device
       </p>
+    </div>
+  );
+}
+
+/** Shown under the next-step panel once every step is ticked: the first look at Level 2. */
+function FinishPanel() {
+  const waitlist = program.forms.parentWaitlist;
+  const link = isPlaceholder(waitlist) ? "https://pinelaunch.vercel.app/parents/#waitlist" : waitlist;
+  const message = afterPilot.finish.message.replace("{{link}}", link);
+  return (
+    <div className="mt-6 border-t border-line pt-5">
+      <Mono className="text-pine-hi">{afterPilot.label}</Mono>
+      <p className="mt-2 font-heading text-[18px] font-medium leading-snug tracking-[-0.02em] text-txt">{afterPilot.finish.title}</p>
+      <p className="mt-2 max-w-[52ch] font-body text-[13.5px] leading-[1.65] text-txt2">{afterPilot.finish.body}</p>
+      <CopyButton text={message} label={afterPilot.finish.sendButton} copiedLabel="Copied. Paste it to your parent" className="mt-4" />
     </div>
   );
 }

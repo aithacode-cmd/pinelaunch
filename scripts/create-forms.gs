@@ -7,9 +7,10 @@
  *   "PineLaunch - Week 3 Check-in"
  *   "PineLaunch - Final Feedback"
  *   "PineLaunch - Parent Permission"   (filled in by a parent, not the student)
+ *   "PineLaunch - Parent Waitlist"     (a parent's email only, for post-pilot plans)
  *
- * If the four check-in forms already exist, run createParentPermissionFormOnly
- * instead, so nothing is duplicated.
+ * If the earlier forms already exist, run createParentPermissionFormOnly or
+ * createParentWaitlistFormOnly instead, so nothing is duplicated.
  *
  * Every form collects the minimum: the only identifying question is
  * "First name and last initial". No email, no last name, no school, no age.
@@ -34,8 +35,14 @@ function createPineLaunchForms() {
   results.push(createWeek3Form());
   results.push(createFinalFeedbackForm());
   results.push(createParentPermissionForm());
+  results.push(createParentWaitlistForm());
 
   logSummary(results);
+}
+
+/** Run this one if every other form already exists. */
+function createParentWaitlistFormOnly() {
+  logSummary([createParentWaitlistForm()]);
 }
 
 /** Run this one if the four check-in forms already exist. */
@@ -51,7 +58,7 @@ function createParentPermissionFormOnly() {
  * Creates a form with the shared settings. Each settings call is wrapped in
  * try/catch because some options are not available on every Google account.
  */
-function createBaseForm(title, description, confirmation) {
+function createBaseForm(title, description, confirmation, skipNameQuestion) {
   var form = FormApp.create(title);
   // FormApp.create names the Drive file; the heading students see needs setTitle too.
   try { form.setTitle(title); } catch (e) { log("setTitle skipped for " + title + ": " + e); }
@@ -76,11 +83,13 @@ function createBaseForm(title, description, confirmation) {
 
   try { form.setConfirmationMessage(confirmation); } catch (e) { log("setConfirmationMessage skipped: " + e); }
 
-  // The one identifying question on every form.
-  form.addTextItem()
-    .setTitle("First name and last initial")
-    .setHelpText("For example: Sam K.")
-    .setRequired(true);
+  // The one identifying question on every student form. The waitlist skips it.
+  if (!skipNameQuestion) {
+    form.addTextItem()
+      .setTitle("First name and last initial")
+      .setHelpText("For example: Sam K.")
+      .setRequired(true);
+  }
 
   return form;
 }
@@ -202,6 +211,20 @@ function createParentPermissionForm() {
   addShort(form, "Best way to reach you if something comes up (optional)", false, "An email address or phone number. Only used during the pilot.");
 
   return { form: form, configKey: "forms.parentPermission" };
+}
+
+function createParentWaitlistForm() {
+  var form = createBaseForm(
+    "PineLaunch - Parent Waitlist",
+    "For parents. One minute. We will only use your email to tell you about PineLaunch plans after the pilot. No spam. Please do not include any information about your student.",
+    "Thanks. You are on the list. We will email you when plans open.",
+    true
+  );
+  addShort(form, "Your email", true, "A parent or guardian's email. Nothing about your student.");
+  addChoice(form, "Which option interests you?", ["Build Pass (monthly, cancel anytime)", "Season Pass (one payment for a season)", "Not sure yet"]);
+  addParagraph(form, "Anything you want to tell us? (optional)", false);
+
+  return { form: form, configKey: "forms.parentWaitlist" };
 }
 
 /* ------------------------------------------------------------------ */

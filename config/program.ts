@@ -45,6 +45,17 @@ export const program = {
     finalFeedback: "https://docs.google.com/forms/d/e/1FAIpQLSf32jCRt9DrGZExbM7GY4o3PAYgiq_gqOk2o47uJQDh_IxgUg/viewform",
     /** Parent permission form. Filled in by a parent or guardian, not the student. */
     parentPermission: "https://docs.google.com/forms/d/e/1FAIpQLSe2EEMTaWyKI6blTZjhCquVItbAQIRQ37JUy6Xhuag8nlMowQ/viewform",
+    /** Parent waitlist for post-pilot plans. A parent's email only, never student information. */
+    parentWaitlist: "PASTE_PARENT_WAITLIST_FORM_URL_HERE",
+  },
+
+  /**
+   * Post-pilot plans, shown on the site as "coming after the pilot".
+   * Nothing is charged during the pilot. See ROADMAP.md.
+   */
+  plans: {
+    /** Founding-family monthly price in dollars, as text. Leave "" until decided. */
+    foundingPrice: "",
   },
 
   /** Privacy note values. The note itself is app/privacy/page.tsx. */

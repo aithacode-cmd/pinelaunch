@@ -64,6 +64,19 @@ Founder review 1: palette changed to neutral black and grey with pine as a hint,
 the direction and homepage, then implementation page by page with
 Playwright screenshot checks.
 
+## Pilot success targets (set 2026-11-18)
+
+Decide whether to charge anything only after these are measured:
+
+- At least 50% of students finish all three weeks and post a link on
+  Launch Day (count from the Week 3 form and the Discord launch channel).
+- Parent waitlist sign-ups: how many, and which pass they picked (Build
+  Pass, Season Pass, Not sure). Read from the waitlist form responses.
+- Students who finish say in the final feedback form that they would want
+  Level 2 ("Would you do another round?").
+
+If fewer than half finish, fix the program before charging anything.
+
 ## What is built
 
 - Next.js 16 static site (App Router, TypeScript, Tailwind 4). `npm run
@@ -119,8 +132,15 @@ All in `config/program.ts`:
 - [x] `forms.parentPermission`: filled 2026-11-17 (created with
       `createParentPermissionFormOnly` in `scripts/create-forms.gs`)
 
-All seven are filled. Email notifications are on for all five forms and
-response editing is off on the four check-ins (2026-11-17).
+- [ ] `forms.parentWaitlist`: create it by running `createParentWaitlistFormOnly`
+      in `scripts/create-forms.gs`, then paste the Published URL here. Until
+      then the waitlist buttons say "Waitlist opens before the pilot ends".
+- [ ] `plans.foundingPrice`: leave "" until a price is decided; the site then
+      says founding-family pricing goes to the waitlist first.
+
+The seven student and permission values are filled. Email notifications are
+on for those five forms and response editing is off on the four check-ins
+(2026-11-17). The waitlist form (2026-11-18) still needs its link.
 
 Also new on 2026-11-16: a privacy note at `/privacy` (linked from the footer
 and the parents page) with the retention rule from `program.privacy`

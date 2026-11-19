@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Lock } from "lucide-react";
 import { Button } from "@/components/Button";
 import { Mono } from "@/components/Mono";
+import { WaitlistPanel } from "@/components/WaitlistPanel";
 import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
 
@@ -18,7 +19,14 @@ const sections: { id: string; title: string; body: string[] }[] = [
     body: [
       "Each student picks one small idea: an app, a website, a tool, or a one-screen game. Over three weeks they build a first version, show it to three people, fix one thing, and publish a public link.",
       "The work is deliberately small. A finished, plain project is the goal, not an ambitious unfinished one.",
-      "Some students keep the finished project as an early portfolio piece for college applications. That is a side benefit, not the aim of the program.",
+    ],
+  },
+  {
+    id: "accountability",
+    title: "How it keeps students on track",
+    body: [
+      "Three things do the work. Deadlines: each week has one job and a form at the end of it, so there is always a near, clear finish line. The group: students post what they made in the shared Discord channel each week, with a parent present, so progress is seen. The game layer: every step is worth points, five badges mark the milestones, and the dashboard shows the next step. Points and badges live in the student's own browser.",
+      "Nothing is graded. A student who falls behind is asked what got stuck, not told off.",
     ],
   },
   {
@@ -88,10 +96,26 @@ const sections: { id: string; title: string; body: string[] }[] = [
     ],
   },
   {
+    id: "after",
+    title: "After the pilot",
+    body: [
+      "Launch is level one. After the pilot, PineLaunch becomes a ladder: every month is a new level with its own missions, points and badges. Level 2, Grow, is about getting the project its first 10 real users. Level 3, Earn, is about its first dollar. Level 4 and up add a big feature or start project number two.",
+      "Alongside the levels: a themed Challenge Drop each month with a leaderboard that resets each season, and a monthly Parent Report with what your teen shipped, the milestones hit and a link to the live project.",
+      "Two ways to pay, both after the pilot: a Build Pass (monthly, cancel any time) or a Season Pass (one payment for a season of about three months). Parents are the payers and payment accounts will be in a parent's name. Nothing is charged during the pilot, and none of this is built until it has had a legal review. If you want to hear about it first, the parent waitlist below asks for your email and nothing else.",
+    ],
+  },
+  {
+    id: "college",
+    title: "A note about college",
+    body: [
+      "A finished, launched project can be a great thing for your teen to talk about in college applications. But it should never be the only thing an application rests on. Admissions decisions depend on many factors, PineLaunch has no connection to any college, and we make no promises about admissions results. Your teen's success is not tied to PineLaunch. The goal is for them to build something real and learn how they did it.",
+    ],
+  },
+  {
     id: "privacy",
     title: "Privacy",
     body: [
-      "This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing.",
+      "This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing. During the pilot no student data is collected beyond the first name and last initial on the weekly forms, and no payment of any kind exists.",
       "Everything a student types, including the Project Card, ticked steps and notes, is saved in their own browser under one local key. It never leaves the device. Clearing browser data or using a private window removes it.",
       "The only information the founder receives comes from four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a first name and last initial, nothing else identifying. Google Forms, Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site. The web host, Vercel, keeps ordinary access logs, as every host does.",
       "Form answers and the Discord channels are deleted within 30 days after Launch Day. To have anything deleted sooner, email the contact on this page. The full privacy note is linked below.",
@@ -176,6 +200,9 @@ export default function ParentsPage() {
               )}
             </div>
           </section>
+          <div id="waitlist" className="mt-6 scroll-mt-32">
+            <WaitlistPanel />
+          </div>
           <div className="mt-6 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />
             <p className="font-body text-[13.5px] leading-[1.7] text-txt2">
