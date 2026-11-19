@@ -144,7 +144,7 @@ All in `config/program.ts`:
 - [x] `forms.parentPermission`: filled 2026-11-17 (created with
       `createParentPermissionFormOnly` in `scripts/create-forms.gs`)
 
-- [ ] `forms.parentWaitlist`: create it by running `createParentWaitlistFormOnly`
+- [x] `forms.parentWaitlist` set 2026-11-19 (form edit URL: https://docs.google.com/forms/d/1gkfQnot3ytYBuoPumo66H4cna2CVxdVJ9HdJS4p079k/edit)
       in `scripts/create-forms.gs`, then paste the Published URL here. Until
       then the waitlist buttons say "Waitlist opens before the pilot ends".
 - [ ] `plans.foundingPrice`: leave "" until a price is decided; the site then
@@ -213,6 +213,6 @@ Also check before launch:
 
 ## Next three tasks
 
-1. Create the parent waitlist form (`createParentWaitlistFormOnly` in `scripts/create-forms.gs`) and paste its URL into `forms.parentWaitlist`.
-2. Review the live home page at desktop and phone; tune the three-week panel timing if it feels slow.
-3. Decide whether the inner pages get the display headline too (dashboard, weeks, prompts); keep them calm.
+1. Review the live home page at desktop and phone; tune the three-week panel timing if it feels slow.
+2. Decide whether the inner pages get the display headline too (dashboard, weeks, prompts); keep them calm.
+3. Before Dec 1: email notifications on the waitlist form, the family checklist, the three questions for the uncle.

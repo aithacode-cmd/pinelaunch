@@ -46,7 +46,7 @@ export const program = {
     /** Parent permission form. Filled in by a parent or guardian, not the student. */
     parentPermission: "https://docs.google.com/forms/d/e/1FAIpQLSe2EEMTaWyKI6blTZjhCquVItbAQIRQ37JUy6Xhuag8nlMowQ/viewform",
     /** Parent waitlist for post-pilot plans. A parent's email only, never student information. */
-    parentWaitlist: "PASTE_PARENT_WAITLIST_FORM_URL_HERE",
+    parentWaitlist: "https://docs.google.com/forms/d/e/1FAIpQLSfJDN6WPKvuuQ6HoOXZokAIeO-rhhF6pPgRDSBIvfc2RdwMaA/viewform",
   },
 
   /**
