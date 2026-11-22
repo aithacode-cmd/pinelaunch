@@ -6,7 +6,9 @@ Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
 The founder decided to turn PineLaunch into a paid business and to skip the December school pilot. Target product: a hybrid web app with accounts, fully automated, a built-in AI coach, free Level 1 and paid Level 2+ (parents pay, $15 to $30 a month), US teens 13 to 17, showcase only, parent-owned company, private beta then launch in about 3 to 5 months. Details: `Second Brain/raw/2026-11-21-pinelaunch-business-direction.md`. He is getting a second opinion from another AI first.
 
-Until a new product is planned and has had a legal review, every rule in CLAUDE.md still applies to this repo: static, no accounts, no data, no AI calls. Open item: the live site still advertises the free December 1 to 20 pilot and the parent permission form; it needs new wording once he decides what replaces the pilot.
+Until a new product is planned and has had a legal review, every rule in CLAUDE.md still applies to this repo: static, no accounts, no data, no AI calls. Done 2026-11-21 (commit 0672bfa, pushed): the site no longer mentions a running pilot. It is a self-paced open preview: no dates, no countdown, no Discord links, no student forms, no permission form. Weeks end with a "Wrap up" step (show the work to one person). Step ids and badge ids are unchanged, so saved progress still works. Parents and privacy pages rewritten; privacy note dated 2026-11-21. Tools strip shows seven logos (Discord removed). Pilot values stay in `config/program.ts` for reference but are unused.
+
+Founder to-do from this change: in each of the five pilot forms (week 1, 2, 3, final feedback, parent permission) turn off "Accepting responses" and delete any answers by 2027-01-19, as the privacy note promises; expire the Discord invite link.
 
 ## Home page v2 (2026-11-18, live)
 

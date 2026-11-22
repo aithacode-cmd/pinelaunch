@@ -6,10 +6,18 @@ Read this first. It is enough to work on the project cold.
 
 A free three-week online program where high school students (13 to 17) each
 build and launch one small real project: an app, website, tool, or simple
-game. Pilot cohort of 5 to 8 students, December 1 to December 20, 2026.
-Students build on Replit or Base44, use ChatGPT with copy-paste prompts the
-site provides, talk in a private Discord, and fill in a short Google Form at
-the end of each week plus a final feedback form on Launch Day.
+game. Students build on Replit or Base44 and use ChatGPT with copy-paste
+prompts the site provides.
+
+Since 2026-11-21 the site is a self-paced open preview. The December 2026
+pilot (5 to 8 students, a private Discord, weekly Google Forms, a parent
+permission form) was dropped by the founder. The site shows no dates, no
+countdown, no Discord and no student forms. Each week ends by showing the
+work to one person the student knows. The only form linked is the parent
+waitlist. Do not bring back dates, a group chat or student forms without the
+founder asking. The founder now plans a paid, fully automated web app; see
+`PROJECT_STATUS.md`. Until that is planned and legally reviewed, every rule
+below still applies to this repo.
 
 The founder is a high school student building this with Claude Code, with
 his parents' support. He is not an experienced programmer. When talking to
@@ -51,8 +59,8 @@ data still need a fresh review (see `ROADMAP.md`).
   student's browser in `localStorage` under one versioned key,
   `pinelaunch.progress.v1`. Every read and write is wrapped in try/catch.
   See `lib/storage.ts`.
-- The only place any student information goes is the four Google Forms,
-  which ask for a first name and last initial and nothing else identifying.
+- No student information goes anywhere. The one form linked from the site
+  is the parent waitlist (a parent's email, nothing about the student).
 - `/app/api` exists but is empty on purpose (see its README). Adding a route
   there breaks the static export.
 - Do not add anything that sends data off the device without checking
@@ -103,12 +111,12 @@ The guides and prompts must not hand students finished code up front.
   always together with the college note in `app/parents/page.tsx`: a
   launched project can be good to talk about, admissions depend on many
   factors, PineLaunch has no connection to any college and promises nothing.
-- The pilot takes no payments and has no accounts. Post-pilot plans (the
-  Level Ladder, Build Pass, Season Pass, Parent Report, Challenge Drops) are
-  described on the site as "coming after the pilot", from `content/next.ts`,
-  and collect nothing but a parent's email on the waitlist form. Nothing
-  about them is built until the pilot has run and the lawyer has reviewed
-  it (see `ROADMAP.md`).
+- This site takes no payments and has no accounts. Plans for the full
+  version (the Level Ladder, Build Pass, Season Pass, Parent Report,
+  Challenge Drops) are described on the site as "in the works", from
+  `content/next.ts`, and collect nothing but a parent's email on the
+  waitlist form. Nothing about them is built in this repo until it is
+  planned and the lawyer has reviewed it (see `ROADMAP.md`).
 - No fake testimonials, counts, logos, or claims about results.
 
 ## Look
@@ -119,8 +127,9 @@ boxes, current markers and one key number. Headings may carry one italic
 serif phrase. Figures are real interface mockups labeled as illustrative
 examples; no orbs, node graphs or floating shapes. The home page may be
 expressive; dashboard and week pages stay calm. The home page tools strip
-shows eight tools with small drawn marks (Replit, Base44, ChatGPT, Discord,
-Google Forms, Figma, Vercel, Notion): founder decision on 2026-11-15, which
+shows seven tools with small drawn marks (Replit, Base44, ChatGPT, Google
+Forms, Figma, Vercel, Notion; Discord was removed on 2026-11-21 with the
+pilot): founder decision on 2026-11-15, which
 overrides the earlier "five tools, text only" rule for that strip alone.
 Everywhere else, only Replit, Base44 and ChatGPT are named as tools. When
 changing a page, compare it against the matching screenshot in
