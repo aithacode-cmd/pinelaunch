@@ -2,8 +2,8 @@
 
 export const launch = {
   title: "One link, three testers, one fix.",
-  dateLabel: "Launch Day · Dec 20, 2026",
-  lead: "Launch Day is the last day of the program. Nothing new gets built. You publish, post, and fill the final form.",
+  dateLabel: "Launch Day",
+  lead: "Launch Day is the last day of your three weeks. Nothing new gets built. You publish, check, and share the link.",
   counts: {
     title: "Three things, not a finished product.",
     items: [
@@ -25,22 +25,22 @@ export const launch = {
   ],
   /** Shown under the checklist. */
   checklistNote:
-    "Free hosting plans can take a link offline after a while and may show the host's badge. That is normal. Keep a copy of your code or your Base44 app, and post again if the link stops working.",
+    "Free hosting plans can take a link offline after a while and may show the host's badge. That is normal. Keep a copy of your code or your Base44 app, and share the link again if it stops working.",
   howToPost: {
-    title: "How to post it in Discord",
+    title: "How to share it",
     steps: [
-      "Open the launch channel in the PineLaunch Discord.",
-      "Paste your public link on its own line.",
-      "Paste your 3-sentence description under it.",
+      "Ask a parent before you share the link anywhere public.",
+      "Send the link to your three testers first. They earned it.",
+      "Paste your 3-sentence description under the link.",
       "Add one line: what you would build next if you had another week.",
-      "Open two other students' links and leave each one a real comment: one thing that worked, one thing that confused you.",
+      "Send it to one new person and ask for one thing that worked and one thing that confused them.",
     ],
   },
   /** Filled from the Project Card. */
   postTemplate:
     "{{projectName}} — {{pitch}}\nAfter testing I fixed the part where testers got stuck.\nNext, if I had another week: [one line]\n[paste your link]",
   afterLaunch: [
-    "Fill in the final feedback form below. It is short and it decides what PineLaunch becomes next.",
     "Keep your public link. In a month, open it again and see what you think.",
+    "Write down what you would do differently next time. That list is the start of your next project.",
   ],
 } as const;

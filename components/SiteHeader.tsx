@@ -60,7 +60,7 @@ export function SiteHeader() {
           <Link href="/" aria-label="PineLaunch home" className="flex shrink-0 items-center gap-3">
             <Logo markClassName="h-[22px] w-[22px]" />
             <span className="hidden h-5 w-px bg-white/10 sm:block" aria-hidden="true" />
-            <Mono className="hidden text-muted sm:block">Pilot 2026</Mono>
+            <Mono className="hidden text-muted sm:block">Open preview</Mono>
           </Link>
 
           <nav aria-label="Main" className="hidden lg:block">
@@ -157,7 +157,7 @@ export function SiteHeader() {
             ))}
           </ul>
           <p className="mt-6 font-body text-[13px] leading-[1.6] text-muted">
-            Free pilot cohort, Dec 1 to 20, 2026. No accounts. Progress stays in this browser.
+            Free and self-paced. No accounts. Progress stays in this browser.
           </p>
         </nav>
         <div className="pl-shell relative pb-8">

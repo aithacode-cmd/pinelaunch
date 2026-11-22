@@ -9,8 +9,8 @@ export const badges: Badge[] = [
   },
   {
     id: "week1-turned-in",
-    title: "Week 1 turned in",
-    description: "Card posted in Discord and the Week 1 form sent.",
+    title: "Week 1 wrapped up",
+    description: "Card shown to one person who could explain it back.",
   },
   {
     id: "first-working-version",

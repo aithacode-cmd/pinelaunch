@@ -1,23 +1,23 @@
 /**
- * "What's next after the pilot": the Level Ladder and the post-pilot plans.
+ * "What comes next": the Level Ladder and the plans for the full version.
  * Shown on the home page, the parents page and the end-of-program screen.
- * Everything here is a plan, not a product: nothing is charged during the
- * pilot, and no payment or account exists on this site. See ROADMAP.md.
+ * Everything here is a plan, not a product: nothing is charged, and no
+ * payment or account exists on this site. See ROADMAP.md.
  */
 
 import { program } from "@/config/program";
 
 export const next = {
-  label: "Coming after the pilot. The pilot is free.",
+  label: "In the works. The guides on this site are free.",
   title: "What comes after Launch Day",
-  lead: "Launch is level one. After the pilot, PineLaunch becomes a ladder: every month is a new level with its own missions, points and badges.",
+  lead: "The full version of PineLaunch is a ladder: every month is a new level with its own missions, points and badges. It is being built now.",
 
   levels: [
     {
       number: 1,
       name: "Launch",
       status: "current" as const,
-      line: "The three-week program you are looking at. Free during the pilot.",
+      line: "The three-week program you are looking at. Free.",
     },
     {
       number: 2,
@@ -58,22 +58,22 @@ export const next = {
     },
   ],
 
-  payerNote: "Parents are the payers. Payment accounts will be in a parent's name, after the pilot and after a legal review.",
+  payerNote: "Parents are the payers. Payment accounts will be in a parent's name, once the full version is ready and has had a legal review.",
 
   waitlist: {
     button: "Join the parent waitlist",
     underButton: "We'll only use your email to tell you about PineLaunch plans. No spam.",
-    notYet: "Waitlist opens before the pilot ends",
+    notYet: "Waitlist opens soon",
   },
 
   /** Shown on the dashboard when every step is ticked. */
   finish: {
     title: "Next up: Level 2 – Grow",
-    body: "You launched. Level 2 is about getting your project its first 10 real users. It opens after the pilot, and parents can join the waitlist now.",
+    body: "You launched. Level 2 is about getting your project its first 10 real users. It is being built now, and parents can join the waitlist to hear when it opens.",
     sendButton: "Send this to your parent",
     /** The text copied by the button. {{link}} becomes the waitlist link. */
     message:
-      "Hi, I finished PineLaunch and launched my project. The next level (Grow) opens after the pilot. If you want to hear about it, this is the parent waitlist: {{link}}",
+      "Hi, I finished PineLaunch and launched my project. The next level (Grow) is being built. If you want to hear about it, this is the parent waitlist: {{link}}",
   },
 } as const;
 

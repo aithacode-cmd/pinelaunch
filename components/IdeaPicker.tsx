@@ -161,7 +161,7 @@ function DoneScreen({ card }: { card: ProjectCard }) {
         That is your first step done.
       </h1>
       <p className="mt-3 max-w-[48ch] font-body text-[14.5px] leading-[1.6] text-txt2">
-        Saved in this browser only. Copy it into the Discord channel for week one, then open your dashboard.
+        Saved in this browser only. Show it to one person you know, then open your dashboard.
       </p>
       <ProjectCardView card={card} className="mt-8" />
       <div className="mt-6 flex flex-wrap gap-3">

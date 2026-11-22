@@ -8,7 +8,7 @@ export const week2: WeekContent = {
   intro: [
     "A first version works, looks bad, and does one thing. That is the whole definition. Colors, fonts, and layout are not on the list this week. If it does the job for one person, it counts.",
     "Build in order. Feature 1 first, until it works. Do not touch features 2 and 3 until then. Most unfinished projects are three half-built features. You want one finished feature and then another.",
-    "The \"I'm stuck\" rule: try for 15 minutes on your own. Then use the AI prompt for your problem. Then ask in Discord with a screenshot. Never stay stuck for more than a day. Being stuck is not a sign you are bad at this. It is the normal state of building.",
+    "The \"I'm stuck\" rule: try for 15 minutes on your own. Then use the AI prompt for your problem. Then show the screen to a parent, a teacher, or a friend. Never stay stuck for more than a day. Being stuck is not a sign you are bad at this. It is the normal state of building.",
   ],
   steps: [
     {
@@ -16,7 +16,7 @@ export const week2: WeekContent = {
       title: "Build feature 1 only",
       what: "Build {{feature1}}. Nothing else. Use the \"Break this feature into tiny steps\" prompt first, then do the steps one at a time. Run your project after every step.",
       done: "You can use feature 1 from start to finish without it breaking. Show a person or record a short screen video.",
-      stuck: "Follow the stuck rule: 15 minutes on your own, then the debug prompt, then Discord. Paste the exact error message, not a description of it.",
+      stuck: "Follow the stuck rule: 15 minutes on your own, then the debug prompt, then another person. Paste the exact error message, not a description of it.",
       points: 25,
       promptIds: ["w2-tiny-steps", "w2-debug"],
       example: {
@@ -55,8 +55,8 @@ console.log("Using:", saved);`,
     {
       id: "w2-feature-3",
       title: "Then feature 3",
-      what: "Build {{feature3}}. If you run out of time this week, that is fine. Two working features and a Week 2 form beats three broken ones. You can finish feature 3 at the start of Week 3.",
-      done: "All three features work, or you have decided feature 3 waits until next week and written that in Discord.",
+      what: "Build {{feature3}}. If you run out of time this week, that is fine. Two working features beat three broken ones. You can finish feature 3 at the start of Week 3.",
+      done: "All three features work, or you have decided feature 3 waits until next week and written that down.",
       stuck: "If feature 3 keeps breaking, ask the \"Smallest version\" question again. Feature 3 is the one most students shrink or drop.",
       points: 15,
       promptIds: ["w2-tiny-steps"],
@@ -72,9 +72,9 @@ console.log("Using:", saved);`,
     },
     {
       id: "w2-turn-in",
-      title: "Turn in Week 2",
-      what: "Post a link or a screenshot of your working version in Discord. Then fill in the Week 2 check-in form below.",
-      done: "Your link or screenshot is in Discord and the form says it was submitted.",
+      title: "Wrap up Week 2",
+      what: "Show your working version to one person you know. Let them click around without help, and write down the first place they get stuck.",
+      done: "One person has used your working version and you have written down where they got stuck.",
       stuck: "If your project is not public yet, a screenshot or a short screen recording is enough. Making it public is a Week 3 job.",
       points: 10,
       badge: "first-working-version",
@@ -131,14 +131,14 @@ Explain what this error means in plain words, as if I have never seen one before
     },
     {
       problem: "I have been stuck for more than a day.",
-      whatToDo: "Post in Discord now, with a screenshot and what you have tried. Being stuck for a day is the one rule you should never break.",
+      whatToDo: "Show someone now: a parent, a teacher, or a friend. Tell them what you have tried. Being stuck for a day is the one rule you should never break.",
     },
   ],
   turnIn: {
-    title: "Turn in",
+    title: "Wrap up",
     items: [
-      "A link or screenshot of your working version, posted in Discord.",
-      "The Week 2 check-in form below.",
+      "Your working version, shown to one person you know.",
+      "A note of the first place they got stuck.",
     ],
   },
   formKey: "week2",

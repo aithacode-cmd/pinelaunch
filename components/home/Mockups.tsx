@@ -73,7 +73,7 @@ export function HomeworkApp({ className = "" }: { className?: string }) {
   );
 }
 
-const chips = ["3 testers tried it", "1 fix shipped", "Shared in Discord"];
+const chips = ["3 testers tried it", "1 fix shipped", "Link shared"];
 
 export function LaunchBrowser({ className = "" }: { className?: string }) {
   return (

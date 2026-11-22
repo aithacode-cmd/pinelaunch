@@ -8,15 +8,15 @@ export const week3: WeekContent = {
   intro: [
     "You built it. Now you find out whether it works for someone who is not you. Three testers is enough. Watch them without helping. The places they get confused are your to-do list.",
     "Then fix one thing. Only one. The single biggest problem. Everything else goes on a list for after launch.",
-    "Launch Day is Sunday, December 20. Launched means a public link that anyone can open. Not perfect. Public.",
+    "Launch Day is the day you publish. Launched means a public link that anyone can open. Not perfect. Public.",
   ],
   steps: [
     {
       id: "w3-testers",
       title: "Find 3 testers and watch them",
-      what: "Ask three people to try your project: friends, family, or someone from the group. Sit next to them or share your screen. Say only: \"Try to use this. Talk out loud about what you are thinking.\" Then stay quiet. Do not explain, do not point, do not apologize. Write down every place they paused, asked a question, or clicked the wrong thing.",
+      what: "Ask three people to try your project: friends, family, or a classmate. Sit next to them or share your screen. Say only: \"Try to use this. Talk out loud about what you are thinking.\" Then stay quiet. Do not explain, do not point, do not apologize. Write down every place they paused, asked a question, or clicked the wrong thing.",
       done: "You have notes from three testers, each with at least one place they got confused.",
-      stuck: "If a tester says it is perfect, ask them to do the one main thing your project does, and time how long it takes. If they cannot find a tester, ask in Discord. Everyone in the group needs testers this week.",
+      stuck: "If a tester says it is perfect, ask them to do the one main thing your project does, and time how long it takes. If you cannot find a third tester, ask a parent to suggest someone. A neighbor or a cousin counts.",
       points: 25,
       badge: "first-tester-feedback",
     },
@@ -39,7 +39,7 @@ export const week3: WeekContent = {
       title: "Make it public",
       what: "On Replit: open your project and use the Deploy or Publish option to get a public link. Replit offers a free way to publish simple projects; if it asks you to pick a type, choose the simplest one it recommends for a website or small app. On Base44: open your app's settings and look for Publish or Share. Turn on public access and copy the link. Test the link in a private browser window where you are not signed in, or on a phone. Before you publish, check that no password, API key, photo of you, or other student's name is anywhere in the project. On a free plan the code may be visible to anyone, and the link may go offline after a while; that is normal, keep a copy.",
       done: "You open the link on a device where you are not signed in and your project loads.",
-      stuck: "If publishing asks for money, stop and ask in Discord. There is a free path for every project in this program. If the public link shows an error, the first prompt below helps you read it.",
+      stuck: "If publishing asks for money, stop and ask a parent before going further. There is a free path for every project in this program. If the public link shows an error, the first prompt below helps you read it.",
       points: 20,
       promptIds: ["w2-why-error"],
     },
@@ -55,8 +55,8 @@ export const week3: WeekContent = {
     {
       id: "w3-launch",
       title: "Launch Day: post your link",
-      what: "On Sunday, December 20, post your public link and your 3-sentence description in Discord. Go through the pre-launch checklist on the Launch Day page first. Then fill in the final feedback form.",
-      done: "Your link and description are in Discord, the link opens for someone else, and the final feedback form says it was submitted.",
+      what: "Go through the pre-launch checklist on the Launch Day page. Then send your public link and your 3-sentence description to your three testers and to one new person.",
+      done: "Your link and description are sent, and the link opens for someone who is not you.",
       stuck: "If something breaks on Launch Day, post the link anyway and say what is broken. A launched project with a known bug is still launched. A perfect project on your laptop is not.",
       points: 30,
       badge: "launched",
@@ -111,18 +111,18 @@ Give me a short pre-launch checklist, 8 items at most, for a beginner's first pu
     },
     {
       problem: "Publishing wants a paid plan.",
-      whatToDo: "Stop and ask in Discord before paying anything. There is a free way for every project in this program, and the founder will help you find it.",
+      whatToDo: "Stop and ask a parent before paying anything. There is a free way for every project in this program. Look for a free or starter option in the publish settings.",
     },
     {
       problem: "I am embarrassed to post it because it looks bad.",
-      whatToDo: "Everyone in the group is posting an ugly first version. That is the point. The people who launch ugly things are the people who later launch good ones.",
+      whatToDo: "Every first version is ugly. That is the point. The people who launch ugly things are the people who later launch good ones.",
     },
   ],
   turnIn: {
-    title: "Turn in",
+    title: "Wrap up",
     items: [
-      "Your live public link and 3-sentence description, posted in Discord on Launch Day.",
-      "The final feedback form on the Launch Day page.",
+      "Your live public link and 3-sentence description, sent to your testers.",
+      "The link opens for someone who is not you.",
     ],
   },
   formKey: "week3",

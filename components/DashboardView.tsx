@@ -15,10 +15,9 @@ import { Button } from "./Button";
 import { CopyButton } from "./CopyButton";
 import { Mono } from "./Mono";
 import { ProjectCardView } from "./ProjectCardView";
-import { useDaysToLaunch } from "./Ticker";
 
 const stageNames: Record<WeekNumber, string> = { 1: "Idea", 2: "Build", 3: "Launch" };
-const stageDates: Record<WeekNumber, string> = { 1: "Dec 1 to 6", 2: "Dec 7 to 13", 3: "Dec 14 to 20" };
+const stageDates: Record<WeekNumber, string> = { 1: "Days 1 to 7", 2: "Days 8 to 14", 3: "Days 15 to 21" };
 const badgeIcons: Record<BadgeId, typeof PenLine> = {
   "project-card": PenLine,
   "week1-turned-in": ClipboardList,
@@ -75,8 +74,10 @@ function Ring({ points }: { points: number }) {
   );
 }
 
-function StatsStrip({ state, week, days }: { state: ProgressState; week: WeekNumber; days: number | null }) {
+function StatsStrip({ state, week }: { state: ProgressState; week: WeekNumber }) {
   const points = pointsEarned(state);
+  const steps = allSteps();
+  const stepsDone = steps.filter((s) => isStepDone(state, s.step.id)).length;
   return (
     <div className="mt-8 grid gap-px overflow-hidden rounded-[20px] border border-line2 bg-line2 sm:grid-cols-3">
       <div className="flex items-center gap-4 bg-panel p-5">
@@ -96,11 +97,11 @@ function StatsStrip({ state, week, days }: { state: ProgressState; week: WeekNum
         <Mono className="mt-2 block text-txt2">{stageDates[week]}</Mono>
       </div>
       <div className="bg-panel p-5">
-        <Mono className="text-muted">Launch Day</Mono>
+        <Mono className="text-muted">Steps done</Mono>
         <p className="mt-1.5 font-heading text-[22px] font-medium tracking-[-0.02em] text-txt">
-          {days === null ? "Dec 20" : days > 0 ? `${days} days` : days === 0 ? "Today" : "Done"}
+          {stepsDone} <span className="text-muted">/ {steps.length}</span>
         </p>
-        <Mono className="mt-2 block text-txt2">Sunday December 20</Mono>
+        <Mono className="mt-2 block text-txt2">Launch Day is your last step</Mono>
       </div>
     </div>
   );
@@ -245,7 +246,7 @@ function NextStepPanel({ state }: { state: ProgressState }) {
       ) : (
         <>
           <p className="mt-3 font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">All steps are complete.</p>
-          <p className="mt-2 font-body text-[14px] leading-[1.65] text-txt2">Post your project in Discord and submit the final feedback form.</p>
+          <p className="mt-2 font-body text-[14px] leading-[1.65] text-txt2">Go through the Launch Day checklist and share your link.</p>
           <Button to="/launch" className="mt-6">
             Open Launch Day
           </Button>
@@ -429,21 +430,18 @@ function ProgressFilePanel({ progress }: { progress: UseProgress }) {
   );
 }
 
-function DiscordPanel() {
-  const ready = !isPlaceholder(program.discordInviteUrl);
+/** No group is running, so "stuck" help points at the prompts and at people the student already knows. */
+function StuckPanel() {
   return (
     <div className="rounded-[20px] border border-line2 bg-panel p-5 sm:p-6">
-      <Mono className="text-muted">Discord</Mono>
+      <Mono className="text-muted">Stuck?</Mono>
       <p className="mt-3 font-body text-[14px] leading-[1.65] text-txt2">
-        The private group chat for the pilot cohort. Ask questions there when a step does not make sense.
+        Try for 15 minutes on your own. Then use a prompt for your problem. Then show the screen to a parent, a teacher, or
+        a friend. Never stay stuck for more than a day.
       </p>
-      {ready ? (
-        <Button href={program.discordInviteUrl} variant="quiet" className="mt-5 w-full">
-          Open the group chat
-        </Button>
-      ) : (
-        <Mono className="mt-5 block text-muted">Invite link shared with the cohort</Mono>
-      )}
+      <Button to="/prompts" variant="quiet" className="mt-5 w-full">
+        Open the prompts
+      </Button>
     </div>
   );
 }
@@ -452,7 +450,6 @@ export function DashboardView() {
   const progress = useProgress();
   const router = useRouter();
   const { ready, state } = progress;
-  const days = useDaysToLaunch();
 
   // No Project Card yet: the idea picker comes first.
   useEffect(() => {
@@ -477,7 +474,7 @@ export function DashboardView() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <div className="flex items-center gap-3">
-            <Mono className="text-pine-hi">Cohort 01</Mono>
+            <Mono className="text-pine-hi">Self-paced</Mono>
             <span className="h-px w-8 bg-white/15" aria-hidden="true" />
             <Mono className="text-muted">Your workspace</Mono>
           </div>
@@ -492,7 +489,7 @@ export function DashboardView() {
         </div>
       </div>
 
-      <StatsStrip state={state} week={week} days={days} />
+      <StatsStrip state={state} week={week} />
 
       <div className="mt-4 grid gap-4 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
@@ -512,7 +509,7 @@ export function DashboardView() {
             </div>
           </div>
           <BadgesPanel state={state} />
-          <DiscordPanel />
+          <StuckPanel />
         </div>
       </div>
       <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">

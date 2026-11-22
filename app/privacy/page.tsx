@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mono } from "@/components/Mono";
 import { program, isPlaceholder } from "@/config/program";
-import { formatLong } from "@/lib/dates";
 
 export const metadata: Metadata = {
   title: "Privacy note",
@@ -17,16 +16,15 @@ function effective(ymd: string): string {
 export default function PrivacyPage() {
   const email = program.contactEmail;
   const hasEmail = !isPlaceholder(email);
-  const days = program.privacy.deleteWithinDays;
 
   const sections: { title: string; body: React.ReactNode[] }[] = [
     {
       title: "Who runs this and who to contact",
       body: [
         <>
-          PineLaunch is a free program run by a high school student with his parents&apos; support. Because the founder is
-          a minor, a parent of the founder is the responsible adult for the program. That parent reads the contact inbox
-          and is in the group chat for the whole pilot.
+          PineLaunch is a free program built and run by a high school student with his parents&apos; support. Because the
+          founder is a minor, a parent of the founder is the responsible adult for the program. That parent reads the
+          contact inbox.
         </>,
         <>
           Contact for any question, including a request to delete information:{" "}
@@ -35,7 +33,7 @@ export default function PrivacyPage() {
               {email}
             </a>
           ) : (
-            <span className="text-muted">email added before the pilot starts</span>
+            <span className="text-muted">email added soon</span>
           )}
           .
         </>,
@@ -45,8 +43,8 @@ export default function PrivacyPage() {
       title: "Who the program is for",
       body: [
         <>
-          Students aged 13 to 17, with a parent or guardian&apos;s permission. Anyone younger cannot take part. If we learn
-          that a student is under 13, we remove their form answers and their place in the chat.
+          Students aged 13 to 17, with a parent or guardian&apos;s agreement. The site is not meant for children under 13
+          and asks them for nothing.
         </>,
       ],
     },
@@ -67,36 +65,26 @@ export default function PrivacyPage() {
       ],
     },
     {
-      title: "What the forms collect",
+      title: "The one form",
       body: [
         <>
-          Students fill in four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a
-          first name and last initial, what was finished, and where they got stuck. No email, last name, school, age or
-          address is asked for, and no Google sign-in is required. The answers are stored by Google Forms in the
-          founder&apos;s Google account and are read by the founder and the responsible parent.
-        </>,
-        <>
-          Parents fill in one permission form, which asks for the parent&apos;s and the student&apos;s first name and last
-          initial, a yes to the program, the tools and the group chat, and an optional way to reach the parent during the
-          pilot. It is kept by the responsible parent.
-        </>,
-        <>
-          Parents may also join a waitlist for plans that come after the pilot. That form asks for a parent&apos;s email, which
-          option interests them, and an optional comment. It asks nothing about the student, and the email is used only to
-          tell that parent about PineLaunch plans.
+          There are no forms for students. The only form linked from this site is the parent waitlist for the full
+          version of PineLaunch. It asks for a parent&apos;s email, which option interests them, and an optional comment.
+          It asks nothing about the student. The answers are stored by Google Forms in the founder&apos;s Google account,
+          are read by the founder and the responsible parent, and are used only to tell that parent about PineLaunch
+          plans.
         </>,
       ],
     },
     {
-      title: "The group chat and the outside tools",
+      title: "No chat, and the outside tools",
       body: [
         <>
-          The cohort talks in a private Discord server. Messages there are held by Discord under Discord&apos;s terms. A
-          parent of the founder is in the server for the whole pilot. Students are asked not to send private messages to
-          each other and not to share personal details in the chat.
+          This site has no chat, no messaging and no group. Students work on their own and show their work to people they
+          already know.
         </>,
         <>
-          Replit, Base44, ChatGPT, Discord and Google Forms are separate services with their own accounts, terms and privacy
+          Replit, Base44, ChatGPT and Google Forms are separate services with their own accounts, terms and privacy
           policies. Each one collects what its own policy describes. A parent should agree before a student creates any of
           those accounts, and we recommend keeping payment cards off them.
         </>,
@@ -106,10 +94,10 @@ export default function PrivacyPage() {
       title: "Public projects",
       body: [
         <>
-          At the end of the program each student publishes a public link to their project and posts it in the group chat.
-          Students are asked to leave their full name, school, city, age, photos and other students&apos; names out of the
-          project, and not to collect visitors&apos; personal details in it. Projects belong to the students. We do not list
-          student projects on this site without a parent&apos;s permission.
+          At the end of the program each student publishes a public link to their project and shares it with people they
+          choose. Students are asked to leave their full name, school, city, age, photos and other students&apos; names out
+          of the project, and not to collect visitors&apos; personal details in it. Projects belong to the students. We do
+          not list student projects on this site.
         </>,
       ],
     },
@@ -117,20 +105,23 @@ export default function PrivacyPage() {
       title: "How long we keep it",
       body: [
         <>
-          Form answers and the cohort&apos;s Discord channels are deleted within {days} days after Launch Day (
-          {formatLong(program.cohort.launchDate)}). Parent permission answers are deleted at the same time. Nothing is
-          kept for later cohorts except notes about the program itself, with no student names.
+          Waitlist emails are kept until the full version opens and you have been told about it, or until you ask us to
+          remove yours, whichever comes first.
         </>,
-        <>
-          To have anything deleted sooner, email the contact above. We delete it within a week and confirm by reply.
-        </>,
+        <>To have anything deleted, email the contact above. We delete it within a week and confirm by reply.</>,
       ],
     },
     {
-      title: "Changes",
+      title: "What changed on November 21, 2026",
       body: [
         <>
-          If this note changes, the date at the top changes with it. For the full picture for parents, see{" "}
+          An earlier version of this note described weekly student forms, a parent permission form and a private Discord
+          group for a small pilot in December 2026. That pilot is not running. Those forms and the group are no longer
+          linked from this site. Anything already sent to those forms will be deleted by January 19, 2027, as the earlier
+          note promised.
+        </>,
+        <>
+          If this note changes again, the date at the top changes with it. For the full picture for parents, see{" "}
           <Link href="/parents" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
             the parents page
           </Link>
@@ -149,8 +140,8 @@ export default function PrivacyPage() {
         </h1>
         <Mono className="mt-4 block text-muted">Effective {effective(program.privacy.effectiveDate)}</Mono>
         <p className="mt-5 font-body text-[15px] leading-[1.7] text-txt2">
-          Short version: this website stores nothing about you. The weekly forms hold a first name and last initial, the
-          group chat is on Discord, and everything is deleted after the pilot.
+          Short version: this website stores nothing about students. The only thing we ever receive is a parent&apos;s email
+          on the waitlist form, and only if a parent chooses to send it.
         </p>
       </div>
       <div className="mt-12 max-w-[68ch]">

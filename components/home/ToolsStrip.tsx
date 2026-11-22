@@ -36,17 +36,6 @@ const ChatGPTMark = (
   </svg>
 );
 
-const DiscordMark = (
-  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-    <path
-      fill="#5865F2"
-      d="M19.5 5.8A15.6 15.6 0 0 0 15.7 4.6l-.3.8a11.6 11.6 0 0 0-6.8 0l-.3-.8A15.6 15.6 0 0 0 4.5 5.8C2.1 9.6 1.4 13.3 1.8 16.9a15.7 15.7 0 0 0 4.7 2.4l.9-1.6-.7-.3.2-.1a11.2 11.2 0 0 0 8.2 0l.2.1-.7.3.9 1.6a15.7 15.7 0 0 0 4.7-2.4c.5-4.2-.7-7.9-2.7-11.1Z"
-    />
-    <ellipse cx="9.2" cy="12.5" rx="1.5" ry="1.9" fill="#0B0B0B" />
-    <ellipse cx="14.8" cy="12.5" rx="1.5" ry="1.9" fill="#0B0B0B" />
-  </svg>
-);
-
 const GoogleFormsMark = (
   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
     <rect x="3.4" y="1.6" width="13.4" height="20.8" rx="2.4" fill="#7248B9" />
@@ -85,8 +74,7 @@ const tools: { name: string; mark: ReactNode; note: string }[] = [
   { name: "Replit", mark: ReplitMark, note: "Build" },
   { name: "Base44", mark: Base44Mark, note: "Build" },
   { name: "ChatGPT", mark: ChatGPTMark, note: "Explain" },
-  { name: "Discord", mark: DiscordMark, note: "Share" },
-  { name: "Google Forms", mark: GoogleFormsMark, note: "Submit" },
+  { name: "Google Forms", mark: GoogleFormsMark, note: "Waitlist" },
   { name: "Figma", mark: FigmaMark, note: "Sketch" },
   { name: "Vercel", mark: VercelMark, note: "Publish" },
   { name: "Notion", mark: NotionMark, note: "Notes" },
@@ -101,9 +89,9 @@ export function ToolsStrip() {
             <span className="h-1 w-1 rounded-full bg-pine-hi" aria-hidden="true" />
             <Mono className="text-txt2">The stack · what you will use</Mono>
           </div>
-          <Mono className="text-muted">Eight tools · one each · nothing else needed</Mono>
+          <Mono className="text-muted">Seven tools · one each · nothing else needed</Mono>
         </div>
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[18px] border border-white/[0.08] bg-white/[0.07] sm:grid-cols-4 lg:grid-cols-8">
+        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[18px] border border-white/[0.08] bg-white/[0.07] sm:grid-cols-4 lg:grid-cols-7">
           {tools.map((t, i) => (
             <li
               key={t.name}

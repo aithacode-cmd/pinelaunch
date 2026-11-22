@@ -15,10 +15,16 @@ export const program = {
   /** Founder contact. Shown on the parents page and in the footer. */
   contactEmail: "aithacode@gmail.com",
 
-  /** Private Discord invite link. Shown to students on the dashboard and week pages. */
+  /**
+   * Private Discord invite link. NOT shown anywhere on the site since 2026-11-21:
+   * the December pilot was dropped, so no group and no supervised chat exist.
+   */
   discordInviteUrl: "https://discord.gg/AbnrgGzyTf",
 
-  /** Pilot cohort dates. */
+  /**
+   * Dates of the December 2026 pilot, which was dropped on 2026-11-21. The site is
+   * now a self-paced open preview and shows no dates. Kept for reference only.
+   */
   cohort: {
     label: "Pilot cohort",
     startDate: "2026-12-01", // Tuesday
@@ -37,6 +43,9 @@ export const program = {
    * Google Form URLs. Paste the "viewform" link for each form.
    * The site turns them into embed links automatically.
    * Create all four by running /scripts/create-forms.gs (see /scripts/README.md).
+   *
+   * Since 2026-11-21 only parentWaitlist is linked from the site. The weekly,
+   * final and permission forms belonged to the dropped pilot.
    */
   forms: {
     week1: "https://docs.google.com/forms/d/e/1FAIpQLSfXb3N9QzlUWSudUq2IW6pNCz2vlib2r5mZfZMJ_N00tKqytQ/viewform",
@@ -45,13 +54,13 @@ export const program = {
     finalFeedback: "https://docs.google.com/forms/d/e/1FAIpQLSf32jCRt9DrGZExbM7GY4o3PAYgiq_gqOk2o47uJQDh_IxgUg/viewform",
     /** Parent permission form. Filled in by a parent or guardian, not the student. */
     parentPermission: "https://docs.google.com/forms/d/e/1FAIpQLSe2EEMTaWyKI6blTZjhCquVItbAQIRQ37JUy6Xhuag8nlMowQ/viewform",
-    /** Parent waitlist for post-pilot plans. A parent's email only, never student information. */
+    /** Parent waitlist for the full version. A parent's email only, never student information. */
     parentWaitlist: "https://docs.google.com/forms/d/e/1FAIpQLSfJDN6WPKvuuQ6HoOXZokAIeO-rhhF6pPgRDSBIvfc2RdwMaA/viewform",
   },
 
   /**
-   * Post-pilot plans, shown on the site as "coming after the pilot".
-   * Nothing is charged during the pilot. See ROADMAP.md.
+   * Plans for the full version, shown on the site as "in the works".
+   * Nothing is charged on this site. See ROADMAP.md.
    */
   plans: {
     /** Founding-family monthly price in dollars, as text. Leave "" until decided. */
@@ -61,8 +70,8 @@ export const program = {
   /** Privacy note values. The note itself is app/privacy/page.tsx. */
   privacy: {
     /** Date shown at the top of the privacy note. Update it when the note changes. */
-    effectiveDate: "2026-11-16",
-    /** Form responses and the cohort's Discord channels are deleted within this many days after Launch Day. */
+    effectiveDate: "2026-11-21",
+    /** From the dropped pilot: responses were to be deleted this many days after Dec 20, 2026 (so by Jan 19, 2027). */
     deleteWithinDays: 30,
   },
 

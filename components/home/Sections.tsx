@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, ClipboardList, Lock, MessagesSquare, ShieldCheck, Sparkles, Target, Users, X } from "lucide-react";
+import { Check, ClipboardCheck, Clock, Lock, ShieldCheck, Sparkles, Target, Users, X } from "lucide-react";
 import { home } from "@/content/home";
 import { Button } from "../Button";
 import { Mono } from "../Mono";
@@ -131,7 +131,7 @@ export function OutcomeSection() {
   );
 }
 
-const runIcons = [MessagesSquare, ClipboardList, ShieldCheck];
+const runIcons = [Clock, ClipboardCheck, ShieldCheck];
 
 export function RunsSection() {
   const { runs } = home;
@@ -168,7 +168,7 @@ export function RunsSection() {
         </div>
         <ul className="grid gap-px overflow-hidden rounded-[22px] border border-white/[0.08] bg-white/[0.07]">
           {runs.how.map((h, i) => {
-            const Icon = runIcons[i] ?? MessagesSquare;
+            const Icon = runIcons[i] ?? Clock;
             return (
               <li key={h.label} className="flex items-start gap-4 bg-ink p-6">
                 <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.1] bg-white/[0.03]">

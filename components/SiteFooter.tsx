@@ -28,8 +28,8 @@ export function SiteFooter() {
           <div className="lg:col-span-4">
             <Logo />
             <p className="mt-5 max-w-[36ch] font-body text-[14px] leading-[1.7] text-txt2">
-              A free three-week program where high school students build and launch one real project. Pilot cohort,
-              December 2026.
+              A free three-week program where high school students build and launch one real project. Self-paced. The
+              full version is in the works.
             </p>
             <ul className="mt-6 flex flex-wrap gap-1.5">
               {facts.map((f) => (
@@ -69,10 +69,10 @@ export function SiteFooter() {
           <div className="lg:col-span-3">
             <Mono className="text-txt2">Contact</Mono>
             <p className="mt-4 font-body text-[14px] leading-[1.7] text-txt2">
-              Questions about the program, permission, or privacy:
+              Questions about the program or privacy:
             </p>
             {isPlaceholder(program.contactEmail) ? (
-              <Mono className="mt-2 block text-muted">Email added before the pilot starts</Mono>
+              <Mono className="mt-2 block text-muted">Email added soon</Mono>
             ) : (
               <a
                 href={`mailto:${program.contactEmail}`}
@@ -96,7 +96,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/[0.07]">
         <div className="pl-shell flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <Mono className="text-muted">PineLaunch · Pilot cohort 2026</Mono>
+          <Mono className="text-muted">PineLaunch · Open preview · 2026</Mono>
           <Mono className="text-muted">Progress key · pinelaunch.progress.v1</Mono>
           <TopButton />
         </div>

@@ -7,7 +7,7 @@ export const week1: WeekContent = {
   goal: "Pick one idea small enough to finish, set up your build tool, and get your project's name on a page.",
   intro: [
     "Small projects finish and big ones do not. A big idea has twenty parts, and every part can go wrong, so the first problem stops you for a week. A small idea has three parts, so you hit a problem, fix it, and keep moving. Finishing something small teaches you more than starting something big.",
-    "This week is about choosing. By Sunday you will have a Project Card, a build tool that works, and a page with your project's name on it. That is enough.",
+    "This week is about choosing. By the end of the week you will have a Project Card, a build tool that works, and a page with your project's name on it. That is enough.",
   ],
   steps: [
     {
@@ -40,7 +40,7 @@ export const week1: WeekContent = {
       title: "Reach the Hello milestone",
       what: "Make your tool show your project's name on an otherwise blank page. Nothing else. This proves the whole chain works: you can change something, run it, and see the result.",
       done: "You open your project and the page shows your project's name and nothing else.",
-      stuck: "Try for 15 minutes. Then use the \"Smallest version\" prompt with the feature set to \"show my project name on the page.\" If still stuck after that, ask in Discord with a screenshot.",
+      stuck: "Try for 15 minutes. Then use the \"Smallest version\" prompt with the feature set to \"show my project name on the page.\" If still stuck after that, show the screen to a parent, a teacher, or a friend and explain what you expected to happen.",
       points: 20,
       promptIds: ["w1-smallest-version"],
       example: {
@@ -51,10 +51,10 @@ export const week1: WeekContent = {
     },
     {
       id: "w1-turn-in",
-      title: "Turn in Week 1",
-      what: "Copy your Project Card from the dashboard and paste it in Discord. Then fill in the Week 1 check-in form at the bottom of this page.",
-      done: "Your card is in Discord and the form says it was submitted.",
-      stuck: "If the form does not load here, use the plain link under it. If Discord is not working, send your card to the founder by email instead.",
+      title: "Wrap up Week 1",
+      what: "Copy your Project Card from the dashboard and show it to one person you know: a parent, a friend, or a teacher. Ask them to tell you, in their own words, what you are building.",
+      done: "One person has read your card and could say what the project is and who it is for.",
+      stuck: "If they cannot explain it back, the pitch is too long or too vague. Shorten it to one sentence and try again.",
       points: 10,
       badge: "week1-turned-in",
       isTurnIn: true,
@@ -107,14 +107,14 @@ Do not write code. Describe the smallest version of this feature that I could sh
     },
     {
       problem: "I keep changing my idea.",
-      whatToDo: "Pick the one you have now. Finishing a so-so idea teaches more than starting a great one. You can build the next idea in January.",
+      whatToDo: "Pick the one you have now. Finishing a so-so idea teaches more than starting a great one. You can build the next idea after this one.",
     },
   ],
   turnIn: {
-    title: "Turn in",
+    title: "Wrap up",
     items: [
-      "Your Project Card, pasted in Discord.",
-      "The Week 1 check-in form below.",
+      "Your Project Card, shown to one person you know.",
+      "They can say what you are building and who it is for.",
     ],
   },
   formKey: "week1",

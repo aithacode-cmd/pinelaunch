@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Plus } from "lucide-react";
-import { program, isPlaceholder, type WeekNumber } from "@/config/program";
+import { Plus } from "lucide-react";
+import { program, type WeekNumber } from "@/config/program";
 import { getWeek } from "@/content";
 import { isStepDone, useProgress } from "@/lib/progress";
 import { fillPlaceholders } from "@/lib/fill";
@@ -12,7 +12,7 @@ import { PromptPanel } from "./PromptPanel";
 import { StepItem } from "./StepItem";
 
 const stageNames: Record<WeekNumber, string> = { 1: "Idea", 2: "Build", 3: "Launch" };
-const stageDates: Record<WeekNumber, string> = { 1: "Dec 1 to 6", 2: "Dec 7 to 13", 3: "Dec 14 to 20" };
+const stageDates: Record<WeekNumber, string> = { 1: "Days 1 to 7", 2: "Days 8 to 14", 3: "Days 15 to 21" };
 
 export function WeekView({ week }: { week: WeekNumber }) {
   const content = getWeek(week)!;
@@ -25,8 +25,6 @@ export function WeekView({ week }: { week: WeekNumber }) {
   const done = content.steps.filter((st) => isStepDone(state, st.id)).length;
   const pts = content.steps.reduce((s, st) => (isStepDone(state, st.id) ? s + st.points : s), 0);
   const percent = totalPts ? Math.round((pts / totalPts) * 100) : 0;
-  const form = program.forms[content.formKey];
-  const discordReady = !isPlaceholder(program.discordInviteUrl);
 
   return (
     <div className="pl-shell py-10 lg:py-14">
@@ -128,13 +126,13 @@ export function WeekView({ week }: { week: WeekNumber }) {
         </div>
       </section>
 
-      {/* Turn in */}
+      {/* Wrap up: no group is running, so nothing is handed in. */}
       <section
         aria-labelledby="turn-in-heading"
         className="mt-14 grid gap-6 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10"
       >
         <div>
-          <Mono className="text-muted">Turn in · Week {week}</Mono>
+          <Mono className="text-muted">Wrap up · Week {week}</Mono>
           <h2 id="turn-in-heading" className="mt-3 font-heading text-[24px] font-medium leading-snug tracking-[-0.02em] text-txt">
             {content.turnIn.title}
           </h2>
@@ -146,28 +144,16 @@ export function WeekView({ week }: { week: WeekNumber }) {
               </li>
             ))}
           </ol>
-          <div className="mt-6 flex flex-wrap gap-2.5">
-            {discordReady ? (
-              <Button href={program.discordInviteUrl}>Open Discord</Button>
-            ) : (
-              <Mono className="text-muted">Invite link shared with the cohort</Mono>
-            )}
-          </div>
         </div>
         <div className="rounded-[14px] border border-line bg-panel2 p-5">
-          <Mono className="text-muted">Week {week} form</Mono>
+          <Mono className="text-muted">Nothing to hand in</Mono>
           <p className="mt-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-            Two minutes. It asks for your first name and last initial, what you finished, and where you got stuck. It opens in a
-            new tab and is hosted by Google Forms, outside this site.
+            There is no group running right now, so nothing is sent to anyone. Tick the last step once you have done it. Your
+            progress stays in this browser.
           </p>
-          {isPlaceholder(form) ? (
-            <Mono className="mt-4 block text-muted">Form link added before the pilot starts</Mono>
-          ) : (
-            <Button href={form} variant="quiet" className="mt-4 w-full">
-              Open the form
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-          )}
+          <Button to="/dashboard" variant="quiet" className="mt-4 w-full">
+            Open your dashboard
+          </Button>
         </div>
       </section>
 

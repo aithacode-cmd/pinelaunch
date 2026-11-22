@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Lock } from "lucide-react";
-import { Button } from "@/components/Button";
 import { Mono } from "@/components/Mono";
 import { WaitlistPanel } from "@/components/WaitlistPanel";
 import { Accent } from "@/components/home/Section";
@@ -25,24 +24,24 @@ const sections: { id: string; title: string; body: string[] }[] = [
     id: "accountability",
     title: "How it keeps students on track",
     body: [
-      "Three things do the work. Deadlines: each week has one job and a form at the end of it, so there is always a near, clear finish line. The group: students post what they made in the shared Discord channel each week, with a parent present, so progress is seen. The game layer: every step is worth points, five badges mark the milestones, and the dashboard shows the next step. Points and badges live in the student's own browser.",
-      "Nothing is graded. A student who falls behind is asked what got stuck, not told off.",
+      "Two things do the work. Small steps: each week has one job, broken into steps a student can finish in one sitting, so there is always a near, clear finish line. The game layer: every step is worth points, five badges mark the milestones, and the dashboard shows the next step. Points and badges live in the student's own browser.",
+      "The site is self-paced, with no group and no deadlines set by us. A parent asking what got finished this week helps more than anything on the screen. Nothing is graded.",
     ],
   },
   {
-    id: "dates",
-    title: "Dates",
+    id: "timing",
+    title: "Timing",
     body: [
-      "The pilot cohort runs from Tuesday December 1 to Sunday December 20, 2026, with 5 to 8 students.",
-      "Week 1 is December 1 to 6. Week 2 is December 7 to 13. Week 3 is December 14 to 20. Launch Day is Sunday December 20.",
+      "There is no fixed start date. A student can begin any day and work through the three weeks at their own pace. Week 1 is the idea, week 2 is the build, week 3 is testing and launch.",
+      "A small group pilot was planned for December 2026. It is not running. The full version of PineLaunch is being built instead, and the guides here stay open and free in the meantime.",
     ],
   },
   {
     id: "time",
     title: "Time commitment",
     body: [
-      "Plan for two to three hours a week. Most students work in two sittings of about an hour, plus a short form at the end of the week.",
-      "There are no scheduled video calls, so the work can fit around school and activities.",
+      "Plan for two to three hours a week. Most students work in two sittings of about an hour.",
+      "There are no scheduled calls, so the work can fit around school and activities.",
     ],
   },
   {
@@ -65,10 +64,9 @@ const sections: { id: string; title: string; body: string[] }[] = [
     id: "permission",
     title: "Parent permission",
     body: [
-      "A parent or guardian should agree before a student creates an account on Replit or Base44. Both allow users 13 and up with a parent's permission.",
-      "Please fill in the short parent permission form below, one per student, before the pilot starts. It takes three minutes and is kept by the founder's parent, then deleted after the pilot.",
-      "Keep payment cards off the student's accounts. Replit, Base44 and Discord all sell paid upgrades, and the program never needs one.",
-      "If you would like to see the program before your student starts, open the week pages together. Nothing is hidden and there is no cost at any point.",
+      "A parent or guardian should agree before a student creates an account on Replit, Base44 or ChatGPT. All three allow users 13 and up with a parent's permission.",
+      "Keep payment cards off the student's accounts. These services sell paid upgrades, and the program never needs one.",
+      "If you would like to see the program before your student starts, open the week pages together. Nothing is hidden and the guides are free.",
     ],
   },
   {
@@ -76,15 +74,15 @@ const sections: { id: string; title: string; body: string[] }[] = [
     title: "ChatGPT",
     body: [
       "Students use ChatGPT with short copy-paste prompts. The prompts are written to ask for hints and small steps, and each one says: do not write the code for me. The site itself has no AI built in.",
-      "ChatGPT is a separate service with its own account, terms and privacy policy. A student can finish the program without it, using the guides and the group chat alone.",
+      "ChatGPT is a separate service with its own account, terms and privacy policy. A student can finish the program without it, using the guides alone.",
     ],
   },
   {
-    id: "discord",
-    title: "Discord",
+    id: "no-chat",
+    title: "No group chat",
     body: [
-      "The cohort talks in a small private Discord server run by the founder. Because the founder is a minor, a parent of the founder is the responsible adult: that parent is in the server for the whole pilot, can see everything posted, and reads the contact inbox. Students keep all conversation in the shared channels and do not send private messages to each other. If a student ever shares something worrying, the parent follows a written plan and contacts the student's own parent.",
-      "Discord is a separate service with its own rules and safety settings, and it requires users to be 13 or older. We recommend the parent reviews those settings with the student before joining.",
+      "There is no chat, no messaging and no group on this site. Students work on their own and show their work to people they already know: a parent, a friend, a teacher.",
+      "An earlier plan included a private Discord server for the December pilot. The pilot is not running, so the site no longer links to it.",
     ],
   },
   {
@@ -97,11 +95,11 @@ const sections: { id: string; title: string; body: string[] }[] = [
   },
   {
     id: "after",
-    title: "After the pilot",
+    title: "What comes next",
     body: [
-      "Launch is level one. After the pilot, PineLaunch becomes a ladder: every month is a new level with its own missions, points and badges. Level 2, Grow, is about getting the project its first 10 real users. Level 3, Earn, is about its first dollar. Level 4 and up add a big feature or start project number two.",
+      "Launch is level one. The full version of PineLaunch, which is being built now, is a ladder: every month is a new level with its own missions, points and badges. Level 2, Grow, is about getting the project its first 10 real users. Level 3, Earn, is about its first dollar. Level 4 and up add a big feature or start project number two.",
       "Alongside the levels: a themed Challenge Drop each month with a leaderboard that resets each season, and a monthly Parent Report with what your teen shipped, the milestones hit and a link to the live project.",
-      "Two ways to pay, both after the pilot: a Build Pass (monthly, cancel any time) or a Season Pass (one payment for a season of about three months). Parents are the payers and payment accounts will be in a parent's name. Nothing is charged during the pilot, and none of this is built until it has had a legal review. If you want to hear about it first, the parent waitlist below asks for your email and nothing else.",
+      "Two ways to pay, once the full version opens: a Build Pass (monthly, cancel any time) or a Season Pass (one payment for a season of about three months). Parents are the payers and payment accounts will be in a parent's name. Nothing is charged today, this site takes no payments, and none of this opens until it has had a legal review. If you want to hear about it first, the parent waitlist below asks for your email and nothing else.",
     ],
   },
   {
@@ -115,10 +113,10 @@ const sections: { id: string; title: string; body: string[] }[] = [
     id: "privacy",
     title: "Privacy",
     body: [
-      "This site has no accounts, no analytics, and no tracking cookies. It asks for nothing and sends nothing. During the pilot no student data is collected beyond the first name and last initial on the weekly forms, and no payment of any kind exists.",
+      "This site has no accounts, no analytics, and no tracking cookies. It asks students for nothing and sends nothing. No payment of any kind exists.",
       "Everything a student types, including the Project Card, ticked steps and notes, is saved in their own browser under one local key. It never leaves the device. Clearing browser data or using a private window removes it.",
-      "The only information the founder receives comes from four short Google Forms: one at the end of each week and one on Launch Day. Each asks for a first name and last initial, nothing else identifying. Google Forms, Replit, Base44, ChatGPT and Discord each collect what their own policies describe. Those services are outside this site. The web host, Vercel, keeps ordinary access logs, as every host does.",
-      "Form answers and the Discord channels are deleted within 30 days after Launch Day. To have anything deleted sooner, email the contact on this page. The full privacy note is linked below.",
+      "There are no forms for students. The only form linked from this site is the parent waitlist, which asks for a parent's email and nothing about the student. Google Forms, Replit, Base44 and ChatGPT each collect what their own policies describe. Those services are outside this site. The web host, Vercel, keeps ordinary access logs, as every host does.",
+      "To have a waitlist email removed, email the contact on this page. The full privacy note is linked below.",
     ],
   },
 ];
@@ -134,8 +132,9 @@ export default function ParentsPage() {
           A small, free program with a <Accent>real finished project</Accent>.
         </h1>
         <p className="mt-5 font-body text-[15.5px] leading-[1.7] text-txt2">
-          PineLaunch is a three-week pilot for high school students, run by a high school student with his parents&apos; support.
-          This page covers what your student does, what it takes, and what stays private.
+          PineLaunch is a free three-week program for high school students, built and run by a high school student with his
+          parents&apos; support. Students work through it at their own pace. This page covers what your student does, what it
+          takes, and what stays private.
         </p>
       </div>
 
@@ -161,7 +160,7 @@ export default function ParentsPage() {
                 {email}
               </a>
             ) : (
-              <Mono className="mt-2 block text-muted">Email added before the pilot starts</Mono>
+              <Mono className="mt-2 block text-muted">Email added soon</Mono>
             )}
             <p className="mt-2 font-body text-[12.5px] leading-[1.6] text-muted">A parent reads that inbox as well.</p>
           </div>
@@ -182,32 +181,14 @@ export default function ParentsPage() {
               ))}
             </section>
           ))}
-          <section id="permission-form" className="mt-10 scroll-mt-32 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <Mono className="text-muted">Parent permission form</Mono>
-                <p className="mt-3 max-w-[46ch] font-body text-[14px] leading-[1.65] text-txt2">
-                  One per student, filled in by a parent or guardian. Three minutes. It opens in a new tab and is hosted by
-                  Google Forms, outside this site. No Google sign-in is needed.
-                </p>
-              </div>
-              {isPlaceholder(program.forms.parentPermission) ? (
-                <Mono className="text-muted">Form link added before the pilot starts</Mono>
-              ) : (
-                <Button href={program.forms.parentPermission} className="shrink-0">
-                  Open the permission form
-                </Button>
-              )}
-            </div>
-          </section>
-          <div id="waitlist" className="mt-6 scroll-mt-32">
+          <div id="waitlist" className="mt-10 scroll-mt-32">
             <WaitlistPanel />
           </div>
           <div className="mt-6 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />
             <p className="font-body text-[13.5px] leading-[1.7] text-txt2">
-              This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT, Discord and Google Forms
-              are separate services, each with their own rules and privacy policies. Full details:{" "}
+              This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT and Google Forms are
+              separate services, each with their own rules and privacy policies. Full details:{" "}
               <Link href="/privacy" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
                 the privacy note
               </Link>

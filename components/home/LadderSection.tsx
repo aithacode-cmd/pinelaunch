@@ -5,10 +5,10 @@ import { SectionFrame } from "./Section";
 
 const heights = ["h-[84px]", "h-[124px]", "h-[164px]", "h-[204px]"];
 
-/** After the pilot: the Level Ladder, drawn as four rising steps, plus the plans and the parent waitlist. */
+/** What comes next: the Level Ladder, drawn as four rising steps, plus the plans and the parent waitlist. */
 export function LadderSection() {
   return (
-    <SectionFrame id="after" index="05" label="After the pilot" tone="deep">
+    <SectionFrame id="after" index="05" label="What comes next" tone="deep">
       <Mono className="text-pine-hi">{next.label}</Mono>
       <h2 className="mt-4 max-w-[20ch] font-display text-[32px] font-extrabold leading-[1.02] tracking-[-0.03em] text-txt sm:text-[40px] lg:text-[52px]">
         Launch is level one.

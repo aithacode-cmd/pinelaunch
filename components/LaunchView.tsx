@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { program, isPlaceholder } from "@/config/program";
 import { launch } from "@/content";
 import { useProgress } from "@/lib/progress";
 import { fillPlaceholders } from "@/lib/fill";
@@ -14,8 +13,6 @@ export function LaunchView() {
   const [checked, setChecked] = useState<Record<number, boolean>>({});
   const template = fillPlaceholders(launch.postTemplate, state.card);
   const checkedCount = launch.checklist.filter((_, i) => checked[i]).length;
-  const form = program.forms.finalFeedback;
-  const discordReady = !isPlaceholder(program.discordInviteUrl);
 
   return (
     <div className="pl-shell py-12 lg:py-20">
@@ -102,15 +99,10 @@ export function LaunchView() {
           <p className="mt-5 font-body text-[13px] leading-[1.65] text-muted">
             Then tick the last step on the Week 3 page to earn the Launched badge.
           </p>
-          {discordReady && (
-            <Button href={program.discordInviteUrl} variant="quiet" className="mt-5">
-              Open Discord
-            </Button>
-          )}
         </div>
         <div className="rounded-[14px] border border-line2 bg-panel p-5">
           <div className="flex items-center justify-between gap-3">
-            <Mono className="text-muted">Post template</Mono>
+            <Mono className="text-muted">Message template</Mono>
             <CopyButton text={template} className="h-8 px-3 text-[12px]" />
           </div>
           <pre className="mt-4 whitespace-pre-wrap break-words font-mono text-[11.5px] leading-[1.8] text-txt2">{template}</pre>
@@ -120,21 +112,16 @@ export function LaunchView() {
       <section className="mt-14 rounded-[20px] border border-line2 bg-panel p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <Mono className="text-muted">Final feedback</Mono>
+            <Mono className="text-muted">After you launch</Mono>
             <div className="pl-prose mt-3 max-w-[46ch] font-body text-[14px] leading-[1.65] text-txt2">
               {launch.afterLaunch.map((p) => (
                 <p key={p}>{p}</p>
               ))}
-              <p>It asks for your first name and last initial, then your honest opinion. It opens in a new tab and is hosted by Google Forms, outside this site.</p>
             </div>
           </div>
-          {isPlaceholder(form) ? (
-            <Mono className="text-muted">Form link added before the pilot starts</Mono>
-          ) : (
-            <Button href={form} className="shrink-0">
-              Open the final form
-            </Button>
-          )}
+          <Button to="/dashboard" variant="outline" className="shrink-0">
+            Back to your dashboard
+          </Button>
         </div>
       </section>
     </div>
