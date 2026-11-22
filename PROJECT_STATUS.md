@@ -2,6 +2,12 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
+## Direction change (2026-11-21, planning only, nothing built)
+
+The founder decided to turn PineLaunch into a paid business and to skip the December school pilot. Target product: a hybrid web app with accounts, fully automated, a built-in AI coach, free Level 1 and paid Level 2+ (parents pay, $15 to $30 a month), US teens 13 to 17, showcase only, parent-owned company, private beta then launch in about 3 to 5 months. Details: `Second Brain/raw/2026-11-21-pinelaunch-business-direction.md`. He is getting a second opinion from another AI first.
+
+Until a new product is planned and has had a legal review, every rule in CLAUDE.md still applies to this repo: static, no accounts, no data, no AI calls. Open item: the live site still advertises the free December 1 to 20 pilot and the parent permission form; it needs new wording once he decides what replaces the pilot.
+
 ## Home page v2 (2026-11-18, live)
 
 Ported from the approved Framer direction, commit 45b660b, pushed to main (Vercel deploys from it).
