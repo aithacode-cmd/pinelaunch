@@ -11,6 +11,7 @@ import { CopyButton } from "./CopyButton";
 import { ImportProgress } from "./ImportProgress";
 import { Mono } from "./Mono";
 import { ProjectCardView } from "./ProjectCardView";
+import { StartGate } from "./StartGate";
 
 const typeOptions: { value: ProjectType; label: string; hint: string }[] = [
   { value: "app", label: "App", hint: "Handy on a phone" },
@@ -143,6 +144,15 @@ export function IdeaPicker() {
     return (
       <div className="pl-shell py-24">
         <Mono className="text-muted">Opening the idea picker…</Mono>
+      </div>
+    );
+  }
+  // The start check comes first: age group, and for 13 to 17 a parent saying yes.
+  // Anyone who already has a card started before the check existed and is not asked.
+  if (!progress.state.start && !progress.state.card) {
+    return (
+      <div className="pl-shell py-12 lg:py-20">
+        <StartGate onPass={progress.setStart} />
       </div>
     );
   }

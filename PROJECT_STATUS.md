@@ -2,6 +2,23 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
+## Start check and "What comes after Launch Day" page (2026-11-22, committed, NOT pushed)
+
+Built from a brief the founder pasted on 2026-11-22. The brief was written for the December pilot, which was dropped on 2026-11-21, so only the parts that fit the current site were built.
+
+Built and tested (lint, types, static build, browser at desktop and 375 px):
+
+- **Start check before the idea picker** (`components/StartGate.tsx`, wired in `components/IdeaPicker.tsx`). Step 1: under 13, 13 to 17, or 18 or older. Under 13 gets "Sorry, PineLaunch is for ages 13 and up." and is remembered until the tab closes. Step 2 (13 to 17 only): a required tick that a parent or guardian agrees, with a link to the parents page. 18 or older skips step 2. Saved as `start` in the same browser key; nothing is sent. Students who already have a card are not asked. Privacy note updated.
+- **`/next`**, a parent-facing page: the Level Ladder, the three parts of the subscription (ladder, monthly Parent Report, monthly Challenge Drops), how paying will work, a "Reserve a spot" button to the existing parent waitlist form, and the full college note. No price is shown. Linked from the footer, the home ladder section and the parents page. The college note now lives once in `content/next.ts` (`collegeNote`).
+
+Not built, waiting on the founder:
+
+- **Parent name and parent email.** Not collected. Typing them into this static site would send them nowhere, and storing them needs a place to store them. Simplest option if he wants it: re-link the existing Google parent permission form (it already asks for the parent's and the student's first name and last initial plus a yes) from step 2 of the start check. That brings back a form about students, which was removed on 2026-11-21, so it needs his OK and ideally his uncle's.
+- **"Would you pay $29/month?" on the waitlist form.** Not added. His test price is fixed at $20 and is asked in person (2026-11-22 decision). If he wants the form question, it should say $20, and he has to edit the Google Form himself.
+- **Pushing.** Committed locally only. Putting it on the live site needs his yes (app playbook, Launch mode).
+
+Playbook position: step 2 (check before building). The $0 test has not started. This work is static and stores nothing, so it does not count as paid-app code.
+
 ## Direction change (2026-11-21, planning only, nothing built)
 
 The founder decided to turn PineLaunch into a paid business and to skip the December school pilot. Target product: a hybrid web app with accounts, fully automated, a built-in AI coach, free Level 1 and paid Level 2+ (parents pay, $15 to $30 a month), US teens 13 to 17, showcase only, parent-owned company, private beta then launch in about 3 to 5 months. Details: `Second Brain/raw/2026-11-21-pinelaunch-business-direction.md`. He is getting a second opinion from another AI first.

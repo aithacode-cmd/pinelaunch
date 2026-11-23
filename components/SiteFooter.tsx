@@ -16,6 +16,7 @@ const programLinks = [
   { label: "Launch Day", href: "/launch" },
   { label: "Prompts", href: "/prompts" },
   { label: "For parents", href: "/parents" },
+  { label: "After Launch Day", href: "/next" },
   { label: "Privacy note", href: "/privacy" },
 ];
 const facts = ["Static site", "No accounts", "No tracking", "Browser storage only"];

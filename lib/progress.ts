@@ -25,6 +25,7 @@ import {
   saveProgress,
   type ProgressState,
   type ProjectCard,
+  type StartCheck,
 } from "./storage";
 
 /** Checking the idea picker step happens automatically when a card is saved. */
@@ -132,6 +133,8 @@ export interface UseProgress {
   /** False when the last save failed (storage blocked). */
   storageOk: boolean;
   setCard: (card: ProjectCard) => void;
+  /** Records that the start check (age group, parent says yes) was passed. */
+  setStart: (ageGroup: StartCheck["ageGroup"]) => void;
   setStepDone: (stepId: string, done: boolean) => void;
   unlockExample: (stepId: string, whatTried: string) => void;
   getExportCode: () => string | null;
@@ -154,6 +157,10 @@ export function useProgress(): UseProgress {
       card,
       steps: { ...prev.steps, [IDEA_PICKER_STEP_ID]: prev.steps[IDEA_PICKER_STEP_ID] ?? new Date().toISOString() },
     }));
+  }, []);
+
+  const setStart = useCallback((ageGroup: StartCheck["ageGroup"]) => {
+    update((prev) => ({ ...prev, start: { ageGroup, parentOk: true, at: new Date().toISOString() } }));
   }, []);
 
   const setStepDone = useCallback((stepId: string, done: boolean) => {
@@ -185,5 +192,5 @@ export function useProgress(): UseProgress {
     emit();
   }, []);
 
-  return { ready, state, storageOk, setCard, setStepDone, unlockExample, getExportCode, importFromCode, reset };
+  return { ready, state, storageOk, setCard, setStart, setStepDone, unlockExample, getExportCode, importFromCode, reset };
 }

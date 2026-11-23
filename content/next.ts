@@ -66,6 +66,36 @@ export const next = {
     notYet: "Waitlist opens soon",
   },
 
+  /** The parent-facing "What's next" page (app/next/page.tsx). */
+  page: {
+    title: "What comes after Launch Day.",
+    lead: "Launch is level one. The full version of PineLaunch is a monthly subscription, paid by a parent, that keeps a teen building after the first project is live. It is being built now. Nothing on this page can be bought yet.",
+    parts: [
+      {
+        name: "The Level Ladder",
+        line: "Every month is a new level with its own missions, points and badges: grow the project to its first 10 real users, earn its first dollar, then add a big feature or start project number two.",
+      },
+      {
+        name: "A monthly Parent Report",
+        line: "Once a month, the parent gets what their teen shipped, the milestones hit, and a link to the live project.",
+      },
+      {
+        name: "Monthly Challenge Drops",
+        line: "A new themed build challenge every month, with a leaderboard that resets each season.",
+      },
+    ],
+    reserveButton: "Reserve a spot",
+    reserveNote:
+      "This puts you on the parent waitlist. No payment and no commitment. It asks for your email and nothing about your teen.",
+  },
+
+  /**
+   * The college note. Parent-facing pages only, and always shown in full
+   * wherever college is mentioned (see CLAUDE.md).
+   */
+  collegeNote:
+    "A finished, launched project can be a great thing for your teen to talk about in college applications. But it should never be the only thing an application rests on. Admissions decisions depend on many factors, PineLaunch has no connection to any college, and we make no promises about admissions results. Your teen's success is not tied to PineLaunch. The goal is for them to build something real and learn how they did it.",
+
   /** Shown on the dashboard when every step is ticked. */
   finish: {
     title: "Next up: Level 2 – Grow",

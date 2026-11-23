@@ -25,9 +25,23 @@ export interface ProjectCard {
   createdAt: string;
 }
 
+/**
+ * The answers from the start check (age group, parent says yes). Saved in
+ * the browser only, like everything else here. It holds no name, no email
+ * and no birthday: just which age group was picked and that the box was ticked.
+ */
+export interface StartCheck {
+  ageGroup: "13-17" | "18+";
+  /** True for 13 to 17 once the parent box is ticked. Always true for 18+. */
+  parentOk: boolean;
+  at: string;
+}
+
 export interface ProgressState {
   version: typeof STATE_VERSION;
   card: ProjectCard | null;
+  /** Null until the start check has been passed. */
+  start: StartCheck | null;
   /** step id -> ISO timestamp when checked */
   steps: Record<string, string>;
   /** step id -> what the student wrote when unlocking the example */
@@ -39,6 +53,7 @@ export function emptyState(): ProgressState {
   return {
     version: STATE_VERSION,
     card: null,
+    start: null,
     steps: {},
     examples: {},
     updatedAt: new Date().toISOString(),
@@ -79,6 +94,17 @@ export function normalizeState(raw: unknown): ProgressState | null {
         features: [features[0] ?? "", features[1] ?? "", features[2] ?? ""],
         tool,
         createdAt: typeof c.createdAt === "string" ? c.createdAt : new Date().toISOString(),
+      };
+    }
+  }
+
+  if (r.start && typeof r.start === "object") {
+    const s = r.start as Record<string, unknown>;
+    if ((s.ageGroup === "13-17" || s.ageGroup === "18+") && s.parentOk === true) {
+      state.start = {
+        ageGroup: s.ageGroup,
+        parentOk: true,
+        at: typeof s.at === "string" ? s.at : new Date().toISOString(),
       };
     }
   }

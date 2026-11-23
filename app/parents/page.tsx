@@ -5,6 +5,7 @@ import { Mono } from "@/components/Mono";
 import { WaitlistPanel } from "@/components/WaitlistPanel";
 import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
+import { next } from "@/content/next";
 
 export const metadata: Metadata = {
   title: "For parents",
@@ -105,9 +106,7 @@ const sections: { id: string; title: string; body: string[] }[] = [
   {
     id: "college",
     title: "A note about college",
-    body: [
-      "A finished, launched project can be a great thing for your teen to talk about in college applications. But it should never be the only thing an application rests on. Admissions decisions depend on many factors, PineLaunch has no connection to any college, and we make no promises about admissions results. Your teen's success is not tied to PineLaunch. The goal is for them to build something real and learn how they did it.",
-    ],
+    body: [next.collegeNote],
   },
   {
     id: "privacy",
@@ -183,6 +182,13 @@ export default function ParentsPage() {
           ))}
           <div id="waitlist" className="mt-10 scroll-mt-32">
             <WaitlistPanel />
+            <p className="mt-3 font-body text-[13.5px] leading-[1.7] text-txt2">
+              The plan in one place:{" "}
+              <Link href="/next" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+                what comes after Launch Day
+              </Link>
+              .
+            </p>
           </div>
           <div className="mt-6 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />

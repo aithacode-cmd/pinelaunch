@@ -58,6 +58,12 @@ export default function PrivacyPage() {
           Clearing browser data removes it.
         </>,
         <>
+          Before the idea picker, the site asks one question: under 13, 13 to 17, or 18 or older. For 13 to 17 it also asks
+          the student to tick a box saying a parent or guardian agrees. It does not ask for a birthday, a name or an email.
+          The answer is saved in the same browser key and is not sent to us. If the answer is under 13, the site remembers
+          that only until the tab is closed, and saves nothing else.
+        </>,
+        <>
           The site is hosted on Vercel. Like every web host, Vercel records basic access logs when a page is opened,
           including the visitor&apos;s IP address and approximate location, under Vercel&apos;s own privacy notice. We do not
           look at or export those logs.

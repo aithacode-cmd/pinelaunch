@@ -61,6 +61,11 @@ data still need a fresh review (see `ROADMAP.md`).
   See `lib/storage.ts`.
 - No student information goes anywhere. The one form linked from the site
   is the parent waitlist (a parent's email, nothing about the student).
+- The start check (`components/StartGate.tsx`, shown before the idea picker
+  when there is no card yet) asks an age group and, for 13 to 17, a tick that
+  a parent agrees. It saves only `start: { ageGroup, parentOk, at }` in the
+  same browser key. Under 13 is refused and remembered in `sessionStorage`
+  until the tab closes. No parent name or email is collected anywhere.
 - `/app/api` exists but is empty on purpose (see its README). Adding a route
   there breaks the static export.
 - Do not add anything that sends data off the device without checking
@@ -77,7 +82,7 @@ data still need a fresh review (see `ROADMAP.md`).
 | Points, badges, next step, the `useProgress` hook | `lib/progress.ts` |
 | Week status and countdown | `lib/dates.ts` |
 | `{{placeholder}}` filling from the Project Card | `lib/fill.ts` |
-| Pages | `app/` (home, parents, dashboard, start, week/[week], prompts, launch) |
+| Pages | `app/` (home, parents, next, privacy, dashboard, start, week/[week], prompts, launch) |
 | UI pieces | `components/` |
 | Google Forms creation script and instructions | `scripts/create-forms.gs`, `scripts/README.md` |
 
@@ -107,8 +112,9 @@ The guides and prompts must not hand students finished code up front.
 - Milestone points only. No streaks, daily rewards, time-spent rewards,
   notifications, or leaderboards in v1.
 - Student-facing pages stay focused on building and never pitch college.
-  College is mentioned only on parent-facing pages (the parents page), and
-  always together with the college note in `app/parents/page.tsx`: a
+  College is mentioned only on parent-facing pages (the parents page and
+  `/next`), and always together with the full college note, which lives in
+  `content/next.ts` as `collegeNote`: a
   launched project can be good to talk about, admissions depend on many
   factors, PineLaunch has no connection to any college and promises nothing.
 - This site takes no payments and has no accounts. Plans for the full
