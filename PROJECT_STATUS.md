@@ -2,7 +2,7 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
-## Start check and "What comes after Launch Day" page (2026-11-22, committed, NOT pushed)
+## Start check and "What comes after Launch Day" page (2026-11-22, live)
 
 Built from a brief the founder pasted on 2026-11-22. The brief was written for the December pilot, which was dropped on 2026-11-21, so only the parts that fit the current site were built.
 
@@ -15,7 +15,7 @@ Not built, waiting on the founder:
 
 - **Parent name and parent email.** Not collected. Typing them into this static site would send them nowhere, and storing them needs a place to store them. Simplest option if he wants it: re-link the existing Google parent permission form (it already asks for the parent's and the student's first name and last initial plus a yes) from step 2 of the start check. That brings back a form about students, which was removed on 2026-11-21, so it needs his OK and ideally his uncle's.
 - **"Would you pay $29/month?" on the waitlist form.** Not added. His test price is fixed at $20 and is asked in person (2026-11-22 decision). If he wants the form question, it should say $20, and he has to edit the Google Form himself.
-- **Pushing.** Committed locally only. Putting it on the live site needs his yes (app playbook, Launch mode).
+- Pushed on 2026-11-22 after his "Yes, push it" (commit e11e9c3). Checked on the live site: /next loads and /start shows the age question.
 
 Playbook position: step 2 (check before building). The $0 test has not started. This work is static and stores nothing, so it does not count as paid-app code.
 
