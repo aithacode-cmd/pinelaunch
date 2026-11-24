@@ -1,4 +1,33 @@
-# PineLaunch roadmap: from pilot to business
+# PineLaunch roadmap
+
+## Current plan: V1 workspace and closed beta (decided 2026-11-23)
+
+The plan is the founder's master prompt of 2026-11-23. Ten weeks, November 23, 2026 to January 31, 2027.
+
+| Week | Dates | Work | Result |
+|---|---|---|---|
+| 1 | Nov 23 to 29 | Audit, app structure, design foundation, idea intake, project data model | A student can enter and review an idea (done) |
+| 2 | Nov 30 to Dec 6 | Provider pick, AI endpoint, access codes and usage count, scope reducer, milestone map | A personal four-week plan from a real idea |
+| 3 | Dec 7 to 13 | Starter generator, closed-beta deployment on parent-owned paid hosting, parent disclosure reviewed and sent | Live, private, parent-approved by Dec 13 |
+| 4 | Dec 14 to 20 | Students start intake and plans Dec 14. Editor, sandboxed preview, storage bridge, error strip, autosave | Workspace ready by Dec 20 |
+| 5 | Dec 21 to 27 | Students start building Dec 21. Basic AI mentor | Basic mentor live by Dec 27 |
+| 6 | Dec 28 to Jan 3 | Hint-first behavior, attempt gate, rate-limit polish, safety checks | Full mentor experience |
+| 7 | Jan 4 to 10 | ZIP export, README, completion checklist | Students can take projects with them |
+| 8 | Jan 11 to 17 | Design polish, accessibility, end-to-end testing, fixes from helper review | Stable beta |
+| 9 | Jan 18 to 24 | Beta support, fix what students actually hit | Fix list from real use |
+| 10 | Jan 25 to 31 | Final fixes, regression tests, final interviews, parent price test | Beta evaluation and a launch-readiness recommendation |
+
+Gate before December 14: if deployment, the endpoint, access codes or parent permission are not ready, say so by December 10 and recommend the smallest delay.
+
+Pass mark: at least 3 of 4 students finish and export a working project, and all four parents get a real purchase offer for the next round.
+
+Everything not in V1 is listed in `docs/PRE_PUBLIC_LAUNCH.md`.
+
+---
+
+# Superseded: the earlier roadmap (pilot, subscriptions, accounts)
+
+Kept for history. The V1 plan above replaces it. Do not build from this section.
 
 The pilot (v1) proves that a small group of students can finish and launch a
 project in three weeks with this structure. Everything below waits until the

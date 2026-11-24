@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
 import { program } from "@/config/program";
-import { Background } from "@/components/Background";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
-import { Ticker } from "@/components/Ticker";
 import "./globals.css";
 
 // Self-hosted at build time by Next.js, so visits never call Google Fonts.
@@ -54,21 +50,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`h-full ${display.variable} ${heading.variable} ${body.variable} ${mono.variable} ${serif.variable}`}
     >
-      <body className="relative flex min-h-full flex-col">
-        <Background />
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-panel3 focus:px-3 focus:py-2"
-        >
-          Skip to content
-        </a>
-        <Ticker />
-        <SiteHeader />
-        <main id="main" className="relative flex-1">
-          {children}
-        </main>
-        <SiteFooter />
-      </body>
+      {/* The header, footer and background live in app/(site)/layout.tsx.
+          The studio in app/(studio) has its own frame. */}
+      <body className="relative flex min-h-full flex-col">{children}</body>
     </html>
   );
 }

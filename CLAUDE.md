@@ -2,6 +2,50 @@
 
 Read this first. It is enough to work on the project cold.
 
+## V1 workspace (current work, branch `v1-workspace`, started 2026-11-23)
+
+PineLaunch is becoming one browser workspace where a teenager turns their own
+idea into a working HTML, CSS and JavaScript project: Idea, Plan, Starter,
+Workspace, Finish. The founder's spec is his master prompt of 2026-11-23, in
+his Second Brain at `raw/2026-11-23-pinelaunch-v1-master-prompt.md`. Read it
+before any V1 work. Decisions are in `docs/DECISIONS.md`; deferred work is in
+`docs/PRE_PUBLIC_LAUNCH.md`; progress is in `PROJECT_STATUS.md`.
+
+Hard rules from the spec (they override the older sections below wherever
+they conflict, but only for the studio):
+
+- No student accounts. No project storage on any server. Projects live in
+  the browser (IndexedDB) and in exported files.
+- One server-side AI endpoint only, behind access codes, added in Week 2.
+  API keys never reach the browser and are never printed, logged or
+  committed. The only server-side record is the access-code usage ledger.
+- Desktop and laptop only. Under 1024px the studio shows a "works on a
+  computer" screen.
+- Adult-only tasks (hosting account, AI account, keys, spending limit,
+  deployment approval, parent disclosures): stop and tell the founder what
+  the parent has to do. Never deploy anything students can reach first.
+- Build in the order of the spec's timeline. No scope growth without the
+  founder's yes. A feature that only looks finished is not finished: test
+  the real flow in a browser.
+- Stay on `v1-workspace`. Do not push or merge without the founder's yes.
+
+Where the V1 code lives:
+
+| What | Where |
+|------|-------|
+| The studio page (unlisted, no-index) | `app/(studio)/studio/page.tsx` |
+| Studio shell, stage rail, idea intake | `components/studio/` |
+| Project record, stages, idea rules | `lib/studio/project.ts` |
+| Browser storage (IndexedDB) | `lib/studio/db.ts` |
+| Load and autosave hook | `lib/studio/useProject.ts` |
+| Logic tests (`npm test`) | `lib/studio/*.test.ts` |
+| Public pages, with header and footer | `app/(site)/`, `components/SiteChrome.tsx` |
+
+The sections below describe the older public site. Much of it is obsolete
+under V1 (week guides, copy-paste prompts, Replit and Base44, points, the
+subscription page) but nothing has been deleted: removing it needs the
+founder's approval.
+
 ## What PineLaunch is
 
 A free three-week online program where high school students (13 to 17) each
@@ -160,6 +204,7 @@ npm install
 npm run dev          # http://localhost:3000
 npm run lint
 npx tsc --noEmit
+npm test             # logic tests (Vitest)
 npm run build        # writes the static site to /out
 ```
 

@@ -1,6 +1,45 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
+Last updated: 2026-11-23 (V1 Week 1 built on branch `v1-workspace`, not pushed, not deployed).
+
+## V1 workspace: Week 1 (November 23 to 29, 2026)
+
+Spec: the founder's master prompt of 2026-11-23. Decisions: `docs/DECISIONS.md`. Deferred: `docs/PRE_PUBLIC_LAUNCH.md`. The live site on `main` is unchanged.
+
+**Week 1 result, met:** a student can enter and review an idea, and it survives a reload.
+
+Done:
+
+- Repository audit and plan (in the founder's Second Brain, `output/pinelaunch/v1-audit-2026-11-23.md`).
+- App structure: `app/(site)` for public pages, `app/(studio)` for the workspace. URLs unchanged.
+- The studio at `/studio`: top bar, five-stage rail (Idea, Plan, Starter, Workspace, Finish), one main panel. Unlisted and no-index.
+- Idea intake: five questions, one at a time, with a personal-information reminder on every step, a review screen with Change links, and a confirm button. Ctrl + Enter continues.
+- Project data model with a schema version, saved in IndexedDB. Typing saves after a short pause; choices and confirmations save at once. The indicator reads "Saved on this device".
+- Later stages show what they will be and what has to be finished first.
+- Under 1024px: the "PineLaunch works on a computer" screen.
+- 26 logic tests (`npm test`). Lint, type check and build pass.
+
+Tested in a browser at 1280 wide: too-short answer is refused, all five questions, reload in the middle, change an answer from the review, confirm, reload, rail states, later-stage screens, the narrow-screen message, and the old site pages and 404 page after the regrouping. Two bugs found and fixed (decisions D9 and D10).
+
+Not done yet, by design: no AI, no access codes, no deployment. Plan, Starter, Workspace and Finish are descriptions only.
+
+Known limits:
+
+- One project per browser. No "start over".
+- A change made in the last instant before closing the tab can be lost.
+- Editing a confirmed idea is allowed. Once plans exist (Week 2) that must warn that the plan needs regenerating.
+- Tested in one Chromium browser only so far. Firefox and Edge checks come with the browser test suite in Week 4.
+- `npm audit` shows 7 moderate advisories in development-only packages; 0 in what ships.
+
+Risk raised with the founder: students start building December 21 but ZIP export is scheduled for January 10, so for three weeks their work exists only in the browser. Suggested: move a minimal export forward to Week 4.
+
+Adult tasks due next (spec Part 4): four families asked for a yes in principle by November 29; AI provider account with a hard spending limit, and the key entered locally, by November 30.
+
+Next (Week 2, November 30 to December 6): provider pick, the AI endpoint, access codes and the usage count, the scope reducer and the milestone map.
+
+---
+
+Everything below describes the older public site on `main`.
 
 ## Start check and "What comes after Launch Day" page (2026-11-22, live)
 
