@@ -6,6 +6,7 @@ import type { Step } from "@/content/types";
 import { findPrompt } from "@/content";
 import type { ProjectCard } from "@/lib/storage";
 import { fillPlaceholders } from "@/lib/fill";
+import { Burst } from "./Burst";
 import { ExampleLock } from "./ExampleLock";
 import { Mono } from "./Mono";
 import { PromptPanel } from "./PromptPanel";
@@ -38,9 +39,14 @@ export function StepItem({ step, number, isNext, done, card, unlockedExample, on
   }
   // Collapse when the step gets ticked (state derived during render, not in an effect).
   const [prevDone, setPrevDone] = useState(done);
+  // A short star burst marks the tick; it is keyed so it replays on each tick.
+  const [bursts, setBursts] = useState(0);
   if (done !== prevDone) {
     setPrevDone(done);
-    if (done) setOpen(false);
+    if (done) {
+      setOpen(false);
+      setBursts((b) => b + 1);
+    }
   }
   const id = `step-${step.id}`;
   const prompts = (step.promptIds ?? []).map(findPrompt).filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -48,7 +54,7 @@ export function StepItem({ step, number, isNext, done, card, unlockedExample, on
   return (
     <li
       className={
-        "relative rounded-[12px] border transition-colors duration-200 " +
+        "relative rounded-[22px] border transition-colors duration-200 " +
         (isNext ? "border-line-2 bg-surface shadow-[0_1px_2px_rgba(31,48,56,0.05)]" : "border-transparent")
       }
     >
@@ -62,11 +68,12 @@ export function StepItem({ step, number, isNext, done, card, unlockedExample, on
           >
             <span
               className={
-                "mt-px flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] transition-colors duration-150 " +
+                "relative mt-px flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[6px] border-[1.5px] transition-colors duration-150 " +
                 (done ? "border-accent bg-accent" : "border-line-3 bg-surface")
               }
             >
               {done && <Check className="h-3.5 w-3.5 text-on-accent" strokeWidth={3.5} />}
+              {done && bursts > 0 && <Burst key={bursts} />}
             </span>
             <span className="min-w-0">
               <Mono className={"block " + (isNext ? "text-accent" : "text-ink-3")}>
@@ -92,7 +99,7 @@ export function StepItem({ step, number, isNext, done, card, unlockedExample, on
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls={`${id}-body`}
-            className="pl-press inline-flex min-h-11 items-center gap-1.5 rounded-[8px] px-3 font-body text-[14px] font-medium text-ink-2 hover:bg-surface-2 hover:text-ink"
+            className="pl-press inline-flex min-h-11 items-center gap-1.5 rounded-[12px] px-3 font-body text-[14px] font-medium text-ink-2 hover:bg-surface-2 hover:text-ink"
           >
             {open ? "Hide" : "Show"}
             <ChevronDown

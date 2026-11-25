@@ -38,7 +38,7 @@ export function ExampleLock({ stepId, example, card, unlockedText, onUnlock }: P
 
   if (unlockedText !== undefined) {
     return (
-      <div className="rounded-[10px] border border-line-2 bg-surface-2 p-4">
+      <div className="rounded-[16px] border border-line-2 bg-surface-2 p-4">
         <div className="flex items-center gap-2">
           <LockOpen className="h-3.5 w-3.5 text-ink-2" aria-hidden="true" />
           <Mono className="text-ink-2">Example · unlocked</Mono>
@@ -54,7 +54,7 @@ export function ExampleLock({ stepId, example, card, unlockedText, onUnlock }: P
   }
 
   return (
-    <div className="rounded-[10px] border border-line-2 bg-surface-2 p-4">
+    <div className="rounded-[16px] border border-line-2 bg-surface-2 p-4">
       <div className="flex items-center gap-2">
         <Lock className="h-3.5 w-3.5 text-ink-3" aria-hidden="true" />
         <Mono className="text-ink-3">Locked example</Mono>

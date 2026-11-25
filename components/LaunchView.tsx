@@ -22,7 +22,7 @@ export function LaunchView() {
       </h1>
       <p className="mt-4 max-w-[54ch] font-body text-[17px] leading-[1.65] text-ink-2">{launch.lead}</p>
 
-      <section className="mt-12 grid gap-6 rounded-[12px] border border-line-2 bg-surface p-6 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-12">
+      <section className="mt-12 grid gap-6 rounded-[22px] border border-line-2 bg-surface p-6 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-12">
         <div>
           <Mono className="text-ink-3">What counts as launched</Mono>
           <h2 className="mt-3 font-heading text-[24px] font-medium leading-snug tracking-[-0.02em] text-ink">{launch.counts.title}</h2>
@@ -100,7 +100,7 @@ export function LaunchView() {
             Then tick the last step on the Week 3 page to earn the Launched badge.
           </p>
         </div>
-        <div className="rounded-[10px] border border-line-2 bg-surface p-5">
+        <div className="rounded-[16px] border border-line-2 bg-surface p-5">
           <div className="flex items-center justify-between gap-3">
             <Mono className="text-ink-3">Message template</Mono>
             <CopyButton text={template} className="h-8 px-3 text-[12px]" />
@@ -109,7 +109,7 @@ export function LaunchView() {
         </div>
       </section>
 
-      <section className="mt-14 rounded-[12px] border border-line-2 bg-surface p-6 sm:p-8">
+      <section className="mt-14 rounded-[22px] border border-line-2 bg-surface p-6 sm:p-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <Mono className="text-ink-3">After you launch</Mono>

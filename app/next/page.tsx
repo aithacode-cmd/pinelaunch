@@ -46,7 +46,7 @@ export default function NextPage() {
         </h2>
         <ul className="mt-6 grid gap-3 lg:grid-cols-3">
           {page.parts.map((p) => (
-            <li key={p.name} className="rounded-[12px] border border-line bg-surface p-5 sm:p-6">
+            <li key={p.name} className="rounded-[22px] border border-line bg-surface p-5 sm:p-6">
               <p className="font-body text-[17px] font-semibold text-ink">{p.name}</p>
               <p className="mt-2 font-body text-[16px] leading-[1.65] text-ink-2">{p.line}</p>
             </li>
@@ -75,7 +75,7 @@ export default function NextPage() {
       <section
         id="reserve"
         aria-labelledby="reserve-heading"
-        className="mt-14 scroll-mt-32 rounded-[12px] border border-line-2 bg-surface p-6 sm:p-8"
+        className="mt-14 scroll-mt-32 rounded-[22px] border border-line-2 bg-surface p-6 sm:p-8"
       >
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div className="max-w-[52ch]">

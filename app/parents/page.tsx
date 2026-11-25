@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Lock } from "lucide-react";
 import { Mono } from "@/components/Mono";
 import { WaitlistPanel } from "@/components/WaitlistPanel";
+import { LadderPlan } from "@/components/home/LadderSection";
 import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
 import { next } from "@/content/next";
@@ -180,6 +181,7 @@ export default function ParentsPage() {
               ))}
             </section>
           ))}
+          <LadderPlan className="mt-12 border-t border-line pt-10" />
           <div id="waitlist" className="mt-10 scroll-mt-32">
             <WaitlistPanel />
             <p className="mt-3 font-body text-[16px] leading-[1.7] text-ink-2">
@@ -190,7 +192,7 @@ export default function ParentsPage() {
               .
             </p>
           </div>
-          <div className="mt-6 flex items-start gap-4 rounded-[10px] border border-line-2 p-5">
+          <div className="mt-6 flex items-start gap-4 rounded-[16px] border border-line-2 p-5">
             <Lock className="mt-0.5 h-4 w-4 shrink-0 text-ink-2" aria-hidden="true" />
             <p className="font-body text-[16px] leading-[1.7] text-ink-2">
               This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT and Google Forms are

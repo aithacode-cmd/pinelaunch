@@ -58,7 +58,7 @@ export function PromptsList() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search prompts"
-            className="h-11 w-full rounded-[8px] border border-line-3 bg-surface pl-9 pr-3 font-body text-[16px] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none"
+            className="h-11 w-full rounded-[12px] border border-line-3 bg-surface pl-9 pr-3 font-body text-[16px] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none"
           />
         </div>
         <div className="flex flex-wrap gap-2" role="group" aria-label="Filter prompts by week">
@@ -71,7 +71,7 @@ export function PromptsList() {
                 onClick={() => setFilter(f.value)}
                 aria-pressed={active}
                 className={
-                  "pl-press min-h-11 rounded-[8px] border px-4 font-body text-[15px] transition-colors " +
+                  "pl-press min-h-11 rounded-[12px] border px-4 font-body text-[15px] transition-colors " +
                   (active ? "border-ink bg-ink text-on-accent" : "border-line-2 bg-surface text-ink-2 hover:border-line-3 hover:text-ink")
                 }
               >
@@ -105,7 +105,7 @@ export function PromptsList() {
           );
         })}
         {items.length === 0 && (
-          <p className="rounded-[10px] border border-line-2 bg-surface p-6 font-body text-[16px] text-ink-2" role="status">
+          <p className="rounded-[16px] border border-line-2 bg-surface p-6 font-body text-[16px] text-ink-2" role="status">
             No prompts match that search. Try one word, or choose All.
           </p>
         )}

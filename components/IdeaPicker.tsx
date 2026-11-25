@@ -88,7 +88,7 @@ function OptionTile({
   return (
     <label
       className={
-        "pl-lift flex cursor-pointer flex-col justify-between gap-2 rounded-[10px] border p-4 text-left transition-colors " +
+        "pl-lift flex cursor-pointer flex-col justify-between gap-2 rounded-[16px] border p-4 text-left transition-colors " +
         (checked ? "border-accent bg-surface-2" : "border-line-2 bg-surface hover:border-line-3")
       }
     >
@@ -254,7 +254,7 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
       </h1>
       <p className="mt-3 font-body text-[16px] leading-[1.6] text-ink-2">Answers stay in this browser. Nothing is sent anywhere.</p>
       {initialCard && (
-        <p role="note" className="mt-5 rounded-[8px] border border-warning/30 bg-warning-soft px-4 py-3 font-body text-[15px] leading-relaxed text-ink">
+        <p role="note" className="mt-5 rounded-[12px] border border-warning/30 bg-warning-soft px-4 py-3 font-body text-[15px] leading-relaxed text-ink">
           You already have a Project Card. Finishing these questions replaces it. Your ticked steps stay.
         </p>
       )}
@@ -277,7 +277,7 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
           Question {index + 1} of {questions.length}
         </Mono>
 
-        <div className="mt-6 rounded-[12px] border border-line-2 bg-surface p-5 sm:p-7">
+        <div className="mt-6 rounded-[22px] border border-line-2 bg-surface p-5 sm:p-7">
           <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-ink">{q.label}</h2>
           <p className="mt-2 font-body text-[16px] leading-relaxed text-ink-2">{q.hint}</p>
           <div className="mt-6">

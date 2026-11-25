@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Figtree, JetBrains_Mono } from "next/font/google";
 import { program } from "@/config/program";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 // Self-hosted at build time by Next.js, so visits never call Google Fonts.
-const sans = Host_Grotesk({
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+const sans = Figtree({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-host",
+  variable: "--font-figtree",
   display: "swap",
 });
 const mono = JetBrains_Mono({
@@ -25,14 +31,14 @@ export const metadata: Metadata = {
     template: `%s — ${program.name}`,
   },
   description: `${program.tagline} A free three-week online program for high school students.`,
-  other: { "theme-color": "#f7f9fa" },
+  other: { "theme-color": "#120b2e" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`h-full ${sans.variable} ${mono.variable}`}
+      className={`h-full ${display.variable} ${sans.variable} ${mono.variable}`}
     >
       <body className="relative flex min-h-full flex-col">
         <a

@@ -15,8 +15,8 @@ export function ImportProgress({ progress }: { progress: UseProgress }) {
   const [msg, setMsg] = useState<string | null>(null);
 
   return (
-    <details className="group mt-10 rounded-[10px] border border-line bg-surface">
-      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 rounded-[10px] px-5 py-3 font-body text-[16px] text-ink-2 marker:content-none hover:text-ink [&::-webkit-details-marker]:hidden">
+    <details className="group mt-10 rounded-[16px] border border-line bg-surface">
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 rounded-[16px] px-5 py-3 font-body text-[16px] text-ink-2 marker:content-none hover:text-ink [&::-webkit-details-marker]:hidden">
         Already started on another device? Import your progress code.
         <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
       </summary>

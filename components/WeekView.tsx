@@ -43,7 +43,7 @@ export function WeekView({ week }: { week: WeekNumber }) {
             ))}
           </div>
           {progress.ready && !card && (
-            <p className="mt-5 rounded-[8px] bg-accent-soft px-4 py-3 font-body text-[15px] leading-relaxed text-ink">
+            <p className="mt-5 rounded-[12px] bg-accent-soft px-4 py-3 font-body text-[15px] leading-relaxed text-ink">
               No Project Card yet.{" "}
               <Link href="/start" className="font-medium underline decoration-accent underline-offset-4">
                 Open the idea picker
@@ -73,7 +73,7 @@ export function WeekView({ week }: { week: WeekNumber }) {
                 href={`/week/${n}`}
                 aria-current={n === week ? "page" : undefined}
                 className={
-                  "pl-press flex min-h-11 items-center justify-center rounded-[8px] border font-body text-[14px] " +
+                  "pl-press flex min-h-11 items-center justify-center rounded-[12px] border font-body text-[14px] " +
                   (n === week ? "border-ink bg-ink text-on-accent" : "border-line-2 bg-surface text-ink-2 hover:border-line-3 hover:text-ink")
                 }
               >
@@ -151,7 +151,7 @@ export function WeekView({ week }: { week: WeekNumber }) {
       {/* Wrap up: no group is running, so nothing is handed in. */}
       <section
         aria-labelledby="turn-in-heading"
-        className="mt-14 grid gap-6 rounded-[12px] border border-line bg-surface p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10"
+        className="mt-14 grid gap-6 rounded-[22px] border border-line bg-surface p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10"
       >
         <div>
           <Mono className="text-ink-3">Wrap up · Week {week}</Mono>
@@ -167,7 +167,7 @@ export function WeekView({ week }: { week: WeekNumber }) {
             ))}
           </ol>
         </div>
-        <div className="rounded-[10px] border border-line bg-surface-2 p-5">
+        <div className="rounded-[16px] border border-line bg-surface-2 p-5">
           <Mono className="text-ink-3">Nothing to hand in</Mono>
           <p className="mt-3 font-body text-[16px] leading-[1.6] text-ink-2">
             There is no group running right now, so nothing is sent to anyone. Tick the last step once you have done it. Your

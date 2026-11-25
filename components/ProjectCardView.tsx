@@ -13,7 +13,7 @@ function createdLabel(iso: string): string {
 /** The Project Card: the student's answers as one calm, printable panel. */
 export function ProjectCardView({ card, className = "" }: { card: ProjectCard; className?: string }) {
   return (
-    <article className={`overflow-hidden rounded-[12px] border border-line bg-surface ${className}`} aria-label="Project Card">
+    <article className={`overflow-hidden rounded-[22px] border border-line bg-surface ${className}`} aria-label="Project Card">
       <div className="bg-ink px-6 pb-6 pt-5 text-on-accent sm:px-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Mono className="text-on-ink-2">Project Card</Mono>

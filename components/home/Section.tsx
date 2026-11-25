@@ -23,11 +23,10 @@ interface FrameProps {
  * hairline, like a page in a lab notebook. No scroll reveal: content is
  * there when you arrive.
  */
-export function SectionFrame({ id, tone = "ink", index, label, className = "", children }: FrameProps) {
+export function SectionFrame({ id, tone = "ink", label, className = "", children }: FrameProps) {
   return (
     <section id={id} aria-label={label} className={`relative ${tones[tone]} ${className}`}>
       <div className="pl-shell relative py-16 sm:py-20 lg:py-24">
-        {index && <div className="mb-6 border-t border-ink lg:mb-8" aria-hidden="true" />}
         {children}
       </div>
     </section>
@@ -49,7 +48,7 @@ export function SectionHeading({ eyebrow, title, accent, copy, aside, className 
     <div className={`grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10 ${className}`}>
       <div className="lg:col-span-7">
         {eyebrow && <Mono className="text-ink-3">{eyebrow}</Mono>}
-        <h2 className="mt-3 max-w-[18ch] text-balance font-heading text-[34px] font-medium leading-[1.04] tracking-[-0.035em] text-ink sm:text-[44px] lg:text-[56px]">
+        <h2 className="mt-3 max-w-[18ch] text-balance font-display text-[38px] font-extrabold leading-[1] tracking-[-0.04em] text-ink sm:text-[48px] lg:text-[64px]">
           {title}
           {accent && (
             <>

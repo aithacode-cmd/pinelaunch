@@ -60,43 +60,34 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-line bg-ground/90 backdrop-blur-md supports-[backdrop-filter]:bg-ground/75">
-        <div className="pl-shell flex h-16 items-center justify-between gap-6">
-          <Link href="/" aria-label="PineLaunch home" className="pl-press flex shrink-0 items-center rounded-md">
-            <Logo markClassName="h-[22px] w-[22px]" />
-          </Link>
-
-          <nav aria-label="Main" className="hidden h-full lg:block">
-            <ul className="flex h-full items-stretch gap-7">
-              {links.map((l) => {
-                const active = isActive(pathname, l.href);
-                return (
-                  <li key={l.href} className="flex">
-                    <Link
-                      href={l.href}
-                      aria-current={active ? "page" : undefined}
-                      className={
-                        "relative flex items-center font-body text-[16px] leading-none transition-colors duration-150 hover:text-ink " +
-                        "after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:origin-left after:rounded-full after:bg-accent after:transition-transform after:duration-200 after:ease-out motion-reduce:after:transition-none " +
-                        (active ? "font-medium text-ink after:scale-x-100" : "text-ink-2 after:scale-x-0")
-                      }
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Link href={cta.href} className={buttonClass("primary", "group hidden min-h-10 gap-1.5 px-4 text-[14px] sm:inline-flex")}>
-              {cta.label}
-              <ArrowRight
-                className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
-                aria-hidden="true"
-              />
+      {/* A floating pill nav that sits on the night hero and on cream pages alike. */}
+      <header className="pointer-events-none sticky top-0 z-40 pt-3">
+        <div className="pl-shell flex items-center justify-between gap-3 lg:justify-center">
+          <div className="pointer-events-auto flex items-center gap-1 rounded-full bg-ground/95 py-1.5 pl-4 pr-1.5 shadow-[0_12px_30px_-14px_rgba(18,11,46,0.55)] ring-1 ring-ink/5 backdrop-blur-md lg:pr-2">
+            <Link href="/" aria-label="PineLaunch home" className="pl-press mr-1 flex shrink-0 items-center rounded-full py-1.5 lg:mr-3">
+              <Logo markClassName="h-[22px] w-[22px]" />
             </Link>
+            <nav aria-label="Main" className="hidden lg:block">
+              <ul className="flex items-center">
+                {links.map((l) => {
+                  const active = isActive(pathname, l.href);
+                  return (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        aria-current={active ? "page" : undefined}
+                        className={
+                          "block rounded-full px-3.5 py-2.5 font-body text-[15px] leading-none transition-colors duration-150 " +
+                          (active ? "bg-ink font-semibold text-on-night" : "text-ink-2 hover:bg-ink/[0.06] hover:text-ink")
+                        }
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
             <button
               ref={openRef}
               type="button"
@@ -104,11 +95,21 @@ export function SiteHeader() {
               aria-label="Open menu"
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="pl-press inline-flex h-11 w-11 items-center justify-center rounded-[8px] border border-line-2 bg-surface text-ink transition-colors hover:border-line-3 lg:hidden"
+              className="pl-press ml-1 inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/[0.06] lg:hidden"
             >
               <Menu className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
+          <Link
+            href={cta.href}
+            className={buttonClass("primary", "group pointer-events-auto min-h-[52px] gap-1.5 px-5 text-[15px] lg:ml-2")}
+          >
+            {cta.label}
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
+              aria-hidden="true"
+            />
+          </Link>
         </div>
       </header>
 
@@ -125,32 +126,32 @@ export function SiteHeader() {
         aria-hidden={!open}
         inert={!open}
         className={
-          "fixed inset-0 z-50 flex flex-col bg-ground transition-[opacity,transform] ease-out motion-reduce:translate-y-0 motion-reduce:transition-opacity lg:hidden " +
+          "fixed inset-0 z-50 flex flex-col bg-night text-on-night transition-[opacity,transform] ease-out motion-reduce:translate-y-0 motion-reduce:transition-opacity lg:hidden " +
           (open ? "translate-y-0 opacity-100 duration-200" : "pointer-events-none -translate-y-2 opacity-0 duration-150")
         }
       >
-        <div className="pl-shell relative flex h-16 items-center justify-between border-b border-line">
-          <Logo />
+        <div className="pl-shell relative flex h-16 items-center justify-between border-b border-on-night/10">
+          <Logo tone="night" />
           <button
             ref={closeRef}
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="pl-press inline-flex h-11 w-11 items-center justify-center rounded-[8px] border border-line-2 bg-surface text-ink"
+            className="pl-press inline-flex h-11 w-11 items-center justify-center rounded-full bg-on-night/10 text-on-night"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
         <nav aria-label="Mobile" className="pl-shell relative flex-1 overflow-y-auto">
-          <ul className="flex flex-col divide-y divide-line border-b border-line">
+          <ul className="flex flex-col divide-y divide-on-night/10 border-b border-on-night/10">
             {links.map((l, i) => (
               <li key={l.href}>
-                <Link href={l.href} aria-current={isActive(pathname, l.href) ? "page" : undefined} className="flex items-center justify-between gap-4 py-4 aria-[current=page]:text-accent">
+                <Link href={l.href} aria-current={isActive(pathname, l.href) ? "page" : undefined} className="flex items-center justify-between gap-4 py-4 aria-[current=page]:text-coral">
                   <span className="flex items-baseline gap-4">
-                    <Mono className="text-ink-3">{String(i + 1).padStart(2, "0")}</Mono>
-                    <span className="font-heading text-[24px] font-medium tracking-[-0.03em] text-ink">{l.label}</span>
+                    <Mono className="text-on-night-2">{String(i + 1).padStart(2, "0")}</Mono>
+                    <span className="font-heading text-[28px] font-bold tracking-[-0.03em] text-on-night">{l.label}</span>
                   </span>
-                  <ArrowRight className="h-4 w-4 text-ink-3" aria-hidden="true" />
+                  <ArrowRight className="h-4 w-4 text-on-night-2" aria-hidden="true" />
                 </Link>
               </li>
             ))}
@@ -160,7 +161,7 @@ export function SiteHeader() {
           </p>
         </nav>
         <div className="pl-shell relative pb-8">
-          <Link href={cta.href} className={buttonClass("primary", "h-12 w-full text-[15px]")}>
+          <Link href={cta.href} className={buttonClass("primary", "h-14 w-full text-[16px]")}>
             {cta.long}
           </Link>
         </div>

@@ -8,7 +8,7 @@ import { Mono } from "./Mono";
 export function PromptPanel({ prompt, card }: { prompt: Prompt; card: ProjectCard | null }) {
   const text = fillPlaceholders(prompt.text, card);
   return (
-    <div className="flex flex-col overflow-hidden rounded-[10px] border border-line-2 bg-surface">
+    <div className="flex flex-col overflow-hidden rounded-[16px] border border-line-2 bg-surface">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <Mono className="text-ink-2">{prompt.title}</Mono>
         <CopyButton text={text} className="h-8 px-3 text-[12px]" />

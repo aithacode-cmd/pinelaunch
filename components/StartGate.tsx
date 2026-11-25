@@ -94,7 +94,7 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
           . It opens in a new tab.
         </p>
 
-        <div className="mt-7 rounded-[12px] border border-line-2 bg-surface p-5">
+        <div className="mt-7 rounded-[22px] border border-line-2 bg-surface p-5">
           <div className="flex items-start gap-3">
             <input
               id="parent-ok"
@@ -175,7 +175,7 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
               <label
                 key={o.value}
                 className={
-                  "flex cursor-pointer items-center gap-3 rounded-[12px] border px-4 py-3.5 font-body text-[16px] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-strong " +
+                  "flex cursor-pointer items-center gap-3 rounded-[22px] border px-4 py-3.5 font-body text-[16px] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-strong " +
                   (on ? "border-accent bg-surface-2 text-ink" : "border-line-2 bg-surface text-ink-2 hover:border-line-3")
                 }
               >

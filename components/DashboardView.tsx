@@ -84,7 +84,7 @@ function WeeklySummary({ state, week }: { state: ProgressState; week: WeekNumber
   const live = isStepDone(state, "w3-make-public");
 
   return (
-    <section aria-label="Weekly summary" className="relative overflow-hidden rounded-[12px] border border-line bg-surface">
+    <section aria-label="Weekly summary" className="relative overflow-hidden rounded-[22px] border border-line bg-surface">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-6">
         <div className="flex items-center gap-2.5">
           <Mono className="text-ink">This week</Mono>
@@ -185,7 +185,7 @@ function NextStepPanel({ state, week }: { state: ProgressState; week: WeekNumber
   const next = nextStep(state);
   const points = pointsEarned(state);
   return (
-    <section aria-labelledby="next-step-title" className="overflow-hidden rounded-[12px] border border-line bg-surface">
+    <section aria-labelledby="next-step-title" className="overflow-hidden rounded-[22px] border border-line bg-surface">
       <div className="border-l-[3px] border-accent p-6 sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Mono className="text-accent">Next step</Mono>
@@ -229,7 +229,7 @@ function NextStepPanel({ state, week }: { state: ProgressState; week: WeekNumber
 function BadgesPanel({ state }: { state: ProgressState }) {
   const earned = new Set(earnedBadgeIds(state));
   return (
-    <div className="rounded-[12px] border border-line bg-surface p-5 sm:p-6">
+    <div className="rounded-[22px] border border-line bg-surface p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Mono className="text-ink-3">Badges</Mono>
         <Mono className="text-ink-3">
@@ -244,8 +244,8 @@ function BadgesPanel({ state }: { state: ProgressState }) {
             <li key={b.id} className="flex items-start gap-3.5 py-3.5">
               <span
                 className={
-                  "mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] " +
-                  (has ? "bg-accent text-on-accent" : "border border-dashed border-line-3 text-ink-3")
+                  "mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] " +
+                  (has ? "pl-pop bg-coral text-on-coral" : "border border-dashed border-line-3 text-ink-3")
                 }
               >
                 <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
@@ -273,7 +273,7 @@ function ProgressFilePanel({ progress }: { progress: UseProgress }) {
   const [msg, setMsg] = useState("");
 
   return (
-    <div className="rounded-[12px] border border-line bg-surface p-5 sm:p-6">
+    <div className="rounded-[22px] border border-line bg-surface p-5 sm:p-6">
       <Mono className="text-ink-3">Your progress code</Mono>
       <p className="mt-3 max-w-[52ch] font-body text-[16px] leading-[1.65] text-ink-2">
         Progress lives in this browser. Create a code before you switch devices, and paste it on the other one.
@@ -381,7 +381,7 @@ function ProgressFilePanel({ progress }: { progress: UseProgress }) {
 /** No group is running, so "stuck" help points at the prompts and at people the student already knows. */
 function StuckPanel() {
   return (
-    <div className="rounded-[12px] border border-line bg-surface p-5 sm:p-6">
+    <div className="rounded-[22px] border border-line bg-surface p-5 sm:p-6">
       <Mono className="text-ink-3">Stuck?</Mono>
       <p className="mt-3 font-body text-[16px] leading-[1.65] text-ink-2">
         Try for 15 minutes on your own. Then use a prompt for your problem. Then show the screen to a parent, a teacher, or
