@@ -1,6 +1,34 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-24 (V1 Weeks 1 and 2 built on branch `v1-workspace`, Week 2 on the practice AI; not pushed, not deployed).
+Last updated: 2026-11-25 (V1 Weeks 1 and 2 and the Week 3 starter built on branch `v1-workspace`, on the practice AI; not pushed, not deployed).
+
+## V1 workspace: Week 3 starter generator, built early on the practice AI (2026-11-25)
+
+Week 3 is scheduled for December 7 to 13. On November 24 the founder said "Yes, start it" to the starter generator. The other Week 3 items (the real AI module, the live usage count, the deployment, the parent disclosure) need adult accounts or approvals and are not started.
+
+**Starter result, half met.** The spec's result is a starter that "reflects that student's project, is editable HTML/CSS/JS, and is not a finished product". The stage, the checks and the saving are built and tested. The files themselves are practice layouts, not written for one student by an AI, until the real key is in.
+
+Built:
+
+- **The Starter stage.** A notice saying what is sent (or that it is practice mode), "Make my starter" (1 request), the three files to read in tabs (arrow keys move between them), a list of where each milestone's note is, "Go to Workspace", and "Make a new starter" with a clear warning before anything is replaced (D29).
+- **The checks on every starter** (D26), shared by the server and the browser. The server also reads the script for syntax mistakes without running it.
+- **The instruction text for the real AI** (`STARTER_SYSTEM` in `lib/ai/prompts.ts`). A draft, like the plan prompts: it has never met a real model.
+- **The practice starter** in the mock: three layouts, the student's words reduced to plain characters (D28).
+- **The project record** now remembers who wrote the starter, when, and which milestone titles it was made from.
+- 113 tests (`npm test`). Lint, type check and build pass.
+
+Tested in a browser at 1280 wide, from an empty project: idea, code, plan, confirm; the rail moved to Starter; "Make my starter" gave the dashboard layout for a study-hours idea with all 8 milestone notes, and the count went up by 1; the file tabs and arrow keys; "Make a new starter" warned first and replaced the files; a reload kept them; renaming a milestone in the plan showed the out-of-date notice; with the code switched off, the files stayed readable and only new requests were blocked. One flaw found and fixed this way (the studio jumped to Workspace before the student saw the files, D29).
+
+How to test it yourself (after the Week 2 steps below, with a confirmed plan): open the Starter stage, press "Make my starter", and click between the three file tabs.
+
+Not real yet, said plainly:
+
+- **No AI has written a starter.** Two different ideas of the same kind get the same practice layout with different labels, which is exactly what the spec forbids for real starters. This is only acceptable because it is labeled practice and cannot run on the live site (D16).
+- **The files cannot be edited or run yet.** That is the workspace, Week 4.
+
+Next: the parent disclosure draft (`docs/PARENT_DISCLOSURE_DRAFT.md`) can be written now. The rest of Week 3 waits for the adult accounts below. Week 4 (the editor, the sandboxed preview, the storage bridge and the ZIP export) can be built on the practice AI.
+
+---
 
 ## V1 workspace: Week 2, built early on the practice AI (2026-11-24)
 
@@ -48,7 +76,7 @@ Known limits:
 - A plan made before 2026-11-24's last change has no record of the idea it came from, so it is never marked out of date. Only test data is affected.
 - Anthropic's full Usage Policy has still not been read. It must be, before the real AI is switched on.
 
-Next (Week 3, December 7 to 13): the starter generator (with a practice starter in the mock), the real AI module once the key is in, the Upstash usage count, the closed-beta deployment, and `docs/PARENT_DISCLOSURE_DRAFT.md`.
+Next (Week 3, December 7 to 13): the starter generator (built early, see the top of this file), the real AI module once the key is in, the Upstash usage count, the closed-beta deployment, and `docs/PARENT_DISCLOSURE_DRAFT.md`.
 
 ---
 

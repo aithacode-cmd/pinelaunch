@@ -18,15 +18,16 @@
 
 import { z } from "zod";
 import { getProvider } from "../ai/provider";
-import { AiBadOutputError, runMilestones, runScope } from "../ai/tasks";
+import { AiBadOutputError, runMilestones, runScope, runStarter } from "../ai/tasks";
 import { AiConfigError, AiTaskNotSupportedError, type AiProvider, type ProviderName } from "../ai/types";
 import { IdeaInputSchema, ScopePlanSchema } from "../studio/plan";
+import { StarterMilestonesSchema } from "../studio/starter";
 import { CODE_HEADER, codeSecret, hashCode, normalizeCode } from "./codes.ts";
 import { getLedger, type Ledger, type LedgerEntry } from "./ledger.ts";
 
 /* ---------- limits ---------- */
 
-/** Largest request body accepted, in bytes. A plan request is a few kilobytes. */
+/** Largest request body accepted, in bytes. A plan request is a few kilobytes; a starter request, with the whole milestone map, up to about twenty. */
 export const MAX_BODY_BYTES = 64 * 1024;
 /** Requests one code may make in one minute. */
 export const RATE_LIMIT_PER_MINUTE = 8;
@@ -37,6 +38,7 @@ const RATE_WINDOW_SECONDS = 60;
 const RequestSchema = z.discriminatedUnion("task", [
   z.object({ task: z.literal("scope"), idea: IdeaInputSchema }),
   z.object({ task: z.literal("milestones"), idea: IdeaInputSchema, scope: ScopePlanSchema }),
+  z.object({ task: z.literal("starter"), idea: IdeaInputSchema, scope: ScopePlanSchema, milestones: StarterMilestonesSchema }),
 ]);
 
 /* ---------- answers ---------- */
@@ -209,8 +211,12 @@ export async function handleAi(request: Request, deps: Deps = defaultDeps()): Pr
         const result = await runScope(provider, input.idea);
         return json(200, { ok: true, task: "scope", scope: result.value, provider: result.provider, usage });
       }
-      const result = await runMilestones(provider, input.idea, input.scope);
-      return json(200, { ok: true, task: "milestones", milestones: result.value.milestones, provider: result.provider, usage });
+      if (input.task === "milestones") {
+        const result = await runMilestones(provider, input.idea, input.scope);
+        return json(200, { ok: true, task: "milestones", milestones: result.value.milestones, provider: result.provider, usage });
+      }
+      const result = await runStarter(provider, input.idea, input.scope, input.milestones);
+      return json(200, { ok: true, task: "starter", files: result.value.files, provider: result.provider, usage });
     } catch (e) {
       if (e instanceof AiTaskNotSupportedError || e instanceof AiConfigError) {
         // It never reached a provider, so it does not count.

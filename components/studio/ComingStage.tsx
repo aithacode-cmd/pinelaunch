@@ -1,17 +1,9 @@
 import { STAGES, type StageId } from "@/lib/studio/project";
 import { Button } from "../Button";
 
-type LaterStage = Exclude<StageId, "idea" | "plan">;
+type LaterStage = Exclude<StageId, "idea" | "plan" | "starter">;
 
 const details: Record<LaterStage, { title: string; points: string[] }> = {
-  starter: {
-    title: "A starting point made for your project.",
-    points: [
-      "Three files written for your plan: a page, its styles and its script.",
-      "They give you a real beginning. They are not a finished app.",
-      "Notes in the code point to your own milestones.",
-    ],
-  },
   workspace: {
     title: "Build it and watch it run.",
     points: [

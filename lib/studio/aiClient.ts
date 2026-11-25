@@ -8,6 +8,8 @@
  */
 
 import { MilestoneSchema, ScopePlanSchema, type IdeaInput, type Milestone, type ScopePlan } from "./plan";
+import type { ProjectFiles } from "./project";
+import { starterSchema } from "./starter";
 
 const ENDPOINT = "/api/ai/";
 const CODE_HEADER = "x-pinelaunch-code";
@@ -31,6 +33,7 @@ export type AiFailure = {
 export type CheckResult = { ok: true; usage: Usage; aiEnabled: boolean; source: Source | null } | AiFailure;
 export type ScopeResult = { ok: true; scope: ScopePlan; source: Source; usage: Usage } | AiFailure;
 export type MilestonesResult = { ok: true; milestones: Milestone[]; source: Source; usage: Usage } | AiFailure;
+export type StarterResult = { ok: true; files: ProjectFiles; source: Source; usage: Usage } | AiFailure;
 
 const OFFLINE: AiFailure = {
   ok: false,
@@ -118,4 +121,13 @@ export async function requestMilestones(code: string, idea: IdeaInput, scope: Sc
   const list = Array.isArray(res.body.milestones) ? res.body.milestones.map((m) => MilestoneSchema.safeParse(m)) : [];
   if (list.length === 0 || !list.every((m) => m.success)) return { ...UNREADABLE, usage: res.usage };
   return { ok: true, milestones: list.map((m) => m.data!), source: res.source, usage: res.usage };
+}
+
+/** Uses one AI request. Writes the three starter files from the plan. They are checked again here before anything is saved. */
+export async function requestStarter(code: string, idea: IdeaInput, scope: ScopePlan, milestones: readonly Milestone[]): Promise<StarterResult> {
+  const res = await post(code, { task: "starter", idea, scope, milestones });
+  if ("ok" in res) return res;
+  const starter = starterSchema(milestones.length).safeParse({ files: res.body.files });
+  if (!starter.success) return { ...UNREADABLE, usage: res.usage };
+  return { ok: true, files: starter.data.files, source: res.source, usage: res.usage };
 }

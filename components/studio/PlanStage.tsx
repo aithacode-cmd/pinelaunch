@@ -8,6 +8,7 @@ import type { UseAccess } from "@/lib/studio/useAccess";
 import type { SaveWhen } from "@/lib/studio/useProject";
 import { Button } from "../Button";
 import { AccessCodeForm } from "./AccessCodeForm";
+import { CODE_PROBLEMS, Failure, ForgetCode, NeedCode } from "./AiParts";
 import { MilestoneList } from "./MilestoneList";
 
 interface Props {
@@ -20,8 +21,6 @@ interface Props {
 }
 
 type Busy = null | "scope" | "milestones";
-
-const CODE_PROBLEMS = new Set(["code_missing", "code_invalid", "code_inactive"]);
 
 /**
  * Stage 2. Shrinks the idea to a four-week first version and builds a
@@ -257,7 +256,7 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
                 <span className="font-body text-[13px] text-muted">Uses 1 AI request.{left !== null && ` You have ${left} left.`}</span>
               </div>
             ) : (
-              <NeedCode lapsed={access.lapsed} onAsk={() => setAskingCode(true)} />
+              <NeedCode lapsed={access.lapsed} kept="Your plan is still here." onAsk={() => setAskingCode(true)} />
             )}
           </>
         )}
@@ -310,25 +309,11 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
               }}
             />
           ) : (
-            <NeedCode lapsed={access.lapsed} onAsk={() => setAskingCode(true)} />
+            <NeedCode lapsed={access.lapsed} kept="Your plan is still here." onAsk={() => setAskingCode(true)} />
           )}
         </div>
       )}
     </div>
-  );
-}
-
-/** Shown in place of the AI buttons when no working code is saved. The plan itself stays readable. */
-function NeedCode({ lapsed, onAsk }: { lapsed: boolean; onAsk: () => void }) {
-  return (
-    <p className="mt-6 font-body text-[13.5px] leading-[1.6] text-txt2">
-      {lapsed ? "The access code saved on this device no longer works. " : "No access code is saved on this device. "}
-      Your plan is still here. To ask the AI for anything new,{" "}
-      <button type="button" onClick={onAsk} className="rounded-[4px] text-txt underline decoration-line3 underline-offset-4 hover:text-pine-hi">
-        enter an access code
-      </button>
-      .
-    </p>
   );
 }
 
@@ -344,25 +329,5 @@ function ScopeList({ term, items }: { term: string; items: readonly string[] }) 
         </ul>
       </dd>
     </div>
-  );
-}
-
-function Failure({ failure }: { failure: AiFailure | null }) {
-  if (!failure) return null;
-  return (
-    <p role="alert" className="mb-5 mt-6 rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[14px] leading-[1.6] text-txt">
-      {failure.message}
-    </p>
-  );
-}
-
-function ForgetCode({ onForget }: { onForget: () => void }) {
-  return (
-    <p className="mt-8 font-body text-[13px] text-muted">
-      Using a different access code?{" "}
-      <button type="button" onClick={onForget} className="rounded-[4px] text-txt2 underline decoration-line3 underline-offset-4 hover:text-txt">
-        Enter another one
-      </button>
-    </p>
   );
 }

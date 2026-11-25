@@ -10,13 +10,17 @@ interface Props {
   lapsed?: boolean;
   /** Shown as a way out when the student already has work to go back to. */
   onBack?: () => void;
+  /** The stage this form is shown in. */
+  stage?: string;
+  /** The words on the way-out button. */
+  backLabel?: string;
 }
 
 /**
  * Asks for the access code the first time AI help is needed. The code is
  * permission to use the AI, not an account: it has no name attached.
  */
-export function AccessCodeForm({ onEnter, lapsed, onBack }: Props) {
+export function AccessCodeForm({ onEnter, lapsed, onBack, stage = "Plan", backLabel = "Back to my plan" }: Props) {
   const [typed, setTyped] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -38,7 +42,7 @@ export function AccessCodeForm({ onEnter, lapsed, onBack }: Props) {
         if (failure) setError(failure.message);
       }}
     >
-      <p className="font-body text-[13px] font-semibold text-pine-hi">Plan</p>
+      <p className="font-body text-[13px] font-semibold text-pine-hi">{stage}</p>
       <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">
         <label htmlFor="access-code">Enter your access code.</label>
       </h1>
@@ -79,7 +83,7 @@ export function AccessCodeForm({ onEnter, lapsed, onBack }: Props) {
         </Button>
         {onBack && (
           <Button type="button" variant="ghost" onClick={onBack}>
-            Back to my plan
+            {backLabel}
           </Button>
         )}
       </div>

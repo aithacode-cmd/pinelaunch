@@ -105,6 +105,12 @@ export interface Project {
   planConfirmedAt: string | null;
   /** The three source files. Null until the starter is generated. */
   files: ProjectFiles | null;
+  /** Who wrote the starter: the real AI, or the practice mock. Lets the screen label a practice starter honestly. */
+  starterSource: "mock" | "anthropic" | null;
+  /** When the starter was made. */
+  starterMadeAt: string | null;
+  /** The milestone titles the starter was made from. If the map no longer matches, its TODO notes may point at old milestones. */
+  starterMilestones: string[] | null;
   /** What the student's own project saved through the preview's storage bridge. */
   bridgeData: Record<string, string>;
   progress: {
@@ -142,6 +148,9 @@ export function emptyProject(now: Date = new Date()): Project {
     planIdea: null,
     planConfirmedAt: null,
     files: null,
+    starterSource: null,
+    starterMadeAt: null,
+    starterMilestones: null,
     bridgeData: {},
     progress: { checklist: {}, exportedAt: null },
     createdAt: iso,
@@ -236,6 +245,12 @@ export function normalizeProject(raw: unknown): Project | null {
 
   const confirmedAt = isoOrNull(raw.ideaConfirmedAt);
 
+  // What is known about the starter only means something while the files exist.
+  let starterMilestones: string[] | null = null;
+  if (files && Array.isArray(raw.starterMilestones) && raw.starterMilestones.length <= 24 && raw.starterMilestones.every((t) => typeof t === "string")) {
+    starterMilestones = raw.starterMilestones.map((t: string) => t.slice(0, 80));
+  }
+
   return {
     id: raw.id,
     schemaVersion: SCHEMA_VERSION,
@@ -252,6 +267,9 @@ export function normalizeProject(raw: unknown): Project | null {
     // A plan can only be confirmed when both halves of it exist.
     planConfirmedAt: scope && milestones ? isoOrNull(raw.planConfirmedAt) : null,
     files,
+    starterSource: files && (raw.starterSource === "mock" || raw.starterSource === "anthropic") ? raw.starterSource : null,
+    starterMadeAt: files ? isoOrNull(raw.starterMadeAt) : null,
+    starterMilestones,
     bridgeData,
     progress: { checklist, exportedAt },
     createdAt: isoOrNull(raw.createdAt) ?? fresh.createdAt,
@@ -301,6 +319,14 @@ export function stageStates(project: Project): Record<StageId, StageState> {
 export function isPlanOutdated(project: Project): boolean {
   if (!project.scope || !project.planIdea) return false;
   return IDEA_FIELDS.some((f) => project.idea[f].trim() !== project.planIdea![f].trim());
+}
+
+/** True when the milestone map changed after the starter was made, so its TODO notes may point at old milestones. */
+export function isStarterOutdated(project: Project): boolean {
+  if (!project.files || !project.starterMilestones || !project.milestones) return false;
+  const now = project.milestones.map((m) => m.title.trim());
+  const then = project.starterMilestones.map((t) => t.trim());
+  return now.length !== then.length || now.some((title, i) => title !== then[i]);
 }
 
 /** A short name for the project until the plan stage gives it a real title. */

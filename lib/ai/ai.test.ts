@@ -110,9 +110,11 @@ describe("the mock provider", () => {
     }
   });
 
-  it("says clearly that it has no canned starter yet", async () => {
-    await expect(mockProvider.generate(ask("x", "starter"))).rejects.toBeInstanceOf(AiTaskNotSupportedError);
+  it("answers a starter request (details in lib/studio/starter.test.ts), and says clearly when it cannot answer", async () => {
     expect(AI_TASKS).toContain("starter");
+    const starter = JSON.parse((await mockProvider.generate(ask("x", "starter"))).text);
+    expect(Object.keys(starter.files).sort()).toEqual(["index.html", "script.js", "styles.css"]);
+    await expect(mockProvider.generate(ask("x", "made-up" as AiRequest["task"]))).rejects.toBeInstanceOf(AiTaskNotSupportedError);
   });
 });
 

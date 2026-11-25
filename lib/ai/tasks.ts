@@ -1,5 +1,5 @@
 /**
- * Runs one planning task: ask the provider, check the answer, and if the
+ * Runs one planning or starter task: ask the provider, check the answer, and if the
  * answer cannot be used, ask once more with a short correction. A bad answer
  * never reaches the student's project: the caller gets a checked value or an
  * error, nothing in between.
@@ -7,9 +7,11 @@
  * SERVER SIDE ONLY.
  */
 
+import { Script } from "node:vm";
 import type { z } from "zod";
-import { MilestoneMapSchema, ScopePlanSchema, parseAiJson, type IdeaInput, type MilestoneMap, type ScopePlan } from "../studio/plan";
-import { milestonesRequest, scopeRequest } from "./prompts";
+import { MilestoneMapSchema, ScopePlanSchema, parseAiJson, type IdeaInput, type Milestone, type MilestoneMap, type ScopePlan } from "../studio/plan";
+import { starterSchema, type Starter } from "../studio/starter";
+import { milestonesRequest, scopeRequest, starterRequest } from "./prompts";
 import type { AiProvider, AiRequest, ProviderName } from "./types";
 
 /** Thrown when the provider answered twice and neither answer could be used. */
@@ -25,9 +27,22 @@ export interface TaskResult<T> {
   provider: ProviderName;
 }
 
-async function generateChecked<T>(provider: AiProvider, request: AiRequest, schema: z.ZodType<T>): Promise<TaskResult<T>> {
+/** Reads one answer. `extra` is a further check that returns "" or a short problem holding no student content. */
+function readAnswer<T>(text: string, schema: z.ZodType<T>, extra?: (value: T) => string) {
+  const parsed = parseAiJson(text, schema);
+  if (!parsed.ok || !extra) return parsed;
+  const problem = extra(parsed.value);
+  return problem ? ({ ok: false, problem } as const) : parsed;
+}
+
+async function generateChecked<T>(
+  provider: AiProvider,
+  request: AiRequest,
+  schema: z.ZodType<T>,
+  extra?: (value: T) => string,
+): Promise<TaskResult<T>> {
   const first = await provider.generate(request);
-  const parsed = parseAiJson(first.text, schema);
+  const parsed = readAnswer(first.text, schema, extra);
   if (parsed.ok) return { value: parsed.value, provider: first.provider };
 
   // One constrained correction. The problem text holds no student content.
@@ -42,7 +57,7 @@ async function generateChecked<T>(provider: AiProvider, request: AiRequest, sche
       },
     ],
   });
-  const again = parseAiJson(second.text, schema);
+  const again = readAnswer(second.text, schema, extra);
   if (again.ok) return { value: again.value, provider: second.provider };
   throw new AiBadOutputError();
 }
@@ -53,4 +68,23 @@ export function runScope(provider: AiProvider, idea: IdeaInput): Promise<TaskRes
 
 export function runMilestones(provider: AiProvider, idea: IdeaInput, scope: ScopePlan): Promise<TaskResult<MilestoneMap>> {
   return generateChecked(provider, milestonesRequest(idea, scope), MilestoneMapSchema);
+}
+
+/**
+ * "" when script.js is JavaScript a browser can read, or a short problem.
+ * The text is only read for mistakes here. It is never run on the server.
+ */
+export function scriptSyntaxProblem(source: string): string {
+  try {
+    new Script(source, { filename: "script.js" });
+    return "";
+  } catch {
+    return "script.js has a syntax error. It must be plain JavaScript that a browser can run as it is.";
+  }
+}
+
+export function runStarter(provider: AiProvider, idea: IdeaInput, scope: ScopePlan, milestones: readonly Milestone[]): Promise<TaskResult<Starter>> {
+  return generateChecked<Starter>(provider, starterRequest(idea, scope, milestones), starterSchema(milestones.length), (starter) =>
+    scriptSyntaxProblem(starter.files["script.js"]),
+  );
 }

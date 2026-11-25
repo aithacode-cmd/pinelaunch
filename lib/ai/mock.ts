@@ -3,13 +3,15 @@
  *
  * It exists so the rest of PineLaunch can be built and tested before the real
  * API account is set up. Its answers are written by hand. Hints are picked by
- * simple word matching, and practice plans reuse the student's own words in a
- * fixed template. They are NOT a real reading of the student's project, so
+ * simple word matching, practice plans reuse the student's own words in a
+ * fixed template, and practice starters are one of three fixed layouts
+ * (./mockStarter.ts). They are NOT a real reading of the student's project, so
  * the interface must label them as practice answers and they must never be
  * shown to beta students as the real thing. See ./provider.ts for the switch.
  */
 
-import type { IdeaInput, Milestone, MilestoneMap, ScopePlan } from "../studio/plan";
+import { ScopePlanSchema, type IdeaInput, type Milestone, type MilestoneMap, type ScopePlan } from "../studio/plan";
+import { cannedStarter, type MilestoneNote } from "./mockStarter";
 import { readData } from "./prompts";
 import { AiTaskNotSupportedError, type AiProvider, type AiRequest, type AiResult, type MentorHint } from "./types";
 
@@ -223,6 +225,24 @@ function cannedMilestones(request: AiRequest): MilestoneMap {
   return { milestones };
 }
 
+/** The practice starter for the plan the request carries. */
+function cannedStarterFor(request: AiRequest) {
+  const message = lastUserMessage(request);
+  const scopeCheck = ScopePlanSchema.safeParse(readData(message, "project_scope"));
+  const scope = scopeCheck.success ? scopeCheck.data : cannedScope(request);
+  const raw = readData(message, "milestone_map");
+  const notes: MilestoneNote[] = [];
+  if (Array.isArray(raw)) {
+    for (const item of raw) {
+      if (typeof item !== "object" || item === null) continue;
+      const m = item as Record<string, unknown>;
+      if (typeof m.title !== "string" || typeof m.week !== "number") continue;
+      notes.push({ week: m.week, title: m.title, tasks: Array.isArray(m.tasks) ? m.tasks.filter((t): t is string => typeof t === "string") : [] });
+    }
+  }
+  return cannedStarter(scope, notes);
+}
+
 /* ---------- the provider ---------- */
 
 export const mockProvider: AiProvider = {
@@ -240,8 +260,10 @@ export const mockProvider: AiProvider = {
       case "milestones":
         answer = cannedMilestones(request);
         break;
+      case "starter":
+        answer = cannedStarterFor(request);
+        break;
       default:
-        // The canned starter is added with the starter generator, in Week 3.
         throw new AiTaskNotSupportedError("mock", request.task);
     }
     return {

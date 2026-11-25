@@ -55,6 +55,9 @@ Where the V1 code lives:
 | Plan shapes and the checks on AI answers (shared by browser and server) | `lib/studio/plan.ts` |
 | Browser side of AI requests, and the saved access code | `lib/studio/aiClient.ts`, `lib/studio/useAccess.ts` |
 | Plan stage screens | `components/studio/PlanStage.tsx`, `MilestoneList.tsx`, `AccessCodeForm.tsx` |
+| Starter stage screen, and pieces shared by AI stages | `components/studio/StarterStage.tsx`, `AiParts.tsx` |
+| Starter shape and its safety checks (shared by browser and server) | `lib/studio/starter.ts` |
+| The practice starter's three layouts (server only) | `lib/ai/mockStarter.ts` |
 | AI request shapes, the mock, the provider switch, instruction texts (server only) | `lib/ai/` |
 | Access codes, usage ledger, the endpoint's rules (server only) | `lib/server/` |
 | The one endpoint | `app/api/ai/route.ts` |

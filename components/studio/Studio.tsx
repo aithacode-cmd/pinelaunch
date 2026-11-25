@@ -12,6 +12,7 @@ import { PlanStage } from "./PlanStage";
 import { SaveIndicator } from "./SaveIndicator";
 import { SmallScreen } from "./SmallScreen";
 import { StageRail } from "./StageRail";
+import { StarterStage } from "./StarterStage";
 
 /**
  * The studio: one screen, five stages. The rail on the left always shows
@@ -72,6 +73,15 @@ export function Studio() {
                   access={access}
                   onConfirmed={() => setPicked(null)}
                   onGoToIdea={() => setPicked("idea")}
+                />
+              ) : selected === "starter" ? (
+                <StarterStage
+                  project={project}
+                  update={update}
+                  access={access}
+                  onGoToPlan={() => setPicked("plan")}
+                  onGoToWorkspace={() => setPicked("workspace")}
+                  onMade={() => setPicked("starter")}
                 />
               ) : (
                 <ComingStage stage={selected} blockedBy={firstUnfinishedBefore(project, selected)} onGoTo={setPicked} />

@@ -28,6 +28,7 @@ A request is sent only when the student presses a button that says it uses AI re
 | Continue, on the access code form | The access code | PineLaunch's server, to check it. Not counted as a request. |
 | Make my plan | The access code and the five idea answers | PineLaunch's server. With the real AI on, the five answers (never the code) go on to the AI provider. |
 | Make a new milestone map | The access code, the five idea answers and the current first-version plan | The same. |
+| Make my starter, or Make a new starter | The access code, the five idea answers, the first-version plan and the milestone map (with any edits the student made) | The same. The three files that come back are saved only in the student's browser. |
 
 What PineLaunch's server keeps: for each access code, the number of requests used, the allowance, and whether the code is on. It keeps a fingerprint of the code, not the code. It keeps no idea, no plan, no question and no name. Its logs record that something happened ("request counted", "answer rejected") and never what was said.
 
@@ -62,7 +63,7 @@ Not yet confirmed: the minimum age and eligibility rules for holding an Anthropi
 
 ## Still to write
 
-- What is sent for the starter (Week 3) and for mentor questions, which include part of the student's code (Week 5).
+- What is sent for mentor questions, which include part of the student's code (Week 5).
 - The provider's retention policy, quoted and dated (when the account exists).
 - What the host records for each request (Week 3).
 - The adult support and escalation route (Week 3).
