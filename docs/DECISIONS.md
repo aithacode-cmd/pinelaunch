@@ -28,6 +28,10 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 
 **D12. Tests: Vitest for logic, with `fake-indexeddb` so the real storage code runs in tests.** Claude. Browser tests with Playwright come in Week 4, when the sandbox and storage bridge need them. `@types/node` moved from 20 to 24 because Vitest 5 requires it and the machine runs Node 24.
 
+## 2026-11-24
+
+**D13. A simple ZIP export moves forward from Week 7 to Week 4.** Founder ("forward to week 4"), on Claude's suggestion. Students start building on December 21, and the spec scheduled export for January 4 to 10. For three weeks their work would have existed only in the browser, where clearing browser data removes it. Week 4 now also delivers an Export button that downloads a ZIP of the three files, so the workspace never opens without a way to take the work out. Week 7 keeps the rest of the Finish stage: the README inside the ZIP, the completion checklist, and export polish. This is a schedule change only. Nothing was added to V1's scope.
+
 ## Dependencies added
 
 | Package | Version | License | Used for |

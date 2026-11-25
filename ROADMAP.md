@@ -9,10 +9,10 @@ The plan is the founder's master prompt of 2026-11-23. Ten weeks, November 23, 2
 | 1 | Nov 23 to 29 | Audit, app structure, design foundation, idea intake, project data model | A student can enter and review an idea (done) |
 | 2 | Nov 30 to Dec 6 | Provider pick, AI endpoint, access codes and usage count, scope reducer, milestone map | A personal four-week plan from a real idea |
 | 3 | Dec 7 to 13 | Starter generator, closed-beta deployment on parent-owned paid hosting, parent disclosure reviewed and sent | Live, private, parent-approved by Dec 13 |
-| 4 | Dec 14 to 20 | Students start intake and plans Dec 14. Editor, sandboxed preview, storage bridge, error strip, autosave | Workspace ready by Dec 20 |
+| 4 | Dec 14 to 20 | Students start intake and plans Dec 14. Editor, sandboxed preview, storage bridge, error strip, autosave, and a simple ZIP export of the three files (moved up from Week 7, decision D13) | Workspace ready by Dec 20, with a way to take the files out |
 | 5 | Dec 21 to 27 | Students start building Dec 21. Basic AI mentor | Basic mentor live by Dec 27 |
 | 6 | Dec 28 to Jan 3 | Hint-first behavior, attempt gate, rate-limit polish, safety checks | Full mentor experience |
-| 7 | Jan 4 to 10 | ZIP export, README, completion checklist | Students can take projects with them |
+| 7 | Jan 4 to 10 | README inside the ZIP, completion checklist, export polish | The Finish stage is complete |
 | 8 | Jan 11 to 17 | Design polish, accessibility, end-to-end testing, fixes from helper review | Stable beta |
 | 9 | Jan 18 to 24 | Beta support, fix what students actually hit | Fix list from real use |
 | 10 | Jan 25 to 31 | Final fixes, regression tests, final interviews, parent price test | Beta evaluation and a launch-readiness recommendation |

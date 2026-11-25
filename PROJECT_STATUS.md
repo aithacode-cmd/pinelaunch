@@ -31,7 +31,7 @@ Known limits:
 - Tested in one Chromium browser only so far. Firefox and Edge checks come with the browser test suite in Week 4.
 - `npm audit` shows 7 moderate advisories in development-only packages; 0 in what ships.
 
-Risk raised with the founder: students start building December 21 but ZIP export is scheduled for January 10, so for three weeks their work exists only in the browser. Suggested: move a minimal export forward to Week 4.
+Schedule change, approved by the founder on 2026-11-24 (decision D13): a simple ZIP export of the three files moves forward to Week 4, so student work is never browser-only once building starts. Week 7 keeps the README, the completion checklist and export polish.
 
 Adult tasks due next (spec Part 4): four families asked for a yes in principle by November 29; AI provider account with a hard spending limit, and the key entered locally, by November 30.
 
