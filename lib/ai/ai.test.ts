@@ -110,10 +110,9 @@ describe("the mock provider", () => {
     }
   });
 
-  it("says clearly that it has no canned plans or starters yet", async () => {
-    for (const task of AI_TASKS.filter((t) => t !== "mentor" && t !== "mentor-followup")) {
-      await expect(mockProvider.generate(ask("x", task))).rejects.toBeInstanceOf(AiTaskNotSupportedError);
-    }
+  it("says clearly that it has no canned starter yet", async () => {
+    await expect(mockProvider.generate(ask("x", "starter"))).rejects.toBeInstanceOf(AiTaskNotSupportedError);
+    expect(AI_TASKS).toContain("starter");
   });
 });
 

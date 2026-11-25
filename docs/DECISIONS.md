@@ -40,6 +40,22 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 
 **D17. Customers never enter API keys and never create AI accounts.** Founder, 2026-11-24. Students and parents use PineLaunch only. All AI calls go from PineLaunch's own server with PineLaunch's own key, and PineLaunch pays. Nothing in `lib/ai` may be imported by browser code. This matches the spec's Parts 4 and 11.2 and is now a standing rule.
 
+**D18. The static-export setting is off on this branch, and there is exactly one server function.** Claude, as planned in D11. `app/api/ai/route.ts` answers at `/api/ai/`. Every page is still built ahead of time as a plain file; only this one address runs code on a server. The host therefore has to be one that can run a server function (the planned parent-owned host can). The live site on `main` is not affected until this branch is merged.
+
+**D19. Access codes look like `PL-XXXX-XXXX-XXXX-XXXX` and are never stored.** Claude. Sixteen random characters from an alphabet without the look-alikes 0, O, 1, I and L (about 79 bits, so guessing is not practical). Typing is forgiving: upper or lower case, spaces or dashes. The server keeps only a keyed fingerprint of each code (HMAC-SHA256 with `ACCESS_CODE_SECRET`), so someone who read the ledger could not recover a code. The browser sends the code in a request header, never in the address. Codes are made, checked and switched on or off with `npm run codes` (`scripts/codes.ts`). A code is shown once, when it is made. PineLaunch does not record which family got which code.
+
+**D20. The usage ledger holds three facts per code and nothing else.** Claude. Requests used, the allowance (200), and whether the code is on. No names, no questions, no project content, no addresses. Three places it can live: `memory` (tests), `file` (`.data/ledger.json`, this computer only, ignored by Git), and `upstash` (the live site; not built yet, because it needs a parent-owned account and cannot be tested without one). The live site refuses `memory` and `file`: a host's own disk is wiped between requests, so counts would reset.
+
+**D21. The endpoint's rules, in the order they are checked.** Claude, from the spec's Part 11. (1) The off switch `AI_ENABLED`: off means nothing is sent anywhere. (2) A valid, switched-on code. (3) Size: 64 KB at most. (4) Shape: the request must match the expected fields exactly. (5) Speed: 8 requests a minute per code. (6) Allowance: the count goes up by one in a single step, so two requests at the same moment cannot both take the last one. Request 200 works; request 201 is refused. If the AI was never reached (a setup problem), the request is given back. If the AI was reached and then failed, the request stays counted, because it may have cost money. Logs hold event names and error types only: never a code, an idea or an answer.
+
+**D22. The code is asked for at the first AI request, not at the studio door.** Claude. This changes D5. The idea questions use no AI and send nothing anywhere, so a student can answer them without a code. The code form appears when they reach Plan. A plan that is already saved on the device stays readable without a working code; only new AI requests need one. Found by a browser test: switching a code off used to hide the student's own plan. If the founder wants the door locked as well, that is a small change.
+
+**D23. How the Plan stage spends requests.** Claude. "Make my plan" uses 2 requests: one shrinks the idea to a four-week first version, one builds the milestone map. "Make a new milestone map" uses 1 and asks first, because it replaces the student's edits. The student must press "This plan works for me" before Starter opens. Milestones can be edited by hand at no cost. A plan is marked out of date only when the idea's answers really differ from the ones it was made from; confirming the same idea again changes nothing.
+
+**D24. Every AI answer is checked before it is used.** Claude. Plans must match a fixed shape (`lib/studio/plan.ts`, using the `zod` library): the right fields, sensible lengths, four to twelve milestones, every week covered, in order. A wrong answer gets one correction attempt; a second wrong answer is refused with a plain message and nothing is saved. The browser checks the answer again. The student's words are handed to the AI as labeled data, separate from PineLaunch's instructions, so text like "ignore your instructions" inside an idea is treated as part of the idea.
+
+**D25. Four safety headers on every page.** Claude. No guessing of file types, no referrer sent to other sites, the site cannot be framed by another site, and camera, microphone and location are refused. The stricter content rules for the preview sandbox come with the workspace in Week 4.
+
 ## Dependencies added
 
 | Package | Version | License | Used for |
@@ -47,3 +63,4 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 | idb | 8.0.4 | ISC | IndexedDB helper |
 | vitest (dev) | 5.1.1 | MIT | Logic tests |
 | fake-indexeddb (dev) | 6.2.8 | Apache 2.0 | IndexedDB in tests |
+| zod | 4.6.7 | MIT | Checking the shape of requests and AI answers |

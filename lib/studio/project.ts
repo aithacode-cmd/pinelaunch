@@ -7,6 +7,8 @@
  * intake screens ask students to leave those out.
  */
 
+import { MilestoneSchema, ScopePlanSchema, type Milestone, type ScopePlan } from "./plan";
+
 export const SCHEMA_VERSION = 1 as const;
 
 /* ---------- the five stages ---------- */
@@ -88,11 +90,19 @@ export interface Project {
   /** When the student confirmed the idea. Null while they are still writing it. */
   ideaConfirmedAt: string | null;
   /** The reduced four-week scope. Built in the plan stage. */
-  scope: Record<string, unknown> | null;
-  /** The personal milestone map. Built in the plan stage. */
-  milestones: unknown[] | null;
+  scope: ScopePlan | null;
+  /** The personal milestone map. Built in the plan stage. The student can edit it. */
+  milestones: Milestone[] | null;
   /** Index into `milestones`. */
   currentMilestone: number;
+  /** Who wrote the plan: the real AI, or the practice mock. Lets the screen label practice plans honestly. */
+  planSource: "mock" | "anthropic" | null;
+  /** When the scope was made. */
+  planMadeAt: string | null;
+  /** The idea answers the plan was made from. If the idea no longer matches, the plan is out of date. */
+  planIdea: IdeaAnswers | null;
+  /** When the student said the plan works for them. Null until then. */
+  planConfirmedAt: string | null;
   /** The three source files. Null until the starter is generated. */
   files: ProjectFiles | null;
   /** What the student's own project saved through the preview's storage bridge. */
@@ -127,6 +137,10 @@ export function emptyProject(now: Date = new Date()): Project {
     scope: null,
     milestones: null,
     currentMilestone: 0,
+    planSource: null,
+    planMadeAt: null,
+    planIdea: null,
+    planConfirmedAt: null,
     files: null,
     bridgeData: {},
     progress: { checklist: {}, exportedAt: null },
@@ -150,6 +164,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+function readIdea(value: unknown): IdeaAnswers | null {
+  if (!isRecord(value)) return null;
+  const exp = value.experience;
+  return {
+    what: str(value.what, IDEA_LIMITS.what.max),
+    problem: str(value.problem, IDEA_LIMITS.problem.max),
+    who: str(value.who, IDEA_LIMITS.who.max),
+    mainThing: str(value.mainThing, IDEA_LIMITS.mainThing.max),
+    experience: exp === "new" || exp === "tutorials" || exp === "built-small" ? exp : "",
+  };
+}
+
 /**
  * Accepts anything read back from the browser and returns a safe Project, or
  * null when it is not a project this version understands. It never throws.
@@ -160,15 +186,7 @@ export function normalizeProject(raw: unknown): Project | null {
   if (typeof raw.id !== "string" || raw.id.length === 0 || raw.id.length > 100) return null;
 
   const fresh = emptyProject();
-  const idea = emptyIdea();
-  if (isRecord(raw.idea)) {
-    idea.what = str(raw.idea.what, IDEA_LIMITS.what.max);
-    idea.problem = str(raw.idea.problem, IDEA_LIMITS.problem.max);
-    idea.who = str(raw.idea.who, IDEA_LIMITS.who.max);
-    idea.mainThing = str(raw.idea.mainThing, IDEA_LIMITS.mainThing.max);
-    const exp = raw.idea.experience;
-    idea.experience = exp === "new" || exp === "tutorials" || exp === "built-small" ? exp : "";
-  }
+  const idea = readIdea(raw.idea) ?? emptyIdea();
 
   let files: ProjectFiles | null = null;
   if (isRecord(raw.files)) {
@@ -204,8 +222,17 @@ export function normalizeProject(raw: unknown): Project | null {
     exportedAt = isoOrNull(raw.progress.exportedAt);
   }
 
-  const milestones = Array.isArray(raw.milestones) ? raw.milestones : null;
+  // A plan is kept only if it still passes the same checks it passed when it
+  // was made. A damaged plan is dropped; the idea it came from is untouched.
+  const scopeCheck = ScopePlanSchema.safeParse(raw.scope);
+  const scope = scopeCheck.success ? scopeCheck.data : null;
+  let milestones: Milestone[] | null = null;
+  if (scope && Array.isArray(raw.milestones) && raw.milestones.length > 0 && raw.milestones.length <= 24) {
+    const checked = raw.milestones.map((m) => MilestoneSchema.safeParse(m));
+    if (checked.every((c) => c.success)) milestones = checked.map((c) => c.data!);
+  }
   const current = typeof raw.currentMilestone === "number" && Number.isInteger(raw.currentMilestone) ? raw.currentMilestone : 0;
+  const planSource = raw.planSource === "mock" || raw.planSource === "anthropic" ? raw.planSource : null;
 
   const confirmedAt = isoOrNull(raw.ideaConfirmedAt);
 
@@ -216,9 +243,14 @@ export function normalizeProject(raw: unknown): Project | null {
     idea,
     // A confirmed idea must still be a complete one.
     ideaConfirmedAt: confirmedAt && isIdeaComplete(idea) ? confirmedAt : null,
-    scope: isRecord(raw.scope) ? raw.scope : null,
+    scope,
     milestones,
     currentMilestone: milestones ? Math.min(Math.max(current, 0), Math.max(milestones.length - 1, 0)) : 0,
+    planSource: scope ? planSource : null,
+    planMadeAt: scope ? isoOrNull(raw.planMadeAt) : null,
+    planIdea: scope ? readIdea(raw.planIdea) : null,
+    // A plan can only be confirmed when both halves of it exist.
+    planConfirmedAt: scope && milestones ? isoOrNull(raw.planConfirmedAt) : null,
     files,
     bridgeData,
     progress: { checklist, exportedAt },
@@ -236,7 +268,7 @@ export function isStageDone(project: Project, stage: StageId): boolean {
     case "idea":
       return project.ideaConfirmedAt !== null;
     case "plan":
-      return project.scope !== null && project.milestones !== null;
+      return project.scope !== null && project.milestones !== null && project.planConfirmedAt !== null;
     case "starter":
       return project.files !== null;
     case "workspace":
@@ -263,6 +295,12 @@ export function stageStates(project: Project): Record<StageId, StageState> {
     out[s.id] = allDone || i < currentIndex ? "done" : i === currentIndex ? "current" : "upcoming";
   });
   return out;
+}
+
+/** True when the idea no longer says what it said when the plan was made, so the plan may not fit. */
+export function isPlanOutdated(project: Project): boolean {
+  if (!project.scope || !project.planIdea) return false;
+  return IDEA_FIELDS.some((f) => project.idea[f].trim() !== project.planIdea![f].trim());
 }
 
 /** A short name for the project until the plan stage gives it a real title. */

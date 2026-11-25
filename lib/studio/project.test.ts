@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
+import type { Milestone, ScopePlan } from "./plan";
 import {
   IDEA_LIMITS,
   SCHEMA_VERSION,
   currentStage,
   displayTitle,
   emptyProject,
+  isPlanOutdated,
   ideaProblem,
   isIdeaComplete,
   normalizeProject,
@@ -20,6 +22,32 @@ const goodIdea: IdeaAnswers = {
   mainThing: "Show whose turn each chore is",
   experience: "tutorials",
 };
+
+const scope: ScopePlan = {
+  projectTitle: "Chore Board",
+  originalIdea: goodIdea.what,
+  problem: goodIdea.problem,
+  targetUser: goodIdea.who,
+  projectGoal: "A first version that shows whose turn each chore is.",
+  coreFeature: goodIdea.mainThing,
+  secondaryFeatures: [],
+  excludedFeatures: [{ feature: "Accounts", reason: "This version runs in one browser with no server." }],
+  productType: "One web page",
+  fourWeekScope: "One page with the main feature working.",
+  completionCriteria: ["Adding a chore shows it in the list", "It is still there after a reload"],
+  testingCriteria: ["Ask one person to try it"],
+  futureIdeas: [],
+};
+const milestone = (week: 1 | 2 | 3 | 4): Milestone => ({
+  week,
+  title: `Week ${week} milestone`,
+  purpose: "It moves the project forward.",
+  tasks: ["Do one thing"],
+  expectedOutput: "Something that works.",
+  completionCriteria: ["It works"],
+  estimatedHours: 3,
+});
+const milestones: Milestone[] = [milestone(1), milestone(2), milestone(3), milestone(4)];
 
 function withIdea(idea: IdeaAnswers, confirmed = false): Project {
   return { ...emptyProject(), idea, ideaConfirmedAt: confirmed ? new Date().toISOString() : null };
@@ -156,13 +184,68 @@ describe("stages", () => {
     expect(stageStates(p).plan).toBe("current");
   });
 
+  it("stays on plan until the student accepts the plan", () => {
+    const drafted: Project = { ...withIdea(goodIdea, true), scope, milestones };
+    expect(currentStage(drafted)).toBe("plan");
+    expect(currentStage({ ...drafted, milestones: null, planConfirmedAt: new Date().toISOString() })).toBe("plan");
+  });
+
   it("walks through the later stages as their data appears", () => {
-    const planned: Project = { ...withIdea(goodIdea, true), scope: { projectTitle: "Chore Board" }, milestones: [{}] };
+    const planned: Project = { ...withIdea(goodIdea, true), scope, milestones, planConfirmedAt: new Date().toISOString() };
     expect(currentStage(planned)).toBe("starter");
     const started: Project = { ...planned, files: { "index.html": "", "styles.css": "", "script.js": "" } };
     expect(currentStage(started)).toBe("workspace");
     const exported: Project = { ...started, progress: { checklist: {}, exportedAt: new Date().toISOString() } };
     expect(Object.values(stageStates(exported)).every((s) => s === "done")).toBe(true);
+  });
+});
+
+describe("plans in a saved project", () => {
+  const saved = (): Project => ({
+    ...withIdea(goodIdea, true),
+    title: "Chore Board",
+    scope,
+    milestones,
+    planSource: "mock",
+    planMadeAt: new Date().toISOString(),
+    planIdea: { ...goodIdea },
+    planConfirmedAt: new Date().toISOString(),
+  });
+
+  it("come back exactly as they were saved", () => {
+    const p = saved();
+    expect(normalizeProject(JSON.parse(JSON.stringify(p)))).toEqual(p);
+  });
+
+  it("are dropped whole when damaged, leaving the idea untouched", () => {
+    const damaged = { ...saved(), scope: { ...scope, completionCriteria: [] } };
+    const p = normalizeProject(JSON.parse(JSON.stringify(damaged)))!;
+    expect(p.scope).toBeNull();
+    expect(p.milestones).toBeNull();
+    expect(p.planSource).toBeNull();
+    expect(p.planConfirmedAt).toBeNull();
+    expect(p.idea).toEqual(goodIdea);
+    expect(p.ideaConfirmedAt).not.toBeNull();
+  });
+
+  it("lose only the milestone map when one milestone is damaged", () => {
+    const damaged = { ...saved(), milestones: [...milestones, { week: 9, title: "" }] };
+    const p = normalizeProject(JSON.parse(JSON.stringify(damaged)))!;
+    expect(p.scope).toEqual(scope);
+    expect(p.milestones).toBeNull();
+    expect(p.planConfirmedAt).toBeNull();
+  });
+
+  it("are marked out of date only when the idea really changed", () => {
+    const p = saved();
+    expect(isPlanOutdated(p)).toBe(false);
+    // Confirming the same idea again, even much later, changes nothing.
+    const later = new Date(Date.parse(p.planMadeAt!) + 60_000).toISOString();
+    expect(isPlanOutdated({ ...p, ideaConfirmedAt: later })).toBe(false);
+    expect(isPlanOutdated({ ...p, idea: { ...p.idea, who: p.idea.who + "  " } })).toBe(false);
+    expect(isPlanOutdated({ ...p, idea: { ...p.idea, mainThing: "Remind people when a chore is late" } })).toBe(true);
+    expect(isPlanOutdated({ ...p, idea: { ...p.idea, experience: "new" } })).toBe(true);
+    expect(isPlanOutdated(emptyProject())).toBe(false);
   });
 });
 

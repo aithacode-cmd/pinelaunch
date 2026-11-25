@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { STAGES, currentStage, displayTitle, isStageDone, stageStates, type StageId } from "@/lib/studio/project";
+import { useAccess } from "@/lib/studio/useAccess";
 import { useProject } from "@/lib/studio/useProject";
 import { Logo } from "../Brand";
 import { ComingStage } from "./ComingStage";
 import { IdeaStage } from "./IdeaStage";
+import { PlanStage } from "./PlanStage";
 import { SaveIndicator } from "./SaveIndicator";
 import { SmallScreen } from "./SmallScreen";
 import { StageRail } from "./StageRail";
@@ -18,6 +20,7 @@ import { StageRail } from "./StageRail";
  */
 export function Studio() {
   const { project, saveState, recovered, update } = useProject();
+  const access = useAccess();
   // Null means "follow the project": show whichever stage is current.
   const [picked, setPicked] = useState<StageId | null>(null);
 
@@ -36,7 +39,14 @@ export function Studio() {
             <span aria-hidden="true" className="h-4 w-px bg-line3" />
             <span className="truncate font-body text-[13.5px] text-txt2">{project ? displayTitle(project) : "Studio"}</span>
           </div>
-          <SaveIndicator state={saveState} />
+          <div className="flex shrink-0 items-center gap-6">
+            {access.usage && (
+              <span className="font-body text-[12.5px] text-txt2">
+                AI requests used: {access.usage.used} / {access.usage.allowance}
+              </span>
+            )}
+            <SaveIndicator state={saveState} />
+          </div>
         </header>
 
         {!project ? (
@@ -55,6 +65,14 @@ export function Studio() {
             {(selected) =>
               selected === "idea" ? (
                 <IdeaStage project={project} update={update} onConfirmed={() => setPicked(null)} />
+              ) : selected === "plan" ? (
+                <PlanStage
+                  project={project}
+                  update={update}
+                  access={access}
+                  onConfirmed={() => setPicked(null)}
+                  onGoToIdea={() => setPicked("idea")}
+                />
               ) : (
                 <ComingStage stage={selected} blockedBy={firstUnfinishedBefore(project, selected)} onGoTo={setPicked} />
               )

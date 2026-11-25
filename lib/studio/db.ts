@@ -94,6 +94,37 @@ export async function loadOrCreateProject(): Promise<LoadResult> {
   }
 }
 
+/* ---------- the access code ---------- */
+
+const CODE_KEY = "accessCode";
+
+/**
+ * The student's access code, kept in this browser so they type it once.
+ * It lives in PineLaunch's own storage, which a student's project running in
+ * the preview cannot reach. It is sent only to PineLaunch's server, in a
+ * request header.
+ */
+export async function loadAccessCode(): Promise<string | null> {
+  try {
+    const db = await getDb();
+    return (await db.get("meta", CODE_KEY)) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Remembers the code. Pass null to forget it. Returns false when the browser refused. */
+export async function saveAccessCode(code: string | null): Promise<boolean> {
+  try {
+    const db = await getDb();
+    if (code === null) await db.delete("meta", CODE_KEY);
+    else await db.put("meta", code, CODE_KEY);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Saves the project. Returns false when the browser refused. Never throws. */
 export async function saveProject(project: Project): Promise<boolean> {
   try {

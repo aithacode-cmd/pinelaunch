@@ -96,6 +96,11 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
         <p className="font-body text-[13px] font-semibold text-pine-hi">Idea</p>
         <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Your idea.</h1>
         <AnswerList idea={idea} />
+        {project.scope && (
+          <p className="mt-6 font-body text-[13.5px] leading-[1.6] text-txt2">
+            Your plan was made from this idea. If you change it, the plan stays as it is until you make a new one.
+          </p>
+        )}
         <div className="mt-8 flex flex-wrap gap-3">
           <Button onClick={onConfirmed}>Go to Plan</Button>
           <Button

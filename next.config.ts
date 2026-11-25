@@ -1,16 +1,29 @@
 import type { NextConfig } from "next";
 
-// PineLaunch v1 is a fully static site: no server, no database, no API routes.
-// `output: "export"` writes plain HTML/CSS/JS into /out so it can be hosted
-// for free on Vercel, Netlify or GitHub Pages.
+// PineLaunch pages are still built ahead of time as static pages. Since V1
+// Week 2 there is also exactly one server function, /api/ai/, so the old
+// `output: "export"` setting (plain files only) is gone.
 const nextConfig: NextConfig = {
-  output: "export",
-  // Emit /week/1/index.html instead of /week/1.html so plain static hosts
-  // serve nested pages without extra rewrite rules.
+  // Keep /week/1/ style addresses, as before.
   trailingSlash: true,
   images: {
-    // The default image optimizer needs a server. v1 has no images anyway.
+    // No image optimizer is needed. The site has no photos.
     unoptimized: true,
+  },
+  // Basic protections on every page. A fuller content policy for the studio
+  // is added with the workspace in Week 4 and reviewed then.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        ],
+      },
+    ];
   },
   turbopack: {
     rules: {

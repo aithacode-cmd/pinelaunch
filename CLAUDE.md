@@ -24,9 +24,15 @@ they conflict, but only for the studio):
 
 - No student accounts. No project storage on any server. Projects live in
   the browser (IndexedDB) and in exported files.
-- One server-side AI endpoint only, behind access codes, added in Week 2.
-  API keys never reach the browser and are never printed, logged or
-  committed. The only server-side record is the access-code usage ledger.
+- One server-side AI endpoint only (`/api/ai/`), behind access codes. On
+  this branch the static export is therefore off (D18); every page is still
+  prerendered. API keys never reach the browser and are never printed,
+  logged or committed. The only server-side record is the access-code usage
+  ledger: used, allowance, on or off, keyed by a fingerprint of the code.
+- Nothing in `components/`, `lib/studio/` or `app/` outside `app/api/`
+  may import from `lib/ai/` or `lib/server/`. A test enforces this.
+- The real Anthropic module and the Upstash ledger are not built. Do not
+  write either until its account exists and the code can be run against it.
 - Desktop and laptop only. Under 1024px the studio shows a "works on a
   computer" screen.
 - Adult-only tasks (hosting account, AI account, keys, spending limit,
@@ -46,8 +52,14 @@ Where the V1 code lives:
 | Project record, stages, idea rules | `lib/studio/project.ts` |
 | Browser storage (IndexedDB) | `lib/studio/db.ts` |
 | Load and autosave hook | `lib/studio/useProject.ts` |
-| AI request shapes, the mock, the provider switch (server only) | `lib/ai/` |
-| Logic tests (`npm test`) | `lib/studio/*.test.ts` |
+| Plan shapes and the checks on AI answers (shared by browser and server) | `lib/studio/plan.ts` |
+| Browser side of AI requests, and the saved access code | `lib/studio/aiClient.ts`, `lib/studio/useAccess.ts` |
+| Plan stage screens | `components/studio/PlanStage.tsx`, `MilestoneList.tsx`, `AccessCodeForm.tsx` |
+| AI request shapes, the mock, the provider switch, instruction texts (server only) | `lib/ai/` |
+| Access codes, usage ledger, the endpoint's rules (server only) | `lib/server/` |
+| The one endpoint | `app/api/ai/route.ts` |
+| Make, check and switch access codes (`npm run codes -- create 1`) | `scripts/codes.ts` |
+| Logic tests (`npm test`) | `lib/**/*.test.ts` |
 | Public pages, with header and footer | `app/(site)/`, `components/SiteChrome.tsx` |
 
 The sections below describe the older public site. Much of it is obsolete

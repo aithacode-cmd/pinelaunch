@@ -1,13 +1,16 @@
-# /app/api is reserved for v2
+# /app/api: one server function, and only one
 
-This folder is intentionally empty in v1.
+This folder holds the only code in PineLaunch that runs on a server:
+`ai/route.ts`, which answers at `/api/ai/`.
 
-PineLaunch v1 is a static site with no server. It collects no student data,
-so there is nothing for an API route to do.
+It exists for one reason. The AI key must never reach a browser, so the
+request to the AI provider has to be made from a server. Students and
+parents never enter a key. PineLaunch pays.
 
-In v2, once a lawyer has reviewed the rules for storing minors' data, this is
-where server routes will go: account sign-up with parent consent, the
-built-in AI helper, parent progress emails, and payments.
+The route file is deliberately tiny. The rules live in `lib/server/`
+(access codes, the usage count, the checks) and `lib/ai/` (the provider
+switch, the practice provider, the instruction texts). See decisions D18 to
+D24 in `docs/DECISIONS.md`.
 
-Until then, do not add route files here. Adding one would break the static
-export (`output: "export"` in next.config.ts).
+Do not add a second route here without the founder's yes. The spec allows
+one endpoint. No accounts, no project storage, no analytics.

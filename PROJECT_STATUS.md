@@ -1,6 +1,56 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-23 (V1 Week 1 built on branch `v1-workspace`, not pushed, not deployed).
+Last updated: 2026-11-24 (V1 Weeks 1 and 2 built on branch `v1-workspace`, Week 2 on the practice AI; not pushed, not deployed).
+
+## V1 workspace: Week 2, built early on the practice AI (2026-11-24)
+
+Week 2 is scheduled for November 30 to December 6. The founder said "start now" on November 24, so it was built a week early, on the mock.
+
+**Week 2 result, half met.** The spec's result is "a personal four-week plan from a real idea". Everything that produces and protects a plan is built and tested. The plan text itself is practice text, not written by an AI, until the real key is in. That half cannot be judged yet.
+
+Built:
+
+- **The one server address, `/api/ai/`.** It checks, in order: the off switch, the access code, the size (64 KB), the shape of the request, speed (8 a minute per code), and the allowance (200). Only then does it ask the AI. Rules in decision D21.
+- **Access codes.** `PL-XXXX-XXXX-XXXX-XXXX`. The server keeps a fingerprint, never the code (D19). Made and managed with `npm run codes`.
+- **The usage count.** Three facts per code: used, allowance, on or off (D20). On this computer it lives in `.data/ledger.json`, which Git ignores.
+- **The Plan stage.** The code form, a notice saying what is sent, "Make my plan" (2 requests), the first version (what is in, what moved out and why, when it is finished, how to test it), the milestone map (8 milestones across four weeks), editing a milestone by hand, "This plan works for me", "Make a new milestone map" (1 request, asks first), and a notice when the idea changed after the plan was made.
+- **The top bar** shows "AI requests used: N / 200". The number always comes from the server.
+- **Practice plans in the mock.** Sample text built around the student's own words, labeled "Practice plan" on screen.
+- **Checks on every AI answer** (D24), and four safety headers (D25).
+- 88 tests (`npm test`). Lint, type check and build pass.
+
+Tested in a browser at 1280 wide: wrong code refused; a code typed in lower case with spaces accepted; plan made and the count moved to 2 / 200; a milestone title edited and kept after a reload; plan confirmed and the rail moved to Starter; new milestone map with its warning, count 3 / 200; idea changed and the out-of-date notice shown; code switched off, plan still readable, new requests blocked with a clear message; code switched back on and accepted. One flaw found and fixed this way (a switched-off code hid the student's own plan, D22).
+
+Not real yet, said plainly:
+
+- **No AI has written anything.** The real Anthropic module is not written, on purpose (D16). The two instruction texts in `lib/ai/prompts.ts` are drafts that have never met a real model.
+- **The live-site usage count is not built.** It needs a parent-owned Upstash account (D20). The site cannot be deployed for students without it.
+- **No starter, workspace, mentor or export.** Weeks 3 to 7.
+
+How to test it yourself:
+
+1. In a terminal: `cd "C:\Users\aitha\MyProjects - Rithwik\PineLaunch"`
+2. `npm.cmd run codes -- create 1` and copy the code it prints. It is shown once.
+3. `npm.cmd run dev` (skip if it is already running), then open http://localhost:3000/studio/ on a wide window.
+4. Answer the five idea questions, confirm, then enter the code and press "Make my plan".
+5. To switch the code off: `npm.cmd run codes -- off PL-...`. To switch it on again: `on` instead of `off`.
+
+Waiting on adults (none of it blocks this week):
+
+- **By Monday, December 7:** the Anthropic account, spending limit and key (still on hold by the founder); an Upstash account for the usage count; the parent-owned paid hosting account.
+- **By November 29:** four families asked for a yes in principle.
+- **By December 11:** the helper reviews the endpoint and access codes (`lib/server/`, `app/api/ai/route.ts`, `lib/ai/`).
+
+Known limits:
+
+- Wrong codes can be tried without a limit. Codes are too long to guess, and a wrong code costs nothing, but a public launch needs a per-address limit (`docs/PRE_PUBLIC_LAUNCH.md`).
+- The speed limit is counted inside one server process. On the live host it has to move into the same store as the usage count.
+- A plan made before 2026-11-24's last change has no record of the idea it came from, so it is never marked out of date. Only test data is affected.
+- Anthropic's full Usage Policy has still not been read. It must be, before the real AI is switched on.
+
+Next (Week 3, December 7 to 13): the starter generator (with a practice starter in the mock), the real AI module once the key is in, the Upstash usage count, the closed-beta deployment, and `docs/PARENT_DISCLOSURE_DRAFT.md`.
+
+---
 
 ## V1 workspace: Week 1 (November 23 to 29, 2026)
 
@@ -27,7 +77,7 @@ Known limits:
 
 - One project per browser. No "start over".
 - A change made in the last instant before closing the tab can be lost.
-- Editing a confirmed idea is allowed. Once plans exist (Week 2) that must warn that the plan needs regenerating.
+- Editing a confirmed idea is allowed. Done in Week 2: the Plan stage says when the idea changed after the plan was made.
 - Tested in one Chromium browser only so far. Firefox and Edge checks come with the browser test suite in Week 4.
 - `npm audit` shows 7 moderate advisories in development-only packages; 0 in what ships.
 
@@ -51,13 +101,11 @@ Not set up yet, on the founder's instruction (decision D16). Nothing is waiting 
 ### The AI layer on a mock (built 2026-11-24)
 
 - `lib/ai/types.ts`: the request and answer shapes, the five kinds of request, and the hint format (explanation, hint, one experiment, how to check).
-- `lib/ai/mock.ts`: hand-written canned hints picked by simple word matching. No AI, no key, no cost, no network. Mentor questions and follow-ups only; canned plans and starters come with those features.
+- `lib/ai/mock.ts`: hand-written canned hints picked by simple word matching. No AI, no key, no cost, no network. Mentor questions, follow-ups and (since Week 2) practice plans. The practice starter comes in Week 3.
 - `lib/ai/provider.ts`: the one switch. `AI_PROVIDER=mock` or `AI_PROVIDER=anthropic`. Unset means mock while developing. The live site refuses mock and refuses an unset value.
 - 16 tests in `lib/ai/ai.test.ts` (42 in total with Week 1's).
 - Customers never enter a key and never create an AI account. All of `lib/ai` is server-side only; PineLaunch pays (decision D17).
-- Not built: the real Anthropic module (it cannot be tested without a key), the endpoint, and any screen that shows a hint. The mentor panel is Week 5.
-
-Next (Week 2, November 30 to December 6): provider pick, the AI endpoint, access codes and the usage count, the scope reducer and the milestone map.
+- Not built: the real Anthropic module (it cannot be tested without a key) and any screen that shows a hint. The mentor panel is Week 5. The endpoint was added in Week 2 (see the top of this file).
 
 ---
 

@@ -7,7 +7,7 @@ The plan is the founder's master prompt of 2026-11-23. Ten weeks, November 23, 2
 | Week | Dates | Work | Result |
 |---|---|---|---|
 | 1 | Nov 23 to 29 | Audit, app structure, design foundation, idea intake, project data model | A student can enter and review an idea (done) |
-| 2 | Nov 30 to Dec 6 | Provider pick, AI endpoint, access codes and usage count, scope reducer, milestone map | A personal four-week plan from a real idea |
+| 2 | Nov 30 to Dec 6 | Provider pick, AI endpoint, access codes and usage count, scope reducer, milestone map | A personal four-week plan from a real idea (built 2026-11-24 on the practice AI; the plan text is only real once the key is in) |
 | 3 | Dec 7 to 13 | Starter generator, closed-beta deployment on parent-owned paid hosting, parent disclosure reviewed and sent | Live, private, parent-approved by Dec 13 |
 | 4 | Dec 14 to 20 | Students start intake and plans Dec 14. Editor, sandboxed preview, storage bridge, error strip, autosave, and a simple ZIP export of the three files (moved up from Week 7, decision D13) | Workspace ready by Dec 20, with a way to take the files out |
 | 5 | Dec 21 to 27 | Students start building Dec 21. Basic AI mentor | Basic mentor live by Dec 27 |
@@ -17,7 +17,7 @@ The plan is the founder's master prompt of 2026-11-23. Ten weeks, November 23, 2
 | 9 | Jan 18 to 24 | Beta support, fix what students actually hit | Fix list from real use |
 | 10 | Jan 25 to 31 | Final fixes, regression tests, final interviews, parent price test | Beta evaluation and a launch-readiness recommendation |
 
-The real AI key is needed by December 7 (Week 3). Weeks 1 and 2 are built on a mock provider (decision D16).
+The real AI key is needed by December 7 (Week 3). Weeks 1 and 2 are built on a mock provider (decision D16). Also needed by December 7: an Upstash account for the usage count (D20) and the parent-owned paid hosting account.
 
 Gate before December 14: if deployment, the endpoint, access codes or parent permission are not ready, say so by December 10 and recommend the smallest delay.
 

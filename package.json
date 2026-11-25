@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "codes": "node --disable-warning=ExperimentalWarning scripts/codes.ts"
   },
   "dependencies": {
     "idb": "8.0.4",
@@ -15,7 +16,8 @@
     "motion": "^14.14.0",
     "next": "16.4.6",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "4.3.3",

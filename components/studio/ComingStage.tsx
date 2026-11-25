@@ -1,15 +1,9 @@
 import { STAGES, type StageId } from "@/lib/studio/project";
 import { Button } from "../Button";
 
-const details: Record<Exclude<StageId, "idea">, { title: string; points: string[] }> = {
-  plan: {
-    title: "A first version you can finish.",
-    points: [
-      "PineLaunch reads your idea and shrinks it to something you can build in about four weeks.",
-      "You see what was kept, what was moved to later, and why.",
-      "Then you get a milestone map made for your project, which you can change.",
-    ],
-  },
+type LaterStage = Exclude<StageId, "idea" | "plan">;
+
+const details: Record<LaterStage, { title: string; points: string[] }> = {
   starter: {
     title: "A starting point made for your project.",
     points: [
@@ -37,7 +31,7 @@ const details: Record<Exclude<StageId, "idea">, { title: string; points: string[
 };
 
 interface Props {
-  stage: Exclude<StageId, "idea">;
+  stage: LaterStage;
   /** The stage that has to be finished first, if it is not done yet. */
   blockedBy: StageId | null;
   onGoTo: (stage: StageId) => void;
