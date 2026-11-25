@@ -35,6 +35,8 @@ Schedule change, approved by the founder on 2026-11-24 (decision D13): a simple 
 
 Adult tasks due next (spec Part 4): four families asked for a yes in principle by November 29; AI provider account with a hard spending limit, and the key entered locally, by November 30.
 
+Provider chosen on 2026-11-24: Anthropic (decision D14). The parent's step-by-step is in the founder's Second Brain, `output/pinelaunch/parent-steps-anthropic-account-2026-11-24.md`. `.env.example` exists and `.gitignore` ignores every other `.env*` file (D15). Provider rules for minors are summarized in `docs/PRIVACY_AND_SAFETY.md`. Waiting for the founder to say "the key is in".
+
 Next (Week 2, November 30 to December 6): provider pick, the AI endpoint, access codes and the usage count, the scope reducer and the milestone map.
 
 ---

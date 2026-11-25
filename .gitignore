@@ -30,8 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# Secret settings (API keys). Never commit these.
 .env*
+# The template has placeholders only, so it is safe to keep in the repo.
+!.env.example
 
 # vercel
 .vercel

@@ -32,6 +32,10 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 
 **D13. A simple ZIP export moves forward from Week 7 to Week 4.** Founder ("forward to week 4"), on Claude's suggestion. Students start building on December 21, and the spec scheduled export for January 4 to 10. For three weeks their work would have existed only in the browser, where clearing browser data removes it. Week 4 now also delivers an Export button that downloads a ZIP of the three files, so the workspace never opens without a way to take the work out. Week 7 keeps the rest of the Finish stage: the README inside the ZIP, the completion checklist, and export polish. This is a schedule change only. Nothing was added to V1's scope.
 
+**D14. The AI provider is Anthropic.** Founder and a parent ("we picked anthropic"). Only one provider is set up, so the comparison in the spec's Part 11.1 is skipped, as the spec allows. A parent owns the account. Cost protection is two caps: prepaid credits with auto-reload off, and a monthly spend limit in the console. Anthropic's guidance for products used by minors was read on 2026-11-24 and is summarized in `docs/PRIVACY_AND_SAFETY.md`: telling users they are talking to an AI is required; age verification is one example of a safeguard, not a requirement; no approval is needed before launch. The full Usage Policy still has to be read before students use AI.
+
+**D15. Secrets live in `.env.local`, which Git ignores.** Claude. `.gitignore` ignores every `.env*` file except `.env.example`, the template with placeholders only. A parent or the founder types the key into `.env.local`. Claude never opens, prints or copies that file.
+
 ## Dependencies added
 
 | Package | Version | License | Used for |

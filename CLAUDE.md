@@ -9,7 +9,10 @@ idea into a working HTML, CSS and JavaScript project: Idea, Plan, Starter,
 Workspace, Finish. The founder's spec is his master prompt of 2026-11-23, in
 his Second Brain at `raw/2026-11-23-pinelaunch-v1-master-prompt.md`. Read it
 before any V1 work. Decisions are in `docs/DECISIONS.md`; deferred work is in
-`docs/PRE_PUBLIC_LAUNCH.md`; progress is in `PROJECT_STATUS.md`.
+`docs/PRE_PUBLIC_LAUNCH.md`; privacy promises and the provider's rules for
+minors are in `docs/PRIVACY_AND_SAFETY.md`; progress is in `PROJECT_STATUS.md`.
+The AI provider is Anthropic (decision D14). Secrets go in `.env.local`,
+which the founder or a parent edits; never open, print or copy it.
 
 Hard rules from the spec (they override the older sections below wherever
 they conflict, but only for the studio):
