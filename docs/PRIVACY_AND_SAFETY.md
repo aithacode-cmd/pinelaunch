@@ -2,7 +2,9 @@
 
 What PineLaunch promises, what it cannot promise, and what the AI provider requires. This file must match what is actually built. It is started in Week 1 and filled in as each part ships.
 
-Status on 2026-11-24: no AI is built yet. No student data leaves the browser today.
+Status on 2026-11-24: no real AI is connected. The AI layer runs on a mock that returns hand-written canned hints and makes no network call (decision D16). No student data leaves the browser today. The Anthropic account does not exist yet.
+
+Students and parents never enter an API key and never create an AI account. PineLaunch calls the provider from its own server and pays for it (decision D17).
 
 ## The promise (from the spec, Part 2)
 

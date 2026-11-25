@@ -11,8 +11,13 @@ his Second Brain at `raw/2026-11-23-pinelaunch-v1-master-prompt.md`. Read it
 before any V1 work. Decisions are in `docs/DECISIONS.md`; deferred work is in
 `docs/PRE_PUBLIC_LAUNCH.md`; privacy promises and the provider's rules for
 minors are in `docs/PRIVACY_AND_SAFETY.md`; progress is in `PROJECT_STATUS.md`.
-The AI provider is Anthropic (decision D14). Secrets go in `.env.local`,
-which the founder or a parent edits; never open, print or copy it.
+The AI provider is Anthropic (decision D14), but the account is on hold and
+AI runs on a mock for now (D16): `AI_PROVIDER=mock` or `anthropic` is the one
+switch, in `lib/ai/provider.ts`. Do not write the real provider module until
+the key exists and it can be run. Students and parents never enter a key or
+create an AI account; `lib/ai` is server-side only (D17). Secrets go in
+`.env.local`, which the founder or a parent edits; never open, print or
+copy it.
 
 Hard rules from the spec (they override the older sections below wherever
 they conflict, but only for the studio):
@@ -41,6 +46,7 @@ Where the V1 code lives:
 | Project record, stages, idea rules | `lib/studio/project.ts` |
 | Browser storage (IndexedDB) | `lib/studio/db.ts` |
 | Load and autosave hook | `lib/studio/useProject.ts` |
+| AI request shapes, the mock, the provider switch (server only) | `lib/ai/` |
 | Logic tests (`npm test`) | `lib/studio/*.test.ts` |
 | Public pages, with header and footer | `app/(site)/`, `components/SiteChrome.tsx` |
 

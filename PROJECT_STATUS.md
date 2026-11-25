@@ -35,7 +35,27 @@ Schedule change, approved by the founder on 2026-11-24 (decision D13): a simple 
 
 Adult tasks due next (spec Part 4): four families asked for a yes in principle by November 29; AI provider account with a hard spending limit, and the key entered locally, by November 30.
 
-Provider chosen on 2026-11-24: Anthropic (decision D14). The parent's step-by-step is in the founder's Second Brain, `output/pinelaunch/parent-steps-anthropic-account-2026-11-24.md`. `.env.example` exists and `.gitignore` ignores every other `.env*` file (D15). Provider rules for minors are summarized in `docs/PRIVACY_AND_SAFETY.md`. Waiting for the founder to say "the key is in".
+Provider chosen on 2026-11-24: Anthropic (decision D14). `.env.example` exists and `.gitignore` ignores every other `.env*` file (D15). Provider rules for minors are summarized in `docs/PRIVACY_AND_SAFETY.md`.
+
+### PENDING: the Anthropic account and key (on hold by the founder, 2026-11-24)
+
+Not set up yet, on the founder's instruction (decision D16). Nothing is waiting on it today.
+
+- **What is pending:** a parent creates the Anthropic account, buys a small prepaid credit, keeps auto-reload off, sets the monthly spend limit, creates the key, and the key is typed into `.env.local` on this computer.
+- **The steps, kept for later:** the founder's Second Brain, `output/pinelaunch/parent-steps-anthropic-account-2026-11-24.md`.
+- **When the real key becomes necessary: Week 3 (December 7 to 13).** Needed by **Monday, December 7**. That leaves the week to write the real provider module, tune the prompts against the real model, pass the helper's review on December 11 and the go or no-go check on December 10, and send the parent disclosure. Without a key by December 10, the December 14 student start has to slip, because students need real plans that day.
+- **What works without it:** everything through the end of Week 2 can be built and tested on the mock: the endpoint, access codes, usage counting, limits, and the Plan stage screens with canned plans.
+- **What cannot be judged without it:** whether the scope reducer keeps a student's idea and gives a realistic four-week plan. Week 2's stated result ("a personalized four-week plan from a real idea") is only met once the real provider is on.
+- **Gate item:** before any student uses PineLaunch, `AI_PROVIDER` must be `anthropic`. The live site refuses `mock`.
+
+### The AI layer on a mock (built 2026-11-24)
+
+- `lib/ai/types.ts`: the request and answer shapes, the five kinds of request, and the hint format (explanation, hint, one experiment, how to check).
+- `lib/ai/mock.ts`: hand-written canned hints picked by simple word matching. No AI, no key, no cost, no network. Mentor questions and follow-ups only; canned plans and starters come with those features.
+- `lib/ai/provider.ts`: the one switch. `AI_PROVIDER=mock` or `AI_PROVIDER=anthropic`. Unset means mock while developing. The live site refuses mock and refuses an unset value.
+- 16 tests in `lib/ai/ai.test.ts` (42 in total with Week 1's).
+- Customers never enter a key and never create an AI account. All of `lib/ai` is server-side only; PineLaunch pays (decision D17).
+- Not built: the real Anthropic module (it cannot be tested without a key), the endpoint, and any screen that shows a hint. The mentor panel is Week 5.
 
 Next (Week 2, November 30 to December 6): provider pick, the AI endpoint, access codes and the usage count, the scope reducer and the milestone map.
 

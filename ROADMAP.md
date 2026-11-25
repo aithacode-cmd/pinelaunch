@@ -17,6 +17,8 @@ The plan is the founder's master prompt of 2026-11-23. Ten weeks, November 23, 2
 | 9 | Jan 18 to 24 | Beta support, fix what students actually hit | Fix list from real use |
 | 10 | Jan 25 to 31 | Final fixes, regression tests, final interviews, parent price test | Beta evaluation and a launch-readiness recommendation |
 
+The real AI key is needed by December 7 (Week 3). Weeks 1 and 2 are built on a mock provider (decision D16).
+
 Gate before December 14: if deployment, the endpoint, access codes or parent permission are not ready, say so by December 10 and recommend the smallest delay.
 
 Pass mark: at least 3 of 4 students finish and export a working project, and all four parents get a real purchase offer for the next round.

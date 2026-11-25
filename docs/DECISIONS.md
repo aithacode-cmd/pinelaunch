@@ -36,6 +36,10 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 
 **D15. Secrets live in `.env.local`, which Git ignores.** Claude. `.gitignore` ignores every `.env*` file except `.env.example`, the template with placeholders only. A parent or the founder types the key into `.env.local`. Claude never opens, prints or copies that file.
 
+**D16. The Anthropic account is on hold; AI is built on a mock first.** Founder, 2026-11-24. The provider choice in D14 stands, but no account or key is created yet. Until then every AI feature is built against a mock provider that returns canned hints. One setting, `AI_PROVIDER`, switches between `mock` and `anthropic`. The real provider module is written when the key exists, because code for a paid API that has never been run against it only looks finished. The real key is needed by December 7 (see PROJECT_STATUS.md). Two guards: the live site refuses `mock`, and every answer carries the provider's name so the interface can label practice answers honestly.
+
+**D17. Customers never enter API keys and never create AI accounts.** Founder, 2026-11-24. Students and parents use PineLaunch only. All AI calls go from PineLaunch's own server with PineLaunch's own key, and PineLaunch pays. Nothing in `lib/ai` may be imported by browser code. This matches the spec's Parts 4 and 11.2 and is now a standing rule.
+
 ## Dependencies added
 
 | Package | Version | License | Used for |
