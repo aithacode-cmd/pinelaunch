@@ -4,13 +4,13 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 export type ButtonVariant = "primary" | "outline" | "quiet" | "ghost";
 
 const base =
-  "inline-flex h-11 items-center justify-center gap-2 rounded-[10px] px-5 font-body text-[14px] font-semibold leading-none tracking-[-0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-45";
+  "pl-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] px-5 font-body text-[17px] font-medium leading-none tracking-[-0.005em] disabled:cursor-not-allowed disabled:opacity-45";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-pine-deep text-white hover:bg-[#3B7153]",
-  outline: "border border-line3 bg-transparent text-txt hover:border-txt2 hover:bg-panel",
-  quiet: "border border-line2 bg-panel text-txt2 hover:border-line3 hover:text-txt",
-  ghost: "text-txt2 hover:text-txt",
+  primary: "bg-accent text-on-accent shadow-[inset_0_-1px_0_rgba(0,0,0,0.18)] hover:bg-accent-strong",
+  outline: "border border-line-2 bg-surface text-ink hover:border-line-3 hover:bg-surface-2",
+  quiet: "bg-surface-3 text-ink hover:bg-line-2",
+  ghost: "text-ink-2 underline-offset-4 hover:text-ink hover:underline",
 };
 
 export function buttonClass(variant: ButtonVariant = "primary", className = "") {

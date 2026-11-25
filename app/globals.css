@@ -1,66 +1,84 @@
 @import "tailwindcss";
 
 /*
-  PineLaunch design system (final, 2026-11-15).
-  Neutral black and grey with pine green as a hint. Four type roles:
-  Space Grotesk (headings), Manrope (body), IBM Plex Mono (labels),
-  Instrument Serif italic (one accent phrase per heading).
+  PineLaunch design system: "Workbench" (2026-11-25, replaces the dark
+  Base44 system of 2026-11-15 at the founder's request).
+  A light, exact working surface: frost ground, slate ink, one deep teal
+  accent (the pine in the name). Hairline rules carry the structure; boxes
+  only where something is interactive. One family for display and text
+  (Host Grotesk), one mono for labels and data (JetBrains Mono).
+  Full token list and rules: DESIGN.md.
 
-  Text pairs checked against WCAG AA:
-    txt2 (#B9B9B9) on bg (#0B0B0B)       10.3:1
-    muted (#8A8A8A) on bg               5.9:1
-    muted on panel2 (#181818)           5.2:1
-    pine-hi (#A2C5AA) on bg             11.0:1
-    white on pine-deep (#315F43)        7.3:1
+  Text pairs checked against WCAG AA (lowest surface each):
+    ink   (#1F3038) on surface-3 (#E7ECEF)  11.5:1
+    ink-2 (#45575F) on surface-3            6.3:1
+    ink-3 (#5B6C74) on surface-3            4.6:1
+    accent (#0D7480) on surface-3           4.6:1
+    white on accent                          5.5:1
+    line-3 (#7F9098) on surface (controls)   3.2:1
 */
 @theme {
-  --font-display: var(--font-bricolage), var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-display: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-host), ui-sans-serif, system-ui, sans-serif;
 
-  --color-deep: #050505;
-  --color-bg: #0b0b0b;
-  --color-ink: #0a0c0b;
-  --color-panel: #121212;
-  --color-panel2: #181818;
-  --color-panel3: #202020;
-  --color-line: #1e1e1e;
-  --color-line2: #2a2a2a;
-  --color-line3: #3a3a3a;
-  --color-txt: #f4f4f4;
-  --color-txt2: #b9b9b9;
-  --color-muted: #8a8a8a;
-  --color-pine: #7ea889;
-  --color-pine-hi: #a2c5aa;
-  --color-pine-deep: #315f43;
-  --color-danger: #e5a3a3;
+  /* grounds and surfaces */
+  --color-ground: #f7f9fa;
+  --color-band: #ecf0f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f4f6;
+  --color-surface-3: #e7ecef;
+  /* rules */
+  --color-line: #e2e8eb;
+  --color-line-2: #d3dce0;
+  --color-line-3: #7f9098;
+  /* text */
+  --color-ink: #1f3038;
+  --color-ink-2: #45575f;
+  --color-ink-3: #5b6c74;
+  /* accent: the pine */
+  --color-accent: #0d7480;
+  --color-accent-strong: #0a5d67;
+  --color-accent-soft: #dff0f1;
+  --color-on-accent: #ffffff;
+  /* text and rules on the slate (ink) band */
+  --color-on-ink-2: #c9d4d9;
+  --color-on-ink-accent: #9fd3d9;
+  --color-on-ink-line: #6f848d;
+  /* states */
+  --color-danger: #b3261e;
+  --color-danger-soft: #fbeceb;
+  --color-warning: #8a5a00;
+  --color-warning-soft: #fdf6e7;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  --focus-ring: #a2c5aa;
+  --focus-ring: #0d7480;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-txt);
+  background: var(--color-ground);
+  color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-pine-deep);
-  color: var(--color-txt);
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
 }
 
 /* Visible focus for keyboard users, on every interactive element. */
@@ -92,101 +110,101 @@ body {
   }
 }
 
-/* ---------- surfaces and textures ---------- */
-.pl-grid-bg {
-  background-image:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 72px 72px;
-}
-.pl-grid-fine {
-  background-image:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* ---------- surfaces ---------- */
+/* Old texture helpers are kept as no-ops so stray uses render flat. */
+.pl-grid-bg,
+.pl-grid-fine,
+.pl-grain {
+  background-image: none;
 }
 .pl-fade-edges {
-  -webkit-mask-image: radial-gradient(80% 70% at 50% 0, #000 35%, transparent 82%);
-  mask-image: radial-gradient(80% 70% at 50% 0, #000 35%, transparent 82%);
-}
-.pl-grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .pl-panel {
-  background-image: linear-gradient(rgba(26, 29, 27, 0.9), rgba(10, 11, 10, 0.94));
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.05),
-    0 40px 80px -60px rgba(0, 0, 0, 0.9);
+  background: var(--color-surface);
 }
 .pl-hairline {
-  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  background: var(--color-line);
 }
-.pl-spot::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%), rgba(126, 168, 137, 0.14), transparent 70%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.45s;
-}
-.pl-spot:hover::before {
-  opacity: 1;
+.pl-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(31, 48, 56, 0.04);
 }
 .pl-num {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
+/* A linked card lifts 2px; the border darkens. */
 .pl-lift {
   transition:
-    transform 0.25s,
-    border-color 0.25s,
-    background-color 0.25s;
+    transform 200ms var(--ease-out-quint),
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
-.pl-lift:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .pl-lift:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-line-3);
+    box-shadow: 0 8px 24px -12px rgba(31, 48, 56, 0.18);
+  }
+}
+/* Buttons press on click. */
+.pl-press {
+  transition:
+    transform 160ms var(--ease-out-quint),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.pl-press:active:not(:disabled) {
+  transform: scale(0.97);
+}
+/* The launch track: three segments, Idea / Build / Launch. */
+.pl-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+.pl-track > span {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-surface-3);
+  overflow: hidden;
+  position: relative;
+}
+.pl-track > span > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: width 500ms var(--ease-out-quint);
 }
 
 /* ---------- motion ---------- */
 .pl-fade-up {
-  animation: pl-fade-up 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: pl-fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .pl-rise {
-  animation: pl-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: pl-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.pl-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Sections no longer fade in on scroll. */
+.pl-reveal,
 .pl-reveal-in {
   opacity: 1;
   transform: none;
 }
-.pl-orbit {
-  animation: pl-spin 34s linear infinite;
-}
-.pl-orbit-slow {
-  animation: pl-spin 90s linear infinite;
-}
-.pl-pulse-dot {
-  animation: pl-pulse 2.6s ease-in-out infinite;
-}
+/* Decorative loops were removed in the 2026-11-25 redesign. */
+.pl-orbit,
+.pl-orbit-slow,
+.pl-pulse-dot,
 .pl-drift {
-  animation: pl-drift 22s ease-in-out infinite alternate;
-}
-.pl-ticker {
-  animation: pl-ticker 42s linear infinite;
-}
-.pl-ticker[data-paused="true"] {
-  animation-play-state: paused;
+  animation: none;
 }
 .pl-sweep {
-  background-image: linear-gradient(90deg, transparent 18%, rgba(162, 197, 170, 0.6) 50%, transparent 82%);
-  background-size: 220% 100%;
-  animation: pl-sweep 7s linear infinite;
+  background: var(--color-accent);
 }
 
 @keyframes pl-fade-up {
@@ -209,46 +227,6 @@ body {
     transform: none;
   }
 }
-@keyframes pl-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes pl-pulse {
-  0%,
-  to {
-    opacity: 0.4;
-    transform: scale(0.85);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes pl-drift {
-  0% {
-    transform: translate(-3%) scale(1);
-  }
-  to {
-    transform: translate(3%, -4%) scale(1.12);
-  }
-}
-@keyframes pl-ticker {
-  0% {
-    transform: translate(0);
-  }
-  to {
-    transform: translate(-50%);
-  }
-}
-@keyframes pl-sweep {
-  0% {
-    background-position: 200% 0;
-  }
-  to {
-    background-position: -60% 0;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -264,17 +242,14 @@ body {
   .pl-sweep {
     animation: none !important;
   }
-  .pl-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
   .pl-lift,
-  .pl-spot::before {
+  .pl-press,
+  .pl-track > span > i {
     transition: none !important;
   }
-  .pl-lift:hover {
-    transform: none;
+  .pl-lift:hover,
+  .pl-press:active:not(:disabled) {
+    transform: none !important;
   }
 }
 
@@ -282,39 +257,41 @@ body {
 .pl-input {
   height: 2.75rem;
   width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--color-line2);
-  background: var(--color-panel2);
+  border-radius: 8px;
+  border: 1px solid var(--color-line-3);
+  background: var(--color-surface);
   padding: 0 0.75rem;
   font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--color-txt);
+  font-size: 16px;
+  color: var(--color-ink);
 }
 .pl-input::placeholder {
-  color: var(--color-muted);
+  color: var(--color-ink-3);
 }
 .pl-input:focus {
-  border-color: var(--color-line3);
+  border-color: var(--color-accent);
   outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 .pl-textarea {
   width: 100%;
   resize: vertical;
   border-radius: 6px;
-  border: 1px solid var(--color-line2);
-  background: var(--color-panel);
+  border: 1px solid var(--color-line-3);
+  background: var(--color-surface);
   padding: 0.75rem;
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 15px;
   line-height: 1.6;
-  color: var(--color-txt);
+  color: var(--color-ink);
 }
 .pl-textarea::placeholder {
-  color: var(--color-muted);
+  color: var(--color-ink-3);
 }
 .pl-textarea:focus {
-  border-color: var(--color-line3);
+  border-color: var(--color-accent);
   outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 .pl-prose p + p {
   margin-top: 0.75rem;

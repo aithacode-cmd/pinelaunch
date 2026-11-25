@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 import type { UseProgress } from "@/lib/progress";
+import { ChevronDown } from "lucide-react";
 import { Button } from "./Button";
 import { Mono } from "./Mono";
 
@@ -14,18 +15,19 @@ export function ImportProgress({ progress }: { progress: UseProgress }) {
   const [msg, setMsg] = useState<string | null>(null);
 
   return (
-    <details className="mt-10 rounded-[14px] border border-line2 bg-panel p-5">
-      <summary className="cursor-pointer list-none font-body text-[13.5px] text-txt2 marker:content-none [&::-webkit-details-marker]:hidden">
+    <details className="group mt-10 rounded-[10px] border border-line bg-surface">
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 rounded-[10px] px-5 py-3 font-body text-[16px] text-ink-2 marker:content-none hover:text-ink [&::-webkit-details-marker]:hidden">
         Already started on another device? Import your progress code.
+        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
       </summary>
-      <div className="mt-4">
+      <div className="border-t border-line px-5 pb-5 pt-4">
         <label htmlFor={`${id}-code`} className="block">
-          <Mono className="text-muted">Paste your export code</Mono>
+          <Mono className="text-ink-3">Paste your export code</Mono>
         </label>
         <textarea
           id={`${id}-code`}
           rows={3}
-          className="pl-textarea mt-2 font-mono text-[11.5px]"
+          className="pl-textarea mt-2 font-mono text-[13px]"
           placeholder="Starts with PL1."
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -45,7 +47,7 @@ export function ImportProgress({ progress }: { progress: UseProgress }) {
           >
             Import
           </Button>
-          <Mono className="text-muted" aria-live="polite">
+          <Mono className="text-ink-3" aria-live="polite">
             {msg ?? "You get a code from the dashboard on the device where you started"}
           </Mono>
         </div>

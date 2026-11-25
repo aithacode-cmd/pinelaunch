@@ -1,128 +1,74 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { home } from "@/content/home";
 import { Mono } from "../Mono";
 import { HomeworkApp, LaunchBrowser, SketchCard } from "./Mockups";
+import { SectionFrame, SectionHeading } from "./Section";
 
 const stages = [
-  <SketchCard key="idea" className="w-full max-w-[360px]" />,
-  <HomeworkApp key="build" className="w-full max-w-[320px]" />,
-  <LaunchBrowser key="launch" className="w-full max-w-[400px]" />,
+  <SketchCard key="idea" className="w-full max-w-[300px]" />,
+  <HomeworkApp key="build" className="w-full max-w-[240px]" />,
+  <LaunchBrowser key="launch" className="w-full max-w-[320px]" />,
 ];
 
 /**
- * The three weeks as one scroll-driven scene. On large screens the example
- * project sits in a sticky panel on the left and changes state (sketch,
- * rough app, live browser) as each week's text scrolls past on the right.
- * On small screens each week shows its own mockup inline. Without
- * JavaScript, or under reduced motion, the panel simply shows week 1.
+ * The three weeks as one launch track: three columns joined by a single
+ * rail, each showing the same example project in that week's state
+ * (sketch, rough app, live link). Replaces the sticky scroll scene, which
+ * took three screens to say the same thing.
  */
 export function WeeksStage() {
   const { process } = home;
-  const [active, setActive] = useState(0);
-  const refs = useRef<(HTMLLIElement | null)[]>([]);
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          const i = Number((e.target as HTMLElement).dataset.week);
-          if (Number.isFinite(i)) setActive(i);
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
-    );
-    refs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <section id="weeks" className="relative border-b border-white/[0.06] bg-[#070908]/70">
-      <div className="pl-shell py-16 lg:py-24">
-        <div className="mb-10 flex items-center gap-4">
-          <Mono className="text-pine-hi">02</Mono>
-          <span className="h-px flex-1 bg-linear-to-r from-white/15 to-transparent" aria-hidden="true" />
-          <Mono className="text-muted">The schedule</Mono>
-        </div>
+    <SectionFrame id="weeks" index="02" label="The schedule" tone="deep">
+      <SectionHeading eyebrow={process.eyebrow} title={process.title} accent={process.accent} copy={process.copy} />
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
-          <div className="hidden lg:block">
-            <div className="sticky top-[120px]">
-              <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[24px] border border-white/[0.08] bg-ink p-8">
-                {stages.map((node, i) => (
-                  <div
-                    key={i}
-                    aria-hidden={i !== active}
-                    className={
-                      "absolute inset-0 flex items-center justify-center p-8 transition-all duration-500 ease-out motion-reduce:transition-none " +
-                      (i === active ? "opacity-100 scale-100" : "pointer-events-none opacity-0 scale-[0.96]")
-                    }
-                  >
-                    {node}
-                  </div>
-                ))}
-                <Mono className="absolute bottom-4 left-5 text-muted">Fig. 1 · One project, three states · Example</Mono>
-              </div>
+      <ol className="mt-12 grid list-none gap-4 p-0 lg:mt-16 lg:grid-cols-3 lg:gap-5">
+        {process.stages.map((s, i) => (
+          <li key={s.code} className="flex flex-col">
+            <div className="flex items-center gap-3" aria-hidden="true">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink font-mono text-[12px] text-on-accent">
+                {i + 1}
+              </span>
+              <span className="h-[3px] flex-1 rounded-full bg-line-2">
+                <span className="block h-full rounded-full bg-accent" style={{ width: `${(i + 1) * 33.34}%` }} />
+              </span>
             </div>
-          </div>
-
-          <ol className="m-0 list-none p-0">
-            {process.stages.map((s, i) => (
-              <li
-                key={s.code}
-                data-week={i}
-                ref={(el) => {
-                  refs.current[i] = el;
-                }}
-                className="flex min-h-[60vh] flex-col justify-center border-b border-white/[0.06] py-12 last:border-b-0 lg:min-h-[70vh]"
-              >
-                <span
-                  className={
-                    "font-display text-[96px] font-extrabold leading-none tracking-[-0.05em] transition-colors duration-500 lg:text-[128px] " +
-                    (i === active ? "text-pine" : "text-white/15")
-                  }
-                  aria-hidden="true"
-                >
-                  {i + 1}
-                </span>
-                <h3 className="mt-3 font-display text-[32px] font-extrabold leading-[1.02] tracking-[-0.03em] text-txt sm:text-[40px]">
+            <Link
+              href={`/week/${i + 1}`}
+              className="pl-lift group mt-4 flex flex-1 flex-col rounded-[12px] border border-line bg-surface p-5 sm:p-6"
+            >
+              <div className="flex h-[320px] items-center justify-center overflow-hidden rounded-[8px] bg-surface-2 p-5">{stages[i]}</div>
+              <div className="mt-6 flex items-baseline justify-between gap-4">
+                <h3 className="font-heading text-[26px] font-medium leading-[1.1] tracking-[-0.03em] text-ink">
                   Week {i + 1}: {s.name}
                 </h3>
-                <p className="mt-3 max-w-[40ch] font-body text-[16px] leading-[1.6] text-txt2">{s.line}</p>
-                <Mono className="mt-3 block text-muted">{s.dates}</Mono>
-                <div className="mt-6 flex justify-start lg:hidden">{stages[i]}</div>
-                <Link
-                  href={`/week/${i + 1}`}
-                  className="group mt-6 inline-flex items-center gap-2 font-body text-[13.5px] text-txt2 transition-colors hover:text-txt"
-                >
-                  Open week {i + 1}
-                  <ArrowUpRight
-                    className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="mt-6 grid gap-px overflow-hidden rounded-[18px] border border-white/[0.08] bg-white/[0.07] sm:grid-cols-3">
-          {process.rhythm.map((r) => (
-            <div key={r.label} className="flex items-center justify-between gap-4 bg-ink px-5 py-4">
-              <div>
-                <p className="font-body text-[13.5px] font-semibold text-txt">{r.label}</p>
-                <Mono className="mt-1 block text-muted">{r.note}</Mono>
+                <Mono className="shrink-0 text-ink-3">{s.dates}</Mono>
               </div>
-              <Mono className="shrink-0 text-pine-hi">{r.time}</Mono>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+              <p className="mt-2 font-body text-[16px] leading-[1.55] text-ink-2">{s.body}</p>
+              <span className="mt-auto inline-flex items-center gap-1.5 pt-6 font-body text-[17px] font-medium text-accent">
+                Open week {i + 1}
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ol>
+
+      <dl className="mt-8 grid border-t border-line sm:grid-cols-3">
+        {process.rhythm.map((r, i) => (
+          <div key={r.label} className={"flex items-baseline justify-between gap-4 py-4 sm:block sm:py-5 " + (i > 0 ? "border-t border-line sm:border-l sm:border-t-0 sm:pl-6" : "")}>
+            <dt className="font-body text-[16px] font-medium text-ink">{r.label}</dt>
+            <dd className="text-right sm:mt-1 sm:text-left">
+              <Mono className="text-accent">{r.time}</Mono>
+              <span className="ml-2 font-body text-[16px] text-ink-3">{r.note}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </SectionFrame>
   );
 }

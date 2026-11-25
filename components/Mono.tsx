@@ -10,7 +10,7 @@ interface Props {
 /** The small technical label used everywhere: mono, 11px, uppercase, tracked. */
 export function Mono({ as: Tag = "span", className = "", children, id }: Props) {
   return (
-    <Tag id={id} className={`font-mono text-[11px] uppercase leading-[1.5] tracking-[0.08em] ${className}`}>
+    <Tag id={id} className={`font-mono text-[11.5px] font-medium uppercase leading-[1.5] tracking-[0.06em] ${className}`}>
       {children}
     </Tag>
   );

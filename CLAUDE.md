@@ -32,18 +32,19 @@ him, use plain language, explain what you are doing, and avoid jargon.
   scripts. Google Forms and Discord are plain external links (no iframes,
   no widgets).
 - Motion (`motion/react`) for animation and Lucide for icons. Nothing else.
-- Design system (final, 2026-11-15, rebuilt from the founder's chosen
-  Base44 output, frozen copy in `design/base44/`): neutral black and grey,
-  pine green only as a hint. Four self-hosted typefaces via next/font:
-  Space Grotesk (headings, `font-heading`), Manrope (body, `font-body`),
-  IBM Plex Mono (labels, `font-mono`, via `components/Mono.tsx`),
-  Instrument Serif italic (`font-serif`, one accent phrase per heading).
-  Color tokens (`deep`, `bg`, `ink`, `panel`, `panel2`, `panel3`, `line`,
-  `line2`, `line3`, `txt`, `txt2`, `muted`, `pine`, `pine-hi`,
-  `pine-deep`) and the `pl-*` helper classes live in `app/globals.css`.
-  Every animation stops under `prefers-reduced-motion`.
-- Shared pieces: `Button`, `Mono`, `Background`, `Ticker`, `Reveal`,
-  `PromptPanel`, `CopyButton`; home sections in `components/home/`.
+- Design system: "Workbench" (2026-11-25, replaced the dark Base44 system
+  of 2026-11-15 at the founder's request). Light frost ground, slate ink,
+  one deep teal accent (the pine). Two self-hosted typefaces via next/font:
+  Host Grotesk (display, headings and body) and JetBrains Mono (labels,
+  `font-mono`, via `components/Mono.tsx`). Colour tokens (`ground`, `band`,
+  `surface`, `surface-2`, `surface-3`, `line`, `line-2`, `line-3`, `ink`,
+  `ink-2`, `ink-3`, `accent`, `accent-strong`, `accent-soft`, `on-accent`,
+  `danger`) and the `pl-*` helper classes live in `app/globals.css`. The full
+  system (tokens, type scale, components, motion, accessibility) is in
+  `DESIGN.md`; read it before changing any UI. Every animation stops under
+  `prefers-reduced-motion`.
+- Shared pieces: `Button`, `Mono`, `PromptPanel`, `CopyButton`,
+  `ProjectCardView`, `StepItem`; home sections in `components/home/`.
 - Brand mark (one triangle over one bar) and wordmark:
   `components/Brand.tsx`; favicon: `app/icon.svg`.
 
@@ -127,19 +128,19 @@ The guides and prompts must not hand students finished code up front.
 
 ## Look
 
-Premium minimal, dark, like a serious technology company. Black and grey
-dominate; pine green is used only for the mark, primary buttons, ticked
-boxes, current markers and one key number. Headings may carry one italic
-serif phrase. Figures are real interface mockups labeled as illustrative
-examples; no orbs, node graphs or floating shapes. The home page may be
-expressive; dashboard and week pages stay calm. The home page tools strip
-shows seven tools with small drawn marks (Replit, Base44, ChatGPT, Google
-Forms, Figma, Vercel, Notion; Discord was removed on 2026-11-21 with the
-pilot): founder decision on 2026-11-15, which
-overrides the earlier "five tools, text only" rule for that strip alone.
-Everywhere else, only Replit, Base44 and ChatGPT are named as tools. When
-changing a page, compare it against the matching screenshot in
-`design/base44/shots/`.
+See `DESIGN.md`. In short: light, exact and calm, like a well-made engineering
+notebook. Teal is used only for primary actions, ticked boxes, current
+position and progress. Hairlines and space carry structure; a card appears
+only where something is interactive or belongs to the student. Headings may
+carry one accent phrase in teal (same face, no italic serif). Figures are real
+interface mockups labelled as illustrative examples; no orbs, node graphs,
+floating shapes or renders. Working pages (dashboard, weeks) put the single
+next action first. The home page tools strip shows seven tools with small
+drawn marks (Replit, Base44, ChatGPT, Google Forms, Figma, Vercel, Notion):
+founder decision on 2026-11-15, which overrides the earlier "five tools, text
+only" rule for that strip alone. Everywhere else, only Replit, Base44 and
+ChatGPT are named as tools. `design/base44/` is a frozen record of the
+previous design, not a reference to match.
 
 ## Tone
 

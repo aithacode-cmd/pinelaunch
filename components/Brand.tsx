@@ -6,11 +6,11 @@
 
 interface MarkProps {
   className?: string;
-  /** Fill color. Defaults to pine. */
+  /** Fill color. Defaults to the teal accent. */
   color?: string;
 }
 
-export function PineMark({ className = "h-6 w-6", color = "#7EA889" }: MarkProps) {
+export function PineMark({ className = "h-6 w-6", color = "#0D7480" }: MarkProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
       <path d="M12 2.4 20.2 17H3.8z" fill={color} />
@@ -21,7 +21,7 @@ export function PineMark({ className = "h-6 w-6", color = "#7EA889" }: MarkProps
 
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span className={"font-heading text-[17px] font-medium leading-none tracking-[-0.03em] text-txt " + className}>
+    <span className={"font-heading text-[17px] font-semibold leading-none tracking-[-0.035em] text-ink " + className}>
       PineLaunch
     </span>
   );

@@ -49,11 +49,11 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
   if (step === "under13" || blockedBefore) {
     return (
       <div className="max-w-[640px]">
-        <Mono className="text-muted">Ages 13 and up</Mono>
-        <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+        <Mono className="text-ink-3">Ages 13 and up</Mono>
+        <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[38px]">
           Sorry, PineLaunch is for ages 13 and up.
         </h1>
-        <p className="mt-4 max-w-[52ch] font-body text-[15px] leading-[1.7] text-txt2">
+        <p className="mt-4 max-w-[52ch] font-body text-[17px] leading-[1.7] text-ink-2">
           The tools you would build with do not allow younger users, so we cannot start you yet. Come back when you are 13.
           Until then, keep a list of ideas. You will need one.
         </p>
@@ -77,24 +77,24 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
           onPass("13-17");
         }}
       >
-        <Mono className="text-muted">Before you start · 2 of 2</Mono>
-        <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+        <Mono className="text-ink-3">Before you start · 2 of 2</Mono>
+        <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[38px]">
           Check with a parent or guardian.
         </h1>
-        <p className="mt-4 max-w-[54ch] font-body text-[15px] leading-[1.7] text-txt2">
+        <p className="mt-4 max-w-[54ch] font-body text-[17px] leading-[1.7] text-ink-2">
           PineLaunch sends you to outside tools: {program.tools.replit.name} or {program.tools.base44.name} to build, and{" "}
           {program.aiHelper.name} for hints. They allow ages 13 and up with a parent&apos;s permission. So a parent or
           guardian needs to say yes before you begin.
         </p>
-        <p className="mt-3 font-body text-[14px] leading-[1.7] text-txt2">
+        <p className="mt-3 font-body text-[16px] leading-[1.7] text-ink-2">
           The fastest way: show them{" "}
-          <Link href="/parents" target="_blank" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+          <Link href="/parents" target="_blank" className="text-ink underline decoration-line-3 underline-offset-4 hover:decoration-accent-strong">
             the parents page
           </Link>
           . It opens in a new tab.
         </p>
 
-        <div className="mt-7 rounded-[16px] border border-line2 bg-panel p-5">
+        <div className="mt-7 rounded-[12px] border border-line-2 bg-surface p-5">
           <div className="flex items-start gap-3">
             <input
               id="parent-ok"
@@ -105,15 +105,15 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
                 setError("");
               }}
               aria-describedby={error ? "start-gate-error" : undefined}
-              className="mt-1 h-4 w-4 shrink-0 accent-[#7ea889]"
+              className="mt-1 h-4 w-4 shrink-0 accent-accent"
             />
-            <label htmlFor="parent-ok" className="cursor-pointer font-body text-[14.5px] leading-[1.6] text-txt">
+            <label htmlFor="parent-ok" className="cursor-pointer font-body text-[16px] leading-[1.6] text-ink">
               A parent or guardian knows I am using PineLaunch and agrees that I can use it and the build tools it recommends.
             </label>
           </div>
         </div>
         {error && (
-          <p id="start-gate-error" role="alert" className="mt-3 font-body text-[13px] text-danger">
+          <p id="start-gate-error" role="alert" className="mt-3 font-body text-[15px] text-danger">
             {error}
           </p>
         )}
@@ -130,8 +130,8 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
             Back
           </Button>
         </div>
-        <p className="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.08em] text-muted">
-          Nothing here is sent anywhere · Saved in this browser only
+        <p className="mt-6 font-body text-[14px] leading-relaxed text-ink-3">
+          Nothing here is sent anywhere. It is saved in this browser only.
         </p>
       </form>
     );
@@ -158,11 +158,11 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
         setStep("parent");
       }}
     >
-      <Mono className="text-muted">Before you start · 1 of 2</Mono>
-      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+      <Mono className="text-ink-3">Before you start · 1 of 2</Mono>
+      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[38px]">
         How old are you?
       </h1>
-      <p className="mt-4 max-w-[52ch] font-body text-[15px] leading-[1.7] text-txt2">
+      <p className="mt-4 max-w-[52ch] font-body text-[17px] leading-[1.7] text-ink-2">
         One quick question. We do not ask for your birthday or your name.
       </p>
 
@@ -175,8 +175,8 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
               <label
                 key={o.value}
                 className={
-                  "flex cursor-pointer items-center gap-3 rounded-[12px] border px-4 py-3.5 font-body text-[14.5px] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-pine-hi " +
-                  (on ? "border-pine bg-panel2 text-txt" : "border-line2 bg-panel text-txt2 hover:border-line3")
+                  "flex cursor-pointer items-center gap-3 rounded-[12px] border px-4 py-3.5 font-body text-[16px] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-strong " +
+                  (on ? "border-accent bg-surface-2 text-ink" : "border-line-2 bg-surface text-ink-2 hover:border-line-3")
                 }
               >
                 <input
@@ -188,7 +188,7 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
                     setAge(o.value);
                     setError("");
                   }}
-                  className="h-4 w-4 shrink-0 accent-[#7ea889]"
+                  className="h-4 w-4 shrink-0 accent-accent"
                 />
                 {o.label}
               </label>
@@ -197,7 +197,7 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
         </div>
       </fieldset>
       {error && (
-        <p id="start-gate-error" role="alert" className="mt-3 font-body text-[13px] text-danger">
+        <p id="start-gate-error" role="alert" className="mt-3 font-body text-[15px] text-danger">
           {error}
         </p>
       )}
@@ -205,8 +205,8 @@ export function StartGate({ onPass }: { onPass: (ageGroup: StartCheck["ageGroup"
       <Button type="submit" className="mt-7">
         Continue
       </Button>
-      <p className="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.08em] text-muted">
-        Nothing here is sent anywhere · Saved in this browser only
+      <p className="mt-6 font-body text-[14px] leading-relaxed text-ink-3">
+        Nothing here is sent anywhere. It is saved in this browser only.
       </p>
     </form>
   );

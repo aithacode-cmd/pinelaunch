@@ -2,6 +2,26 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
+
+## Workbench redesign (2026-11-25, branch `ui-redesign`, not merged, not live)
+
+The founder asked for a new visual identity. The dark Base44 design is replaced by "Workbench": a light frost ground, slate ink, one deep teal accent, Host Grotesk and JetBrains Mono. The full system is in `DESIGN.md`. No content, step ids, storage keys or rules changed.
+
+What changed beyond the look:
+- Week pages open only the next unfinished step; ticking a step opens the next one.
+- The dashboard leads with "Next step" and one launch track for the three weeks. The repeated stats strip and timeline are gone; badges are a list.
+- The header button says "Continue" (to the dashboard) once a Project Card exists, instead of sending returning students to the idea picker.
+- The replace-card warning in the idea picker is now a visible notice.
+- Prompt text, notices, filters and the "Back to top" button are larger, and tap targets are 44px.
+- Removed: the ticker, background textures, scroll fade-ins, pulsing dots, the sweep, the sticky week scene, and the italic serif.
+
+Checked: lint, types, static build; a browser walkthrough of 14 flows (start check, idea picker, dashboard, step ticking, example lock, prompts search and filter, copy, export/reset/import, Launch Day checklist, mobile menu, skip link), all passing with no page errors; screenshots at 1440, 768 and 390 with no sideways scroll.
+
+Not done / for the founder to decide:
+- Merging: review the branch, then merge to `main` yourself. Vercel publishes `main`.
+- The home page "Launch is level one" section shows paid plans to students. A reviewer flagged it; it stays because it was your call on 2026-11-18.
+- The home page is still long on phones (about 14,800px).
+
 ## Start check and "What comes after Launch Day" page (2026-11-22, live)
 
 Built from a brief the founder pasted on 2026-11-22. The brief was written for the December pilot, which was dropped on 2026-11-21, so only the parts that fit the current site were built.

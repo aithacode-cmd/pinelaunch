@@ -29,11 +29,11 @@ export default function PrivacyPage() {
         <>
           Contact for any question, including a request to delete information:{" "}
           {hasEmail ? (
-            <a href={`mailto:${email}`} className="font-mono text-[12px] uppercase tracking-[0.08em] text-txt underline decoration-line3 underline-offset-4">
+            <a href={`mailto:${email}`} className="font-mono text-[12px] uppercase tracking-[0.08em] text-ink underline decoration-line-3 underline-offset-4">
               {email}
             </a>
           ) : (
-            <span className="text-muted">email added soon</span>
+            <span className="text-ink-3">email added soon</span>
           )}
           .
         </>,
@@ -128,7 +128,7 @@ export default function PrivacyPage() {
         </>,
         <>
           If this note changes again, the date at the top changes with it. For the full picture for parents, see{" "}
-          <Link href="/parents" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+          <Link href="/parents" className="text-ink underline decoration-line-3 underline-offset-4 hover:decoration-accent-strong">
             the parents page
           </Link>
           .
@@ -140,22 +140,22 @@ export default function PrivacyPage() {
   return (
     <div className="pl-shell py-12 lg:py-20">
       <div className="max-w-[720px]">
-        <Mono className="text-pine-hi">Privacy note</Mono>
-        <h1 className="mt-3 font-heading text-[34px] font-medium leading-[1.04] tracking-[-0.03em] text-txt lg:text-[46px]">
+        <Mono className="text-accent">Privacy note</Mono>
+        <h1 className="mt-3 font-heading text-[34px] font-medium leading-[1.04] tracking-[-0.03em] text-ink lg:text-[46px]">
           What we collect, where it goes, and when it is deleted.
         </h1>
-        <Mono className="mt-4 block text-muted">Effective {effective(program.privacy.effectiveDate)}</Mono>
-        <p className="mt-5 font-body text-[15px] leading-[1.7] text-txt2">
+        <Mono className="mt-4 block text-ink-3">Effective {effective(program.privacy.effectiveDate)}</Mono>
+        <p className="mt-5 font-body text-[17px] leading-[1.7] text-ink-2">
           Short version: this website stores nothing about students. The only thing we ever receive is a parent&apos;s email
           on the waitlist form, and only if a parent chooses to send it.
         </p>
       </div>
       <div className="mt-12 max-w-[68ch]">
         {sections.map((s) => (
-          <section key={s.title} className="border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&+section]:mt-8">
-            <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">{s.title}</h2>
+          <section key={s.title} className="border-t border-line pt-8 first:border-t-0 first:pt-0 [&+section]:mt-8">
+            <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-ink">{s.title}</h2>
             {s.body.map((p, i) => (
-              <p key={i} className="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">
+              <p key={i} className="mt-3 font-body text-[16px] leading-[1.75] text-ink-2">
                 {p}
               </p>
             ))}
