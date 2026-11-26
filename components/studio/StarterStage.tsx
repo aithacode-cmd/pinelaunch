@@ -310,6 +310,8 @@ function FileViewer({ files }: { files: ProjectFiles }) {
         role="tabpanel"
         aria-labelledby={`${id}-tab-${open}`}
         tabIndex={0}
+        // Ligatures off: the code font would otherwise draw "<!--" and "-->" as arrows, and students copy what they see.
+        style={{ fontVariantLigatures: "none", fontFeatureSettings: '"liga" 0, "calt" 0' }}
         className="m-0 max-h-[460px] overflow-auto px-5 py-4 font-mono text-[12.5px] leading-[1.7] text-ink"
       >
         <code>{text}</code>

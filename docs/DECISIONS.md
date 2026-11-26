@@ -64,6 +64,12 @@ One entry per decision, newest last. Each says what was decided, why, and who de
 
 **D29. The Starter stage.** Claude. "Make my starter" uses 1 request. Files that exist are never replaced without "Replace my files", which says what is lost and that it uses 1 request. Saved files stay readable with no working code. After the starter is made, the screen stays on the files instead of moving on to Workspace: a browser test found the studio jumping ahead before the student had seen them. When a milestone's title changes after the starter was made, the stage says the notes may point at old milestones. Editing a milestone's tasks does not count, because the notes carry only titles.
 
+## 2026-11-26
+
+**D30. The v2 "Night to launch" redesign is merged into this branch, and the studio follows it.** Founder ("merge it into your work, … keeping the v2 design and your new features both working"). `origin/ui-redesign` was merged in (commit 877f0f8). The public pages are the redesign's, unchanged. The studio moved from the old dark colour names to the v2 tokens, following DESIGN.md: cream ground, white cards, plum text, deep coral (`accent`) for ticks, the current stage, links and the plan's key line. Bright coral stays for buttons. The root layout takes the v2 fonts; the skip link, header and footer stay in `SiteChrome`, because the studio has its own frame. The code view in the Starter stage turns off font ligatures: JetBrains Mono otherwise draws `<!--` and `-->` as arrows, and students copy what they see.
+
+**D31. The walkthrough runs against `next start` on this branch.** Claude. `scripts/walkthrough.cjs` expects a static `out/` folder on port 3100. This branch has no static export (D18), so the build is served with `npx next start` instead; the script's `BASE_URL` setting points it at another port when 3100 is busy. Playwright is installed only for the run (`npm i --no-save playwright`), not added to the project. Adding it properly comes with the Week 4 browser tests (D12).
+
 ## Dependencies added
 
 | Package | Version | License | Used for |

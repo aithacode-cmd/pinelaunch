@@ -2,6 +2,7 @@
  * Browser walkthrough of PineLaunch's main flows (14 checks), used to verify the v2 redesign.
  * Run against a local build: npm run build, then serve the out/ folder on port 3100
  *   (for example: npx serve out -l 3100)
+ *   On the v1-workspace branch the static export is off, so serve the build with: npx next start -p 3100
  * then:  node scripts/walkthrough.cjs   (needs Playwright: npm i -D playwright && npx playwright install chromium)
  * Set BASE_URL to test another address. Prints PASS/FAIL per flow and exits 1 on any failure.
  */

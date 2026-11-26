@@ -94,8 +94,9 @@ him, use plain language, explain what you are doing, and avoid jargon.
 ## Stack
 
 - Next.js 16 (App Router, TypeScript), Tailwind CSS 4, npm.
-- Static export: `output: "export"` in `next.config.ts`. `npm run build`
-  writes plain HTML/CSS/JS to `/out`. No server runs anywhere.
+- On `v1-workspace` the static export is off (decision D18): every page is
+  still prerendered, and one server function answers at `/api/ai/`. On
+  `main` the site is still a static export written to `/out`.
 - No state library, no component kit, no CMS, no analytics, no third-party
   scripts. Google Forms and Discord are plain external links (no iframes,
   no widgets).
@@ -135,8 +136,9 @@ data still need a fresh review (see `ROADMAP.md`).
   a parent agrees. It saves only `start: { ageGroup, parentOk, at }` in the
   same browser key. Under 13 is refused and remembered in `sessionStorage`
   until the tab closes. No parent name or email is collected anywhere.
-- `/app/api` exists but is empty on purpose (see its README). Adding a route
-  there breaks the static export.
+- `/app/api` holds one route on `v1-workspace`: the studio's AI endpoint,
+  behind access codes (see its README and the V1 section above). It stores
+  only the usage ledger. The public site's pages still send nothing.
 - Do not add anything that sends data off the device without checking
   `ROADMAP.md` and the lawyer-review item there first.
 
@@ -227,7 +229,9 @@ npm run dev          # http://localhost:3000
 npm run lint
 npx tsc --noEmit
 npm test             # logic tests (Vitest)
-npm run build        # writes the static site to /out
+npm run build        # main: static site in /out; v1-workspace: a Next.js build in .next
+npx next start -p 3100   # v1-workspace: serve that build (the walkthrough expects port 3100)
+node scripts/walkthrough.cjs   # 14 browser checks of the public site (needs Playwright; see the file)
 ```
 
 Deploy: push the repo to GitHub and import it into Vercel (zero config; it
