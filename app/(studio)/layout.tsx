@@ -3,5 +3,5 @@
  * a workspace and fills the window.
  */
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
-  return <div className="flex min-h-dvh flex-1 flex-col bg-deep text-txt">{children}</div>;
+  return <div className="flex min-h-dvh flex-1 flex-col bg-ground text-ink">{children}</div>;
 }

@@ -88,13 +88,13 @@ function OptionTile({
   return (
     <label
       className={
-        "pl-lift flex cursor-pointer flex-col justify-between gap-2 rounded-[14px] border p-4 text-left transition-colors " +
-        (checked ? "border-pine bg-panel2" : "border-line2 bg-panel hover:border-line3")
+        "pl-lift flex cursor-pointer flex-col justify-between gap-2 rounded-[16px] border p-4 text-left transition-colors " +
+        (checked ? "border-accent bg-surface-2" : "border-line-2 bg-surface hover:border-line-3")
       }
     >
       <input type="radio" name={name} value={value} checked={checked} onChange={onChange} className="sr-only" />
-      <span className="font-heading text-[17px] font-medium tracking-[-0.02em] text-txt">{label}</span>
-      <span className="font-body text-[12.5px] leading-snug text-txt2">{hint}</span>
+      <span className="font-heading text-[17px] font-medium tracking-[-0.02em] text-ink">{label}</span>
+      <span className="font-body text-[14px] leading-snug text-ink-2">{hint}</span>
     </label>
   );
 }
@@ -117,7 +117,7 @@ function TextField({
   return (
     <div>
       <label htmlFor={id} className="block">
-        <Mono className="text-muted">{label}</Mono>
+        <Mono className="text-ink-3">{label}</Mono>
       </label>
       <input
         id={id}
@@ -143,7 +143,7 @@ export function IdeaPicker() {
   if (!progress.ready) {
     return (
       <div className="pl-shell py-24">
-        <Mono className="text-muted">Opening the idea picker…</Mono>
+        <Mono className="text-ink-3">Opening the idea picker…</Mono>
       </div>
     );
   }
@@ -166,11 +166,11 @@ export function IdeaPicker() {
 function DoneScreen({ card }: { card: ProjectCard }) {
   return (
     <div className="max-w-[720px]">
-      <Mono className="text-muted">Your Project Card</Mono>
-      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+      <Mono className="text-ink-3">Your Project Card</Mono>
+      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[38px]">
         That is your first step done.
       </h1>
-      <p className="mt-3 max-w-[48ch] font-body text-[14.5px] leading-[1.6] text-txt2">
+      <p className="mt-3 max-w-[48ch] font-body text-[16px] leading-[1.6] text-ink-2">
         Saved in this browser only. Show it to one person you know, then open your dashboard.
       </p>
       <ProjectCardView card={card} className="mt-8" />
@@ -183,8 +183,8 @@ function DoneScreen({ card }: { card: ProjectCard }) {
           Start week 1
         </Button>
       </div>
-      <p className="mt-6 font-mono text-[10px] uppercase leading-relaxed tracking-[0.08em] text-muted">
-        Project Card · pinelaunch.progress.v1
+      <p className="mt-6 font-body text-[14px] leading-relaxed text-ink-3">
+        Saved in this browser only.
       </p>
     </div>
   );
@@ -248,14 +248,14 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
 
   return (
     <div className="max-w-[720px]">
-      <Mono className="text-muted">Idea picker</Mono>
-      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-txt sm:text-[38px]">
+      <Mono className="text-ink-3">Idea picker</Mono>
+      <h1 className="mt-3 font-heading text-[30px] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-[38px]">
         Seven questions, one Project Card.
       </h1>
-      <p className="mt-3 font-body text-[14.5px] leading-[1.6] text-txt2">Answers stay in this browser. Nothing is sent anywhere.</p>
+      <p className="mt-3 font-body text-[16px] leading-[1.6] text-ink-2">Answers stay in this browser. Nothing is sent anywhere.</p>
       {initialCard && (
-        <p className="mt-4 font-mono text-[10.5px] uppercase leading-relaxed tracking-[0.08em] text-muted">
-          You already have a card. Finishing this replaces it.
+        <p role="note" className="mt-5 rounded-[12px] border border-warning/30 bg-warning-soft px-4 py-3 font-body text-[15px] leading-relaxed text-ink">
+          You already have a Project Card. Finishing these questions replaces it. Your ticked steps stay.
         </p>
       )}
 
@@ -270,16 +270,16 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
       >
         <div className="flex gap-1.5" aria-hidden="true">
           {questions.map((qq, i) => (
-            <span key={qq.key} className={"h-1 flex-1 rounded-full " + (i <= index ? "bg-pine" : "bg-line2")} />
+            <span key={qq.key} className={"h-1 flex-1 rounded-full " + (i <= index ? "bg-accent" : "bg-line-2")} />
           ))}
         </div>
-        <Mono className="mt-3 block text-muted">
+        <Mono className="mt-3 block text-ink-3">
           Question {index + 1} of {questions.length}
         </Mono>
 
-        <div className="mt-6 rounded-[20px] border border-line2 bg-panel p-5 sm:p-7">
-          <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">{q.label}</h2>
-          <p className="mt-2 font-body text-[13.5px] leading-relaxed text-txt2">{q.hint}</p>
+        <div className="mt-6 rounded-[22px] border border-line-2 bg-surface p-5 sm:p-7">
+          <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-ink">{q.label}</h2>
+          <p className="mt-2 font-body text-[16px] leading-relaxed text-ink-2">{q.hint}</p>
           <div className="mt-6">
             {q.key === "type" && (
               <div className="grid gap-2.5 sm:grid-cols-2">
@@ -360,17 +360,17 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
               <dl className="divide-y divide-line border-y border-line">
                 {summary.map(([label, value]) => (
                   <div key={label} className="flex flex-col gap-1 py-3 sm:flex-row sm:justify-between sm:gap-6">
-                    <Mono as="dt" className="shrink-0 text-muted">
+                    <Mono as="dt" className="shrink-0 text-ink-3">
                       {label}
                     </Mono>
-                    <dd className="font-body text-[13.5px] leading-snug text-txt sm:text-right">{value}</dd>
+                    <dd className="font-body text-[16px] leading-snug text-ink sm:text-right">{value}</dd>
                   </div>
                 ))}
               </dl>
             )}
           </div>
           {error && (
-            <p role="alert" className="mt-4 font-body text-[13px] text-txt">
+            <p role="alert" className="mt-4 font-body text-[15px] text-ink">
               {error}
             </p>
           )}
@@ -393,7 +393,7 @@ function IdeaPickerForm({ progress, initialCard }: { progress: UseProgress; init
       </form>
 
       {!progress.storageOk && (
-        <p role="alert" className="mt-4 font-body text-[13px] text-danger">
+        <p role="alert" className="mt-4 font-body text-[15px] text-danger">
           This browser is blocking storage, so your card will not be saved. Try a normal (not private) window.
         </p>
       )}

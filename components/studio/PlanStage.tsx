@@ -38,9 +38,9 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
   if (!project.ideaConfirmedAt || !idea.success) {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Plan</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Your idea comes first.</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">The plan is made from your idea, so finish and confirm that before this stage.</p>
+        <p className="font-body text-[13px] font-semibold text-accent">Plan</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">Your idea comes first.</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">The plan is made from your idea, so finish and confirm that before this stage.</p>
         <Button variant="outline" className="mt-6" onClick={onGoToIdea}>
           Go to Idea
         </Button>
@@ -49,7 +49,7 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
   }
 
   if (!access.ready) {
-    return <p className="font-body text-[14px] text-muted">Checking your access code…</p>;
+    return <p className="font-body text-[14px] text-ink-3">Checking your access code…</p>;
   }
   // A code is needed to ask the AI for something, never to see a plan that is
   // already saved on this device.
@@ -119,11 +119,11 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
   if (busy) {
     return (
       <div className="max-w-[640px]" role="status" aria-live="polite">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Plan</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">
+        <p className="font-body text-[13px] font-semibold text-accent">Plan</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">
           {busy === "scope" ? "Shrinking your idea to a first version…" : "Building your milestone map…"}
         </h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">This can take a little while. Keep this tab open.</p>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">This can take a little while. Keep this tab open.</p>
       </div>
     );
   }
@@ -132,23 +132,23 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
   if (!project.scope) {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Plan</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">A first version you can finish.</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+        <p className="font-body text-[13px] font-semibold text-accent">Plan</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">A first version you can finish.</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
           Most first ideas are too big for four weeks. This step keeps the heart of your idea, moves the rest to a later list,
           and tells you why. Then it lays out four weeks of milestones.
         </p>
 
-        <div className="mt-7 border-l border-line2 pl-5">
+        <div className="mt-7 border-l border-line-2 pl-5">
           {practice ? (
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">
-              <span className="font-semibold text-txt">Practice mode. </span>
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">
+              <span className="font-semibold text-ink">Practice mode. </span>
               No AI is connected yet. You will get a sample plan built around your own words, so this stage can be tested. Nothing
               is sent to an AI company.
             </p>
           ) : (
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">
-              <span className="font-semibold text-txt">What gets sent. </span>
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">
+              <span className="font-semibold text-ink">What gets sent. </span>
               Your five idea answers go to an AI to write the plan. Nothing else is sent, and PineLaunch does not keep a copy.
               The AI company keeps requests for a time under its own rules. If any answer has something personal in it, go back
               and take it out first.
@@ -162,11 +162,11 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
           <Button onClick={makePlan} disabled={!access.aiEnabled || left === 0 || left === 1}>
             Make my plan
           </Button>
-          <span className="font-body text-[13px] text-muted">
+          <span className="font-body text-[13px] text-ink-3">
             Uses 2 AI requests.{left !== null && ` You have ${left} left.`}
           </span>
         </div>
-        {!access.aiEnabled && <p className="mt-4 font-body text-[13.5px] text-txt2">AI help is switched off right now. Try again later.</p>}
+        {!access.aiEnabled && <p className="mt-4 font-body text-[13.5px] text-ink-2">AI help is switched off right now. Try again later.</p>}
         <ForgetCode onForget={access.forget} />
       </div>
     );
@@ -178,33 +178,33 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
 
   return (
     <div className="max-w-[760px]">
-      <p className="font-body text-[13px] font-semibold text-pine-hi">Plan</p>
-      <h1 className="mt-2 font-display text-[40px] font-extrabold leading-[1.03] tracking-[-0.03em] text-txt">{scope.projectTitle}</h1>
-      <p className="mt-3 font-body text-[16px] leading-[1.6] text-txt2">{scope.projectGoal}</p>
+      <p className="font-body text-[13px] font-semibold text-accent">Plan</p>
+      <h1 className="mt-2 font-display text-[40px] font-extrabold leading-[1.03] tracking-[-0.03em] text-ink">{scope.projectTitle}</h1>
+      <p className="mt-3 font-body text-[16px] leading-[1.6] text-ink-2">{scope.projectGoal}</p>
 
       {project.planSource === "mock" && (
-        <p className="mt-6 rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-          <span className="font-semibold text-txt">Practice plan. </span>
+        <p className="mt-6 rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[13.5px] leading-[1.6] text-ink-2">
+          <span className="font-semibold text-ink">Practice plan. </span>
           No AI wrote this. It is sample text built around your own words, so the plan stage can be tested. A real plan will be
           written for your idea once the AI is connected.
         </p>
       )}
       {outdated && (
-        <p role="status" className="mt-6 rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-          <span className="font-semibold text-txt">Your idea changed after this plan was made. </span>
+        <p role="status" className="mt-6 rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[13.5px] leading-[1.6] text-ink-2">
+          <span className="font-semibold text-ink">Your idea changed after this plan was made. </span>
           The plan below may not fit it any more. You can keep it or make a new one.
         </p>
       )}
 
       <section aria-labelledby="scope-heading" className="mt-9">
-        <h2 id="scope-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-txt">
+        <h2 id="scope-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-ink">
           Your first version
         </h2>
-        <p className="mt-3 font-body text-[15px] leading-[1.65] text-txt2">{scope.fourWeekScope}</p>
+        <p className="mt-3 font-body text-[15px] leading-[1.65] text-ink-2">{scope.fourWeekScope}</p>
 
-        <div className="mt-6 border-l-2 border-pine pl-4">
-          <p className="font-body text-[12.5px] text-muted">The one thing it must do</p>
-          <p className="mt-1 font-heading text-[19px] font-medium leading-snug tracking-[-0.01em] text-txt">{scope.coreFeature}</p>
+        <div className="mt-6 border-l-2 border-accent pl-4">
+          <p className="font-body text-[12.5px] text-ink-3">The one thing it must do</p>
+          <p className="mt-1 font-heading text-[19px] font-medium leading-snug tracking-[-0.01em] text-ink">{scope.coreFeature}</p>
         </div>
 
         <dl className="mt-7 grid gap-x-10 gap-y-7 sm:grid-cols-2">
@@ -216,12 +216,12 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
 
         {scope.excludedFeatures.length > 0 && (
           <div className="mt-7">
-            <p className="font-body text-[12.5px] text-muted">Moved out of this version, and why</p>
+            <p className="font-body text-[12.5px] text-ink-3">Moved out of this version, and why</p>
             <ul className="m-0 mt-2 list-none divide-y divide-line border-y border-line p-0">
               {scope.excludedFeatures.map((x) => (
                 <li key={x.feature} className="py-3">
-                  <p className="font-body text-[14.5px] font-semibold text-txt">{x.feature}</p>
-                  <p className="mt-0.5 font-body text-[14px] leading-[1.55] text-txt2">{x.reason}</p>
+                  <p className="font-body text-[14.5px] font-semibold text-ink">{x.feature}</p>
+                  <p className="mt-0.5 font-body text-[14px] leading-[1.55] text-ink-2">{x.reason}</p>
                 </li>
               ))}
             </ul>
@@ -230,12 +230,12 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
       </section>
 
       <section aria-labelledby="map-heading" className="mt-12">
-        <h2 id="map-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-txt">
+        <h2 id="map-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-ink">
           Your milestone map
         </h2>
         {project.milestones ? (
           <>
-            <p className="mt-2 font-body text-[14px] text-txt2">
+            <p className="mt-2 font-body text-[14px] text-ink-2">
               {project.milestones.length} milestones, about {totalHours(project.milestones)} hours over four weeks. Edit any of them to
               make the plan yours.
             </p>
@@ -246,14 +246,14 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
           </>
         ) : (
           <>
-            <p className="mt-2 font-body text-[14px] leading-[1.6] text-txt2">Your first version is set. The milestone map has not been built yet.</p>
+            <p className="mt-2 font-body text-[14px] leading-[1.6] text-ink-2">Your first version is set. The milestone map has not been built yet.</p>
             <Failure failure={failure} />
             {code ? (
               <div className="mt-5 flex flex-wrap items-center gap-4">
                 <Button onClick={() => void redoMilestones()} disabled={!access.aiEnabled || left === 0}>
                   Build my milestone map
                 </Button>
-                <span className="font-body text-[13px] text-muted">Uses 1 AI request.{left !== null && ` You have ${left} left.`}</span>
+                <span className="font-body text-[13px] text-ink-3">Uses 1 AI request.{left !== null && ` You have ${left} left.`}</span>
               </div>
             ) : (
               <NeedCode lapsed={access.lapsed} kept="Your plan is still here." onAsk={() => setAskingCode(true)} />
@@ -285,8 +285,8 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
             )}
           </div>
           {confirmingRedo && (
-            <div className="mt-5 rounded-[12px] border border-line2 bg-panel px-4 py-4">
-              <p className="font-body text-[14px] leading-[1.6] text-txt2">
+            <div className="mt-5 rounded-[12px] border border-line-2 bg-surface px-4 py-4">
+              <p className="font-body text-[14px] leading-[1.6] text-ink-2">
                 {outdated
                   ? "This replaces the whole plan with one made from your changed idea. Your edits to milestones will be lost. It uses 2 AI requests."
                   : "This replaces your milestone map, including any edits you made. It uses 1 AI request."}
@@ -320,9 +320,9 @@ export function PlanStage({ project, update, access, onConfirmed, onGoToIdea }: 
 function ScopeList({ term, items }: { term: string; items: readonly string[] }) {
   return (
     <div>
-      <dt className="font-body text-[12.5px] text-muted">{term}</dt>
+      <dt className="font-body text-[12.5px] text-ink-3">{term}</dt>
       <dd className="mt-2">
-        <ul className="m-0 list-disc space-y-1.5 pl-5 font-body text-[14.5px] leading-[1.55] text-txt marker:text-line3">
+        <ul className="m-0 list-disc space-y-1.5 pl-5 font-body text-[14.5px] leading-[1.55] text-ink marker:text-line-3">
           {items.map((item) => (
             <li key={item}>{item}</li>
           ))}

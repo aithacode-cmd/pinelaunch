@@ -25,7 +25,7 @@ export function StageRail({ states, selected, onSelect }: Props) {
               {!last && (
                 <span
                   aria-hidden="true"
-                  className={"absolute left-[23px] top-[46px] h-[calc(100%-32px)] w-px " + (state === "done" ? "bg-pine/60" : "bg-line2")}
+                  className={"absolute left-[23px] top-[46px] h-[calc(100%-32px)] w-px " + (state === "done" ? "bg-accent/60" : "bg-line-2")}
                 />
               )}
               <button
@@ -42,20 +42,20 @@ export function StageRail({ states, selected, onSelect }: Props) {
                   className={
                     "relative z-10 mt-0.5 flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full border font-heading text-[13px] font-medium " +
                     (state === "done"
-                      ? "border-pine-deep bg-pine-deep text-white"
+                      ? "border-accent bg-accent text-on-accent"
                       : state === "current"
-                        ? "border-pine bg-deep text-pine-hi"
-                        : "border-line3 bg-deep text-muted")
+                        ? "border-accent bg-surface text-accent"
+                        : "border-line-3 bg-surface text-ink-3")
                   }
                 >
                   {state === "done" ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : i + 1}
                 </span>
                 <span className="min-w-0">
-                  <span className={"block font-heading text-[15px] font-medium leading-tight tracking-[-0.01em] " + (state === "upcoming" && !isSelected ? "text-txt2" : "text-txt")}>
+                  <span className={"block font-heading text-[15px] font-medium leading-tight tracking-[-0.01em] " + (state === "upcoming" && !isSelected ? "text-ink-2" : "text-ink")}>
                     {s.name}
                     <span className="sr-only">{state === "done" ? ", done" : state === "current" ? ", current stage" : ", not started"}</span>
                   </span>
-                  <span className="mt-1 block font-body text-[12.5px] leading-[1.45] text-muted">{s.line}</span>
+                  <span className="mt-1 block font-body text-[12.5px] leading-[1.45] text-ink-3">{s.line}</span>
                 </span>
               </button>
             </li>

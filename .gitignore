@@ -44,3 +44,6 @@ next-env.d.ts
 
 # The local usage ledger (code hashes and counters only). Never commit it.
 /.data/
+
+# Local state from the Taste design skill (deal history, checker state)
+.taste-skill/

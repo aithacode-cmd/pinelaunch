@@ -6,10 +6,10 @@ export function SmallScreen() {
   return (
     <div className="flex min-h-dvh flex-col items-start justify-center px-6 py-16">
       <PineMark className="h-8 w-8" />
-      <h1 className="mt-6 font-display text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">
+      <h1 className="mt-6 font-display text-[32px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">
         PineLaunch works on a computer.
       </h1>
-      <p className="mt-4 max-w-[40ch] font-body text-[15px] leading-[1.65] text-txt2">
+      <p className="mt-4 max-w-[40ch] font-body text-[15px] leading-[1.65] text-ink-2">
         Building needs room for your code and a live preview side by side. Open this page on a laptop or desktop, or make this
         window wider.
       </p>

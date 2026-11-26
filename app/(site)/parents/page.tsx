@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Lock } from "lucide-react";
 import { Mono } from "@/components/Mono";
 import { WaitlistPanel } from "@/components/WaitlistPanel";
+import { LadderPlan } from "@/components/home/LadderSection";
 import { Accent } from "@/components/home/Section";
 import { program, isPlaceholder } from "@/config/program";
 import { next } from "@/content/next";
@@ -126,11 +127,11 @@ export default function ParentsPage() {
   return (
     <div className="pl-shell py-12 lg:py-20">
       <div className="max-w-[760px]">
-        <Mono className="text-pine-hi">For parents</Mono>
-        <h1 className="mt-3 font-heading text-[34px] font-medium leading-[1.02] tracking-[-0.04em] text-txt lg:text-[52px]">
+        <Mono className="text-accent">For parents</Mono>
+        <h1 className="mt-3 font-heading text-[34px] font-medium leading-[1.02] tracking-[-0.04em] text-ink lg:text-[52px]">
           A small, free program with a <Accent>real finished project</Accent>.
         </h1>
-        <p className="mt-5 font-body text-[15.5px] leading-[1.7] text-txt2">
+        <p className="mt-5 font-body text-[15.5px] leading-[1.7] text-ink-2">
           PineLaunch is a free three-week program for high school students, built and run by a high school student with his
           parents&apos; support. Students work through it at their own pace. This page covers what your student does, what it
           takes, and what stays private.
@@ -139,29 +140,29 @@ export default function ParentsPage() {
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
         <nav aria-label="On this page" className="lg:sticky lg:top-[124px] lg:self-start">
-          <Mono className="text-muted">On this page</Mono>
+          <Mono className="text-ink-3">On this page</Mono>
           <ul className="mt-4 space-y-2 border-l border-line pl-4">
             {sections.map((s) => (
               <li key={s.id}>
-                <a href={`#${s.id}`} className="font-body text-[13.5px] leading-relaxed text-txt2 transition-colors hover:text-txt">
+                <a href={`#${s.id}`} className="font-body text-[16px] leading-relaxed text-ink-2 transition-colors hover:text-ink">
                   {s.title}
                 </a>
               </li>
             ))}
           </ul>
           <div className="mt-8 border-t border-line pt-4">
-            <Mono className="text-muted">Contact</Mono>
+            <Mono className="block text-ink-3">Contact</Mono>
             {hasEmail ? (
               <a
                 href={`mailto:${email}`}
-                className="mt-2 inline-block break-all font-mono text-[11px] uppercase tracking-[0.08em] text-txt underline decoration-line3 underline-offset-4 hover:decoration-txt2"
+                className="mt-1 inline-block break-all py-2 font-body text-[15px] font-medium text-ink underline decoration-line-3 underline-offset-4 hover:decoration-accent"
               >
                 {email}
               </a>
             ) : (
-              <Mono className="mt-2 block text-muted">Email added soon</Mono>
+              <Mono className="mt-2 block text-ink-3">Email added soon</Mono>
             )}
-            <p className="mt-2 font-body text-[12.5px] leading-[1.6] text-muted">A parent reads that inbox as well.</p>
+            <p className="mt-2 font-body text-[14px] leading-[1.6] text-ink-3">A parent reads that inbox as well.</p>
           </div>
         </nav>
 
@@ -170,32 +171,33 @@ export default function ParentsPage() {
             <section
               key={s.id}
               id={s.id}
-              className="scroll-mt-32 border-t border-white/[0.08] pt-8 first:border-t-0 first:pt-0 [&+section]:mt-8"
+              className="scroll-mt-32 border-t border-line pt-8 first:border-t-0 first:pt-0 [&+section]:mt-8"
             >
-              <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-txt">{s.title}</h2>
+              <h2 className="font-heading text-[22px] font-medium leading-snug tracking-[-0.02em] text-ink">{s.title}</h2>
               {s.body.map((p) => (
-                <p key={p} className="mt-3 font-body text-[14.5px] leading-[1.75] text-txt2">
+                <p key={p} className="mt-3 font-body text-[16px] leading-[1.75] text-ink-2">
                   {p}
                 </p>
               ))}
             </section>
           ))}
+          <LadderPlan className="mt-12 border-t border-line pt-10" />
           <div id="waitlist" className="mt-10 scroll-mt-32">
             <WaitlistPanel />
-            <p className="mt-3 font-body text-[13.5px] leading-[1.7] text-txt2">
+            <p className="mt-3 font-body text-[16px] leading-[1.7] text-ink-2">
               The plan in one place:{" "}
-              <Link href="/next" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+              <Link href="/next" className="text-ink underline decoration-line-3 underline-offset-4 hover:decoration-accent-strong">
                 what comes after Launch Day
               </Link>
               .
             </p>
           </div>
-          <div className="mt-6 flex items-start gap-4 rounded-[14px] border border-line2 p-5">
-            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-txt2" aria-hidden="true" />
-            <p className="font-body text-[13.5px] leading-[1.7] text-txt2">
+          <div className="mt-6 flex items-start gap-4 rounded-[16px] border border-line-2 p-5">
+            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-ink-2" aria-hidden="true" />
+            <p className="font-body text-[16px] leading-[1.7] text-ink-2">
               This site stores nothing on its own servers and keeps no accounts. Replit, Base44, ChatGPT and Google Forms are
               separate services, each with their own rules and privacy policies. Full details:{" "}
-              <Link href="/privacy" className="text-txt underline decoration-line3 underline-offset-4 hover:decoration-pine-hi">
+              <Link href="/privacy" className="text-ink underline decoration-line-3 underline-offset-4 hover:decoration-accent-strong">
                 the privacy note
               </Link>
               .

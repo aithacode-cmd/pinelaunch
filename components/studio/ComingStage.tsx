@@ -36,11 +36,11 @@ export function ComingStage({ stage, blockedBy, onGoTo }: Props) {
   const blocker = blockedBy ? STAGES.find((s) => s.id === blockedBy)!.name : null;
   return (
     <div className="max-w-[640px]">
-      <p className="font-body text-[13px] font-semibold text-pine-hi">{name}</p>
-      <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">{d.title}</h1>
-      <ul className="mt-7 space-y-3.5 border-l border-line2 pl-5">
+      <p className="font-body text-[13px] font-semibold text-accent">{name}</p>
+      <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">{d.title}</h1>
+      <ul className="mt-7 space-y-3.5 border-l border-line-2 pl-5">
         {d.points.map((p) => (
-          <li key={p} className="font-body text-[15px] leading-[1.6] text-txt2">
+          <li key={p} className="font-body text-[15px] leading-[1.6] text-ink-2">
             {p}
           </li>
         ))}
@@ -48,13 +48,13 @@ export function ComingStage({ stage, blockedBy, onGoTo }: Props) {
       <div className="mt-9 border-t border-line pt-6">
         {blocker ? (
           <>
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">This opens after you finish {blocker}.</p>
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">This opens after you finish {blocker}.</p>
             <Button variant="outline" className="mt-4" onClick={() => onGoTo(blockedBy!)}>
               Go to {blocker}
             </Button>
           </>
         ) : (
-          <p className="font-body text-[14px] leading-[1.6] text-txt2">
+          <p className="font-body text-[14px] leading-[1.6] text-ink-2">
             You are ready for this stage. It is not open yet: it is still being built.
           </p>
         )}

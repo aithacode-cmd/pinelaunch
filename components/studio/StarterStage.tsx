@@ -50,9 +50,9 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
   if (!files && !planReady) {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Starter</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Your plan comes first.</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+        <p className="font-body text-[13px] font-semibold text-accent">Starter</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">Your plan comes first.</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
           The starter is written from your plan and its milestones, so finish and confirm the plan before this stage.
         </p>
         <Button variant="outline" className="mt-6" onClick={onGoToPlan}>
@@ -63,7 +63,7 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
   }
 
   if (!access.ready) {
-    return <p className="font-body text-[14px] text-muted">Checking your access code…</p>;
+    return <p className="font-body text-[14px] text-ink-3">Checking your access code…</p>;
   }
   // A code is needed to ask the AI for a starter, never to see files already saved on this device.
   const code = access.code;
@@ -118,9 +118,9 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
   if (busy) {
     return (
       <div className="max-w-[640px]" role="status" aria-live="polite">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Starter</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Writing your three files…</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">This can take a little while. Keep this tab open.</p>
+        <p className="font-body text-[13px] font-semibold text-accent">Starter</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">Writing your three files…</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">This can take a little while. Keep this tab open.</p>
       </div>
     );
   }
@@ -129,24 +129,24 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
   if (!files) {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Starter</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">A beginning, not a blank page.</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+        <p className="font-body text-[13px] font-semibold text-accent">Starter</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">A beginning, not a blank page.</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
           This step writes three files for your project: the page, its styles and its script. The page will open and look like
           the start of your project. It will not work yet. The notes inside point at your own milestones, and the building is
           yours.
         </p>
 
-        <div className="mt-7 border-l border-line2 pl-5">
+        <div className="mt-7 border-l border-line-2 pl-5">
           {practice ? (
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">
-              <span className="font-semibold text-txt">Practice mode. </span>
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">
+              <span className="font-semibold text-ink">Practice mode. </span>
               No AI is connected yet. You will get one of three sample layouts with your project&apos;s title and milestone names
               filled in, so this stage can be tested. Nothing is sent to an AI company.
             </p>
           ) : (
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">
-              <span className="font-semibold text-txt">What gets sent. </span>
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">
+              <span className="font-semibold text-ink">What gets sent. </span>
               Your five idea answers, your first-version plan and your milestone map go to an AI to write the files. Nothing else
               is sent, and PineLaunch does not keep a copy. The AI company keeps requests for a time under its own rules.
             </p>
@@ -159,9 +159,9 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
           <Button onClick={() => void makeStarter(false)} disabled={!access.aiEnabled || left === 0}>
             Make my starter
           </Button>
-          <span className="font-body text-[13px] text-muted">Uses 1 AI request.{left !== null && ` You have ${left} left.`}</span>
+          <span className="font-body text-[13px] text-ink-3">Uses 1 AI request.{left !== null && ` You have ${left} left.`}</span>
         </div>
-        {!access.aiEnabled && <p className="mt-4 font-body text-[13.5px] text-txt2">AI help is switched off right now. Try again later.</p>}
+        {!access.aiEnabled && <p className="mt-4 font-body text-[13.5px] text-ink-2">AI help is switched off right now. Try again later.</p>}
         <ForgetCode onForget={access.forget} />
       </div>
     );
@@ -173,29 +173,29 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
 
   return (
     <div className="max-w-[860px]">
-      <p className="font-body text-[13px] font-semibold text-pine-hi">Starter</p>
-      <h1 className="mt-2 font-display text-[40px] font-extrabold leading-[1.03] tracking-[-0.03em] text-txt">Your three files.</h1>
-      <p className="mt-3 max-w-[640px] font-body text-[16px] leading-[1.6] text-txt2">
+      <p className="font-body text-[13px] font-semibold text-accent">Starter</p>
+      <h1 className="mt-2 font-display text-[40px] font-extrabold leading-[1.03] tracking-[-0.03em] text-ink">Your three files.</h1>
+      <p className="mt-3 max-w-[640px] font-body text-[16px] leading-[1.6] text-ink-2">
         This is where your project begins. The page opens, but the main feature is not built: that part is yours. You will edit
         these files, and watch them run, in the Workspace.
       </p>
 
       {project.starterSource === "mock" && (
-        <p className="mt-6 max-w-[640px] rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-          <span className="font-semibold text-txt">Practice starter. </span>
+        <p className="mt-6 max-w-[640px] rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[13.5px] leading-[1.6] text-ink-2">
+          <span className="font-semibold text-ink">Practice starter. </span>
           No AI wrote this. It is one of three sample layouts, picked by simple word matching, with your project&apos;s title and
           milestone names filled in. A real starter will be written for your project once the AI is connected.
         </p>
       )}
       {outdated && (
-        <p role="status" className="mt-6 max-w-[640px] rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-          <span className="font-semibold text-txt">Your milestone map changed after these files were made. </span>
+        <p role="status" className="mt-6 max-w-[640px] rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[13.5px] leading-[1.6] text-ink-2">
+          <span className="font-semibold text-ink">Your milestone map changed after these files were made. </span>
           The notes in the code may point at old milestones. You can keep the files or make new ones.
         </p>
       )}
       {!planReady && (
-        <p role="status" className="mt-6 max-w-[640px] rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[13.5px] leading-[1.6] text-txt2">
-          <span className="font-semibold text-txt">Your plan is not confirmed right now. </span>
+        <p role="status" className="mt-6 max-w-[640px] rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[13.5px] leading-[1.6] text-ink-2">
+          <span className="font-semibold text-ink">Your plan is not confirmed right now. </span>
           Your files are still here. Confirm the plan before making new ones.
         </p>
       )}
@@ -204,18 +204,18 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
 
       {todos.length > 0 && (
         <section aria-labelledby="notes-heading" className="mt-10 max-w-[640px]">
-          <h2 id="notes-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-txt">
+          <h2 id="notes-heading" className="font-heading text-[22px] font-medium tracking-[-0.02em] text-ink">
             Where your milestones are
           </h2>
-          <p className="mt-2 font-body text-[14px] leading-[1.6] text-txt2">
+          <p className="mt-2 font-body text-[14px] leading-[1.6] text-ink-2">
             Each note in the code marks the place where one milestone&apos;s work happens.
           </p>
           <ul className="m-0 mt-4 list-none divide-y divide-line border-y border-line p-0">
             {todos.map((note, i) => (
               <li key={`${note.file}-${note.milestone}-${i}`} className="grid grid-cols-[112px_1fr_auto] items-baseline gap-4 py-3">
-                <span className="font-body text-[13px] text-muted">Milestone {note.milestone}</span>
-                <span className="font-body text-[14.5px] leading-[1.5] text-txt">{project.milestones?.[note.milestone - 1]?.title ?? note.text}</span>
-                <span className="font-mono text-[12.5px] text-txt2">{note.file}</span>
+                <span className="font-body text-[13px] text-ink-3">Milestone {note.milestone}</span>
+                <span className="font-body text-[14.5px] leading-[1.5] text-ink">{project.milestones?.[note.milestone - 1]?.title ?? note.text}</span>
+                <span className="font-mono text-[12.5px] text-ink-2">{note.file}</span>
               </li>
             ))}
           </ul>
@@ -233,8 +233,8 @@ export function StarterStage({ project, update, access, onGoToPlan, onGoToWorksp
           )}
         </div>
         {confirmingRedo && (
-          <div className="mt-5 rounded-[12px] border border-line2 bg-panel px-4 py-4">
-            <p className="font-body text-[14px] leading-[1.6] text-txt2">
+          <div className="mt-5 rounded-[12px] border border-line-2 bg-surface px-4 py-4">
+            <p className="font-body text-[14px] leading-[1.6] text-ink-2">
               This replaces all three files with new ones. Anything you changed in them will be lost. It uses 1 AI request.
             </p>
             <div className="mt-3 flex gap-3">
@@ -279,8 +279,8 @@ function FileViewer({ files }: { files: ProjectFiles }) {
   }
 
   return (
-    <section aria-label="Your starter files" className="mt-9 overflow-hidden rounded-[14px] border border-line2 bg-deep">
-      <div role="tablist" aria-label="Files" className="flex border-b border-line2">
+    <section aria-label="Your starter files" className="mt-9 overflow-hidden rounded-[22px] border border-line-2 bg-surface-2">
+      <div role="tablist" aria-label="Files" className="flex border-b border-line-2">
         {FILE_NAMES.map((name) => {
           const selected = name === open;
           return (
@@ -294,14 +294,14 @@ function FileViewer({ files }: { files: ProjectFiles }) {
               tabIndex={selected ? 0 : -1}
               onClick={() => setOpen(name)}
               onKeyDown={onKey}
-              className={`border-r border-line2 px-5 py-3 text-left ${selected ? "bg-panel" : "bg-deep hover:bg-panel"}`}
+              className={`border-r border-line-2 px-5 py-3 text-left ${selected ? "bg-surface" : "bg-surface-2 hover:bg-surface"}`}
             >
-              <span className={`block font-mono text-[13px] ${selected ? "text-txt" : "text-txt2"}`}>{name}</span>
-              <span className="mt-0.5 block font-body text-[12px] text-muted">{FILE_PURPOSE[name]}</span>
+              <span className={`block font-mono text-[13px] ${selected ? "text-ink" : "text-ink-2"}`}>{name}</span>
+              <span className="mt-0.5 block font-body text-[12px] text-ink-3">{FILE_PURPOSE[name]}</span>
             </button>
           );
         })}
-        <span className="ml-auto self-center px-5 font-body text-[12.5px] text-muted">
+        <span className="ml-auto self-center px-5 font-body text-[12.5px] text-ink-3">
           {lines} {lines === 1 ? "line" : "lines"}
         </span>
       </div>
@@ -310,7 +310,7 @@ function FileViewer({ files }: { files: ProjectFiles }) {
         role="tabpanel"
         aria-labelledby={`${id}-tab-${open}`}
         tabIndex={0}
-        className="m-0 max-h-[460px] overflow-auto px-5 py-4 font-mono text-[12.5px] leading-[1.7] text-txt"
+        className="m-0 max-h-[460px] overflow-auto px-5 py-4 font-mono text-[12.5px] leading-[1.7] text-ink"
       >
         <code>{text}</code>
       </pre>

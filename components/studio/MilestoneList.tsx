@@ -28,8 +28,8 @@ export function MilestoneList({ milestones, onChange }: Props) {
         return (
           <section key={week} aria-labelledby={`week-${week}-heading`}>
             <h3 id={`week-${week}-heading`} className="flex items-baseline gap-3 border-b border-line pb-2.5">
-              <span className="font-heading text-[17px] font-medium tracking-[-0.01em] text-txt">Week {week}</span>
-              <span className="font-body text-[13.5px] text-txt2">{WEEK_PHASES[week]}</span>
+              <span className="font-heading text-[17px] font-medium tracking-[-0.01em] text-ink">Week {week}</span>
+              <span className="font-body text-[13.5px] text-ink-2">{WEEK_PHASES[week]}</span>
             </h3>
             <ol className="m-0 list-none divide-y divide-line p-0">
               {inWeek.map(({ m, index }) => (
@@ -61,37 +61,37 @@ function MilestoneView({ milestone: m, number, onEdit }: { milestone: Milestone;
     <div>
       <div className="flex items-start justify-between gap-6">
         <div className="min-w-0">
-          <p className="font-body text-[12.5px] text-muted">
+          <p className="font-body text-[12.5px] text-ink-3">
             Milestone {number} · {hoursLabel(m.estimatedHours)}
           </p>
-          <h4 className="mt-1 font-heading text-[18px] font-medium leading-snug tracking-[-0.01em] text-txt">{m.title}</h4>
+          <h4 className="mt-1 font-heading text-[18px] font-medium leading-snug tracking-[-0.01em] text-ink">{m.title}</h4>
         </div>
         <button
           type="button"
           onClick={onEdit}
-          className="shrink-0 rounded-[6px] font-body text-[13px] text-txt2 underline decoration-line3 underline-offset-4 transition-colors hover:text-txt hover:decoration-pine-hi"
+          className="shrink-0 rounded-[6px] font-body text-[13px] text-ink-2 underline decoration-line-3 underline-offset-4 transition-colors hover:text-ink hover:decoration-accent"
         >
           Edit<span className="sr-only">: {m.title}</span>
         </button>
       </div>
-      <p className="mt-2 font-body text-[14.5px] leading-[1.6] text-txt2">{m.purpose}</p>
-      <ul className="mt-3 list-disc space-y-1.5 pl-5 font-body text-[14.5px] leading-[1.55] text-txt marker:text-line3">
+      <p className="mt-2 font-body text-[14.5px] leading-[1.6] text-ink-2">{m.purpose}</p>
+      <ul className="mt-3 list-disc space-y-1.5 pl-5 font-body text-[14.5px] leading-[1.55] text-ink marker:text-line-3">
         {m.tasks.map((t, i) => (
           <li key={i}>{t}</li>
         ))}
       </ul>
       <dl className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
         <div>
-          <dt className="font-body text-[12.5px] text-muted">What you will have</dt>
-          <dd className="mt-1 font-body text-[14px] leading-[1.55] text-txt2">{m.expectedOutput}</dd>
+          <dt className="font-body text-[12.5px] text-ink-3">What you will have</dt>
+          <dd className="mt-1 font-body text-[14px] leading-[1.55] text-ink-2">{m.expectedOutput}</dd>
         </div>
         <div>
-          <dt className="font-body text-[12.5px] text-muted">Done when</dt>
-          <dd className="mt-1 font-body text-[14px] leading-[1.55] text-txt2">
+          <dt className="font-body text-[12.5px] text-ink-3">Done when</dt>
+          <dd className="mt-1 font-body text-[14px] leading-[1.55] text-ink-2">
             {m.completionCriteria.length === 1 ? (
               m.completionCriteria[0]
             ) : (
-              <ul className="m-0 list-disc space-y-1 pl-5 marker:text-line3">
+              <ul className="m-0 list-disc space-y-1 pl-5 marker:text-line-3">
                 {m.completionCriteria.map((c, i) => (
                   <li key={i}>{c}</li>
                 ))}
@@ -101,8 +101,8 @@ function MilestoneView({ milestone: m, number, onEdit }: { milestone: Milestone;
         </div>
       </dl>
       {m.hint && (
-        <p className="mt-4 border-l-2 border-pine/50 pl-3 font-body text-[13.5px] leading-[1.55] text-txt2">
-          <span className="font-semibold text-txt">Hint. </span>
+        <p className="mt-4 border-l-2 border-accent/50 pl-3 font-body text-[13.5px] leading-[1.55] text-ink-2">
+          <span className="font-semibold text-ink">Hint. </span>
           {m.hint}
         </p>
       )}
@@ -144,17 +144,17 @@ function MilestoneEditor({ milestone, onSave, onCancel }: { milestone: Milestone
         onSave(next.data);
       }}
     >
-      <label htmlFor={`${id}-title`} className="block font-body text-[12.5px] text-muted">
+      <label htmlFor={`${id}-title`} className="block font-body text-[12.5px] text-ink-3">
         Title
       </label>
       <input id={`${id}-title`} autoFocus value={title} maxLength={80} onChange={(e) => setTitle(e.target.value)} className="pl-input mt-1.5" />
 
-      <label htmlFor={`${id}-purpose`} className="mt-4 block font-body text-[12.5px] text-muted">
+      <label htmlFor={`${id}-purpose`} className="mt-4 block font-body text-[12.5px] text-ink-3">
         Why it matters
       </label>
       <textarea id={`${id}-purpose`} rows={2} value={purpose} maxLength={300} onChange={(e) => setPurpose(e.target.value)} className="pl-textarea mt-1.5 !text-[14.5px]" />
 
-      <label htmlFor={`${id}-tasks`} className="mt-4 block font-body text-[12.5px] text-muted">
+      <label htmlFor={`${id}-tasks`} className="mt-4 block font-body text-[12.5px] text-ink-3">
         Tasks, one per line
       </label>
       <textarea id={`${id}-tasks`} rows={5} value={tasks} onChange={(e) => setTasks(e.target.value)} className="pl-textarea mt-1.5 !text-[14.5px]" />

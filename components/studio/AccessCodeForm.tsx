@@ -42,16 +42,16 @@ export function AccessCodeForm({ onEnter, lapsed, onBack, stage = "Plan", backLa
         if (failure) setError(failure.message);
       }}
     >
-      <p className="font-body text-[13px] font-semibold text-pine-hi">{stage}</p>
-      <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">
+      <p className="font-body text-[13px] font-semibold text-accent">{stage}</p>
+      <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">
         <label htmlFor="access-code">Enter your access code.</label>
       </h1>
-      <p id="access-code-hint" className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+      <p id="access-code-hint" className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
         The adult running your beta gave it to you. It unlocks your AI requests. It is not an account, and it has no name
         attached.
       </p>
       {lapsed && (
-        <p role="status" className="mt-5 rounded-[12px] border border-line2 bg-panel px-4 py-3 font-body text-[14px] leading-[1.6] text-txt">
+        <p role="status" className="mt-5 rounded-[12px] border border-line-2 bg-surface px-4 py-3 font-body text-[14px] leading-[1.6] text-ink">
           The code saved on this device no longer works. Ask the adult running your beta for a new one. Your project is still
           saved here.
         </p>
@@ -87,7 +87,7 @@ export function AccessCodeForm({ onEnter, lapsed, onBack, stage = "Plan", backLa
           </Button>
         )}
       </div>
-      <p className="mt-6 font-body text-[13px] leading-[1.6] text-muted">
+      <p className="mt-6 font-body text-[13px] leading-[1.6] text-ink-3">
         The code is saved on this device so you only type it once. Do not share it: anyone who has it can use your requests.
       </p>
     </form>

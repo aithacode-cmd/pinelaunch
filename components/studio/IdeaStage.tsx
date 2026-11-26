@@ -56,8 +56,8 @@ function firstView(project: Project): View {
 
 function PrivacyReminder() {
   return (
-    <p className="flex items-start gap-2.5 font-body text-[13px] leading-[1.55] text-txt2">
-      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-pine-hi" aria-hidden="true" />
+    <p className="flex items-start gap-2.5 font-body text-[13px] leading-[1.55] text-ink-2">
+      <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
       <span>Leave out anything personal: your name, school, email, phone number, address or social accounts.</span>
     </p>
   );
@@ -93,11 +93,11 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
   if (view.kind === "done") {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Idea</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Your idea.</h1>
+        <p className="font-body text-[13px] font-semibold text-accent">Idea</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">Your idea.</h1>
         <AnswerList idea={idea} />
         {project.scope && (
-          <p className="mt-6 font-body text-[13.5px] leading-[1.6] text-txt2">
+          <p className="mt-6 font-body text-[13.5px] leading-[1.6] text-ink-2">
             Your plan was made from this idea. If you change it, the plan stays as it is until you make a new one.
           </p>
         )}
@@ -120,9 +120,9 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
   if (view.kind === "review") {
     return (
       <div className="max-w-[640px]">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">Idea · Check it</p>
-        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">Here is your idea.</h1>
-        <p className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">Read it once. Change anything that is off.</p>
+        <p className="font-body text-[13px] font-semibold text-accent">Idea · Check it</p>
+        <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">Here is your idea.</h1>
+        <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">Read it once. Change anything that is off.</p>
         <AnswerList idea={idea} onChange={(index) => setView({ kind: "question", index, backToReview: true })} />
         <div className="mt-6">
           <PrivacyReminder />
@@ -146,7 +146,7 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
           >
             This is my idea
           </Button>
-          <span className="font-body text-[13px] text-muted">You can still change it later.</span>
+          <span className="font-body text-[13px] text-ink-3">You can still change it later.</span>
         </div>
       </div>
     );
@@ -177,12 +177,12 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
       }}
     >
       <div className="flex items-center gap-4">
-        <p className="font-body text-[13px] font-semibold text-pine-hi">
+        <p className="font-body text-[13px] font-semibold text-accent">
           Idea · Question {view.index + 1} of {IDEA_FIELDS.length}
         </p>
         <div className="flex gap-1.5" aria-hidden="true">
           {IDEA_FIELDS.map((f, i) => (
-            <span key={f} className={"h-1 w-7 rounded-full " + (i <= view.index ? "bg-pine" : "bg-line2")} />
+            <span key={f} className={"h-1 w-7 rounded-full " + (i <= view.index ? "bg-accent" : "bg-line-2")} />
           ))}
         </div>
       </div>
@@ -190,9 +190,9 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
       {field === "experience" ? (
         <fieldset className="mt-3" aria-describedby={error ? "idea-error" : "idea-hint"}>
           <legend>
-            <h1 className="font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">{q.ask}</h1>
+            <h1 className="font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">{q.ask}</h1>
           </legend>
-          <p id="idea-hint" className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+          <p id="idea-hint" className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
             {q.hint}
           </p>
           <div className="mt-7 space-y-2.5">
@@ -202,8 +202,8 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
                 <label
                   key={o.value}
                   className={
-                    "flex cursor-pointer items-start gap-3.5 rounded-[12px] border px-4 py-3.5 transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-pine-hi " +
-                    (on ? "border-pine bg-panel2" : "border-line2 bg-panel hover:border-line3")
+                    "flex cursor-pointer items-start gap-3.5 rounded-[12px] border px-4 py-3.5 transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent " +
+                    (on ? "border-accent bg-accent-soft" : "border-line-2 bg-surface hover:border-line-3")
                   }
                 >
                   <input
@@ -215,8 +215,8 @@ export function IdeaStage({ project, update, onConfirmed }: Props) {
                     className="mt-1 h-4 w-4 shrink-0 accent-[#7ea889]"
                   />
                   <span>
-                    <span className="block font-body text-[15px] font-semibold text-txt">{o.label}</span>
-                    <span className="mt-0.5 block font-body text-[13px] text-muted">{o.hint}</span>
+                    <span className="block font-body text-[15px] font-semibold text-ink">{o.label}</span>
+                    <span className="mt-0.5 block font-body text-[13px] text-ink-3">{o.hint}</span>
                   </span>
                 </label>
               );
@@ -287,10 +287,10 @@ function TextQuestion({
   const nearLimit = value.length > max * 0.8;
   return (
     <div className="mt-3">
-      <h1 className="font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-txt">
+      <h1 className="font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">
         <label htmlFor={id}>{ask}</label>
       </h1>
-      <p id={`${id}-hint`} className="mt-3 font-body text-[15px] leading-[1.6] text-txt2">
+      <p id={`${id}-hint`} className="mt-3 font-body text-[15px] leading-[1.6] text-ink-2">
         {hint}
       </p>
       <textarea
@@ -310,7 +310,7 @@ function TextQuestion({
         }}
         className="pl-textarea mt-6 !rounded-[12px] !p-4 !text-[16px]"
       />
-      <div className="mt-2 flex items-center justify-between gap-4 font-body text-[12.5px] text-muted">
+      <div className="mt-2 flex items-center justify-between gap-4 font-body text-[12.5px] text-ink-3">
         <span>Ctrl + Enter to continue</span>
         {nearLimit && (
           <span aria-live="polite">
@@ -330,16 +330,16 @@ function AnswerList({ idea, onChange }: { idea: IdeaAnswers; onChange?: (index: 
         return (
           <div key={field} className="flex items-start justify-between gap-6 py-4">
             <div className="min-w-0">
-              <dt className="font-body text-[12.5px] text-muted">{questions[field].short}</dt>
-              <dd className="mt-1 whitespace-pre-wrap break-words font-body text-[15px] leading-[1.6] text-txt">
-                {text || <span className="text-muted">Not answered yet</span>}
+              <dt className="font-body text-[12.5px] text-ink-3">{questions[field].short}</dt>
+              <dd className="mt-1 whitespace-pre-wrap break-words font-body text-[15px] leading-[1.6] text-ink">
+                {text || <span className="text-ink-3">Not answered yet</span>}
               </dd>
             </div>
             {onChange && (
               <button
                 type="button"
                 onClick={() => onChange(i)}
-                className="shrink-0 rounded-[6px] font-body text-[13px] text-txt2 underline decoration-line3 underline-offset-4 transition-colors hover:text-txt hover:decoration-pine-hi"
+                className="shrink-0 rounded-[6px] font-body text-[13px] text-ink-2 underline decoration-line-3 underline-offset-4 transition-colors hover:text-ink hover:decoration-accent"
               >
                 Change<span className="sr-only">: {questions[field].short}</span>
               </button>

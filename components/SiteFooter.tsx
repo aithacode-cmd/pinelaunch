@@ -23,32 +23,30 @@ const facts = ["Static site", "No accounts", "No tracking", "Browser storage onl
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-white/[0.08] bg-deep/60">
+    <footer className="relative border-t border-line bg-band">
       <div className="pl-shell py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
             <Logo />
-            <p className="mt-5 max-w-[36ch] font-body text-[14px] leading-[1.7] text-txt2">
+            <p className="mt-5 max-w-[36ch] font-body text-[17px] leading-[1.65] text-ink-2">
               A free three-week program where high school students build and launch one real project. Self-paced. The
               full version is in the works.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-1.5">
+            <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
               {facts.map((f) => (
-                <li
-                  key={f}
-                  className="rounded-full border border-white/[0.09] px-2.5 py-1 font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted"
-                >
+                <li key={f} className="flex items-center gap-2 font-body text-[15px] text-ink-3">
+                  <span className="h-1 w-1 rounded-full bg-accent" aria-hidden="true" />
                   {f}
                 </li>
               ))}
             </ul>
           </div>
           <nav aria-label="Footer pages" className="lg:col-span-3">
-            <Mono className="text-txt2">Pages</Mono>
-            <ul className="mt-4 space-y-2.5">
+            <Mono as="h2" className="text-ink-3">Pages</Mono>
+            <ul className="mt-3">
               {pages.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-body text-[14px] text-txt2 transition-colors hover:text-txt">
+                  <Link href={l.href} className="inline-block py-1.5 font-body text-[17px] text-ink-2 underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline">
                     {l.label}
                   </Link>
                 </li>
@@ -56,11 +54,11 @@ export function SiteFooter() {
             </ul>
           </nav>
           <nav aria-label="Footer program" className="lg:col-span-2">
-            <Mono className="text-txt2">Program</Mono>
-            <ul className="mt-4 space-y-2.5">
+            <Mono as="h2" className="text-ink-3">Program</Mono>
+            <ul className="mt-3">
               {programLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-body text-[14px] text-txt2 transition-colors hover:text-txt">
+                  <Link href={l.href} className="inline-block py-1.5 font-body text-[17px] text-ink-2 underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline">
                     {l.label}
                   </Link>
                 </li>
@@ -68,37 +66,37 @@ export function SiteFooter() {
             </ul>
           </nav>
           <div className="lg:col-span-3">
-            <Mono className="text-txt2">Contact</Mono>
-            <p className="mt-4 font-body text-[14px] leading-[1.7] text-txt2">
+            <Mono as="h2" className="text-ink-3">Contact</Mono>
+            <p className="mt-4 font-body text-[17px] leading-[1.6] text-ink-2">
               Questions about the program or privacy:
             </p>
             {isPlaceholder(program.contactEmail) ? (
-              <Mono className="mt-2 block text-muted">Email added soon</Mono>
+              <Mono className="mt-2 block text-ink-3">Email added soon</Mono>
             ) : (
               <a
                 href={`mailto:${program.contactEmail}`}
-                className="mt-2 inline-block break-all font-mono text-[11.5px] uppercase tracking-[0.1em] text-txt underline decoration-line3 underline-offset-4 transition-colors hover:decoration-pine-hi"
+                className="mt-1 inline-block break-all py-2.5 font-body text-[17px] font-medium text-ink underline decoration-line-3 underline-offset-4 transition-colors hover:decoration-accent"
               >
                 {program.contactEmail}
               </a>
             )}
-            <p className="mt-5 font-body text-[12.5px] leading-[1.65] text-muted">
+            <p className="mt-5 font-body text-[16px] leading-[1.6] text-ink-3">
               Progress is saved in your own browser. Nothing is uploaded, and there is no account to create.{" "}
-              <Link href="/privacy" className="text-txt2 underline decoration-line3 underline-offset-4 hover:text-txt">
+              <Link href="/privacy" className="text-ink-2 underline decoration-line-3 underline-offset-4 hover:text-ink">
                 Privacy note
               </Link>
               .
             </p>
-            <p className="mt-3 font-body text-[11.5px] leading-[1.6] text-muted">
+            <p className="mt-3 font-body text-[15px] leading-[1.6] text-ink-3">
               Tool names and logos are trademarks of their owners. No affiliation or endorsement.
             </p>
           </div>
         </div>
       </div>
-      <div className="border-t border-white/[0.07]">
+      <div className="border-t border-line">
         <div className="pl-shell flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <Mono className="text-muted">PineLaunch · Open preview · 2026</Mono>
-          <Mono className="text-muted">Progress key · pinelaunch.progress.v1</Mono>
+          <Mono className="text-ink-3">PineLaunch · Open preview · 2026</Mono>
+          <Mono className="text-ink-3">Progress key · pinelaunch.progress.v1</Mono>
           <TopButton />
         </div>
       </div>

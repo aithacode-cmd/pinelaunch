@@ -13,10 +13,10 @@ const labels: Record<SaveState, string> = {
  */
 export function SaveIndicator({ state }: { state: SaveState }) {
   return (
-    <span role="status" aria-live="polite" className="inline-flex items-center gap-2 font-body text-[12.5px] text-txt2">
+    <span role="status" aria-live="polite" className="inline-flex items-center gap-2 font-body text-[12.5px] text-ink-2">
       <span
         aria-hidden="true"
-        className={"h-1.5 w-1.5 rounded-full " + (state === "saved" ? "bg-pine-hi" : state === "error" ? "bg-danger" : "bg-muted")}
+        className={"h-1.5 w-1.5 rounded-full " + (state === "saved" ? "bg-accent" : state === "error" ? "bg-danger" : "bg-ink-3")}
       />
       {labels[state]}
     </span>
