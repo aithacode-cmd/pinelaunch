@@ -1,12 +1,12 @@
 # PineLaunch: project status
 
-Last updated: 2026-11-26 (v2 redesign merged into `v1-workspace` locally; the branch was pushed before the merge; nothing merged to `main`, nothing deployed).
+Last updated: 2026-11-26 (v2 redesign merged into `v1-workspace`, pushed at 5f15806; nothing merged to `main`, nothing deployed).
 
 ## Merged: the v2 "Night to launch" redesign (2026-11-26)
 
 The founder asked for this branch to be pushed, then for `origin/ui-redesign` (the approved v2 design, built on `main` at 84b6055) to be merged in, keeping the design and the new studio both working. Not merged to `main`, not deployed.
 
-- `v1-workspace` was pushed to GitHub at 66bc181, before the merge. The merge (877f0f8) and the fix after it are local only.
+- `v1-workspace` was pushed to GitHub at 66bc181, before the merge, and again at 5f15806 with the merge, after the founder said "Yes, push it".
 - Three files clashed: `.gitignore` (kept both rules), the root layout (v2 fonts; the header and footer stay in `SiteChrome`) and the 404 page (v2 colours inside `SiteChrome`). `SiteChrome` dropped the background layer and ticker that the redesign removed.
 - The studio was moved onto the v2 colours (D30). One problem found in the browser and fixed: the new code font drew `<!--` and `-->` as arrows in the Starter code view.
 - Checks: 113 logic tests, lint, type check and build pass. The redesign's walkthrough passes 14 of 14 with no page errors (run against `next start`, D31). The studio flow (idea, code, plan, starter) was run on the dev server with no page errors.
