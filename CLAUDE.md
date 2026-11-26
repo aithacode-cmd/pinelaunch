@@ -32,18 +32,19 @@ him, use plain language, explain what you are doing, and avoid jargon.
   scripts. Google Forms and Discord are plain external links (no iframes,
   no widgets).
 - Motion (`motion/react`) for animation and Lucide for icons. Nothing else.
-- Design system (final, 2026-11-15, rebuilt from the founder's chosen
-  Base44 output, frozen copy in `design/base44/`): neutral black and grey,
-  pine green only as a hint. Four self-hosted typefaces via next/font:
-  Space Grotesk (headings, `font-heading`), Manrope (body, `font-body`),
-  IBM Plex Mono (labels, `font-mono`, via `components/Mono.tsx`),
-  Instrument Serif italic (`font-serif`, one accent phrase per heading).
-  Color tokens (`deep`, `bg`, `ink`, `panel`, `panel2`, `panel3`, `line`,
-  `line2`, `line3`, `txt`, `txt2`, `muted`, `pine`, `pine-hi`,
-  `pine-deep`) and the `pl-*` helper classes live in `app/globals.css`.
-  Every animation stops under `prefers-reduced-motion`.
-- Shared pieces: `Button`, `Mono`, `Background`, `Ticker`, `Reveal`,
-  `PromptPanel`, `CopyButton`; home sections in `components/home/`.
+- Design system: "Night to launch" (2026-11-25, v2; replaced "Workbench"
+  and the dark Base44 system). Public pages scroll from a night sky through
+  dawn to a cream sunrise; working pages sit on cream with plum ink. Fonts
+  via next/font: Bricolage Grotesque (display, headings), Figtree (text),
+  JetBrains Mono (labels, `components/Mono.tsx`). Bright `coral` is for
+  filled actions only; text accents use `accent` (deeper coral). Tokens and
+  `pl-*` helpers live in `app/globals.css`. The full system is in
+  `DESIGN.md`; read it before changing any UI. Every animation stops under
+  `prefers-reduced-motion`.
+- Shared pieces: `Button`, `Mono`, `PromptPanel`, `CopyButton`,
+  `ProjectCardView`, `StepItem`, `Burst`; home sections in
+  `components/home/` (`NightHero`, `HubSection`, `WeeksStage`, ...).
+- Illustrations: four ElevenLabs scenes in `public/art/` (see DESIGN.md, Art).
 - Brand mark (one triangle over one bar) and wordmark:
   `components/Brand.tsx`; favicon: `app/icon.svg`.
 
@@ -127,19 +128,16 @@ The guides and prompts must not hand students finished code up front.
 
 ## Look
 
-Premium minimal, dark, like a serious technology company. Black and grey
-dominate; pine green is used only for the mark, primary buttons, ticked
-boxes, current markers and one key number. Headings may carry one italic
-serif phrase. Figures are real interface mockups labeled as illustrative
-examples; no orbs, node graphs or floating shapes. The home page may be
-expressive; dashboard and week pages stay calm. The home page tools strip
-shows seven tools with small drawn marks (Replit, Base44, ChatGPT, Google
-Forms, Figma, Vercel, Notion; Discord was removed on 2026-11-21 with the
-pilot): founder decision on 2026-11-15, which
-overrides the earlier "five tools, text only" rule for that strip alone.
-Everywhere else, only Replit, Base44 and ChatGPT are named as tools. When
-changing a page, compare it against the matching screenshot in
-`design/base44/shots/`.
+See `DESIGN.md`. In short: night to sunrise, the program's story told in
+colour. Big, heavy headlines; pill buttons and a floating pill nav; art as
+framed scenery, never behind text. Working pages (dashboard, weeks) stay calm
+and put the single next action first. The paid plans (Level Ladder, passes)
+live on the parent pages (`/parents`, `/next`), not on the student home page
+(owner decision 2026-11-25). Figures of student work are interface mockups
+labelled as illustrative examples. The home page tools strip shows seven
+tools with small drawn marks (founder decision 2026-11-15, which overrides the
+"five tools, text only" rule for that strip alone). Everywhere else, only
+Replit, Base44 and ChatGPT are named as tools.
 
 ## Tone
 
@@ -175,4 +173,5 @@ redeploy. There is no runtime config.
 Update `PROJECT_STATUS.md`: what changed, remaining placeholders, known
 issues, next three tasks.
 
-Decision 2026-11-18: no AI-generated 3D renders or illustrations anywhere on the site. Rithwik found them tacky and off-brand. Visuals are built interface mockups only.
+Decision 2026-11-18: no AI-generated 3D renders or illustrations anywhere on the site. Rithwik found them tacky and off-brand.
+Update 2026-11-25: the owner lifted this for flat vector scenes made with ElevenLabs (Recraft v4.1 Pro Vector) in the shared night-to-sunrise style, currently the four files in `public/art/`. 3D renders stay out, and no image may suggest a real student, real result or endorsement.

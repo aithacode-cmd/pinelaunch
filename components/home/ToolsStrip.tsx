@@ -27,12 +27,12 @@ const Base44Mark = (
 
 const ChatGPTMark = (
   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-    <g fill="#EDEDED">
+    <g fill="#111111">
       {[0, 60, 120, 180, 240, 300].map((deg) => (
         <rect key={deg} x="10.15" y="3" width="3.7" height="8.6" rx="1.85" transform={`rotate(${deg} 12 12)`} />
       ))}
     </g>
-    <circle cx="12" cy="12" r="2.4" fill="#0B0B0B" />
+    <circle cx="12" cy="12" r="2.4" fill="#FFFFFF" />
   </svg>
 );
 
@@ -59,13 +59,13 @@ const FigmaMark = (
 
 const VercelMark = (
   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-    <path d="M12 3.4 22.4 21H1.6Z" fill="#EDEDED" />
+    <path d="M12 3.4 22.4 21H1.6Z" fill="#000000" />
   </svg>
 );
 
 const NotionMark = (
   <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-    <rect x="2" y="2" width="20" height="20" rx="4.5" fill="#F4F4F4" />
+    <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="#FFFFFF" stroke="#111" strokeWidth="1.4" />
     <path d="M8.2 16.8V7.2h2.3l3.4 6.1V7.2h2v9.6h-2.2l-3.5-6.2v6.2Z" fill="#111" />
   </svg>
 );
@@ -82,30 +82,18 @@ const tools: { name: string; mark: ReactNode; note: string }[] = [
 
 export function ToolsStrip() {
   return (
-    <section aria-label="Tools used in the program" className="relative z-10 border-b border-white/[0.06] bg-deep/50">
-      <div className="pl-shell py-9 lg:py-11">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <span className="h-1 w-1 rounded-full bg-pine-hi" aria-hidden="true" />
-            <Mono className="text-txt2">The stack · what you will use</Mono>
-          </div>
-          <Mono className="text-muted">Seven tools · one each · nothing else needed</Mono>
-        </div>
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[18px] border border-white/[0.08] bg-white/[0.07] sm:grid-cols-4 lg:grid-cols-7">
-          {tools.map((t, i) => (
-            <li
-              key={t.name}
-              className="pl-spot pl-rise group relative flex items-center gap-3 bg-ink px-4 py-4 transition-colors duration-300 hover:bg-[#121614] lg:flex-col lg:items-start lg:justify-between lg:gap-4 lg:px-4 lg:py-5"
-              style={{ animationDelay: `${120 + i * 55}ms` }}
-            >
-              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center transition-transform duration-300 group-hover:scale-105 [&>svg]:h-7 [&>svg]:w-7">
-                {t.mark}
-              </span>
+    <section aria-label="Tools used in the program" className="relative border-b border-line bg-ground">
+      <div className="pl-shell flex flex-col gap-5 py-8 lg:flex-row lg:items-center lg:gap-10 lg:py-10">
+        <Mono className="shrink-0 text-ink-3 lg:w-[180px]">What you will use</Mono>
+        <ul className="grid flex-1 grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4 lg:flex lg:justify-between">
+          {tools.map((t) => (
+            <li key={t.name} className="flex items-center gap-3">
+              <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center [&>svg]:h-7 [&>svg]:w-7">{t.mark}</span>
               <span className="min-w-0">
-                <span className="block truncate font-heading text-[13px] font-medium leading-tight tracking-[-0.02em] text-txt">
+                <span className="block truncate font-heading text-[15px] font-medium leading-tight tracking-[-0.015em] text-ink">
                   {t.name}
                 </span>
-                <Mono className="mt-1 block text-muted">{t.note}</Mono>
+                <span className="block font-body text-[13px] leading-tight text-ink-3">{t.note}</span>
               </span>
             </li>
           ))}

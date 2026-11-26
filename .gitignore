@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local state from the Taste design skill (deal history, checker state)
+.taste-skill/

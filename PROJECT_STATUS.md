@@ -2,6 +2,49 @@
 
 Last updated: 2026-11-15 (final design merged into `main`, pushed, live).
 
+
+## Night to launch, v2 (2026-11-25, branch `ui-redesign`, not merged, not live)
+
+The owner reviewed references (Spark, Stay22, Alister, MusicWave, MarkAge360, apple.com) and chose a playful, illustrated direction for PineLaunch. This replaces the "Workbench" look from earlier the same day; the structural fixes from that round stay. Full system: `DESIGN.md`.
+
+- **Home:**
+  - night hero drawn in code (stars, pine ridge, beacon)
+  - animated hub (tools, then your project, then launch); stacks on phones
+  - three week cards with ElevenLabs scenes (night, dawn, sunrise)
+  - colour-block project cards; the interactive homework demo is now the first card
+  - a parents strip
+  - a sunrise close
+- **Paid plans moved off the student home page** to `/parents` (new "Launch is level one" block above the waitlist) and `/next` (unchanged). Owner decision.
+- **App pages:** cream and plum, pill buttons, a floating pill nav (Start or Continue), a star burst when a step is ticked, badges that pop in, sunrise-gradient progress tracks.
+- **Art:** four ElevenLabs vector scenes in `public/art/`, about 10,600 ElevenLabs credits including one test image. The Nov 18 no-AI-illustration rule was lifted for these (see CLAUDE.md).
+- **Environment:** `elevenlabsusercontent.com` was added to the cloud environment's allowed hosts so generated images can be downloaded.
+
+Checked:
+- lint, types, static build
+- 14 browser flows pass with no page errors
+- no sideways scroll at 1440 and 390
+
+Known: the home page is still about 14,750px tall on phones.
+
+## Workbench redesign (2026-11-25, branch `ui-redesign`, not merged, not live)
+
+The founder asked for a new visual identity. The dark Base44 design is replaced by "Workbench": a light frost ground, slate ink, one deep teal accent, Host Grotesk and JetBrains Mono. The full system is in `DESIGN.md`. No content, step ids, storage keys or rules changed.
+
+What changed beyond the look:
+- Week pages open only the next unfinished step; ticking a step opens the next one.
+- The dashboard leads with "Next step" and one launch track for the three weeks. The repeated stats strip and timeline are gone; badges are a list.
+- The header button says "Continue" (to the dashboard) once a Project Card exists, instead of sending returning students to the idea picker.
+- The replace-card warning in the idea picker is now a visible notice.
+- Prompt text, notices, filters and the "Back to top" button are larger, and tap targets are 44px.
+- Removed: the ticker, background textures, scroll fade-ins, pulsing dots, the sweep, the sticky week scene, and the italic serif.
+
+Checked: lint, types, static build; a browser walkthrough of 14 flows (start check, idea picker, dashboard, step ticking, example lock, prompts search and filter, copy, export/reset/import, Launch Day checklist, mobile menu, skip link), all passing with no page errors; screenshots at 1440, 768 and 390 with no sideways scroll.
+
+Not done / for the founder to decide:
+- Merging: review the branch, then merge to `main` yourself. Vercel publishes `main`.
+- The home page "Launch is level one" section shows paid plans to students. A reviewer flagged it; it stays because it was your call on 2026-11-18.
+- The home page is still long on phones (about 14,800px).
+
 ## Start check and "What comes after Launch Day" page (2026-11-22, live)
 
 Built from a brief the founder pasted on 2026-11-22. The brief was written for the December pilot, which was dropped on 2026-11-21, so only the parts that fit the current site were built.

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { home } from "@/content/home";
+import { Burst } from "../Burst";
 import { Mono } from "../Mono";
 
 /**
@@ -10,16 +11,22 @@ import { Mono } from "../Mono";
  * It is the example project in its week-two state, working. State lives
  * only in this component and is never saved.
  */
-export function HomeworkDemo() {
+export function HomeworkDemo({ compact = false }: { compact?: boolean }) {
   const { demo } = home.hero;
   const [done, setDone] = useState<boolean[]>(() => demo.tasks.map((t) => t.done));
+  const [burst, setBurst] = useState<{ i: number; n: number } | null>(null);
   const open = done.filter((d) => !d).length;
 
   return (
-    <div className="rounded-[20px] border border-white/[0.08] bg-panel p-5 sm:p-6">
+    <div className="overflow-hidden rounded-[10px] border border-line-2 bg-surface shadow-[0_1px_2px_rgba(31,48,56,0.05),0_24px_48px_-28px_rgba(31,48,56,0.28)]">
+      <div className="flex items-center gap-2 border-b border-line bg-surface-2 px-4 py-2.5">
+        <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+        <Mono className="truncate text-ink-3">Example project · week 2</Mono>
+      </div>
+      <div className={compact ? "p-4" : "p-5 sm:p-6"}>
       <div className="flex items-center justify-between gap-3">
-        <p className="font-heading text-[20px] font-medium tracking-[-0.02em] text-txt">{demo.title}</p>
-        <Mono className="text-muted" aria-live="polite">
+        <p className="font-heading text-[24px] font-medium tracking-[-0.03em] text-ink">{demo.title}</p>
+        <Mono className="text-ink-3" aria-live="polite">
           {open === 0 ? "All done" : `${open} open`}
         </Mono>
       </div>
@@ -31,30 +38,35 @@ export function HomeworkDemo() {
               <button
                 type="button"
                 aria-pressed={isDone}
-                onClick={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))}
-                className="flex w-full items-center gap-3 rounded-[10px] border border-line bg-panel2 px-3.5 py-3 text-left transition-colors hover:border-line3"
+                onClick={() => {
+                  if (!isDone) setBurst((b) => ({ i, n: (b?.n ?? 0) + 1 }));
+                  setDone((d) => d.map((v, j) => (j === i ? !v : v)));
+                }}
+                className="pl-press flex min-h-14 w-full items-center gap-3 rounded-[10px] border border-line bg-surface px-3.5 py-3 text-left hover:border-line-3 hover:bg-surface-2"
               >
                 <span
                   className={
-                    "flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border transition-colors " +
-                    (isDone ? "border-pine-deep bg-pine-deep" : "border-line3 bg-transparent")
+                    "relative flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] border-[1.5px] transition-colors duration-150 " +
+                    (isDone ? "border-accent bg-accent" : "border-line-3 bg-transparent")
                   }
                   aria-hidden="true"
                 >
-                  {isDone && <Check className="h-3 w-3 text-white" strokeWidth={3.5} />}
+                  {isDone && <Check className="h-3 w-3 text-on-accent" strokeWidth={3.5} />}
+                  {isDone && burst?.i === i && <Burst key={burst.n} />}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className={"block font-body text-[14px] leading-tight " + (isDone ? "text-muted line-through" : "text-txt")}>
+                  <span className={"block font-body text-[16px] leading-tight transition-colors duration-150 " + (isDone ? "text-ink-3 line-through decoration-line-3" : "text-ink")}>
                     {t.title}
                   </span>
-                  <Mono className="mt-1 block text-muted">{t.due}</Mono>
+                  <Mono className="mt-1 block text-ink-3">{t.due}</Mono>
                 </span>
               </button>
             </li>
           );
         })}
       </ul>
-      <p className="mt-4 font-body text-[13px] leading-[1.6] text-muted">{demo.note}</p>
+      <p className="mt-4 font-body text-[16px] leading-[1.6] text-ink-3">{demo.note}</p>
+      </div>
     </div>
   );
 }
