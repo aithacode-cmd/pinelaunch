@@ -38,7 +38,9 @@ Not real yet, said plainly:
 - **No AI has written a starter.** Two different ideas of the same kind get the same practice layout with different labels, which is exactly what the spec forbids for real starters. This is only acceptable because it is labeled practice and cannot run on the live site (D16).
 - **The files cannot be edited or run yet.** That is the workspace, Week 4.
 
-Next: the parent disclosure draft (`docs/PARENT_DISCLOSURE_DRAFT.md`) can be written now. The rest of Week 3 waits for the adult accounts below. Week 4 (the editor, the sandboxed preview, the storage bridge and the ZIP export) can be built on the practice AI.
+Parent disclosure: drafted 2026-11-26 in `docs/PARENT_DISCLOSURE_DRAFT.md` and approved by the founder for committing. It has 13 placeholders (Anthropic, Upstash, hosting, founder decisions) and lists reading Anthropic's full Usage Policy, especially the rules on minors, as its first open item. It still needs an adult review, ideally a lawyer's, before December 10.
+
+Next: the rest of Week 3 waits for the adult accounts below. Week 4 (the editor, the sandboxed preview, the storage bridge and the ZIP export) can be built on the practice AI.
 
 ---
 

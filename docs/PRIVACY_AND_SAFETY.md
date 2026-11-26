@@ -67,4 +67,5 @@ Not yet confirmed: the minimum age and eligibility rules for holding an Anthropi
 - The provider's retention policy, quoted and dated (when the account exists).
 - What the host records for each request (Week 3).
 - The adult support and escalation route (Week 3).
-- The parent disclosure, in `docs/PARENT_DISCLOSURE_DRAFT.md` (Week 3).
+- The parent disclosure: drafted on 2026-11-26 in `docs/PARENT_DISCLOSURE_DRAFT.md`, with placeholders for every fact that waits on the Anthropic, Upstash or hosting accounts. It needs an adult review, ideally a lawyer's, before it is sent.
+- The public `/privacy` and `/parents` pages say the site "sends nothing". Update them before the AI helper is live.
